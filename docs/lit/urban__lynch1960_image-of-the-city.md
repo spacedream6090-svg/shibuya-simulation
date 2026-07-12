@@ -1,0 +1,14 @@
+# Lynch 1960 — 都市のイメージ(The Image of the City)+ 計算論的拡張
+- リンク: 計算論版 [arXiv 1212.0940](https://arxiv.org/abs/1212.0940) / 実務解説 [ecampusontario Studio Skills: Legibility](https://ecampusontario.pressbooks.pub/studioskills/chapter/analysis-legibility-lynch/) | 分野: world/spatial, observer/measure, viz | 重要度: P0(「視空間=社会構造」の核)
+- 主張(claim): 人は都市を **5要素(path/edge/district/node/landmark)** で心的地図化する。要素が識別・構造化しやすい都市ほど **legibility(可読性)/ imageability(想起性)** が高く、ナビゲート・記憶しやすい。
+- 機構(mechanism):
+  - **path**(移動路)/ **edge**(線的境界)/ **district**(共通性格の領域)/ **node**(結節点・接合)/ **landmark**(外的参照点)。district は node で構造化、edge で画定、path で貫通、landmark を散点。
+  - imageability = 環境が観察者に強い心像を喚起する物理的性質。legibility = 部分が認識され一貫パターンに組織される容易さ。
+  - ★ **計算論版(Jiang, arXiv 1212.0940)**: 住民インタビューに頼らず、**地理DB + 軌跡データ**から imageability を自動算出。**head/tail 分割則 + べき則/スケーリング**で「少数の目立つ要素 vs 多数の平凡な要素」を階層抽出 = landmark/node の創発的検出。
+- 効く seam: `world/spatial`(4層基層の空間層 = 渋谷の path/node/district を affordance として持つ器)/ `observer/measure`(imageability をエージェント軌跡から**事後計算**)/ `viz`(PLATEAU 上の重畳は Lynch 5要素で構造化して見せる)。
+- "結論でなく seam として"の入れ方:
+  - ★ **landmark/node/district を hardcode しない**。空間は座標・通行可能性・POI という **affordance** のみ与え、「どこが landmark か」は**エージェントの移動・言及の集中から創発**させ、head/tail 則で**事後測定**(no-fingerprint 原則に完全合致 = [[measurement__validation-overview]] の observer-frame)。
+  - 社会構造(視空間)の"読みやすさ"= 集団が共有する心的地図の収束度 → [[labeling__cultural-evolution-overview]] の naming/収束と同型。ラベルの空間版。
+- コスト/スケール含意: imageability 計算は非LLMの後処理(軌跡集計・べき則フィット)で安価 → LOD の cheap tier / observer 層に載る。描画とは分離(Part B)。
+- 批判・限界: Lynch は視覚・物理形態に偏重(社会的意味・時間変化は弱い)。5要素は西洋都市の経験則で普遍性に議論あり。渋谷特有(スクランブル・地形・再開発)には calibration 必要。計算論版は軌跡データ品質に依存。
+- 関連: [[labeling__cultural-evolution-overview]](空間の心的地図=ラベル収束の空間版)/ [[measurement__validation-overview]](創発を事後測定)/ [[network__diffusion-overview]](path/node = ネットワーク topology)/ Part B 可視化(viz__*)

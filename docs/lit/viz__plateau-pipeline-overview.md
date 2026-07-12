@@ -1,0 +1,16 @@
+# Part B — PLATEAU/3DCG 可視化パイプライン + sim⇄viz 疎結合 I/F
+- リンク: [PLATEAU SDK for Unity(公式マニュアル: CityGML インポート)](https://project-plateau.github.io/PLATEAU-SDK-for-Unity/manual/ImportCityModels.html) / [Project-PLATEAU/PLATEAU-SDK-for-Unity(GitHub)](https://github.com/Project-PLATEAU/PLATEAU-SDK-for-Unity) / [3dcitydb/3dcitydb-web-map(Cesium ビューア, GitHub)](https://github.com/3dcitydb/3dcitydb-web-map) / [CesiumGS/3d-tiles(仕様, GitHub)](https://github.com/CesiumGS/3d-tiles) | 分野: viz, engine/output, observer | 重要度: P0(ハッカソン成果物の視覚核)
+- 主張(claim): シミュ(LLM+ABM)の計算と 3DCG 描画を**完全分離**し、シミュは「渋谷座標に紐づく時系列 2D(+高さ)データ」を吐き、**後処理**で PLATEAU 3D 上に重畳できる。2経路が実用:
+  - **Unity 経路**: PLATEAU SDK for Unity(国交省×Synesthesia、無料・**商用可**、Unity Asset Store)。CityGML(2nd ed.)を取込み、**緯度経度→平面直角座標変換**、メッシュ化、属性 API(C#)、OBJ/FBX/glTF 書出し。**渋谷駅・スクランブル交差点**を範囲選択で取得可(詳細テクスチャ)。全 RenderPipeline・Win/Mac/iOS/Android 対応。
+  - **Web 経路**: CityGML → **3D Tiles(glTF ベース、空間階層で高速ストリーミング/LOD)** → **CesiumJS**。3DCityDB Web Map Client が glTF/KML/CZML/GeoJSON/3D Tiles/I3S を表示。**CityGML→3D Tiles 自動変換(Python)** 事例あり。Batched 3D Model で建物を1モデル束化しランタイム性能向上。
+- 機構(mechanism): エージェント軌跡は「タイムスタンプ付き位置」を 3D タイル/都市モデル上にレンダリング。密度**ヒートマップ**・軌跡プロット・**時間再生(temporal playback)** が標準手法(人流/群衆シミュ可視化の定石)。
+- ★ **sim⇄viz 疎結合インターフェース(この分野の設計成果)**:
+  - **sim 出力(描画非依存)**: 追記型イベントログ。最小スキーマ = `{t, agent_id, x, y, z?, event_type, label_state, ...}`。座標系は **JGD2011 平面直角座標系(渋谷=系IX)** を正準にし、緯度経度へ相互変換可能に保持(両経路が要求)。
+  - **観測集約**: 軌跡→密度グリッド/ヒートマップ、ラベル/制度状態のコロプレス、[[urban__lynch1960_image-of-the-city]] の imageability(head/tail)を **observer 層で事前計算**(描画は結果を読むだけ)。
+  - **viz 取込み**: Unity 経路= glTF/エンティティ or ヒートマップテクスチャ、時系列を再生。Web 経路= 3D Tiles + CZML(時間付き)/ GeoJSON でエンティティ・ヒートマップ重畳。
+  - → **LLM 推論と 3DCG 計算が時間的にも計算資源的にも衝突しない**(sim はバッチで走り切り、viz は後処理で別プロセス/別マシン)。
+- 効く seam: `engine/output`(正準イベントログ形式)/ `observer`(集約=描画前計算)/ `viz`(2経路のアダプタ、どちらか後で選択)。
+- "結論でなく seam として"の入れ方: viz は**読み取り専用の下流**。sim は viz を一切知らない(出力形式だけ契約)。Unity/Web の選択は viz アダプタの差し替えで、sim には非影響。
+- コスト/スケール含意: 数千体規模は 3D Tiles ストリーミング/LOD + Batched Model + ヒートマップ集約で現実的([[mas__yang2024_oasis]] のスケール現実と整合)。個体軌跡の全描画が重ければ密度場に落とす。描画は本番 GPU クラスタと分離(オフライン後処理)。
+- 批判・限界: PLATEAU 建物 LOD と CityGML バージョン差で取込み品質が変動。数万体の個体軌跡同時描画は非現実的→集約表現へ。座標変換(高さ・測地系)の誤差に注意。Web 経路の大規模 3D Tiles 生成は前処理コスト。
+- 関連: [[urban__lynch1960_image-of-the-city]](imageability を viz で表現)/ [[mas__yang2024_oasis]](スケール現実)/ [[ecology__ecosystem-metaphor-overview]](密度=carrying capacity 可視化)/ [[project-charter]](ハッカソン成果物)

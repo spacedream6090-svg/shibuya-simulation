@@ -1,0 +1,134 @@
+{
+  "_meta": {
+    "source": "公共交通オープンデータセンター (Public Transportation Open Data Center, ODPT)",
+    "source_url": "https://www.odpt.org/",
+    "api_base": "https://api.odpt.org/api/v4/",
+    "api_version": "v4",
+    "attribution": "本データは公共交通オープンデータセンターのデータを利用して作成。出典表示および ODPT 利用規約の遵守が必要。",
+    "disclaimer": "データの正確性・完全性は保証されない。ODPT および各事業者は本データの利用によって生じた損害について責任を負わない。",
+    "usage_note": "決定論保護のため、シミュ実行中はこの静的キャッシュのみ読む(実行時の API 呼び出しは禁止)。詳細: docs/research/odpt-integration.md",
+    "fetched_at": "2026-07-07T15:33:58.537969+00:00"
+  },
+  "lines": [
+    {
+      "key": "jr_yamanote",
+      "label": "JR山手線",
+      "operator": "odpt.Operator:JR-East",
+      "railway": "odpt.Railway:JR-East.Yamanote",
+      "railway_count": 1,
+      "station_count": 25,
+      "shibuya_station": "odpt.Station:JR-East.Yamanote.Shibuya",
+      "station_timetable_count": 0,
+      "train_timetable_count": 0,
+      "notes": [
+        "駅時刻表 0 件(JR 等は StationTimetable 非提供の場合あり)"
+      ]
+    },
+    {
+      "key": "jr_saikyo",
+      "label": "JR埼京線",
+      "operator": "odpt.Operator:JR-East",
+      "railway": "odpt.Railway:JR-East.SaikyoKawagoe",
+      "railway_count": 1,
+      "station_count": 11,
+      "shibuya_station": "odpt.Station:JR-East.SaikyoKawagoe.Shibuya",
+      "station_timetable_count": 0,
+      "train_timetable_count": 0,
+      "notes": [
+        "駅時刻表 0 件(JR 等は StationTimetable 非提供の場合あり)"
+      ]
+    },
+    {
+      "key": "jr_shonanshinjuku",
+      "label": "JR湘南新宿ライン",
+      "operator": "odpt.Operator:JR-East",
+      "railway": "odpt.Railway:JR-East.ShonanShinjuku",
+      "railway_count": 1,
+      "station_count": 7,
+      "shibuya_station": "odpt.Station:JR-East.ShonanShinjuku.Shibuya",
+      "station_timetable_count": 0,
+      "train_timetable_count": 0,
+      "notes": [
+        "駅時刻表 0 件(JR 等は StationTimetable 非提供の場合あり)"
+      ]
+    },
+    {
+      "key": "tokyu_toyoko",
+      "label": "東急東横線",
+      "operator": "odpt.Operator:Tokyu",
+      "railway": "odpt.Railway:Tokyu.Toyoko",
+      "railway_count": 1,
+      "station_count": 8,
+      "shibuya_station": "odpt.Station:Tokyu.Toyoko.Shibuya",
+      "station_timetable_count": 0,
+      "train_timetable_count": 0,
+      "notes": [
+        "駅時刻表 0 件(JR 等は StationTimetable 非提供の場合あり)"
+      ]
+    },
+    {
+      "key": "tokyu_denentoshi",
+      "label": "東急田園都市線",
+      "operator": "odpt.Operator:Tokyu",
+      "railway": "odpt.Railway:Tokyu.DenEnToshi",
+      "railway_count": 1,
+      "station_count": 6,
+      "shibuya_station": "odpt.Station:Tokyu.DenEnToshi.Shibuya",
+      "station_timetable_count": 0,
+      "train_timetable_count": 0,
+      "notes": [
+        "駅時刻表 0 件(JR 等は StationTimetable 非提供の場合あり)"
+      ]
+    },
+    {
+      "key": "keio_inokashira",
+      "label": "京王井の頭線",
+      "operator": "odpt.Operator:Keio",
+      "railway": "odpt.Railway:Keio.Inokashira",
+      "railway_count": 1,
+      "station_count": 1,
+      "shibuya_station": "odpt.Station:Keio.Inokashira.Shibuya",
+      "station_timetable_count": 0,
+      "train_timetable_count": 0,
+      "notes": [
+        "駅時刻表 0 件(JR 等は StationTimetable 非提供の場合あり)"
+      ]
+    },
+    {
+      "key": "metro_ginza",
+      "label": "東京メトロ銀座線",
+      "operator": "odpt.Operator:TokyoMetro",
+      "railway": "odpt.Railway:TokyoMetro.Ginza",
+      "railway_count": 1,
+      "station_count": 19,
+      "shibuya_station": "odpt.Station:TokyoMetro.Ginza.Shibuya",
+      "station_timetable_count": 2,
+      "train_timetable_count": 0,
+      "notes": []
+    },
+    {
+      "key": "metro_hanzomon",
+      "label": "東京メトロ半蔵門線",
+      "operator": "odpt.Operator:TokyoMetro",
+      "railway": "odpt.Railway:TokyoMetro.Hanzomon",
+      "railway_count": 1,
+      "station_count": 14,
+      "shibuya_station": "odpt.Station:TokyoMetro.Hanzomon.Shibuya",
+      "station_timetable_count": 2,
+      "train_timetable_count": 0,
+      "notes": []
+    },
+    {
+      "key": "metro_fukutoshin",
+      "label": "東京メトロ副都心線",
+      "operator": "odpt.Operator:TokyoMetro",
+      "railway": "odpt.Railway:TokyoMetro.Fukutoshin",
+      "railway_count": 1,
+      "station_count": 16,
+      "shibuya_station": "odpt.Station:TokyoMetro.Fukutoshin.Shibuya",
+      "station_timetable_count": 2,
+      "train_timetable_count": 0,
+      "notes": []
+    }
+  ]
+}

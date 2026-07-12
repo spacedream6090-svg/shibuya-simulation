@@ -1,0 +1,4541 @@
+{
+  "_meta": {
+    "source": "公共交通オープンデータセンター (Public Transportation Open Data Center, ODPT)",
+    "source_url": "https://www.odpt.org/",
+    "api_base": "https://api.odpt.org/api/v4/",
+    "api_version": "v4",
+    "attribution": "本データは公共交通オープンデータセンターのデータを利用して作成。出典表示および ODPT 利用規約の遵守が必要。",
+    "disclaimer": "データの正確性・完全性は保証されない。ODPT および各事業者は本データの利用によって生じた損害について責任を負わない。",
+    "usage_note": "決定論保護のため、シミュ実行中はこの静的キャッシュのみ読む(実行時の API 呼び出しは禁止)。詳細: docs/research/odpt-integration.md",
+    "datatype": "odpt:StationTimetable",
+    "label": "東京メトロ半蔵門線",
+    "railway": "odpt.Railway:TokyoMetro.Hanzomon",
+    "station": "odpt.Station:TokyoMetro.Hanzomon.Shibuya",
+    "fetched_at": "2026-07-07T15:34:13.850866+00:00",
+    "count": 2
+  },
+  "data": [
+    {
+      "@id": "urn:ucode:_00001C0000000000000100000310102F",
+      "@type": "odpt:StationTimetable",
+      "dc:date": "2026-03-16T09:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_StationTimetable.jsonld",
+      "dct:issued": "2026-03-14",
+      "owl:sameAs": "odpt.StationTimetable:TokyoMetro.Hanzomon.Shibuya.TokyoMetro.Oshiage.SaturdayHoliday",
+      "odpt:railway": "odpt.Railway:TokyoMetro.Hanzomon",
+      "odpt:station": "odpt.Station:TokyoMetro.Hanzomon.Shibuya",
+      "odpt:calendar": "odpt.Calendar:SaturdayHoliday",
+      "odpt:operator": "odpt.Operator:TokyoMetro",
+      "odpt:railDirection": "odpt.RailDirection:TokyoMetro.Oshiage",
+      "odpt:stationTimetableObject": [
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A503K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A503K",
+          "odpt:departureTime": "05:15",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A504K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A504K",
+          "odpt:departureTime": "05:28",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A502K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A502K",
+          "odpt:departureTime": "05:44",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.TobuSkytree.TobuDobutsuKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A506K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A506K",
+          "odpt:departureTime": "06:01",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.TobuSkytree.TobuDobutsuKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A501K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A501K",
+          "odpt:departureTime": "06:11",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A525K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A525K",
+          "odpt:departureTime": "06:19",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.TobuSkytree.TobuDobutsuKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A508K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A508K",
+          "odpt:departureTime": "06:28",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A507K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A507K",
+          "odpt:departureTime": "06:34",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A661S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A661S",
+          "odpt:departureTime": "06:41",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A526K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A526K",
+          "odpt:departureTime": "06:46",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.TobuSkytree.TobuDobutsuKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A510K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A510K",
+          "odpt:departureTime": "06:53",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A615K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A615K",
+          "odpt:departureTime": "06:59",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.TobuSkytree.TobuDobutsuKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A613K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A613K",
+          "odpt:departureTime": "07:05",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A609K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A609K",
+          "odpt:departureTime": "07:10",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A673S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A673S",
+          "odpt:departureTime": "07:15",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A611K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A611K",
+          "odpt:departureTime": "07:20",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A665S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A665S",
+          "odpt:departureTime": "07:24",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A675S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A675S",
+          "odpt:departureTime": "07:29",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A680T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A680T",
+          "odpt:departureTime": "07:34",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A614K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A614K",
+          "odpt:departureTime": "07:39",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A716K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A716K",
+          "odpt:departureTime": "07:43",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A605K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A605K",
+          "odpt:departureTime": "07:48",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A612K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A612K",
+          "odpt:departureTime": "07:52",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A755S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A755S",
+          "odpt:departureTime": "07:57",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A753S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A753S",
+          "odpt:departureTime": "08:02",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A763S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A763S",
+          "odpt:departureTime": "08:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A754T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A754T",
+          "odpt:departureTime": "08:11",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A722K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A722K",
+          "odpt:departureTime": "08:16",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A750T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A750T",
+          "odpt:departureTime": "08:21",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A771S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A771S",
+          "odpt:departureTime": "08:26",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A757S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A757S",
+          "odpt:departureTime": "08:30",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A752T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A752T",
+          "odpt:departureTime": "08:35",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A818K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A818K",
+          "odpt:departureTime": "08:39",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A717K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A717K",
+          "odpt:departureTime": "08:44",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A756T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A756T",
+          "odpt:departureTime": "08:48",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A801K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A801K",
+          "odpt:departureTime": "08:53",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A769S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A769S",
+          "odpt:departureTime": "08:57",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A851S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A851S",
+          "odpt:departureTime": "09:02",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A858T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A858T",
+          "odpt:departureTime": "09:06",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A820K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A820K",
+          "odpt:departureTime": "09:10",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A877S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A877S",
+          "odpt:departureTime": "09:14",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A860T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A860T",
+          "odpt:departureTime": "09:18",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A819K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A819K",
+          "odpt:departureTime": "09:22",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A807K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A807K",
+          "odpt:departureTime": "09:26",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A862T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A862T",
+          "odpt:departureTime": "09:30",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A859S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A859S",
+          "odpt:departureTime": "09:34",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A882T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A882T",
+          "odpt:departureTime": "09:39",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A909K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A909K",
+          "odpt:departureTime": "09:43",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A810K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A810K",
+          "odpt:departureTime": "09:48",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A864T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A864T",
+          "odpt:departureTime": "09:52",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A966T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A966T",
+          "odpt:departureTime": "09:57",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A861S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A861S",
+          "odpt:departureTime": "10:02",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A921K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A921K",
+          "odpt:departureTime": "10:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A980T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A980T",
+          "odpt:departureTime": "10:12",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A967S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A967S",
+          "odpt:departureTime": "10:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A913K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A913K",
+          "odpt:departureTime": "10:22",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A975S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A975S",
+          "odpt:departureTime": "10:27",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A968T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A968T",
+          "odpt:departureTime": "10:32",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A970T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A970T",
+          "odpt:departureTime": "10:37",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A911K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A911K",
+          "odpt:departureTime": "10:42",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A953S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A953S",
+          "odpt:departureTime": "10:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A916K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A916K",
+          "odpt:departureTime": "10:52",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1005K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1005K",
+          "odpt:departureTime": "10:57",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A902K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A902K",
+          "odpt:departureTime": "11:02",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1006K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1006K",
+          "odpt:departureTime": "11:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1004K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1004K",
+          "odpt:departureTime": "11:12",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1063S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1063S",
+          "odpt:departureTime": "11:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1072T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1072T",
+          "odpt:departureTime": "11:22",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1022K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1022K",
+          "odpt:departureTime": "11:27",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1057S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1057S",
+          "odpt:departureTime": "11:32",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1050T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1050T",
+          "odpt:departureTime": "11:37",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1052T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1052T",
+          "odpt:departureTime": "11:42",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1017K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1017K",
+          "odpt:departureTime": "11:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1001K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1001K",
+          "odpt:departureTime": "11:52",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1169S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1169S",
+          "odpt:departureTime": "11:57",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1115K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1115K",
+          "odpt:departureTime": "12:02",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1119K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1119K",
+          "odpt:departureTime": "12:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1174T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1174T",
+          "odpt:departureTime": "12:12",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1120K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1120K",
+          "odpt:departureTime": "12:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1158T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1158T",
+          "odpt:departureTime": "12:22",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1182T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1182T",
+          "odpt:departureTime": "12:27",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1176T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1176T",
+          "odpt:departureTime": "12:32",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1107K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1107K",
+          "odpt:departureTime": "12:37",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1160T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1160T",
+          "odpt:departureTime": "12:42",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1166T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1166T",
+          "odpt:departureTime": "12:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1110K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1110K",
+          "odpt:departureTime": "12:52",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1265S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1265S",
+          "odpt:departureTime": "12:57",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1159S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1159S",
+          "odpt:departureTime": "13:02",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1267S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1267S",
+          "odpt:departureTime": "13:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1221K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1221K",
+          "odpt:departureTime": "13:12",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1212K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1212K",
+          "odpt:departureTime": "13:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1223K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1223K",
+          "odpt:departureTime": "13:22",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1270T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1270T",
+          "odpt:departureTime": "13:27",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1275S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1275S",
+          "odpt:departureTime": "13:32",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1208K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1208K",
+          "odpt:departureTime": "13:37",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1255S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1255S",
+          "odpt:departureTime": "13:42",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1205K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1205K",
+          "odpt:departureTime": "13:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1253S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1253S",
+          "odpt:departureTime": "13:52",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1354T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1354T",
+          "odpt:departureTime": "13:57",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1363S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1363S",
+          "odpt:departureTime": "14:02",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1271S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1271S",
+          "odpt:departureTime": "14:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1306K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1306K",
+          "odpt:departureTime": "14:12",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1378T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1378T",
+          "odpt:departureTime": "14:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1350T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1350T",
+          "odpt:departureTime": "14:22",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1318K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1318K",
+          "odpt:departureTime": "14:27",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1322K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1322K",
+          "odpt:departureTime": "14:32",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1373S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1373S",
+          "odpt:departureTime": "14:37",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1469S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1469S",
+          "odpt:departureTime": "14:42",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1356T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1356T",
+          "odpt:departureTime": "14:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1317K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1317K",
+          "odpt:departureTime": "14:52",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1451S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1451S",
+          "odpt:departureTime": "14:57",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1420K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1420K",
+          "odpt:departureTime": "15:02",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1362T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1362T",
+          "odpt:departureTime": "15:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1419K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1419K",
+          "odpt:departureTime": "15:12",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1424K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1424K",
+          "odpt:departureTime": "15:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1466T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1466T",
+          "odpt:departureTime": "15:22",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1464T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1464T",
+          "odpt:departureTime": "15:27",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1482T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1482T",
+          "odpt:departureTime": "15:32",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1461S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1461S",
+          "odpt:departureTime": "15:37",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1565S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1565S",
+          "odpt:departureTime": "15:42",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1480T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1480T",
+          "odpt:departureTime": "15:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1407K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1407K",
+          "odpt:departureTime": "15:52",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1513K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1513K",
+          "odpt:departureTime": "15:57",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1512K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1512K",
+          "odpt:departureTime": "16:02",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1468T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1468T",
+          "odpt:departureTime": "16:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1567S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1567S",
+          "odpt:departureTime": "16:12",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1577S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1577S",
+          "odpt:departureTime": "16:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1508K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1508K",
+          "odpt:departureTime": "16:22",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1516K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1516K",
+          "odpt:departureTime": "16:27",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1570T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1570T",
+          "odpt:departureTime": "16:32",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1557S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1557S",
+          "odpt:departureTime": "16:37",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1654T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1654T",
+          "odpt:departureTime": "16:42",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1504K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1504K",
+          "odpt:departureTime": "16:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1505K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1505K",
+          "odpt:departureTime": "16:52",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1609K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1609K",
+          "odpt:departureTime": "16:57",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1678T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1678T",
+          "odpt:departureTime": "17:02",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1511K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1511K",
+          "odpt:departureTime": "17:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1671S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1671S",
+          "odpt:departureTime": "17:12",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1672T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1672T",
+          "odpt:departureTime": "17:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1601K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1601K",
+          "odpt:departureTime": "17:21",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1656T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1656T",
+          "odpt:departureTime": "17:27",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1618K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1618K",
+          "odpt:departureTime": "17:32",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1674T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1674T",
+          "odpt:departureTime": "17:37",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1751S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1751S",
+          "odpt:departureTime": "17:42",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1673S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1673S",
+          "odpt:departureTime": "17:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1615K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1615K",
+          "odpt:departureTime": "17:52",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1710K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1710K",
+          "odpt:departureTime": "17:57",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1676T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1676T",
+          "odpt:departureTime": "18:02",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1762T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1762T",
+          "odpt:departureTime": "18:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1761S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1761S",
+          "odpt:departureTime": "18:12",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1758T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1758T",
+          "odpt:departureTime": "18:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1760T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1760T",
+          "odpt:departureTime": "18:21",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1724K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1724K",
+          "odpt:departureTime": "18:27",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1752T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1752T",
+          "odpt:departureTime": "18:32",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1721K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1721K",
+          "odpt:departureTime": "18:37",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1823K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1823K",
+          "odpt:departureTime": "18:42",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1764T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1764T",
+          "odpt:departureTime": "18:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1714K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1714K",
+          "odpt:departureTime": "18:52",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1813K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1813K",
+          "odpt:departureTime": "18:57",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1775S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1775S",
+          "odpt:departureTime": "19:02",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1825K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1825K",
+          "odpt:departureTime": "19:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1857S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1857S",
+          "odpt:departureTime": "19:12",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1880T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1880T",
+          "odpt:departureTime": "19:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1863S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A1863S",
+          "odpt:departureTime": "19:22",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.TobuSkytree.KitaKoshigaya"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1816K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1816K",
+          "odpt:departureTime": "19:27",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1868T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1868T",
+          "odpt:departureTime": "19:32",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1877S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1877S",
+          "odpt:departureTime": "19:37",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1922K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A1922K",
+          "odpt:departureTime": "19:42",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1869S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1869S",
+          "odpt:departureTime": "19:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1850T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1850T",
+          "odpt:departureTime": "19:52",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1909K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1909K",
+          "odpt:departureTime": "19:57",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1817K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A1817K",
+          "odpt:departureTime": "20:02",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.TobuSkytree.KitaKoshigaya"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1926K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1926K",
+          "odpt:departureTime": "20:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1974T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1974T",
+          "odpt:departureTime": "20:12",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1904K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1904K",
+          "odpt:departureTime": "20:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1966T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1966T",
+          "odpt:departureTime": "20:22",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1982T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1982T",
+          "odpt:departureTime": "20:27",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1920K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A1920K",
+          "odpt:departureTime": "20:32",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.TobuSkytree.KitaKoshigaya"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1972T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A1972T",
+          "odpt:departureTime": "20:38",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2073S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2073S",
+          "odpt:departureTime": "20:44",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1956T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1956T",
+          "odpt:departureTime": "20:50",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1959S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1959S",
+          "odpt:departureTime": "20:56",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2012K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A2012K",
+          "odpt:departureTime": "21:02",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.TobuSkytree.KitaKoshigaya"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2062T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A2062T",
+          "odpt:departureTime": "21:08",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2010K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2010K",
+          "odpt:departureTime": "21:14",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2058T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A2058T",
+          "odpt:departureTime": "21:20",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2008K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2008K",
+          "odpt:departureTime": "21:26",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2021K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A2021K",
+          "odpt:departureTime": "21:32",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.TobuSkytree.KitaKoshigaya"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2154T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A2154T",
+          "odpt:departureTime": "21:38",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2024K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2024K",
+          "odpt:departureTime": "21:44",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2070T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A2070T",
+          "odpt:departureTime": "21:50",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2067S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2067S",
+          "odpt:departureTime": "21:55",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.KiyosumiShirakawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2119K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A2119K",
+          "odpt:departureTime": "22:02",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.TobuSkytree.KitaKoshigaya"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2164T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A2164T",
+          "odpt:departureTime": "22:08",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2101K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2101K",
+          "odpt:departureTime": "22:15",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2178T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A2178T",
+          "odpt:departureTime": "22:22",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2171S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A2171S",
+          "odpt:departureTime": "22:30",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.TobuSkytree.KitaKoshigaya"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2180T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A2180T",
+          "odpt:departureTime": "22:37",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2116K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2116K",
+          "odpt:departureTime": "22:44",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2151S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2151S",
+          "odpt:departureTime": "22:51",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2260T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A2260T",
+          "odpt:departureTime": "22:58",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2226K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2226K",
+          "odpt:departureTime": "23:05",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2269S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2269S",
+          "odpt:departureTime": "23:12",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2276T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A2276T",
+          "odpt:departureTime": "23:19",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ],
+          "TokyoMetro.Hanzomon.Shibuya.TokyoMetro.Oshiage.SaturdayHoliday": true
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2255S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2255S",
+          "odpt:departureTime": "23:26",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2282T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A2282T",
+          "odpt:departureTime": "23:40",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.TobuSkytree.KitaKoshigaya"
+          ],
+          "TokyoMetro.Hanzomon.Shibuya.TokyoMetro.Oshiage.SaturdayHoliday": true
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2259S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2259S",
+          "odpt:departureTime": "23:53",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.KiyosumiShirakawa"
+          ],
+          "TokyoMetro.Hanzomon.Shibuya.TokyoMetro.Oshiage.SaturdayHoliday": true
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2373S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2373S",
+          "odpt:departureTime": "00:04",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Nagatacho"
+          ],
+          "TokyoMetro.Hanzomon.Shibuya.TokyoMetro.Oshiage.SaturdayHoliday": true
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2375S",
+          "odpt:isLast": true,
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2375S",
+          "odpt:departureTime": "00:15",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.AoyamaItchome"
+          ],
+          "TokyoMetro.Hanzomon.Shibuya.TokyoMetro.Oshiage.SaturdayHoliday": true
+        }
+      ]
+    },
+    {
+      "@id": "urn:ucode:_00001C0000000000000100000310102D",
+      "@type": "odpt:StationTimetable",
+      "dc:date": "2026-03-16T09:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_StationTimetable.jsonld",
+      "dct:issued": "2026-03-14",
+      "owl:sameAs": "odpt.StationTimetable:TokyoMetro.Hanzomon.Shibuya.TokyoMetro.Oshiage.Weekday",
+      "odpt:railway": "odpt.Railway:TokyoMetro.Hanzomon",
+      "odpt:station": "odpt.Station:TokyoMetro.Hanzomon.Shibuya",
+      "odpt:calendar": "odpt.Calendar:Weekday",
+      "odpt:operator": "odpt.Operator:TokyoMetro",
+      "odpt:railDirection": "odpt.RailDirection:TokyoMetro.Oshiage",
+      "odpt:stationTimetableObject": [
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A529K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A529K",
+          "odpt:departureTime": "05:15",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A504K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A504K",
+          "odpt:departureTime": "05:29",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A502K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A502K",
+          "odpt:departureTime": "05:44",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.TobuSkytree.TobuDobutsuKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A531K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A531K",
+          "odpt:departureTime": "05:55",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A582T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A582T",
+          "odpt:departureTime": "06:01",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.TobuSkytree.TobuDobutsuKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A528K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A528K",
+          "odpt:departureTime": "06:06",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A501K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A501K",
+          "odpt:departureTime": "06:11",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A533K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A533K",
+          "odpt:departureTime": "06:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A551S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A551S",
+          "odpt:departureTime": "06:22",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.TobuSkytree.TobuDobutsuKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A555S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A555S",
+          "odpt:departureTime": "06:27",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A534K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A534K",
+          "odpt:departureTime": "06:30",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A659S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A659S",
+          "odpt:departureTime": "06:34",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.KiyosumiShirakawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A509K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A509K",
+          "odpt:departureTime": "06:38",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A505K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A505K",
+          "odpt:departureTime": "06:42",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A661S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A661S",
+          "odpt:departureTime": "06:46",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A532K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A532K",
+          "odpt:departureTime": "06:49",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A635K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A635K",
+          "odpt:departureTime": "06:53",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.TobuSkytree.KitaKoshigaya"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A608K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A608K",
+          "odpt:departureTime": "06:57",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.KiyosumiShirakawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A637K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A637K",
+          "odpt:departureTime": "07:00",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.TobuSkytree.TobuDobutsuKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A665S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A665S",
+          "odpt:departureTime": "07:03",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A610K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A610K",
+          "odpt:departureTime": "07:05",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.KiyosumiShirakawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A507K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A507K",
+          "odpt:departureTime": "07:08",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A614K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A614K",
+          "odpt:departureTime": "07:10",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A677S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A677S",
+          "odpt:departureTime": "07:13",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.KiyosumiShirakawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A680T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A680T",
+          "odpt:departureTime": "07:15",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A611K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A611K",
+          "odpt:departureTime": "07:18",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Hanzomon"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A639K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A639K",
+          "odpt:departureTime": "07:20",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.TobuSkytree.KitaKoshigaya"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A636K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A636K",
+          "odpt:departureTime": "07:23",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.KiyosumiShirakawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A612K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A612K",
+          "odpt:departureTime": "07:25",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A606K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A606K",
+          "odpt:departureTime": "07:28",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A616K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A616K",
+          "odpt:departureTime": "07:30",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A681S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A681S",
+          "odpt:departureTime": "07:33",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.KiyosumiShirakawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A615K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A615K",
+          "odpt:departureTime": "07:35",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A653S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A653S",
+          "odpt:departureTime": "07:38",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A741K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A741K",
+          "odpt:departureTime": "07:40",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A657S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A657S",
+          "odpt:departureTime": "07:43",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.KiyosumiShirakawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A740K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A740K",
+          "odpt:departureTime": "07:45",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A689S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A689S",
+          "odpt:departureTime": "07:48",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.TobuSkytree.TobuDobutsuKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A613K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A613K",
+          "odpt:departureTime": "07:51",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A717K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A717K",
+          "odpt:departureTime": "07:53",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.KiyosumiShirakawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A663S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A663S",
+          "odpt:departureTime": "07:55",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A779S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A779S",
+          "odpt:departureTime": "07:57",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A691S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A691S",
+          "odpt:departureTime": "08:00",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A743K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A743K",
+          "odpt:departureTime": "08:02",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.KiyosumiShirakawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A630K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A630K",
+          "odpt:departureTime": "08:04",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A718K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A718K",
+          "odpt:departureTime": "08:06",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A767S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A767S",
+          "odpt:departureTime": "08:08",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A742K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A742K",
+          "odpt:departureTime": "08:11",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.KiyosumiShirakawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A752T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A752T",
+          "odpt:departureTime": "08:13",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A720K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A720K",
+          "odpt:departureTime": "08:15",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.TobuSkytree.TobuDobutsuKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A738K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A738K",
+          "odpt:departureTime": "08:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.KiyosumiShirakawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A721K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A721K",
+          "odpt:departureTime": "08:20",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A750T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A750T",
+          "odpt:departureTime": "08:22",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A703K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A703K",
+          "odpt:departureTime": "08:24",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A719K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A719K",
+          "odpt:departureTime": "08:27",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A744K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A744K",
+          "odpt:departureTime": "08:29",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.KiyosumiShirakawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A769S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A769S",
+          "odpt:departureTime": "08:31",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A723K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A723K",
+          "odpt:departureTime": "08:34",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A785S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A785S",
+          "odpt:departureTime": "08:36",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A731K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A731K",
+          "odpt:departureTime": "08:38",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.KiyosumiShirakawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A722K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A722K",
+          "odpt:departureTime": "08:41",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A825K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A825K",
+          "odpt:departureTime": "08:43",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A771S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A771S",
+          "odpt:departureTime": "08:45",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A858T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A858T",
+          "odpt:departureTime": "08:48",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.KiyosumiShirakawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A793S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A793S",
+          "odpt:departureTime": "08:50",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A875S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A875S",
+          "odpt:departureTime": "08:52",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A724K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A724K",
+          "odpt:departureTime": "08:55",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A773S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A773S",
+          "odpt:departureTime": "08:57",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A832K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A832K",
+          "odpt:departureTime": "08:59",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A801K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A801K",
+          "odpt:departureTime": "09:02",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A754T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A754T",
+          "odpt:departureTime": "09:05",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A855S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A855S",
+          "odpt:departureTime": "09:07",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A887S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A887S",
+          "odpt:departureTime": "09:10",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A859S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A859S",
+          "odpt:departureTime": "09:13",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A856T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A856T",
+          "odpt:departureTime": "09:16",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A862T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A862T",
+          "odpt:departureTime": "09:19",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A828K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A828K",
+          "odpt:departureTime": "09:22",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A808K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A808K",
+          "odpt:departureTime": "09:25",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A860T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A860T",
+          "odpt:departureTime": "09:28",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A883S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A883S",
+          "odpt:departureTime": "09:32",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A833K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A833K",
+          "odpt:departureTime": "09:35",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A809K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A809K",
+          "odpt:departureTime": "09:39",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A966T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A966T",
+          "odpt:departureTime": "09:43",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A864T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A864T",
+          "odpt:departureTime": "09:46",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A811K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A811K",
+          "odpt:departureTime": "09:50",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A977S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A977S",
+          "odpt:departureTime": "09:53",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A810K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A810K",
+          "odpt:departureTime": "09:56",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A965S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A965S",
+          "odpt:departureTime": "09:59",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A936K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A936K",
+          "odpt:departureTime": "10:02",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A970T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A970T",
+          "odpt:departureTime": "10:05",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A926K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A926K",
+          "odpt:departureTime": "10:08",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.KiyosumiShirakawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A968T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A968T",
+          "odpt:departureTime": "10:12",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A907K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A907K",
+          "odpt:departureTime": "10:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A916K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A916K",
+          "odpt:departureTime": "10:22",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A917K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A917K",
+          "odpt:departureTime": "10:27",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A912K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A912K",
+          "odpt:departureTime": "10:31",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A972T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A972T",
+          "odpt:departureTime": "10:36",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1013K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1013K",
+          "odpt:departureTime": "10:40",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A974T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A974T",
+          "odpt:departureTime": "10:45",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A976T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A976T",
+          "odpt:departureTime": "10:49",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1027K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1027K",
+          "odpt:departureTime": "10:54",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1004K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1004K",
+          "odpt:departureTime": "10:58",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A979S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A979S",
+          "odpt:departureTime": "11:03",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1002K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1002K",
+          "odpt:departureTime": "11:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1019K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1019K",
+          "odpt:departureTime": "11:12",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1018K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1018K",
+          "odpt:departureTime": "11:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1050T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1050T",
+          "odpt:departureTime": "11:22",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1021K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1021K",
+          "odpt:departureTime": "11:27",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1078T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1078T",
+          "odpt:departureTime": "11:32",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1093S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1093S",
+          "odpt:departureTime": "11:37",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1125K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1125K",
+          "odpt:departureTime": "11:42",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1082T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1082T",
+          "odpt:departureTime": "11:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1058T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1058T",
+          "odpt:departureTime": "11:52",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1187S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1187S",
+          "odpt:departureTime": "11:57",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1161S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1161S",
+          "odpt:departureTime": "12:02",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1022K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1022K",
+          "odpt:departureTime": "12:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1173S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1173S",
+          "odpt:departureTime": "12:12",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1180T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1180T",
+          "odpt:departureTime": "12:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1162T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1162T",
+          "odpt:departureTime": "12:22",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1101K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1101K",
+          "odpt:departureTime": "12:27",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1154T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1154T",
+          "odpt:departureTime": "12:32",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1108K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1108K",
+          "odpt:departureTime": "12:37",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1289S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1289S",
+          "odpt:departureTime": "12:42",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1159S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1159S",
+          "odpt:departureTime": "12:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1164T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1164T",
+          "odpt:departureTime": "12:52",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1277S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1277S",
+          "odpt:departureTime": "12:57",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1220K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1220K",
+          "odpt:departureTime": "13:02",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1166T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1166T",
+          "odpt:departureTime": "13:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1206K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1206K",
+          "odpt:departureTime": "13:12",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1263S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1263S",
+          "odpt:departureTime": "13:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1272T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1272T",
+          "odpt:departureTime": "13:22",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1210K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1210K",
+          "odpt:departureTime": "13:27",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1217K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1217K",
+          "odpt:departureTime": "13:32",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1207K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1207K",
+          "odpt:departureTime": "13:37",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1304K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1304K",
+          "odpt:departureTime": "13:42",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1270T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1270T",
+          "odpt:departureTime": "13:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1274T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1274T",
+          "odpt:departureTime": "13:52",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1391S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1391S",
+          "odpt:departureTime": "13:57",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1318K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1318K",
+          "odpt:departureTime": "14:02",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1205K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1205K",
+          "odpt:departureTime": "14:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1302K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1302K",
+          "odpt:departureTime": "14:12",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1323K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1323K",
+          "odpt:departureTime": "14:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1393S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1393S",
+          "odpt:departureTime": "14:22",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1303K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1303K",
+          "odpt:departureTime": "14:27",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1321K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1321K",
+          "odpt:departureTime": "14:32",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1371S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1371S",
+          "odpt:departureTime": "14:37",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1422K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1422K",
+          "odpt:departureTime": "14:42",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1355S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1355S",
+          "odpt:departureTime": "14:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1382T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1382T",
+          "odpt:departureTime": "14:52",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1415K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1415K",
+          "odpt:departureTime": "14:57",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1480T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1480T",
+          "odpt:departureTime": "15:02",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1360T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1360T",
+          "odpt:departureTime": "15:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1487S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1487S",
+          "odpt:departureTime": "15:12",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1409K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1409K",
+          "odpt:departureTime": "15:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1468T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1468T",
+          "odpt:departureTime": "15:22",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1411K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1411K",
+          "odpt:departureTime": "15:27",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1401K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1401K",
+          "odpt:departureTime": "15:32",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1452T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1452T",
+          "odpt:departureTime": "15:37",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1566T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1566T",
+          "odpt:departureTime": "15:42",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1408K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1408K",
+          "odpt:departureTime": "15:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1459S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1459S",
+          "odpt:departureTime": "15:51",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1529K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1529K",
+          "odpt:departureTime": "15:55",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1565S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1565S",
+          "odpt:departureTime": "15:59",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1563S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1563S",
+          "odpt:departureTime": "16:03",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1477S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1477S",
+          "odpt:departureTime": "16:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1512K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1512K",
+          "odpt:departureTime": "16:11",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1530K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1530K",
+          "odpt:departureTime": "16:15",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1524K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1524K",
+          "odpt:departureTime": "16:19",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1507K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1507K",
+          "odpt:departureTime": "16:22",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1576T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1576T",
+          "odpt:departureTime": "16:26",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1510K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1510K",
+          "odpt:departureTime": "16:29",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1531K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1531K",
+          "odpt:departureTime": "16:33",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1579S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1579S",
+          "odpt:departureTime": "16:36",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1519K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1519K",
+          "odpt:departureTime": "16:40",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1678T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1678T",
+          "odpt:departureTime": "16:43",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1570T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1570T",
+          "odpt:departureTime": "16:46",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1532K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1532K",
+          "odpt:departureTime": "16:49",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1658T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1658T",
+          "odpt:departureTime": "16:52",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1651S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1651S",
+          "odpt:departureTime": "16:55",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1591S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1591S",
+          "odpt:departureTime": "16:58",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1633K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1633K",
+          "odpt:departureTime": "17:01",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1605K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1605K",
+          "odpt:departureTime": "17:04",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1623K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1623K",
+          "odpt:departureTime": "17:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1656T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1656T",
+          "odpt:departureTime": "17:10",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1625K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1625K",
+          "odpt:departureTime": "17:13",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1634K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1634K",
+          "odpt:departureTime": "17:16",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1635K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1635K",
+          "odpt:departureTime": "17:19",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1603K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1603K",
+          "odpt:departureTime": "17:22",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1673S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1673S",
+          "odpt:departureTime": "17:25",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1653S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1653S",
+          "odpt:departureTime": "17:28",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1661S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1661S",
+          "odpt:departureTime": "17:31",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1636K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1636K",
+          "odpt:departureTime": "17:35",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1671S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1671S",
+          "odpt:departureTime": "17:38",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1762T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1762T",
+          "odpt:departureTime": "17:41",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1655S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1655S",
+          "odpt:departureTime": "17:44",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1737K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1737K",
+          "odpt:departureTime": "17:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1764T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1764T",
+          "odpt:departureTime": "17:50",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1654T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1654T",
+          "odpt:departureTime": "17:53",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1615K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1615K",
+          "odpt:departureTime": "17:56",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1760T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1760T",
+          "odpt:departureTime": "17:59",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1757S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1757S",
+          "odpt:departureTime": "18:02",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1728K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1728K",
+          "odpt:departureTime": "18:05",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1738K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1738K",
+          "odpt:departureTime": "18:08",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1706K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1706K",
+          "odpt:departureTime": "18:11",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1720K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1720K",
+          "odpt:departureTime": "18:14",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1739K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1739K",
+          "odpt:departureTime": "18:18",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1752T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1752T",
+          "odpt:departureTime": "18:21",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1716K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1716K",
+          "odpt:departureTime": "18:24",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1740K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1740K",
+          "odpt:departureTime": "18:28",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1717K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1717K",
+          "odpt:departureTime": "18:31",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1709K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1709K",
+          "odpt:departureTime": "18:34",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1711K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1711K",
+          "odpt:departureTime": "18:38",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1708K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1708K",
+          "odpt:departureTime": "18:41",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1704K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1704K",
+          "odpt:departureTime": "18:44",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1841K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1841K",
+          "odpt:departureTime": "18:48",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1874T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1874T",
+          "odpt:departureTime": "18:51",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1750T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1750T",
+          "odpt:departureTime": "18:54",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1826K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1826K",
+          "odpt:departureTime": "18:58",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1802K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1802K",
+          "odpt:departureTime": "19:01",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1863S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1863S",
+          "odpt:departureTime": "19:04",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1829K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1829K",
+          "odpt:departureTime": "19:08",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1867S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1867S",
+          "odpt:departureTime": "19:11",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1842K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1842K",
+          "odpt:departureTime": "19:14",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1872T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1872T",
+          "odpt:departureTime": "19:18",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1877S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1877S",
+          "odpt:departureTime": "19:21",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1830K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1830K",
+          "odpt:departureTime": "19:24",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1810K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1810K",
+          "odpt:departureTime": "19:28",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1876T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1876T",
+          "odpt:departureTime": "19:31",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1893S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1893S",
+          "odpt:departureTime": "19:35",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1821K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1821K",
+          "odpt:departureTime": "19:38",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1822K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A1822K",
+          "odpt:departureTime": "19:41",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1819K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1819K",
+          "odpt:departureTime": "19:45",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1879S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1879S",
+          "odpt:departureTime": "19:48",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1970T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1970T",
+          "odpt:departureTime": "19:51",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1951S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1951S",
+          "odpt:departureTime": "19:55",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1889S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1889S",
+          "odpt:departureTime": "19:58",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1932K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A1932K",
+          "odpt:departureTime": "20:02",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.TobuSkytree.KitaKoshigaya"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1991S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1991S",
+          "odpt:departureTime": "20:05",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1923K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1923K",
+          "odpt:departureTime": "20:09",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1968T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1968T",
+          "odpt:departureTime": "20:12",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1905K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1905K",
+          "odpt:departureTime": "20:16",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1925K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1925K",
+          "odpt:departureTime": "20:20",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1980T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1980T",
+          "odpt:departureTime": "20:23",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1903K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1903K",
+          "odpt:departureTime": "20:27",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1934K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A1934K",
+          "odpt:departureTime": "20:31",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1936K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1936K",
+          "odpt:departureTime": "20:34",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1971S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1971S",
+          "odpt:departureTime": "20:38",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1982T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1982T",
+          "odpt:departureTime": "20:41",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1973S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1973S",
+          "odpt:departureTime": "20:45",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2055S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2055S",
+          "odpt:departureTime": "20:48",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1966T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A1966T",
+          "odpt:departureTime": "20:52",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A1959S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A1959S",
+          "odpt:departureTime": "20:56",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2037K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A2037K",
+          "odpt:departureTime": "21:00",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2065S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2065S",
+          "odpt:departureTime": "21:04",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2057S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2057S",
+          "odpt:departureTime": "21:08",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2054T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A2054T",
+          "odpt:departureTime": "21:12",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2038K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2038K",
+          "odpt:departureTime": "21:16",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2039K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A2039K",
+          "odpt:departureTime": "21:20",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2028K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2028K",
+          "odpt:departureTime": "21:24",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2012K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2012K",
+          "odpt:departureTime": "21:28",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2018K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A2018K",
+          "odpt:departureTime": "21:32",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.TobuSkytree.KitaKoshigaya"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2009K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2009K",
+          "odpt:departureTime": "21:36",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2078T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A2078T",
+          "odpt:departureTime": "21:40",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2016K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2016K",
+          "odpt:departureTime": "21:44",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2031K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2031K",
+          "odpt:departureTime": "21:48",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2158T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A2158T",
+          "odpt:departureTime": "21:52",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2011K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2011K",
+          "odpt:departureTime": "21:57",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2133K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A2133K",
+          "odpt:departureTime": "22:02",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.TobuSkytree.KitaKoshigaya"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2104K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2104K",
+          "odpt:departureTime": "22:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2156T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A2156T",
+          "odpt:departureTime": "22:12",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2135K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2135K",
+          "odpt:departureTime": "22:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2150T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A2150T",
+          "odpt:departureTime": "22:22",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2129K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2129K",
+          "odpt:departureTime": "22:27",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2113K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2113K",
+          "odpt:departureTime": "22:32",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2172T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A2172T",
+          "odpt:departureTime": "22:38",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2110K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2110K",
+          "odpt:departureTime": "22:43",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2162T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A2162T",
+          "odpt:departureTime": "22:49",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Isesaki.Kuki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2219K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2219K",
+          "odpt:departureTime": "22:55",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2260T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A2260T",
+          "odpt:departureTime": "23:01",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2223K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2223K",
+          "odpt:departureTime": "23:08",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2280T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "A2280T",
+          "odpt:departureTime": "23:16",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Nikko.MinamiKurihashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2291S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2291S",
+          "odpt:departureTime": "23:23",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2273S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2273S",
+          "odpt:departureTime": "23:28",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.KiyosumiShirakawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2271S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2271S",
+          "odpt:departureTime": "23:34",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2252T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.SemiExpress",
+          "odpt:trainNumber": "A2252T",
+          "odpt:departureTime": "23:40",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.TobuSkytree.KitaKoshigaya"
+          ],
+          "TokyoMetro.Hanzomon.Shibuya.TokyoMetro.Oshiage.Weekday": true
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2361S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2361S",
+          "odpt:departureTime": "23:49",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2259S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2259S",
+          "odpt:departureTime": "23:59",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2355S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2355S",
+          "odpt:departureTime": "00:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+          ],
+          "TokyoMetro.Hanzomon.Shibuya.TokyoMetro.Oshiage.Weekday": true
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Hanzomon.A2377S",
+          "odpt:isLast": true,
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "A2377S",
+          "odpt:departureTime": "00:12",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Hanzomon.KiyosumiShirakawa"
+          ],
+          "TokyoMetro.Hanzomon.Shibuya.TokyoMetro.Oshiage.Weekday": true
+        }
+      ]
+    }
+  ]
+}

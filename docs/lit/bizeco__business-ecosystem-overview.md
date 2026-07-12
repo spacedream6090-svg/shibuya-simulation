@@ -1,0 +1,11 @@
+# ビジネスエコシステム 概観 — Moore(共進化)+ Iansiti&Levien(keystone advantage)
+- リンク: [The Keystone Advantage(Iansiti&Levien, ResearchGate)](https://www.researchgate.net/publication/257926262_The_Keystone_Advantage_What_the_New_Dynamics_of_Business_Ecosystems_Mean_for_Strategy_Innovation_and_Sustainability) / [プラットフォーム・エコシステムと価値共創(Springer MRQ 2024)](https://link.springer.com/article/10.1007/s11301-024-00416-1) | 分野: collective-action, social-network, observer | 重要度: P1
+- 主張(claim): 企業は動的**ビジネスエコシステム**の成員として能力を共進化させる(Moore 1993)。★ **keystone 企業**(Iansiti&Levien 2004)= 生産性・頑健性・niche 創出を高める中核。**dominator 戦略と対比**され、keystone は**共有資産(標準・データ基盤・API/SDK・信頼安全・ガバナンス)に投資**し、規則とインセンティブを設計して**エコシステム全体を繁栄**させる。競争は企業間でなく**エコシステム間**に。
+- 機構(mechanism): keystone が complementor を巻き込み、単独では作れない価値を共創。標準/ルール設計でインセンティブを steer。dominator は価値を独占し系を枯らす(=崩壊)。
+- 効く seam:
+  - ★ **keystone orchestrator = 世界改変者の経済組織版**: 「共有資産(制度・標準・ガバナンス)に投資し規則を設計して全体を繁栄させる」= [[ontology__searle1995_institutional-facts]] status function 樹立 + [[collective-action__institutions-framing-overview]] Ostrom ルール創発の**行為主体像**。生態学 keystone([[ecology__ecosystem-metaphor-overview]])と3分野で概念収束。
+  - `social-network` / `collective-action`: complementor 関係・価値共創 = group-formation(Bundle C)の高次形態。dominator vs keystone = 世界改変が**破壊的か生成的か**の類型(observer で分類)。
+- "結論でなく seam として"の入れ方: keystone/dominator は**エージェントが選べる戦略の創発型**として観測(役割を初期割当しない)。共有資産投資 = 高コスト行動(ファネル d)の一種として affordance 化。
+- コスト/スケール含意: エコシステム構造(誰が中心・誰が complementor)はネットワーク解析(cheap, observer)。戦略選択の高次判断のみ LLM。
+- 批判・限界: 経営戦略論は規範的・成功事例事後分析(生存者バイアス)。企業→社会エージェントへの外挿は緩い比喩(→ 観測レンズに留める)。「keystone」は生態学からの借用比喩で厳密さに議論。
+- 関連: [[ecology__ecosystem-metaphor-overview]](keystone の源流)/ [[ontology__searle1995_institutional-facts]](制度樹立)/ [[collective-action__institutions-framing-overview]](Ostrom)/ [[econ__affordance-cluster-overview]](両面市場・critical mass)/ [[marketing__diffusion-consumer-overview]](オピニオンリーダー=keystone)

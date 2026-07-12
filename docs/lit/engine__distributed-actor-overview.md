@@ -1,0 +1,12 @@
+# 分散システム・情報科学 概観 — actor model / event-driven / 並列離散事象 / 再現性
+- リンク: [Actor Model in Distributed Systems(GeeksforGeeks)](https://www.geeksforgeeks.org/system-design/actor-model-in-distributed-systems/) / [Event-Driven Architectures and Actor Models(wal.sh)](https://wal.sh/research/event-driven-architectures-actor-model.html) / [Very Large-Scale MAS in AgentScope(arXiv 2407.17789)](https://arxiv.org/abs/2407.17789) | 分野: engine, infra, observer | 重要度: P0(スケール基盤の工学的接地)
+- 主張(claim): **actor model** = 並行計算の数理モデル。各 actor は独立計算単位で**状態を共有せず**、**非同期メッセージ**でのみ相互作用。→ 高い並行性・スケーラビリティ。**event-driven architecture** は疎結合で柔軟だが**非決定的**(順序保証が難しい)。**並列離散事象シミュレーション(PDES)** は分散メモリ計算機に最適。
+- 機構(mechanism): actor-per-agent でエージェント級並列 → 大規模化(AgentScope の様式)。メッセージパッシングで world/エージェント間通信。イベント駆動 = 時間エンジンの activation。分散化で中央集権ワークフローを自動変換。
+- 効く seam:
+  - `engine`: **actor モデル = エージェント並列の正準アーキ**([[mas__agentscope2024_largescale]] の actor 並列 + vLLM fleet を工学的に裏づけ)。LOD の tier 分割も actor 種別で表現可。
+  - `infra`: A5000×7 = 分散メモリクラスタ → PDES/actor が自然な適合。メッセージ = 4層基層の相互作用チャネル。
+  - `observer/validation`: ★ **非決定性 vs 再現性の緊張**。event-driven は非決定的 → **多 seed 再現([[measurement__validation-overview]])には乱数種・メッセージ順序の制御が必須**。決定論的リプレイ機構を seam に(k* を信じるための土台)。
+- "結論でなく seam として"の入れ方: actor/event-driven は**実装の器**であり現象を規定しない。ただし**再現性(seed 固定・順序決定化・ログ完全性)を最初から seam 化**しないと、後で operational validity が崩れる(分野8の要求)。
+- コスト/スケール含意: actor 並列 = 本番 A5000×7 でのスケールの中核。LLM 呼び出しは非同期バッチで GPU 稼働率を上げる。cheap tier(masses)は軽量 actor、LLM tier は重量 actor。
+- 批判・限界: event-driven の非直感性・デバッグ困難(大規模で顕著)。非決定性は再現性の敵 → 明示的制御が要る。分散の複雑性は開発コスト(build-vs-reuse で AgentScope 借用が有利な理由)。
+- 関連: [[mas__agentscope2024_largescale]](actor 並列の実装)/ [[mas__yang2024_oasis]](スケール実測)/ [[measurement__validation-overview]](多 seed 再現=決定化要求)/ [[viz__plateau-pipeline-overview]](出力ログの完全性)

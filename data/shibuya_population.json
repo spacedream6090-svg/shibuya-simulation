@@ -1,0 +1,64 @@
+{
+  "meta": {
+    "note": "IPF(ペルソナ骨格合成)用の周辺分布。令和2年国勢調査(渋谷区13113)実数を一部反映(RQ4 検収 2026-07-04): 夜間人口243,883(男117,907/女125,976)・昼間人口551,344(昼夜比≈226%)→来街者比率0.56、性比は夜間実数由来。年齢5歳階級×性別と職業大分類の区実数は未確認のため band 配分と職業 share は暫定(昼間の来街者が若年に偏る想定)。差し替え時は本ファイルのみ更新。2026-07-05 に age_bands/occupations の実数化を再試行したが静的取得は不成立(下記 retrieval_attempts と docs/research/lexicon-ipf-shibuya.md 参照)。暫定値は据え置き=実数と偽装しない。",
+    "status": "partially-real (gender/visitor=実数由来, age_bands/occupations=暫定)",
+    "sources": ["令和2年国勢調査(渋谷区)", "昼夜間人口 sid 0004003060", "職業大分類 statsDataId 0003176482(未取得)"],
+    "retrieval_attempts": [
+      {
+        "date": "2026-07-05",
+        "target": "age_bands(年齢5歳階級×性別)/ occupations(職業大分類)の渋谷区実数",
+        "outcome": "failed",
+        "tools": "WebSearch + WebFetch(小型モデルによる本文抽出)",
+        "reason": "e-Stat の DB 表示(statsDataId 0003176482 職業大分類・0003450693 年齢×職業・人口等基本集計)は JavaScript 描画で静的 HTML に数値が出ず抽出不可。渋谷区ポータルの該当ページはカテゴリ一覧のみ(数値/Excel直リンクを本文から取得できず)。ミラー系(ecitizen 等)は 2020 が将来推計値で国調実数でない・男女別なし。e-Stat API(getStatsData)は appId 必須で本環境では不可。",
+        "next_steps": "人手で: (1) 渋谷区『令和2年国勢調査』ページ https://www.city.shibuya.tokyo.jp/kusei/kuni_kikamtokei/kokusei_cyosa/01kokusei_r2.html から『年齢(5歳階級)別男女別人口』Excel をDL→18-79 の5バンドへ集計し age_bands.share を置換。(2) 職業は e-Stat statsDataId=0003176482 を appId 付き getStatsData でDL、渋谷区(13113)行の職業大分類→本ファイルの職業カテゴリへ写像し occupations.share を置換。置換時に status を real/部分real、sources に取得日と表IDを追記。"
+      }
+    ]
+  },
+  "age_bands": [
+    {"band": [18, 24], "share": 0.16},
+    {"band": [25, 34], "share": 0.30},
+    {"band": [35, 49], "share": 0.28},
+    {"band": [50, 64], "share": 0.17},
+    {"band": [65, 79], "share": 0.09}
+  ],
+  "gender": {"女": 0.517, "男": 0.483},
+  "occupations": [
+    {"name": "会社員", "share": 0.30},
+    {"name": "エンジニア", "share": 0.08},
+    {"name": "デザイナー", "share": 0.05},
+    {"name": "大学生", "share": 0.12},
+    {"name": "カフェ店員", "share": 0.07},
+    {"name": "アパレル店員", "share": 0.08},
+    {"name": "美容師", "share": 0.05},
+    {"name": "フリーランス", "share": 0.08},
+    {"name": "配達員", "share": 0.04},
+    {"name": "バンドマン", "share": 0.03},
+    {"name": "写真家", "share": 0.03},
+    {"name": "無職", "share": 0.07}
+  ],
+  "visitor_share": 0.56,
+  "age_x_occupation_hints": {
+    "note": "IPF の初期シードに使う弱い依存(若年×学生/店員が高め等)。1.0=独立",
+    "大学生": {"18-24": 4.0, "25-34": 0.6, "35-49": 0.05, "50-64": 0.02, "65-79": 0.02},
+    "無職":   {"18-24": 0.6, "25-34": 0.5, "35-49": 0.5, "50-64": 1.2, "65-79": 5.0}
+  },
+  "inflow": {
+    "note": "流入通勤者(commuter)= visitor の下位型の合成パラメータ。出典: docs/research/shibuya-inflow.md(R2, 2026-07-06)。渋谷区昼間人口551,344 のうち区外からの通勤・通学者は約74%(≈402,000人、統計Today No.187 系/2次資料。年次・実数は要一次確認だが規模オーダーは信頼できる)。到着二峰(通学7:30-8:30/会社員8:00-9:30、最頻8時台)・夕流出17:30-19:30中心+夜遊びの遅い裾(§3 東京圏一般則)。出入口は鉄道ターミナルゆえ駅ゲートウェイ85-90%(§4.2 暫定)。沿線タグは話題接地用メモ(構成概念ではない=frame分離に抵触しない)。",
+    "sources": ["統計Today No.187(令和2年 従業地・通学地集計)", "e-Stat sid=0004003060 昼夜間人口", "東京圏 朝夕ピークの一般則"],
+    "commuter_share": 0.74,
+    "arrival": {
+      "note": "職場 start から逆算する到着リード分(分)。worker=会社員系 N(40,20)/student=大学生 N(30,15)。clip[10,120]。arrival_min = work_start - lead(persona.py で確定)。",
+      "worker_lead_mean": 40, "worker_lead_sd": 20,
+      "student_lead_mean": 30, "student_lead_sd": 15,
+      "lead_min": 10, "lead_max": 120
+    },
+    "departure": {
+      "note": "夕方の退勤=帰宅トリガ(分 of day、10分刻み)。evening_share の確率で夕ピーク N(evening_mean, evening_sd)、残りは遅い裾 U[late_lo, late_hi)。persona.py で work_end より後へ持ち上げる。",
+      "evening_share": 0.8, "evening_mean": 1110, "evening_sd": 45,
+      "late_lo": 1320, "late_hi": 1440
+    },
+    "gateway_station_share": 0.87,
+    "student_occupations": ["大学生"],
+    "residence_lines": ["世田谷方面", "二子玉川・田園都市線沿線", "横浜・東横線沿線", "下北沢・井の頭線沿線", "新宿・山手線沿線", "杉並方面", "目黒方面", "川崎・多摩方面"]
+  }
+}

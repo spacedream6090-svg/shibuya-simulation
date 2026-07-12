@@ -1,0 +1,14 @@
+# 生態学 概観 — エコシステム比喩(keystone / niche / succession / resilience / carrying capacity)
+- リンク: [Keystone Species & Trophic Cascades(Fiveable, Intro Ecology)](https://fiveable.me/fundamentals-ecology/unit-7/keystone-species-trophic-cascades/study-guide/sdGJtHGe7OiZg3ZD) / [Harnessing ecological theory to enhance ecosystem restoration(ScienceDirect 2024)](https://www.sciencedirect.com/science/article/pii/S096098222400383X) | 分野: world/ecology, observer/measure, complexity | 重要度: P1(世界2.0「生態系」= コミュニティ動態の源流)
+- 主張(claim): 生態系は個体→個体群→群集→生態系の階層で、少数の**keystone species**(存在量は少ないが除去すると群集構造が激変)、**niche**(各種の機能的役割)、**succession**(遷移=時系列の種組成変化)、**resilience**(機能冗長で撹乱を緩衝)、**carrying capacity**(環境が支えうる最大個体数)で記述される。
+- 機構(mechanism): keystone の除去 → trophic cascade(連鎖的崩壊)。功能冗長(複数種が似た役割)→ 撹乱への resilience。資源制約 → carrying capacity で個体数頭打ち。遷移 → 撹乱後の回復軌道。
+- 効く seam:
+  - ★ **keystone species = 世界改変者の生態学的アナログ**: 少数・低"存在量"だが除去(or 出現)で全体構造が激変 = §2 の tail・§4 の committed minority と同型。observer で「keystone 度」(除去/介入で系がどれだけ動くか)を測定する着想。
+  - `world/resource`(4層の資源層): carrying capacity = 資源プールの上限 → 集団形成・競合の制約。
+  - `complexity/observer`: resilience/機能冗長 = anti-collapse の設計語彙([[mas__li2026_moltbook]] の崩壊回避)。succession = シミュの時系列レジーム遷移([[complexity__phase-transition-methodology]] の相転移と対)。
+- "結論でなく seam として"の入れ方:
+  - ★ 世界2.0「生態系」= **コミュニティ自体とその動態**(ユーザー解釈: 生態系=コミュニティ / 視空間=社会そのものの仕組み)。生態学は**比喩・観測語彙**として使い、生態方程式を hardcode しない(affordance/observable 原則)。
+  - carrying capacity は資源 affordance の上限パラメータ(config、OPEN#3 的)として seam 化。keystone 度は post-hoc の observer 指標(介入実験=エージェント除去で cascade を測る)。
+- コスト/スケール含意: carrying capacity は LOD/スケールの自然な上限根拠(無限には増えない)。keystone 検出は反実仮想(除去)シミュ = 追加計算だが安価な cheap-tier で近似可。
+- 批判・限界: 社会↔生態のアナロジーは**過剰適用の危険**(検索でも「社会系への比喩適用の具体は乏しい」)。keystone 概念は合成微生物系で不在との報告もあり(文脈依存)→ **主張でなく観測レンズに留める**。
+- 関連: [[mas__li2026_moltbook]](resilience=崩壊回避)/ [[complexity__phase-transition-methodology]](succession=レジーム遷移)/ [[network__diffusion-overview]](keystone=high-influence node)/ [[collective-action__institutions-framing-overview]](committed minority=keystone)/ [[project-charter]]

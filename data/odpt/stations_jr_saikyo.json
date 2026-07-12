@@ -1,0 +1,172 @@
+{
+  "_meta": {
+    "source": "公共交通オープンデータセンター (Public Transportation Open Data Center, ODPT)",
+    "source_url": "https://www.odpt.org/",
+    "api_base": "https://api.odpt.org/api/v4/",
+    "api_version": "v4",
+    "attribution": "本データは公共交通オープンデータセンターのデータを利用して作成。出典表示および ODPT 利用規約の遵守が必要。",
+    "disclaimer": "データの正確性・完全性は保証されない。ODPT および各事業者は本データの利用によって生じた損害について責任を負わない。",
+    "usage_note": "決定論保護のため、シミュ実行中はこの静的キャッシュのみ読む(実行時の API 呼び出しは禁止)。詳細: docs/research/odpt-integration.md",
+    "datatype": "odpt:Station",
+    "label": "JR埼京線",
+    "railway": "odpt.Railway:JR-East.SaikyoKawagoe",
+    "fetched_at": "2026-07-07T15:34:01.266265+00:00",
+    "count": 11
+  },
+  "data": [
+    {
+      "@id": "urn:ucode:_00001C00000000000001000003102684",
+      "@type": "odpt:Station",
+      "dc:date": "2024-03-27T09:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "恵比寿",
+      "owl:sameAs": "odpt.Station:JR-East.SaikyoKawagoe.Ebisu",
+      "odpt:railway": "odpt.Railway:JR-East.SaikyoKawagoe",
+      "odpt:operator": "odpt.Operator:JR-East",
+      "odpt:stationTitle": {
+        "en": "Ebisu",
+        "ja": "恵比寿"
+      }
+    },
+    {
+      "@id": "urn:ucode:_00001C00000000000001000003102688",
+      "@type": "odpt:Station",
+      "dc:date": "2024-03-27T09:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "板橋",
+      "owl:sameAs": "odpt.Station:JR-East.SaikyoKawagoe.Itabashi",
+      "odpt:railway": "odpt.Railway:JR-East.SaikyoKawagoe",
+      "odpt:operator": "odpt.Operator:JR-East",
+      "odpt:stationTitle": {
+        "en": "Itabashi",
+        "ja": "板橋"
+      }
+    },
+    {
+      "@id": "urn:ucode:_00001C00000000000001000003102683",
+      "@type": "odpt:Station",
+      "dc:date": "2024-03-27T09:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "大崎",
+      "owl:sameAs": "odpt.Station:JR-East.SaikyoKawagoe.Osaki",
+      "odpt:railway": "odpt.Railway:JR-East.SaikyoKawagoe",
+      "odpt:operator": "odpt.Operator:JR-East",
+      "odpt:stationTitle": {
+        "en": "Osaki",
+        "ja": "大崎"
+      }
+    },
+    {
+      "@id": "urn:ucode:_00001C0000000000000100000310268A",
+      "@type": "odpt:Station",
+      "dc:date": "2023-03-18T11:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "赤羽",
+      "owl:sameAs": "odpt.Station:JR-East.SaikyoKawagoe.Akabane",
+      "odpt:railway": "odpt.Railway:JR-East.SaikyoKawagoe",
+      "odpt:operator": "odpt.Operator:JR-East",
+      "odpt:stationTitle": {
+        "en": "Akabane",
+        "ja": "赤羽"
+      }
+    },
+    {
+      "@id": "urn:ucode:_00001C00000000000001000003102687",
+      "@type": "odpt:Station",
+      "dc:date": "2023-03-18T11:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "池袋",
+      "owl:sameAs": "odpt.Station:JR-East.SaikyoKawagoe.Ikebukuro",
+      "odpt:railway": "odpt.Railway:JR-East.SaikyoKawagoe",
+      "odpt:operator": "odpt.Operator:JR-East",
+      "odpt:stationTitle": {
+        "en": "Ikebukuro",
+        "ja": "池袋"
+      }
+    },
+    {
+      "@id": "urn:ucode:_00001C00000000000001000003102602",
+      "@type": "odpt:Station",
+      "dc:date": "2023-03-18T11:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "川越",
+      "owl:sameAs": "odpt.Station:JR-East.SaikyoKawagoe.Kawagoe",
+      "odpt:railway": "odpt.Railway:JR-East.SaikyoKawagoe",
+      "odpt:operator": "odpt.Operator:JR-East",
+      "odpt:stationTitle": {
+        "en": "Kawagoe",
+        "ja": "川越"
+      }
+    },
+    {
+      "@id": "urn:ucode:_00001C00000000000001000003102690",
+      "@type": "odpt:Station",
+      "dc:date": "2023-03-18T11:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "武蔵浦和",
+      "owl:sameAs": "odpt.Station:JR-East.SaikyoKawagoe.MusashiUrawa",
+      "odpt:railway": "odpt.Railway:JR-East.SaikyoKawagoe",
+      "odpt:operator": "odpt.Operator:JR-East",
+      "odpt:stationTitle": {
+        "en": "Musashi-Urawa",
+        "ja": "武蔵浦和"
+      }
+    },
+    {
+      "@id": "urn:ucode:_00001C00000000000001000003102695",
+      "@type": "odpt:Station",
+      "dc:date": "2023-03-18T11:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "大宮",
+      "owl:sameAs": "odpt.Station:JR-East.SaikyoKawagoe.Omiya",
+      "odpt:railway": "odpt.Railway:JR-East.SaikyoKawagoe",
+      "odpt:operator": "odpt.Operator:JR-East",
+      "odpt:stationTitle": {
+        "en": "Omiya",
+        "ja": "大宮"
+      }
+    },
+    {
+      "@id": "urn:ucode:_00001C00000000000001000003102605",
+      "@type": "odpt:Station",
+      "dc:date": "2023-03-18T11:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "指扇",
+      "owl:sameAs": "odpt.Station:JR-East.SaikyoKawagoe.Sashiogi",
+      "odpt:railway": "odpt.Railway:JR-East.SaikyoKawagoe",
+      "odpt:operator": "odpt.Operator:JR-East",
+      "odpt:stationTitle": {
+        "en": "Sashiogi",
+        "ja": "指扇"
+      }
+    },
+    {
+      "@id": "urn:ucode:_00001C00000000000001000003102685",
+      "@type": "odpt:Station",
+      "dc:date": "2024-03-27T09:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "渋谷",
+      "owl:sameAs": "odpt.Station:JR-East.SaikyoKawagoe.Shibuya",
+      "odpt:railway": "odpt.Railway:JR-East.SaikyoKawagoe",
+      "odpt:operator": "odpt.Operator:JR-East",
+      "odpt:stationTitle": {
+        "en": "Shibuya",
+        "ja": "渋谷"
+      }
+    },
+    {
+      "@id": "urn:ucode:_00001C00000000000001000003102686",
+      "@type": "odpt:Station",
+      "dc:date": "2024-03-27T09:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "新宿",
+      "owl:sameAs": "odpt.Station:JR-East.SaikyoKawagoe.Shinjuku",
+      "odpt:railway": "odpt.Railway:JR-East.SaikyoKawagoe",
+      "odpt:operator": "odpt.Operator:JR-East",
+      "odpt:stationTitle": {
+        "en": "Shinjuku",
+        "ja": "新宿"
+      }
+    }
+  ]
+}

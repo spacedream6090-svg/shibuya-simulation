@@ -1,0 +1,12 @@
+# 価値論(axiology)概観 — 内在的/道具的価値、価値の関係説
+- リンク: [Value Theory(Stanford Encyclopedia of Philosophy)](https://plato.stanford.edu/entries/value-theory/) / [Intrinsic vs. Extrinsic Value(SEP)](https://plato.stanford.edu/entries/value-intrinsic-extrinsic/) | 分野: symbolic, observer, philosophy | 重要度: P1(「価値」の測定・創発の哲学的接地)
+- 主張(claim): 価値論(axiology)は価値の本性・源泉・種類を扱う。**内在的価値(intrinsic)= それ自体で望ましい** vs **道具的価値(instrumental)= 他の何かへの手段**(一つの対象が両方を持ちうる)。★ **価値は対象の内在 property でなく、対象と評価主体の関係から生じる**(価値の関係説)。
+- 機構(mechanism): 主体が対象に価値を帰属 → 社会的合意で共有価値化。内在/道具の区別は動機の所在(内発/外発)と平行([[motivation__sdt-flow-overview]] SDT / [[gamification__extrinsic-reward-overview]] 過正当化)。
+- 効く seam:
+  - ★ **価値の関係説 = ラベル/status function の価値版**: 「何が価値あるか」は内在せず**集合的に付与・創発**する = [[ontology__searle1995_institutional-facts]]「X counts as Y」の価値論的双子。世界改変者は**新しい価値(何が善/重要か)を樹立**する主体 = 世界改変の operational 定義の一つ。
+  - `world/symbolic` / `observer`: 共有価値の分布・変化を観測(ラベルと同じ observer 機構)。価値のドリフト = [[labeling__cultural-evolution-overview]] semantic drift の価値版。
+  - `factors`: 個体の価値づけ(何を内在的に重視するか)= trait の一次元(事後測定寄り)。
+- "結論でなく seam として"の入れ方: **特定の価値を設計者が埋め込まない**(no-fingerprint)。エージェントは価値を帰属・表明・伝播**できる**(affordance)だけで、どの価値が社会で優勢になるかは創発+観測。内発的 vs 道具的な世界改変動機の分離を観測軸に。
+- コスト/スケール含意: 価値集計は observer の分布追跡(非LLM)。価値の帰属・表明のみ LLM(labeling-trigger と統合)。
+- 批判・限界: 価値の実在論 vs 反実在論に決着なし(→ 我々は測定可能な「共有価値の分布」に操作化)。内在/道具の境界は文脈依存。世界2.0「価値観」も設計思想であり主張として実装しない(affordance に留める)。
+- 関連: [[ontology__searle1995_institutional-facts]](価値=付与される status)/ [[labeling__cultural-evolution-overview]](価値ドリフト)/ [[motivation__sdt-flow-overview]](内発/外発)/ [[systems__gst-overview]](価値=システムの目的性)/ [[project-charter]]

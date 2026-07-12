@@ -1,0 +1,4532 @@
+{
+  "_meta": {
+    "source": "公共交通オープンデータセンター (Public Transportation Open Data Center, ODPT)",
+    "source_url": "https://www.odpt.org/",
+    "api_base": "https://api.odpt.org/api/v4/",
+    "api_version": "v4",
+    "attribution": "本データは公共交通オープンデータセンターのデータを利用して作成。出典表示および ODPT 利用規約の遵守が必要。",
+    "disclaimer": "データの正確性・完全性は保証されない。ODPT および各事業者は本データの利用によって生じた損害について責任を負わない。",
+    "usage_note": "決定論保護のため、シミュ実行中はこの静的キャッシュのみ読む(実行時の API 呼び出しは禁止)。詳細: docs/research/odpt-integration.md",
+    "datatype": "odpt:StationTimetable",
+    "label": "東京メトロ副都心線",
+    "railway": "odpt.Railway:TokyoMetro.Fukutoshin",
+    "station": "odpt.Station:TokyoMetro.Fukutoshin.Shibuya",
+    "fetched_at": "2026-07-07T15:34:15.863460+00:00",
+    "count": 2
+  },
+  "data": [
+    {
+      "@id": "urn:ucode:_00001C00000000000001000003101023",
+      "@type": "odpt:StationTimetable",
+      "dc:date": "2026-03-16T09:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_StationTimetable.jsonld",
+      "dct:issued": "2026-03-14",
+      "owl:sameAs": "odpt.StationTimetable:TokyoMetro.Fukutoshin.Shibuya.TokyoMetro.Wakoshi.SaturdayHoliday",
+      "odpt:railway": "odpt.Railway:TokyoMetro.Fukutoshin",
+      "odpt:station": "odpt.Station:TokyoMetro.Fukutoshin.Shibuya",
+      "odpt:calendar": "odpt.Calendar:SaturdayHoliday",
+      "odpt:operator": "odpt.Operator:TokyoMetro",
+      "odpt:railDirection": "odpt.RailDirection:TokyoMetro.Wakoshi",
+      "odpt:stationTimetableObject": [
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B501S",
+          "odpt:isOrigin": true,
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B501S",
+          "odpt:departureTime": "05:05",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B406K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B406K",
+          "odpt:departureTime": "05:21",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B508K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B508K",
+          "odpt:departureTime": "05:34",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B413K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B413K",
+          "odpt:departureTime": "05:46",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B512K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B512K",
+          "odpt:departureTime": "05:57",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B509K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B509K",
+          "odpt:departureTime": "06:05",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B554K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B554K",
+          "odpt:departureTime": "06:12",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Ogawamachi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B511K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B511K",
+          "odpt:departureTime": "06:17",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B656K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B656K",
+          "odpt:departureTime": "06:23",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B505K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B505K",
+          "odpt:departureTime": "06:31",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kiyose"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B604K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B604K",
+          "odpt:departureTime": "06:38",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B658K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B658K",
+          "odpt:departureTime": "06:41",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Hanno"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B617K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B617K",
+          "odpt:departureTime": "06:46",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B502K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B502K",
+          "odpt:departureTime": "06:53",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B662K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B662K",
+          "odpt:departureTime": "06:59",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B655K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B655K",
+          "odpt:departureTime": "07:05",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Shiki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B689S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B689S",
+          "odpt:departureTime": "07:11",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Ogawamachi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B617S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B617S",
+          "odpt:departureTime": "07:15",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B661K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B661K",
+          "odpt:departureTime": "07:22",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B629S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B629S",
+          "odpt:departureTime": "07:26",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B605S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B605S",
+          "odpt:departureTime": "07:32",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B692G",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B692G",
+          "odpt:departureTime": "07:38",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B706M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B706M",
+          "odpt:departureTime": "07:41",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kiyose"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B607K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B607K",
+          "odpt:departureTime": "07:46",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Tokorozawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B718K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B718K",
+          "odpt:departureTime": "07:51",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B731S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B731S",
+          "odpt:departureTime": "07:55",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B657K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B657K",
+          "odpt:departureTime": "07:57",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Shiki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B709S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B709S",
+          "odpt:departureTime": "08:01",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B722K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B722K",
+          "odpt:departureTime": "08:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B733S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B733S",
+          "odpt:departureTime": "08:11",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Ogawamachi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B710K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B710K",
+          "odpt:departureTime": "08:17",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Hoya"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B703S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B703S",
+          "odpt:departureTime": "08:20",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B703T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B703T",
+          "odpt:departureTime": "08:24",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B771M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.S-TRAIN",
+          "odpt:trainNumber": "B771M",
+          "odpt:departureTime": "08:27",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.SeibuChichibu.SeibuChichibu"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B701S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B701S",
+          "odpt:departureTime": "08:29",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B759K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B759K",
+          "odpt:departureTime": "08:31",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Kawagoeshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B791S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B791S",
+          "odpt:departureTime": "08:37",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B805T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B805T",
+          "odpt:departureTime": "08:41",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B714K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B714K",
+          "odpt:departureTime": "08:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B824M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B824M",
+          "odpt:departureTime": "08:52",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B810M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B810M",
+          "odpt:departureTime": "08:56",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B703K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B703K",
+          "odpt:departureTime": "08:59",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kiyose"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B794G",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B794G",
+          "odpt:departureTime": "09:02",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B815K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B815K",
+          "odpt:departureTime": "09:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B855S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B855S",
+          "odpt:departureTime": "09:11",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B813K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B813K",
+          "odpt:departureTime": "09:13",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B820K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B820K",
+          "odpt:departureTime": "09:19",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B807S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B807S",
+          "odpt:departureTime": "09:22",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B839S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B839S",
+          "odpt:departureTime": "09:26",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B819K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B819K",
+          "odpt:departureTime": "09:28",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Hoya"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B812K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B812K",
+          "odpt:departureTime": "09:32",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B851K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B851K",
+          "odpt:departureTime": "09:37",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Kawagoeshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B943S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B943S",
+          "odpt:departureTime": "09:41",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B811S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B811S",
+          "odpt:departureTime": "09:46",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B921K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B921K",
+          "odpt:departureTime": "09:51",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B953K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B953K",
+          "odpt:departureTime": "09:55",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Hanno"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B856K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B856K",
+          "odpt:departureTime": "10:00",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B904K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B904K",
+          "odpt:departureTime": "10:03",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B902K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B902K",
+          "odpt:departureTime": "10:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B911T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B911T",
+          "odpt:departureTime": "10:10",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B919S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B919S",
+          "odpt:departureTime": "10:15",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B973S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B973S",
+          "odpt:departureTime": "10:22",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B958K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B958K",
+          "odpt:departureTime": "10:25",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Hanno"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B952K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B952K",
+          "odpt:departureTime": "10:30",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Kawagoeshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B931S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B931S",
+          "odpt:departureTime": "10:36",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1054K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B1054K",
+          "odpt:departureTime": "10:40",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B916K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B916K",
+          "odpt:departureTime": "10:42",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B906K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B906K",
+          "odpt:departureTime": "10:44",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1053S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1053S",
+          "odpt:departureTime": "10:51",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1029S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1029S",
+          "odpt:departureTime": "10:55",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1001K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1001K",
+          "odpt:departureTime": "11:00",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B991G",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B991G",
+          "odpt:departureTime": "11:04",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1023S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1023S",
+          "odpt:departureTime": "11:10",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1008K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1008K",
+          "odpt:departureTime": "11:12",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1004S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1004S",
+          "odpt:departureTime": "11:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1008M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1008M",
+          "odpt:departureTime": "11:22",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1028M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1028M",
+          "odpt:departureTime": "11:25",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1022K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1022K",
+          "odpt:departureTime": "11:30",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1055K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1055K",
+          "odpt:departureTime": "11:34",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Kawagoeshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1189S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1189S",
+          "odpt:departureTime": "11:40",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1002S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1002S",
+          "odpt:departureTime": "11:43",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1011K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1011K",
+          "odpt:departureTime": "11:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1167S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1167S",
+          "odpt:departureTime": "11:53",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1110M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1110M",
+          "odpt:departureTime": "11:56",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1113K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1113K",
+          "odpt:departureTime": "12:00",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1092G",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1092G",
+          "odpt:departureTime": "12:04",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1161S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1161S",
+          "odpt:departureTime": "12:10",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1105K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1105K",
+          "odpt:departureTime": "12:12",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1109S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1109S",
+          "odpt:departureTime": "12:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1113S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1113S",
+          "odpt:departureTime": "12:22",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1191S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1191S",
+          "odpt:departureTime": "12:25",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1110K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1110K",
+          "odpt:departureTime": "12:30",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1157K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1157K",
+          "odpt:departureTime": "12:34",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Kawagoeshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1233S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1233S",
+          "odpt:departureTime": "12:40",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1107S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1107S",
+          "odpt:departureTime": "12:42",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1112K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1112K",
+          "odpt:departureTime": "12:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1211S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1211S",
+          "odpt:departureTime": "12:52",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1225S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1225S",
+          "odpt:departureTime": "12:55",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1203K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1203K",
+          "odpt:departureTime": "13:00",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1194G",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1194G",
+          "odpt:departureTime": "13:04",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1255S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1255S",
+          "odpt:departureTime": "13:10",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1221K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1221K",
+          "odpt:departureTime": "13:12",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1204K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1204K",
+          "odpt:departureTime": "13:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1254K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1254K",
+          "odpt:departureTime": "13:22",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1253K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1253K",
+          "odpt:departureTime": "13:25",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1219K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1219K",
+          "odpt:departureTime": "13:30",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1259K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1259K",
+          "odpt:departureTime": "13:34",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Kawagoeshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1343S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1343S",
+          "odpt:departureTime": "13:40",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1219S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1219S",
+          "odpt:departureTime": "13:42",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1216K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1216K",
+          "odpt:departureTime": "13:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1353S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1353S",
+          "odpt:departureTime": "13:52",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1358K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1358K",
+          "odpt:departureTime": "13:55",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1314K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1314K",
+          "odpt:departureTime": "14:00",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1256K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1256K",
+          "odpt:departureTime": "14:04",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1311T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1311T",
+          "odpt:departureTime": "14:10",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1306K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1306K",
+          "odpt:departureTime": "14:12",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1304S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1304S",
+          "odpt:departureTime": "14:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1308M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1308M",
+          "odpt:departureTime": "14:22",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1328M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1328M",
+          "odpt:departureTime": "14:25",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1301K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1301K",
+          "odpt:departureTime": "14:30",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1351K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1351K",
+          "odpt:departureTime": "14:34",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Kawagoeshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1413T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1413T",
+          "odpt:departureTime": "14:40",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1308K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1308K",
+          "odpt:departureTime": "14:42",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1311K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1311K",
+          "odpt:departureTime": "14:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1467S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1467S",
+          "odpt:departureTime": "14:52",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1410M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1410M",
+          "odpt:departureTime": "14:55",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1422K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1422K",
+          "odpt:departureTime": "15:00",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1391G",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1391G",
+          "odpt:departureTime": "15:04",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1423S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1423S",
+          "odpt:departureTime": "15:10",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1402S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1402S",
+          "odpt:departureTime": "15:12",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1409S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1409S",
+          "odpt:departureTime": "15:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1405K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1405K",
+          "odpt:departureTime": "15:22",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1491S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1491S",
+          "odpt:departureTime": "15:25",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1413K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1413K",
+          "odpt:departureTime": "15:30",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1452K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1452K",
+          "odpt:departureTime": "15:34",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Shiki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1589S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1589S",
+          "odpt:departureTime": "15:40",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1413S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1413S",
+          "odpt:departureTime": "15:42",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1412K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1412K",
+          "odpt:departureTime": "15:46",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1507S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1507S",
+          "odpt:departureTime": "15:52",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1525S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B1525S",
+          "odpt:departureTime": "15:55",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Tokorozawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1510K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1510K",
+          "odpt:departureTime": "16:00",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1492G",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1492G",
+          "odpt:departureTime": "16:04",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1561S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1561S",
+          "odpt:departureTime": "16:10",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1511S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1511S",
+          "odpt:departureTime": "16:11",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1504K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1504K",
+          "odpt:departureTime": "16:16",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1554K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1554K",
+          "odpt:departureTime": "16:22",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1553K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1553K",
+          "odpt:departureTime": "16:25",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1503K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1503K",
+          "odpt:departureTime": "16:30",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kiyose"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1555K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1555K",
+          "odpt:departureTime": "16:34",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Kawagoeshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1633S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B1633S",
+          "odpt:departureTime": "16:40",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Kawagoeshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1521K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1521K",
+          "odpt:departureTime": "16:43",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1516K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1516K",
+          "odpt:departureTime": "16:45",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1653S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1653S",
+          "odpt:departureTime": "16:52",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1658K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B1658K",
+          "odpt:departureTime": "16:56",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1619K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1619K",
+          "odpt:departureTime": "17:00",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1594G",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1594G",
+          "odpt:departureTime": "17:03",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1617T",
+          "odpt:isOrigin": true,
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1617T",
+          "odpt:departureTime": "17:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1655S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1655S",
+          "odpt:departureTime": "17:13",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1604S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1604S",
+          "odpt:departureTime": "17:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1608M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1608M",
+          "odpt:departureTime": "17:23",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1628M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B1628M",
+          "odpt:departureTime": "17:26",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Tokorozawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1607K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1607K",
+          "odpt:departureTime": "17:28",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Hanno"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1673M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.S-TRAIN",
+          "odpt:trainNumber": "B1673M",
+          "odpt:departureTime": "17:32",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Hanno"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1657K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1657K",
+          "odpt:departureTime": "17:34",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1617K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1617K",
+          "odpt:departureTime": "17:38",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1743S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B1743S",
+          "odpt:departureTime": "17:41",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1611K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1611K",
+          "odpt:departureTime": "17:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1609K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1609K",
+          "odpt:departureTime": "17:54",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1710M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B1710M",
+          "odpt:departureTime": "17:57",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Tokorozawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1656K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1656K",
+          "odpt:departureTime": "18:00",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1701K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1701K",
+          "odpt:departureTime": "18:04",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Hanno"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1718K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1718K",
+          "odpt:departureTime": "18:11",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1711T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B1711T",
+          "odpt:departureTime": "18:14",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1709S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1709S",
+          "odpt:departureTime": "18:17",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1713S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1713S",
+          "odpt:departureTime": "18:23",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1791S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B1791S",
+          "odpt:departureTime": "18:27",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1702S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1702S",
+          "odpt:departureTime": "18:29",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1759K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1759K",
+          "odpt:departureTime": "18:35",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1751K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1751K",
+          "odpt:departureTime": "18:39",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Kawagoeshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1813T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B1813T",
+          "odpt:departureTime": "18:42",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1705K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1705K",
+          "odpt:departureTime": "18:46",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1819S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1819S",
+          "odpt:departureTime": "18:54",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1885S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B1885S",
+          "odpt:departureTime": "18:57",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1701S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1701S",
+          "odpt:departureTime": "19:00",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1887S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1887S",
+          "odpt:departureTime": "19:09",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1823S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B1823S",
+          "odpt:departureTime": "19:12",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1815K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1815K",
+          "odpt:departureTime": "19:17",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1867S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1867S",
+          "odpt:departureTime": "19:24",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Kawagoeshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1849S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B1849S",
+          "odpt:departureTime": "19:27",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1823K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1823K",
+          "odpt:departureTime": "19:30",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kiyose"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1864K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1864K",
+          "odpt:departureTime": "19:33",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Shiki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1811S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1811S",
+          "odpt:departureTime": "19:39",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1989S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B1989S",
+          "odpt:departureTime": "19:42",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1806K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1806K",
+          "odpt:departureTime": "19:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1912M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1912M",
+          "odpt:departureTime": "19:54",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1930M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B1930M",
+          "odpt:departureTime": "19:57",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Hanno"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1821K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1821K",
+          "odpt:departureTime": "20:00",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Hoya"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1975S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1975S",
+          "odpt:departureTime": "20:09",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1943S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B1943S",
+          "odpt:departureTime": "20:12",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1908K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1908K",
+          "odpt:departureTime": "20:17",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kiyose"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1954K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1954K",
+          "odpt:departureTime": "20:23",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Kawagoeshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1933S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1933S",
+          "odpt:departureTime": "20:28",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Tokorozawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1975M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.S-TRAIN",
+          "odpt:trainNumber": "B1975M",
+          "odpt:departureTime": "20:31",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Tokorozawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1929S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1929S",
+          "odpt:departureTime": "20:38",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2006M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B2006M",
+          "odpt:departureTime": "20:42",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kiyose"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1917S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1917S",
+          "odpt:departureTime": "20:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1957K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1957K",
+          "odpt:departureTime": "20:53",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2059K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2059K",
+          "odpt:departureTime": "21:00",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2013T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2013T",
+          "odpt:departureTime": "21:09",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2058K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B2058K",
+          "odpt:departureTime": "21:12",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Hanno"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2013K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2013K",
+          "odpt:departureTime": "21:18",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2014K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2014K",
+          "odpt:departureTime": "21:28",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2057S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2057S",
+          "odpt:departureTime": "21:37",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2153K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B2153K",
+          "odpt:departureTime": "21:42",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2016K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2016K",
+          "odpt:departureTime": "21:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2092G",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2092G",
+          "odpt:departureTime": "21:54",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2187S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2187S",
+          "odpt:departureTime": "21:58",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2104S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2104S",
+          "odpt:departureTime": "22:04",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2149S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B2149S",
+          "odpt:departureTime": "22:08",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2147S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2147S",
+          "odpt:departureTime": "22:14",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2152K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2152K",
+          "odpt:departureTime": "22:23",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2122K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2122K",
+          "odpt:departureTime": "22:31",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2114M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2114M",
+          "odpt:departureTime": "22:38",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2243S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B2243S",
+          "odpt:departureTime": "22:42",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2103K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2103K",
+          "odpt:departureTime": "22:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2219T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2219T",
+          "odpt:departureTime": "22:53",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2206K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2206K",
+          "odpt:departureTime": "23:01",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2219K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2219K",
+          "odpt:departureTime": "23:08",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2224M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2224M",
+          "odpt:departureTime": "23:15",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kiyose"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2211S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2211S",
+          "odpt:departureTime": "23:21",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2302M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2302M",
+          "odpt:departureTime": "23:26",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2285S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2285S",
+          "odpt:departureTime": "23:31",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2217K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2217K",
+          "odpt:departureTime": "23:37",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2218K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2218K",
+          "odpt:departureTime": "23:44",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2361S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2361S",
+          "odpt:departureTime": "23:50",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2317S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2317S",
+          "odpt:departureTime": "23:54",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ],
+          "TokyoMetro.Fukutoshin.Shibuya.TokyoMetro.Wakoshi.SaturdayHoliday": true
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2302S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2302S",
+          "odpt:departureTime": "00:08",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ],
+          "TokyoMetro.Fukutoshin.Shibuya.TokyoMetro.Wakoshi.SaturdayHoliday": true
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2319S",
+          "odpt:isLast": true,
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2319S",
+          "odpt:departureTime": "00:20",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.ShinjukuSanchome"
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "urn:ucode:_00001C00000000000001000003101010",
+      "@type": "odpt:StationTimetable",
+      "dc:date": "2026-03-16T09:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_StationTimetable.jsonld",
+      "dct:issued": "2026-03-14",
+      "owl:sameAs": "odpt.StationTimetable:TokyoMetro.Fukutoshin.Shibuya.TokyoMetro.Wakoshi.Weekday",
+      "odpt:railway": "odpt.Railway:TokyoMetro.Fukutoshin",
+      "odpt:station": "odpt.Station:TokyoMetro.Fukutoshin.Shibuya",
+      "odpt:calendar": "odpt.Calendar:Weekday",
+      "odpt:operator": "odpt.Operator:TokyoMetro",
+      "odpt:railDirection": "odpt.RailDirection:TokyoMetro.Wakoshi",
+      "odpt:stationTimetableObject": [
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B501S",
+          "odpt:isOrigin": true,
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B501S",
+          "odpt:departureTime": "05:05",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B405K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B405K",
+          "odpt:departureTime": "05:21",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B508K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B508K",
+          "odpt:departureTime": "05:34",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B413K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B413K",
+          "odpt:departureTime": "05:45",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B557K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B557K",
+          "odpt:departureTime": "05:51",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Shiki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B512K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B512K",
+          "odpt:departureTime": "05:57",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B509K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B509K",
+          "odpt:departureTime": "06:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B559K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B559K",
+          "odpt:departureTime": "06:12",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Kawagoeshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B511K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B511K",
+          "odpt:departureTime": "06:19",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B527K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B527K",
+          "odpt:departureTime": "06:25",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B555K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B555K",
+          "odpt:departureTime": "06:29",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Kawagoeshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B610K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B610K",
+          "odpt:departureTime": "06:38",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Shiki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B526K2",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B526K2",
+          "odpt:departureTime": "06:43",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kiyose"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B621T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B621T",
+          "odpt:departureTime": "06:48",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B502K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B502K",
+          "odpt:departureTime": "06:53",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B623T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B623T",
+          "odpt:departureTime": "07:00",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B614K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B614K",
+          "odpt:departureTime": "07:02",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Shiki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B617S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B617S",
+          "odpt:departureTime": "07:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.ShinjukuSanchome"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B592G",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B592G",
+          "odpt:departureTime": "07:09",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B615K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B615K",
+          "odpt:departureTime": "07:12",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B606M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B606M",
+          "odpt:departureTime": "07:16",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kiyose"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B617K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B617K",
+          "odpt:departureTime": "07:19",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.ShinjukuSanchome"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B604S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B604S",
+          "odpt:departureTime": "07:24",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Tokorozawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B602M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B602M",
+          "odpt:departureTime": "07:29",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B651K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B651K",
+          "odpt:departureTime": "07:32",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B607S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B607S",
+          "odpt:departureTime": "07:37",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B658K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B658K",
+          "odpt:departureTime": "07:42",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B603K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B603K",
+          "odpt:departureTime": "07:45",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B695G",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B695G",
+          "odpt:departureTime": "07:50",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.ShinjukuSanchome"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B754K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B754K",
+          "odpt:departureTime": "07:54",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Hoya"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B719T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B719T",
+          "odpt:departureTime": "07:57",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B623K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B623K",
+          "odpt:departureTime": "08:00",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B691G",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B691G",
+          "odpt:departureTime": "08:03",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.ShinjukuSanchome"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B716K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B716K",
+          "odpt:departureTime": "08:06",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B789S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B789S",
+          "odpt:departureTime": "08:08",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B709S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B709S",
+          "odpt:departureTime": "08:10",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B718M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B718M",
+          "odpt:departureTime": "08:13",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B711S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B711S",
+          "odpt:departureTime": "08:15",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.ShinjukuSanchome"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B753K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B753K",
+          "odpt:departureTime": "08:18",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B719S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B719S",
+          "odpt:departureTime": "08:21",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B760K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B760K",
+          "odpt:departureTime": "08:23",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B704K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B704K",
+          "odpt:departureTime": "08:25",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B763K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B763K",
+          "odpt:departureTime": "08:28",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B706K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B706K",
+          "odpt:departureTime": "08:31",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kiyose"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B793G",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B793G",
+          "odpt:departureTime": "08:33",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.ShinjukuSanchome"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B719K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B719K",
+          "odpt:departureTime": "08:36",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B791S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B791S",
+          "odpt:departureTime": "08:38",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B722K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B722K",
+          "odpt:departureTime": "08:40",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B722M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B722M",
+          "odpt:departureTime": "08:43",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B701S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B701S",
+          "odpt:departureTime": "08:46",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B794G",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B794G",
+          "odpt:departureTime": "08:48",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B720K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B720K",
+          "odpt:departureTime": "08:51",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B841S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B841S",
+          "odpt:departureTime": "08:53",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B721K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B721K",
+          "odpt:departureTime": "08:55",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.ShinjukuSanchome"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B856K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B856K",
+          "odpt:departureTime": "08:58",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Tokorozawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B705K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B705K",
+          "odpt:departureTime": "09:01",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Hoya"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B803S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B803S",
+          "odpt:departureTime": "09:04",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B810M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B810M",
+          "odpt:departureTime": "09:09",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B845S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B845S",
+          "odpt:departureTime": "09:11",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Shiki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B813K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B813K",
+          "odpt:departureTime": "09:15",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B862K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B862K",
+          "odpt:departureTime": "09:19",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B802S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B802S",
+          "odpt:departureTime": "09:21",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B823S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B823S",
+          "odpt:departureTime": "09:25",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B812K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B812K",
+          "odpt:departureTime": "09:29",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B825S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B825S",
+          "odpt:departureTime": "09:33",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B817S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B817S",
+          "odpt:departureTime": "09:36",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B828M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B828M",
+          "odpt:departureTime": "09:39",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B887S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B887S",
+          "odpt:departureTime": "09:43",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B857K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B857K",
+          "odpt:departureTime": "09:47",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Kawagoeshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B934M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B934M",
+          "odpt:departureTime": "09:50",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Hoya"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B817K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B817K",
+          "odpt:departureTime": "09:54",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.ShinjukuSanchome"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B959K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B959K",
+          "odpt:departureTime": "09:58",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B904M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B904M",
+          "odpt:departureTime": "10:00",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B901K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B901K",
+          "odpt:departureTime": "10:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B924M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B924M",
+          "odpt:departureTime": "10:11",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B911K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B911K",
+          "odpt:departureTime": "10:16",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B911S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B911S",
+          "odpt:departureTime": "10:22",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B933S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B933S",
+          "odpt:departureTime": "10:26",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B902K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B902K",
+          "odpt:departureTime": "10:28",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B910K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B910K",
+          "odpt:departureTime": "10:33",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B952K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B952K",
+          "odpt:departureTime": "10:37",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Kawagoeshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1089S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B1089S",
+          "odpt:departureTime": "10:41",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B923K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B923K",
+          "odpt:departureTime": "10:45",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1008K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1008K",
+          "odpt:departureTime": "10:52",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1079S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1079S",
+          "odpt:departureTime": "10:55",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1015S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1015S",
+          "odpt:departureTime": "11:00",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1094G",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1094G",
+          "odpt:departureTime": "11:04",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1085S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1085S",
+          "odpt:departureTime": "11:10",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1016K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1016K",
+          "odpt:departureTime": "11:12",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1003K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1003K",
+          "odpt:departureTime": "11:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1004S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1004S",
+          "odpt:departureTime": "11:22",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1071S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1071S",
+          "odpt:departureTime": "11:25",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1007K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1007K",
+          "odpt:departureTime": "11:30",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1053K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1053K",
+          "odpt:departureTime": "11:34",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Kawagoeshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1151K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1151K",
+          "odpt:departureTime": "11:40",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1013S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1013S",
+          "odpt:departureTime": "11:42",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1009K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1009K",
+          "odpt:departureTime": "11:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1118K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1118K",
+          "odpt:departureTime": "11:52",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1160K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1160K",
+          "odpt:departureTime": "11:55",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1122K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1122K",
+          "odpt:departureTime": "12:00",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1191G",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1191G",
+          "odpt:departureTime": "12:04",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1119T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1119T",
+          "odpt:departureTime": "12:10",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1106K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1106K",
+          "odpt:departureTime": "12:12",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1120K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1120K",
+          "odpt:departureTime": "12:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1156K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1156K",
+          "odpt:departureTime": "12:22",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1120M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1120M",
+          "odpt:departureTime": "12:25",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1103S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1103S",
+          "odpt:departureTime": "12:30",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1161K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1161K",
+          "odpt:departureTime": "12:34",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Kawagoeshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1263K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1263K",
+          "odpt:departureTime": "12:40",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1115K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1115K",
+          "odpt:departureTime": "12:42",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1113K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1113K",
+          "odpt:departureTime": "12:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1209S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1209S",
+          "odpt:departureTime": "12:52",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1287S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1287S",
+          "odpt:departureTime": "12:55",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1202S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1202S",
+          "odpt:departureTime": "13:00",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1195G",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1195G",
+          "odpt:departureTime": "13:04",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1247S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1247S",
+          "odpt:departureTime": "13:10",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1204K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1204K",
+          "odpt:departureTime": "13:12",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1212K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1212K",
+          "odpt:departureTime": "13:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1211K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1211K",
+          "odpt:departureTime": "13:22",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1222M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1222M",
+          "odpt:departureTime": "13:25",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1201K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1201K",
+          "odpt:departureTime": "13:30",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1254K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1254K",
+          "odpt:departureTime": "13:34",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Kawagoeshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1329S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1329S",
+          "odpt:departureTime": "13:40",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1211S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1211S",
+          "odpt:departureTime": "13:42",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1210K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1210K",
+          "odpt:departureTime": "13:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1323K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1323K",
+          "odpt:departureTime": "13:52",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1379S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1379S",
+          "odpt:departureTime": "13:55",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1302K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1302K",
+          "odpt:departureTime": "14:00",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1292G",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1292G",
+          "odpt:departureTime": "14:04",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1303T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1303T",
+          "odpt:departureTime": "14:10",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1308K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1308K",
+          "odpt:departureTime": "14:12",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1303K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1303K",
+          "odpt:departureTime": "14:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1316K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1316K",
+          "odpt:departureTime": "14:22",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1371S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1371S",
+          "odpt:departureTime": "14:25",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1315S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1315S",
+          "odpt:departureTime": "14:30",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1357K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1357K",
+          "odpt:departureTime": "14:34",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Shiki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1489S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1489S",
+          "odpt:departureTime": "14:40",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1304S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1304S",
+          "odpt:departureTime": "14:42",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1309K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1309K",
+          "odpt:departureTime": "14:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1413S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1413S",
+          "odpt:departureTime": "14:52",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1460K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1460K",
+          "odpt:departureTime": "14:55",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1407K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1407K",
+          "odpt:departureTime": "15:00",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1394G",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1394G",
+          "odpt:departureTime": "15:04",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1485S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1485S",
+          "odpt:departureTime": "15:10",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1418K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1418K",
+          "odpt:departureTime": "15:12",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1420K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1420K",
+          "odpt:departureTime": "15:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1456K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1456K",
+          "odpt:departureTime": "15:22",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1420M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1420M",
+          "odpt:departureTime": "15:25",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1422K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1422K",
+          "odpt:departureTime": "15:30",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1452K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1452K",
+          "odpt:departureTime": "15:34",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Shiki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1551K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1551K",
+          "odpt:departureTime": "15:40",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1406K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1406K",
+          "odpt:departureTime": "15:43",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1515K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1515K",
+          "odpt:departureTime": "15:51",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1587S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1587S",
+          "odpt:departureTime": "15:55",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1405K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1405K",
+          "odpt:departureTime": "15:58",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Hoya"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1491G",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1491G",
+          "odpt:departureTime": "16:03",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1564K",
+          "odpt:isOrigin": true,
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1564K",
+          "odpt:departureTime": "16:07",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1519T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1519T",
+          "odpt:departureTime": "16:11",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1512K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1512K",
+          "odpt:departureTime": "16:15",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Shiki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1504K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1504K",
+          "odpt:departureTime": "16:22",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1522M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.F-Liner",
+          "odpt:trainNumber": "B1522M",
+          "odpt:departureTime": "16:25",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1514K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1514K",
+          "odpt:departureTime": "16:27",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1553K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1553K",
+          "odpt:departureTime": "16:30",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Kawagoeshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1502S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1502S",
+          "odpt:departureTime": "16:37",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1663K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B1663K",
+          "odpt:departureTime": "16:40",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1511K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1511K",
+          "odpt:departureTime": "16:44",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1510K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1510K",
+          "odpt:departureTime": "16:48",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1611S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1611S",
+          "odpt:departureTime": "16:52",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1614M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B1614M",
+          "odpt:departureTime": "16:55",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Tokorozawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1601K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1601K",
+          "odpt:departureTime": "17:00",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.ShinjukuSanchome"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1595G",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1595G",
+          "odpt:departureTime": "17:02",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1619K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1619K",
+          "odpt:departureTime": "17:06",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1647S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B1647S",
+          "odpt:departureTime": "17:11",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1603K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1603K",
+          "odpt:departureTime": "17:16",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.ShinjukuSanchome"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1631K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1631K",
+          "odpt:departureTime": "17:18",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kiyose"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1667S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B1667S",
+          "odpt:departureTime": "17:21",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1661K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1661K",
+          "odpt:departureTime": "17:26",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Shiki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1615S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1615S",
+          "odpt:departureTime": "17:32",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Shiki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1671S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B1671S",
+          "odpt:departureTime": "17:37",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Hanno"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1602K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1602K",
+          "odpt:departureTime": "17:39",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.ShinjukuSanchome"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1617K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1617K",
+          "odpt:departureTime": "17:42",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Hoya"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1754K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1754K",
+          "odpt:departureTime": "17:47",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1729S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B1729S",
+          "odpt:departureTime": "17:52",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1692G",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1692G",
+          "odpt:departureTime": "17:57",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1609K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1609K",
+          "odpt:departureTime": "17:59",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.ShinjukuSanchome"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1703S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1703S",
+          "odpt:departureTime": "18:04",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Shiki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1760K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B1760K",
+          "odpt:departureTime": "18:07",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Hanno"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1716K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1716K",
+          "odpt:departureTime": "18:12",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Hoya"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1718K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1718K",
+          "odpt:departureTime": "18:18",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1703T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B1703T",
+          "odpt:departureTime": "18:22",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Kawagoeshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1709S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1709S",
+          "odpt:departureTime": "18:24",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.ShinjukuSanchome"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1755K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1755K",
+          "odpt:departureTime": "18:27",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1720K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1720K",
+          "odpt:departureTime": "18:32",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1720M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B1720M",
+          "odpt:departureTime": "18:37",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Tokorozawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1713S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1713S",
+          "odpt:departureTime": "18:39",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.ShinjukuSanchome"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1891G",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1891G",
+          "odpt:departureTime": "18:42",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1729K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1729K",
+          "odpt:departureTime": "18:44",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Shiki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1875S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1875S",
+          "odpt:departureTime": "18:47",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kiyose"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1889S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B1889S",
+          "odpt:departureTime": "18:52",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1805S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1805S",
+          "odpt:departureTime": "18:57",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Shiki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1821K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1821K",
+          "odpt:departureTime": "18:59",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.ShinjukuSanchome"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1822K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1822K",
+          "odpt:departureTime": "19:04",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1828M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B1828M",
+          "odpt:departureTime": "19:07",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Hanno"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1894G",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1894G",
+          "odpt:departureTime": "19:12",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1810K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1810K",
+          "odpt:departureTime": "19:17",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1885S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B1885S",
+          "odpt:departureTime": "19:22",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kiyose"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1852K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1852K",
+          "odpt:departureTime": "19:27",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Shiki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1801K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1801K",
+          "odpt:departureTime": "19:29",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.ShinjukuSanchome"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1808K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1808K",
+          "odpt:departureTime": "19:34",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1881S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B1881S",
+          "odpt:departureTime": "19:37",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1862K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1862K",
+          "odpt:departureTime": "19:42",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1911K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1911K",
+          "odpt:departureTime": "19:47",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kiyose"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1967S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B1967S",
+          "odpt:departureTime": "19:52",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1913K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1913K",
+          "odpt:departureTime": "19:57",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1907S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1907S",
+          "odpt:departureTime": "20:01",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.ShinjukuSanchome"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1902K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1902K",
+          "odpt:departureTime": "20:04",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1953S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B1953S",
+          "odpt:departureTime": "20:07",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Hanno"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1963K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1963K",
+          "odpt:departureTime": "20:12",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Kawagoeshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1904K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1904K",
+          "odpt:departureTime": "20:17",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Tokorozawa"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1930M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B1930M",
+          "odpt:departureTime": "20:22",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1995G",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1995G",
+          "odpt:departureTime": "20:27",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1909K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1909K",
+          "odpt:departureTime": "20:29",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.ShinjukuSanchome"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1930K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1930K",
+          "odpt:departureTime": "20:34",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1963S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Express",
+          "odpt:trainNumber": "B1963S",
+          "odpt:departureTime": "20:37",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1951K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1951K",
+          "odpt:departureTime": "20:42",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Shiki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2031K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2031K",
+          "odpt:departureTime": "20:47",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kiyose"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2077S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B2077S",
+          "odpt:departureTime": "20:52",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B1953K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B1953K",
+          "odpt:departureTime": "20:57",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2007K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2007K",
+          "odpt:departureTime": "20:59",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.ShinjukuSanchome"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2013S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2013S",
+          "odpt:departureTime": "21:05",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2023S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2023S",
+          "odpt:departureTime": "21:09",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Hoya"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2054K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B2054K",
+          "odpt:departureTime": "21:12",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2017K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2017K",
+          "odpt:departureTime": "21:18",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2031S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B2031S",
+          "odpt:departureTime": "21:22",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2023K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2023K",
+          "odpt:departureTime": "21:27",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2092G",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2092G",
+          "odpt:departureTime": "21:32",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2091S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B2091S",
+          "odpt:departureTime": "21:37",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Kawagoeshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2061K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2061K",
+          "odpt:departureTime": "21:42",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2116K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2116K",
+          "odpt:departureTime": "21:48",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2003K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2003K",
+          "odpt:departureTime": "21:57",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.Shiki"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2105K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2105K",
+          "odpt:departureTime": "22:02",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2175S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B2175S",
+          "odpt:departureTime": "22:06",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2101K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2101K",
+          "odpt:departureTime": "22:09",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2155K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2155K",
+          "odpt:departureTime": "22:16",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2167S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2167S",
+          "odpt:departureTime": "22:26",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2122K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2122K",
+          "odpt:departureTime": "22:34",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2105S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2105S",
+          "odpt:departureTime": "22:43",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2210M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2210M",
+          "odpt:departureTime": "22:50",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Kotesashi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2233S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B2233S",
+          "odpt:departureTime": "22:52",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2209S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2209S",
+          "odpt:departureTime": "22:59",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2209K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2209K",
+          "odpt:departureTime": "23:08",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2219S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2219S",
+          "odpt:departureTime": "23:17",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2205T",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.CommuterExpress",
+          "odpt:trainNumber": "B2205T",
+          "odpt:departureTime": "23:21",
+          "odpt:destinationStation": [
+            "odpt.Station:Tobu.Tojo.ShinrinKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2206K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2206K",
+          "odpt:departureTime": "23:26",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.ShakujiiKoen"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2289S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2289S",
+          "odpt:departureTime": "23:36",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2318M",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2318M",
+          "odpt:departureTime": "23:47",
+          "odpt:destinationStation": [
+            "odpt.Station:Seibu.Ikebukuro.Hoya"
+          ]
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2211K",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2211K",
+          "odpt:departureTime": "23:54",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+          ],
+          "TokyoMetro.Fukutoshin.Shibuya.TokyoMetro.Wakoshi.Weekday": true
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2303S",
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2303S",
+          "odpt:departureTime": "00:08",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro"
+          ],
+          "TokyoMetro.Fukutoshin.Shibuya.TokyoMetro.Wakoshi.Weekday": true
+        },
+        {
+          "odpt:train": "odpt.Train:TokyoMetro.Fukutoshin.B2313S",
+          "odpt:isLast": true,
+          "odpt:trainType": "odpt.TrainType:TokyoMetro.Local",
+          "odpt:trainNumber": "B2313S",
+          "odpt:departureTime": "00:20",
+          "odpt:destinationStation": [
+            "odpt.Station:TokyoMetro.Fukutoshin.ShinjukuSanchome"
+          ]
+        }
+      ]
+    }
+  ]
+}

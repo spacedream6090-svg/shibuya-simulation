@@ -1,0 +1,819 @@
+{
+ "meta": {
+  "roster": "data/personas_100_civic.json",
+  "tag": "100_civic",
+  "orgs_file": "data/organizations_shibuya.json",
+  "n_agents": 100,
+  "n_assigned": 90,
+  "coverage": 0.9,
+  "by_reason": {
+   "assigned": 90,
+   "unemployed": 4,
+   "no_rule": 6
+  },
+  "by_org_kind": {
+   "company": 78,
+   "school": 12
+  },
+  "assigned_by_resident_type": {
+   "resident": 35,
+   "commuter": 33,
+   "leisure_visitor": 22
+  },
+  "note": "固定拠点をもつ職業(会社員/エンジニア/デザイナー/各店員/大学生)は POI束縛の会社・学校へ、自営(フリーランス/写真家/バンドマン/配達員)は POI束縛なしの個人事業umbrellaへ配属。無職は経済的所属なしで未配属。来街者(leisure_visitor)もエンジンが職場POIを与える職業なら配属する(assigned_by_resident_type で内訳確認可)。"
+ },
+ "unassigned": [
+  {
+   "agent_index": 13,
+   "name": "山本真央",
+   "occupation": "無職",
+   "resident_type": "leisure_visitor",
+   "reason": "unemployed"
+  },
+  {
+   "agent_index": 16,
+   "name": "清水凛",
+   "occupation": "区職員",
+   "resident_type": "resident",
+   "reason": "no_rule"
+  },
+  {
+   "agent_index": 18,
+   "name": "佐藤凛",
+   "occupation": "無職",
+   "resident_type": "leisure_visitor",
+   "reason": "unemployed"
+  },
+  {
+   "agent_index": 37,
+   "name": "山田美月",
+   "occupation": "警察官",
+   "resident_type": "resident",
+   "reason": "no_rule"
+  },
+  {
+   "agent_index": 41,
+   "name": "清水亮",
+   "occupation": "警察官",
+   "resident_type": "resident",
+   "reason": "no_rule"
+  },
+  {
+   "agent_index": 43,
+   "name": "田中陽菜",
+   "occupation": "無職",
+   "resident_type": "leisure_visitor",
+   "reason": "unemployed"
+  },
+  {
+   "agent_index": 44,
+   "name": "佐藤駿",
+   "occupation": "警察官",
+   "resident_type": "resident",
+   "reason": "no_rule"
+  },
+  {
+   "agent_index": 56,
+   "name": "松本修",
+   "occupation": "無職",
+   "resident_type": "resident",
+   "reason": "unemployed"
+  },
+  {
+   "agent_index": 58,
+   "name": "山本健一",
+   "occupation": "区職員",
+   "resident_type": "resident",
+   "reason": "no_rule"
+  },
+  {
+   "agent_index": 67,
+   "name": "佐藤和子",
+   "occupation": "消防士",
+   "resident_type": "resident",
+   "reason": "no_rule"
+  }
+ ],
+ "assignments": [
+  {
+   "agent_index": 0,
+   "org_id": "co_it_05",
+   "role": "エンジニア",
+   "occupation": "エンジニア",
+   "resident_type": "resident",
+   "org_name": "(株)宮益フィンテック"
+  },
+  {
+   "agent_index": 1,
+   "org_id": "co_fl_01",
+   "role": "フリーランス",
+   "occupation": "フリーランス",
+   "resident_type": "leisure_visitor",
+   "org_name": "渋谷フリーランス・コレクティブ"
+  },
+  {
+   "agent_index": 2,
+   "org_id": "co_it_07",
+   "role": "エンジニア",
+   "occupation": "エンジニア",
+   "resident_type": "resident",
+   "org_name": "(株)公園通りメディア"
+  },
+  {
+   "agent_index": 3,
+   "org_id": "co_ap_02",
+   "role": "販売スタッフ",
+   "occupation": "アパレル店員",
+   "resident_type": "resident",
+   "org_name": "(株)センター街アパレル"
+  },
+  {
+   "agent_index": 4,
+   "org_id": "co_re_01",
+   "role": "事務",
+   "occupation": "会社員",
+   "resident_type": "commuter",
+   "org_name": "(株)渋谷不動産パートナーズ"
+  },
+  {
+   "agent_index": 5,
+   "org_id": "co_ap_02",
+   "role": "販売スタッフ",
+   "occupation": "アパレル店員",
+   "resident_type": "leisure_visitor",
+   "org_name": "(株)センター街アパレル"
+  },
+  {
+   "agent_index": 6,
+   "org_id": "co_pr_03",
+   "role": "アシスタント",
+   "occupation": "会社員",
+   "resident_type": "resident",
+   "org_name": "(株)センガイ・コンサルティング"
+  },
+  {
+   "agent_index": 7,
+   "org_id": "co_ca_03",
+   "role": "ホール",
+   "occupation": "カフェ店員",
+   "resident_type": "commuter",
+   "org_name": "(株)センガイ・ダイニング"
+  },
+  {
+   "agent_index": 8,
+   "org_id": "sc_un_01",
+   "role": "学生",
+   "occupation": "大学生",
+   "resident_type": "commuter",
+   "org_name": "渋谷総合大学(仮称)"
+  },
+  {
+   "agent_index": 9,
+   "org_id": "co_fl_02",
+   "role": "フォトグラファー",
+   "occupation": "写真家",
+   "resident_type": "resident",
+   "org_name": "渋谷フォトグラファーズ(個人事業)"
+  },
+  {
+   "agent_index": 10,
+   "org_id": "co_it_01",
+   "role": "エンジニア",
+   "occupation": "エンジニア",
+   "resident_type": "commuter",
+   "org_name": "(株)スクランブル計画"
+  },
+  {
+   "agent_index": 11,
+   "org_id": "co_it_06",
+   "role": "デザイナー",
+   "occupation": "デザイナー",
+   "resident_type": "commuter",
+   "org_name": "(株)神南データワークス"
+  },
+  {
+   "agent_index": 12,
+   "org_id": "co_ad_04",
+   "role": "プランナー",
+   "occupation": "会社員",
+   "resident_type": "commuter",
+   "org_name": "(株)センガイ・アドテク"
+  },
+  {
+   "agent_index": 14,
+   "org_id": "co_lg_01",
+   "role": "配達員",
+   "occupation": "配達員",
+   "resident_type": "leisure_visitor",
+   "org_name": "(株)スクランブル・デリバリー"
+  },
+  {
+   "agent_index": 15,
+   "org_id": "co_it_02",
+   "role": "デザイナー",
+   "occupation": "デザイナー",
+   "resident_type": "resident",
+   "org_name": "(株)ハチ公ラボ"
+  },
+  {
+   "agent_index": 17,
+   "org_id": "co_ca_06",
+   "role": "バリスタ",
+   "occupation": "カフェ店員",
+   "resident_type": "leisure_visitor",
+   "org_name": "(株)公園通りロースタリー"
+  },
+  {
+   "agent_index": 19,
+   "org_id": "co_it_06",
+   "role": "営業",
+   "occupation": "会社員",
+   "resident_type": "commuter",
+   "org_name": "(株)神南データワークス"
+  },
+  {
+   "agent_index": 20,
+   "org_id": "co_it_08",
+   "role": "プロダクトマネージャー",
+   "occupation": "会社員",
+   "resident_type": "commuter",
+   "org_name": "(株)渋谷ヘルスケアIT"
+  },
+  {
+   "agent_index": 21,
+   "org_id": "co_ad_05",
+   "role": "ディレクター",
+   "occupation": "会社員",
+   "resident_type": "resident",
+   "org_name": "(株)渋谷コンテンツスタジオ"
+  },
+  {
+   "agent_index": 22,
+   "org_id": "co_it_08",
+   "role": "デザイナー",
+   "occupation": "デザイナー",
+   "resident_type": "resident",
+   "org_name": "(株)渋谷ヘルスケアIT"
+  },
+  {
+   "agent_index": 23,
+   "org_id": "co_lg_01",
+   "role": "配達員",
+   "occupation": "配達員",
+   "resident_type": "resident",
+   "org_name": "(株)スクランブル・デリバリー"
+  },
+  {
+   "agent_index": 24,
+   "org_id": "co_it_02",
+   "role": "デザイナー",
+   "occupation": "デザイナー",
+   "resident_type": "leisure_visitor",
+   "org_name": "(株)ハチ公ラボ"
+  },
+  {
+   "agent_index": 25,
+   "org_id": "co_it_07",
+   "role": "プロダクトマネージャー",
+   "occupation": "会社員",
+   "resident_type": "resident",
+   "org_name": "(株)公園通りメディア"
+  },
+  {
+   "agent_index": 26,
+   "org_id": "co_it_02",
+   "role": "営業",
+   "occupation": "会社員",
+   "resident_type": "leisure_visitor",
+   "org_name": "(株)ハチ公ラボ"
+  },
+  {
+   "agent_index": 27,
+   "org_id": "sc_un_02",
+   "role": "学生",
+   "occupation": "大学生",
+   "resident_type": "leisure_visitor",
+   "org_name": "宮益工科大学(仮称)"
+  },
+  {
+   "agent_index": 28,
+   "org_id": "co_lg_01",
+   "role": "配達員",
+   "occupation": "配達員",
+   "resident_type": "leisure_visitor",
+   "org_name": "(株)スクランブル・デリバリー"
+  },
+  {
+   "agent_index": 29,
+   "org_id": "co_ca_04",
+   "role": "ホール",
+   "occupation": "カフェ店員",
+   "resident_type": "resident",
+   "org_name": "(株)ハチ公ティースタンド"
+  },
+  {
+   "agent_index": 30,
+   "org_id": "co_wh_02",
+   "role": "企画",
+   "occupation": "会社員",
+   "resident_type": "commuter",
+   "org_name": "(株)ハチ公プロダクツ"
+  },
+  {
+   "agent_index": 31,
+   "org_id": "co_lg_01",
+   "role": "営業",
+   "occupation": "会社員",
+   "resident_type": "commuter",
+   "org_name": "(株)スクランブル・デリバリー"
+  },
+  {
+   "agent_index": 32,
+   "org_id": "co_lg_01",
+   "role": "営業",
+   "occupation": "会社員",
+   "resident_type": "resident",
+   "org_name": "(株)スクランブル・デリバリー"
+  },
+  {
+   "agent_index": 33,
+   "org_id": "co_it_07",
+   "role": "エンジニア",
+   "occupation": "エンジニア",
+   "resident_type": "resident",
+   "org_name": "(株)公園通りメディア"
+  },
+  {
+   "agent_index": 34,
+   "org_id": "co_ad_05",
+   "role": "プランナー",
+   "occupation": "会社員",
+   "resident_type": "resident",
+   "org_name": "(株)渋谷コンテンツスタジオ"
+  },
+  {
+   "agent_index": 35,
+   "org_id": "co_it_01",
+   "role": "営業",
+   "occupation": "会社員",
+   "resident_type": "resident",
+   "org_name": "(株)スクランブル計画"
+  },
+  {
+   "agent_index": 36,
+   "org_id": "sc_vo_01",
+   "role": "学生",
+   "occupation": "大学生",
+   "resident_type": "commuter",
+   "org_name": "渋谷デザイン&ファッション専門学校(仮称)"
+  },
+  {
+   "agent_index": 38,
+   "org_id": "co_ad_05",
+   "role": "デザイナー",
+   "occupation": "デザイナー",
+   "resident_type": "leisure_visitor",
+   "org_name": "(株)渋谷コンテンツスタジオ"
+  },
+  {
+   "agent_index": 39,
+   "org_id": "co_ad_03",
+   "role": "デザイナー",
+   "occupation": "デザイナー",
+   "resident_type": "commuter",
+   "org_name": "(株)道玄坂デザイン事務所"
+  },
+  {
+   "agent_index": 40,
+   "org_id": "co_fl_01",
+   "role": "フリーランス",
+   "occupation": "フリーランス",
+   "resident_type": "resident",
+   "org_name": "渋谷フリーランス・コレクティブ"
+  },
+  {
+   "agent_index": 42,
+   "org_id": "co_bt_01",
+   "role": "スタイリスト",
+   "occupation": "美容師",
+   "resident_type": "resident",
+   "org_name": "(株)渋谷ヘアデザイン"
+  },
+  {
+   "agent_index": 45,
+   "org_id": "co_fl_01",
+   "role": "フリーランス",
+   "occupation": "フリーランス",
+   "resident_type": "resident",
+   "org_name": "渋谷フリーランス・コレクティブ"
+  },
+  {
+   "agent_index": 46,
+   "org_id": "sc_vo_02",
+   "role": "学生",
+   "occupation": "大学生",
+   "resident_type": "commuter",
+   "org_name": "渋谷IT&ゲーム専門学校(仮称)"
+  },
+  {
+   "agent_index": 47,
+   "org_id": "co_fl_01",
+   "role": "フリーランス",
+   "occupation": "フリーランス",
+   "resident_type": "leisure_visitor",
+   "org_name": "渋谷フリーランス・コレクティブ"
+  },
+  {
+   "agent_index": 48,
+   "org_id": "co_ca_01",
+   "role": "バリスタ",
+   "occupation": "カフェ店員",
+   "resident_type": "commuter",
+   "org_name": "(株)スクランブル珈琲"
+  },
+  {
+   "agent_index": 49,
+   "org_id": "sc_un_01",
+   "role": "学生",
+   "occupation": "大学生",
+   "resident_type": "leisure_visitor",
+   "org_name": "渋谷総合大学(仮称)"
+  },
+  {
+   "agent_index": 50,
+   "org_id": "co_ad_01",
+   "role": "プランナー",
+   "occupation": "会社員",
+   "resident_type": "leisure_visitor",
+   "org_name": "(株)スクランブル・クリエイティブ"
+  },
+  {
+   "agent_index": 51,
+   "org_id": "co_lg_01",
+   "role": "オペレーション",
+   "occupation": "会社員",
+   "resident_type": "commuter",
+   "org_name": "(株)スクランブル・デリバリー"
+  },
+  {
+   "agent_index": 52,
+   "org_id": "co_ca_04",
+   "role": "ホール",
+   "occupation": "カフェ店員",
+   "resident_type": "commuter",
+   "org_name": "(株)ハチ公ティースタンド"
+  },
+  {
+   "agent_index": 53,
+   "org_id": "co_it_03",
+   "role": "デザイナー",
+   "occupation": "デザイナー",
+   "resident_type": "resident",
+   "org_name": "センターガイ・ゲームス(株)"
+  },
+  {
+   "agent_index": 54,
+   "org_id": "co_bt_01",
+   "role": "スタイリスト",
+   "occupation": "美容師",
+   "resident_type": "commuter",
+   "org_name": "(株)渋谷ヘアデザイン"
+  },
+  {
+   "agent_index": 55,
+   "org_id": "co_it_02",
+   "role": "デザイナー",
+   "occupation": "デザイナー",
+   "resident_type": "commuter",
+   "org_name": "(株)ハチ公ラボ"
+  },
+  {
+   "agent_index": 57,
+   "org_id": "co_fl_01",
+   "role": "フリーランス",
+   "occupation": "フリーランス",
+   "resident_type": "resident",
+   "org_name": "渋谷フリーランス・コレクティブ"
+  },
+  {
+   "agent_index": 59,
+   "org_id": "sc_vo_01",
+   "role": "学生",
+   "occupation": "大学生",
+   "resident_type": "resident",
+   "org_name": "渋谷デザイン&ファッション専門学校(仮称)"
+  },
+  {
+   "agent_index": 60,
+   "org_id": "co_ad_02",
+   "role": "デザイナー",
+   "occupation": "デザイナー",
+   "resident_type": "commuter",
+   "org_name": "(株)ミヤシタ映像制作"
+  },
+  {
+   "agent_index": 61,
+   "org_id": "co_ad_02",
+   "role": "営業",
+   "occupation": "会社員",
+   "resident_type": "commuter",
+   "org_name": "(株)ミヤシタ映像制作"
+  },
+  {
+   "agent_index": 62,
+   "org_id": "co_bt_03",
+   "role": "スタイリスト",
+   "occupation": "美容師",
+   "resident_type": "commuter",
+   "org_name": "(株)公園通りサロン"
+  },
+  {
+   "agent_index": 63,
+   "org_id": "co_it_04",
+   "role": "コーポレート",
+   "occupation": "会社員",
+   "resident_type": "commuter",
+   "org_name": "(株)道玄坂ソフトウェア"
+  },
+  {
+   "agent_index": 64,
+   "org_id": "co_re_03",
+   "role": "営業",
+   "occupation": "会社員",
+   "resident_type": "commuter",
+   "org_name": "(株)宮下地所"
+  },
+  {
+   "agent_index": 65,
+   "org_id": "co_ap_07",
+   "role": "販売スタッフ",
+   "occupation": "アパレル店員",
+   "resident_type": "resident",
+   "org_name": "(株)道玄坂コスメ&ビューティ小売"
+  },
+  {
+   "agent_index": 66,
+   "org_id": "co_ap_02",
+   "role": "販売スタッフ",
+   "occupation": "アパレル店員",
+   "resident_type": "leisure_visitor",
+   "org_name": "(株)センター街アパレル"
+  },
+  {
+   "agent_index": 68,
+   "org_id": "sc_vo_02",
+   "role": "学生",
+   "occupation": "大学生",
+   "resident_type": "resident",
+   "org_name": "渋谷IT&ゲーム専門学校(仮称)"
+  },
+  {
+   "agent_index": 69,
+   "org_id": "co_fl_01",
+   "role": "フリーランス",
+   "occupation": "フリーランス",
+   "resident_type": "resident",
+   "org_name": "渋谷フリーランス・コレクティブ"
+  },
+  {
+   "agent_index": 70,
+   "org_id": "co_it_03",
+   "role": "エンジニア",
+   "occupation": "エンジニア",
+   "resident_type": "resident",
+   "org_name": "センターガイ・ゲームス(株)"
+  },
+  {
+   "agent_index": 71,
+   "org_id": "co_ap_01",
+   "role": "販売スタッフ",
+   "occupation": "アパレル店員",
+   "resident_type": "commuter",
+   "org_name": "(株)渋谷ファッションワークス"
+  },
+  {
+   "agent_index": 72,
+   "org_id": "co_pr_03",
+   "role": "会計士",
+   "occupation": "会社員",
+   "resident_type": "commuter",
+   "org_name": "(株)センガイ・コンサルティング"
+  },
+  {
+   "agent_index": 73,
+   "org_id": "sc_un_02",
+   "role": "学生",
+   "occupation": "大学生",
+   "resident_type": "commuter",
+   "org_name": "宮益工科大学(仮称)"
+  },
+  {
+   "agent_index": 74,
+   "org_id": "sc_un_01",
+   "role": "学生",
+   "occupation": "大学生",
+   "resident_type": "leisure_visitor",
+   "org_name": "渋谷総合大学(仮称)"
+  },
+  {
+   "agent_index": 75,
+   "org_id": "co_fl_01",
+   "role": "フリーランス",
+   "occupation": "フリーランス",
+   "resident_type": "resident",
+   "org_name": "渋谷フリーランス・コレクティブ"
+  },
+  {
+   "agent_index": 76,
+   "org_id": "co_lg_01",
+   "role": "配達員",
+   "occupation": "配達員",
+   "resident_type": "leisure_visitor",
+   "org_name": "(株)スクランブル・デリバリー"
+  },
+  {
+   "agent_index": 77,
+   "org_id": "co_it_07",
+   "role": "エンジニア",
+   "occupation": "エンジニア",
+   "resident_type": "commuter",
+   "org_name": "(株)公園通りメディア"
+  },
+  {
+   "agent_index": 78,
+   "org_id": "co_ap_07",
+   "role": "販売スタッフ",
+   "occupation": "アパレル店員",
+   "resident_type": "leisure_visitor",
+   "org_name": "(株)道玄坂コスメ&ビューティ小売"
+  },
+  {
+   "agent_index": 79,
+   "org_id": "co_ca_05",
+   "role": "ホール",
+   "occupation": "カフェ店員",
+   "resident_type": "commuter",
+   "org_name": "(株)道玄坂フードサービス"
+  },
+  {
+   "agent_index": 80,
+   "org_id": "co_it_06",
+   "role": "エンジニア",
+   "occupation": "エンジニア",
+   "resident_type": "resident",
+   "org_name": "(株)神南データワークス"
+  },
+  {
+   "agent_index": 81,
+   "org_id": "co_ca_01",
+   "role": "キッチン",
+   "occupation": "カフェ店員",
+   "resident_type": "commuter",
+   "org_name": "(株)スクランブル珈琲"
+  },
+  {
+   "agent_index": 82,
+   "org_id": "co_mu_01",
+   "role": "ミュージシャン",
+   "occupation": "バンドマン",
+   "resident_type": "leisure_visitor",
+   "org_name": "渋谷ミュージシャンズ・ギルド"
+  },
+  {
+   "agent_index": 83,
+   "org_id": "co_ad_02",
+   "role": "制作進行",
+   "occupation": "会社員",
+   "resident_type": "leisure_visitor",
+   "org_name": "(株)ミヤシタ映像制作"
+  },
+  {
+   "agent_index": 84,
+   "org_id": "sc_un_01",
+   "role": "学生",
+   "occupation": "大学生",
+   "resident_type": "resident",
+   "org_name": "渋谷総合大学(仮称)"
+  },
+  {
+   "agent_index": 85,
+   "org_id": "co_ad_01",
+   "role": "プランナー",
+   "occupation": "会社員",
+   "resident_type": "resident",
+   "org_name": "(株)スクランブル・クリエイティブ"
+  },
+  {
+   "agent_index": 86,
+   "org_id": "co_lg_01",
+   "role": "配達員",
+   "occupation": "配達員",
+   "resident_type": "resident",
+   "org_name": "(株)スクランブル・デリバリー"
+  },
+  {
+   "agent_index": 87,
+   "org_id": "co_ad_03",
+   "role": "プランナー",
+   "occupation": "会社員",
+   "resident_type": "resident",
+   "org_name": "(株)道玄坂デザイン事務所"
+  },
+  {
+   "agent_index": 88,
+   "org_id": "co_it_05",
+   "role": "営業",
+   "occupation": "会社員",
+   "resident_type": "leisure_visitor",
+   "org_name": "(株)宮益フィンテック"
+  },
+  {
+   "agent_index": 89,
+   "org_id": "co_lg_01",
+   "role": "オペレーション",
+   "occupation": "会社員",
+   "resident_type": "resident",
+   "org_name": "(株)スクランブル・デリバリー"
+  },
+  {
+   "agent_index": 90,
+   "org_id": "co_fl_01",
+   "role": "フリーランス",
+   "occupation": "フリーランス",
+   "resident_type": "leisure_visitor",
+   "org_name": "渋谷フリーランス・コレクティブ"
+  },
+  {
+   "agent_index": 91,
+   "org_id": "co_ap_02",
+   "role": "販売スタッフ",
+   "occupation": "アパレル店員",
+   "resident_type": "commuter",
+   "org_name": "(株)センター街アパレル"
+  },
+  {
+   "agent_index": 92,
+   "org_id": "co_mu_01",
+   "role": "ミュージシャン",
+   "occupation": "バンドマン",
+   "resident_type": "leisure_visitor",
+   "org_name": "渋谷ミュージシャンズ・ギルド"
+  },
+  {
+   "agent_index": 93,
+   "org_id": "sc_un_02",
+   "role": "学生",
+   "occupation": "大学生",
+   "resident_type": "commuter",
+   "org_name": "宮益工科大学(仮称)"
+  },
+  {
+   "agent_index": 94,
+   "org_id": "co_mu_01",
+   "role": "ミュージシャン",
+   "occupation": "バンドマン",
+   "resident_type": "resident",
+   "org_name": "渋谷ミュージシャンズ・ギルド"
+  },
+  {
+   "agent_index": 95,
+   "org_id": "co_ad_03",
+   "role": "制作進行",
+   "occupation": "会社員",
+   "resident_type": "resident",
+   "org_name": "(株)道玄坂デザイン事務所"
+  },
+  {
+   "agent_index": 96,
+   "org_id": "co_it_04",
+   "role": "エンジニア",
+   "occupation": "エンジニア",
+   "resident_type": "resident",
+   "org_name": "(株)道玄坂ソフトウェア"
+  },
+  {
+   "agent_index": 97,
+   "org_id": "co_it_08",
+   "role": "プロダクトマネージャー",
+   "occupation": "会社員",
+   "resident_type": "commuter",
+   "org_name": "(株)渋谷ヘルスケアIT"
+  },
+  {
+   "agent_index": 98,
+   "org_id": "sc_vo_02",
+   "role": "学生",
+   "occupation": "大学生",
+   "resident_type": "commuter",
+   "org_name": "渋谷IT&ゲーム専門学校(仮称)"
+  },
+  {
+   "agent_index": 99,
+   "org_id": "co_wh_01",
+   "role": "営業",
+   "occupation": "会社員",
+   "resident_type": "leisure_visitor",
+   "org_name": "(株)渋谷トレーディング"
+  }
+ ]
+}

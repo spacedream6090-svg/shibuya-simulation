@@ -1,0 +1,556 @@
+{
+  "_meta": {
+    "source": "公共交通オープンデータセンター (Public Transportation Open Data Center, ODPT)",
+    "source_url": "https://www.odpt.org/",
+    "api_base": "https://api.odpt.org/api/v4/",
+    "api_version": "v4",
+    "attribution": "本データは公共交通オープンデータセンターのデータを利用して作成。出典表示および ODPT 利用規約の遵守が必要。",
+    "disclaimer": "データの正確性・完全性は保証されない。ODPT および各事業者は本データの利用によって生じた損害について責任を負わない。",
+    "usage_note": "決定論保護のため、シミュ実行中はこの静的キャッシュのみ読む(実行時の API 呼び出しは禁止)。詳細: docs/research/odpt-integration.md",
+    "datatype": "odpt:Station",
+    "label": "東京メトロ半蔵門線",
+    "railway": "odpt.Railway:TokyoMetro.Hanzomon",
+    "fetched_at": "2026-07-07T15:34:13.098861+00:00",
+    "count": 14
+  },
+  "data": [
+    {
+      "@id": "urn:ucode:_00001C000000000000010000030C46B6",
+      "@type": "odpt:Station",
+      "dc:date": "2024-06-27T08:00:00+09:00",
+      "geo:lat": 35.672956,
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "青山一丁目",
+      "geo:long": 139.724075,
+      "owl:sameAs": "odpt.Station:TokyoMetro.Hanzomon.AoyamaItchome",
+      "odpt:railway": "odpt.Railway:TokyoMetro.Hanzomon",
+      "odpt:operator": "odpt.Operator:TokyoMetro",
+      "odpt:stationCode": "Z03",
+      "odpt:stationTitle": {
+        "en": "Aoyama-itchome",
+        "ja": "青山一丁目",
+        "ko": "아오야마잇초메",
+        "ja-Hrkt": "あおやまいっちょうめ",
+        "zh-Hans": "青山一丁目",
+        "zh-Hant": "青山一丁目"
+      },
+      "odpt:passengerSurvey": [
+        "odpt.PassengerSurvey:TokyoMetro.AoyamaItchome"
+      ],
+      "odpt:stationTimetable": [
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.AoyamaItchome.TokyoMetro.Shibuya.Weekday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.AoyamaItchome.TokyoMetro.Shibuya.SaturdayHoliday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.AoyamaItchome.TokyoMetro.Oshiage.Weekday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.AoyamaItchome.TokyoMetro.Oshiage.SaturdayHoliday"
+      ],
+      "odpt:connectingRailway": [
+        "odpt.Railway:TokyoMetro.Ginza",
+        "odpt.Railway:Toei.Oedo"
+      ],
+      "odpt:connectingStation": [
+        "odpt.Station:TokyoMetro.Ginza.AoyamaItchome",
+        "odpt.Station:Toei.Oedo.AoyamaItchome"
+      ]
+    },
+    {
+      "@id": "urn:ucode:_00001C000000000000010000030C46F7",
+      "@type": "odpt:Station",
+      "dc:date": "2024-06-27T08:00:00+09:00",
+      "geo:lat": 35.695501,
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "九段下",
+      "geo:long": 139.751117,
+      "owl:sameAs": "odpt.Station:TokyoMetro.Hanzomon.Kudanshita",
+      "odpt:railway": "odpt.Railway:TokyoMetro.Hanzomon",
+      "odpt:operator": "odpt.Operator:TokyoMetro",
+      "odpt:stationCode": "Z06",
+      "odpt:stationTitle": {
+        "en": "Kudanshita",
+        "ja": "九段下",
+        "ko": "구단시타",
+        "ja-Hrkt": "くだんした",
+        "zh-Hans": "九段下",
+        "zh-Hant": "九段下"
+      },
+      "odpt:passengerSurvey": [
+        "odpt.PassengerSurvey:TokyoMetro.Kudanshita"
+      ],
+      "odpt:stationTimetable": [
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Kudanshita.TokyoMetro.Shibuya.Weekday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Kudanshita.TokyoMetro.Shibuya.SaturdayHoliday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Kudanshita.TokyoMetro.Oshiage.Weekday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Kudanshita.TokyoMetro.Oshiage.SaturdayHoliday"
+      ],
+      "odpt:connectingRailway": [
+        "odpt.Railway:TokyoMetro.Tozai",
+        "odpt.Railway:Toei.Shinjuku"
+      ],
+      "odpt:connectingStation": [
+        "odpt.Station:TokyoMetro.Tozai.Kudanshita",
+        "odpt.Station:Toei.Shinjuku.Kudanshita"
+      ]
+    },
+    {
+      "@id": "urn:ucode:_00001C000000000000010000030C4742",
+      "@type": "odpt:Station",
+      "dc:date": "2022-03-15T11:00:00+09:00",
+      "geo:lat": 35.68538,
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "半蔵門",
+      "geo:long": 139.741695,
+      "owl:sameAs": "odpt.Station:TokyoMetro.Hanzomon.Hanzomon",
+      "odpt:railway": "odpt.Railway:TokyoMetro.Hanzomon",
+      "odpt:operator": "odpt.Operator:TokyoMetro",
+      "odpt:stationCode": "Z05",
+      "odpt:stationTitle": {
+        "en": "Hanzomon",
+        "ja": "半蔵門",
+        "ko": "한조몬",
+        "ja-Hrkt": "はんぞうもん",
+        "zh-Hans": "半藏门",
+        "zh-Hant": "半藏門"
+      },
+      "odpt:passengerSurvey": [
+        "odpt.PassengerSurvey:TokyoMetro.Hanzomon"
+      ],
+      "odpt:stationTimetable": [
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Hanzomon.TokyoMetro.Shibuya.Weekday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Hanzomon.TokyoMetro.Shibuya.SaturdayHoliday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Hanzomon.TokyoMetro.Oshiage.Weekday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Hanzomon.TokyoMetro.Oshiage.SaturdayHoliday"
+      ]
+    },
+    {
+      "@id": "urn:ucode:_00001C000000000000010000030C4714",
+      "@type": "odpt:Station",
+      "dc:date": "2024-03-27T09:00:00+09:00",
+      "geo:lat": 35.696021,
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "神保町",
+      "geo:long": 139.75756,
+      "owl:sameAs": "odpt.Station:TokyoMetro.Hanzomon.Jimbocho",
+      "odpt:railway": "odpt.Railway:TokyoMetro.Hanzomon",
+      "odpt:operator": "odpt.Operator:TokyoMetro",
+      "odpt:stationCode": "Z07",
+      "odpt:stationTitle": {
+        "en": "Jimbocho",
+        "ja": "神保町",
+        "ko": "진보초",
+        "ja-Hrkt": "じんぼうちょう",
+        "zh-Hans": "神保町",
+        "zh-Hant": "神保町"
+      },
+      "odpt:passengerSurvey": [
+        "odpt.PassengerSurvey:TokyoMetro.Jimbocho"
+      ],
+      "odpt:stationTimetable": [
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Jimbocho.TokyoMetro.Shibuya.Weekday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Jimbocho.TokyoMetro.Shibuya.SaturdayHoliday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Jimbocho.TokyoMetro.Oshiage.Weekday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Jimbocho.TokyoMetro.Oshiage.SaturdayHoliday"
+      ],
+      "odpt:connectingRailway": [
+        "odpt.Railway:Toei.Mita",
+        "odpt.Railway:Toei.Shinjuku"
+      ],
+      "odpt:connectingStation": [
+        "odpt.Station:Toei.Mita.Jimbocho",
+        "odpt.Station:Toei.Shinjuku.Jimbocho"
+      ]
+    },
+    {
+      "@id": "urn:ucode:_00001C000000000000010000030C46F5",
+      "@type": "odpt:Station",
+      "dc:date": "2024-03-27T09:00:00+09:00",
+      "geo:lat": 35.697441,
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "錦糸町",
+      "geo:long": 139.814957,
+      "owl:sameAs": "odpt.Station:TokyoMetro.Hanzomon.Kinshicho",
+      "odpt:railway": "odpt.Railway:TokyoMetro.Hanzomon",
+      "odpt:operator": "odpt.Operator:TokyoMetro",
+      "odpt:stationCode": "Z13",
+      "odpt:stationTitle": {
+        "en": "Kinshicho",
+        "ja": "錦糸町",
+        "ko": "긴시초",
+        "ja-Hrkt": "きんしちょう",
+        "zh-Hans": "锦糸町",
+        "zh-Hant": "錦糸町"
+      },
+      "odpt:passengerSurvey": [
+        "odpt.PassengerSurvey:TokyoMetro.Kinshicho"
+      ],
+      "odpt:stationTimetable": [
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Kinshicho.TokyoMetro.Shibuya.Weekday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Kinshicho.TokyoMetro.Shibuya.SaturdayHoliday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Kinshicho.TokyoMetro.Oshiage.Weekday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Kinshicho.TokyoMetro.Oshiage.SaturdayHoliday"
+      ],
+      "odpt:connectingRailway": [
+        "odpt.Railway:JR-East.ChuoSobuLocal",
+        "odpt.Railway:JR-East.SobuRapid"
+      ],
+      "odpt:connectingStation": [
+        "odpt.Station:JR-East.ChuoSobuLocal.Kinshicho",
+        "odpt.Station:JR-East.SobuRapid.Kinshicho"
+      ]
+    },
+    {
+      "@id": "urn:ucode:_00001C000000000000010000030C46F0",
+      "@type": "odpt:Station",
+      "dc:date": "2024-03-27T09:00:00+09:00",
+      "geo:lat": 35.682119,
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "清澄白河",
+      "geo:long": 139.799841,
+      "owl:sameAs": "odpt.Station:TokyoMetro.Hanzomon.KiyosumiShirakawa",
+      "odpt:railway": "odpt.Railway:TokyoMetro.Hanzomon",
+      "odpt:operator": "odpt.Operator:TokyoMetro",
+      "odpt:stationCode": "Z11",
+      "odpt:stationTitle": {
+        "en": "Kiyosumi-shirakawa",
+        "ja": "清澄白河",
+        "ko": "기요스미시라카와",
+        "ja-Hrkt": "きよすみしらかわ",
+        "zh-Hans": "清澄白河",
+        "zh-Hant": "清澄白河"
+      },
+      "odpt:passengerSurvey": [
+        "odpt.PassengerSurvey:TokyoMetro.KiyosumiShirakawa"
+      ],
+      "odpt:stationTimetable": [
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.KiyosumiShirakawa.TokyoMetro.Shibuya.Weekday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.KiyosumiShirakawa.TokyoMetro.Shibuya.SaturdayHoliday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.KiyosumiShirakawa.TokyoMetro.Oshiage.Weekday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.KiyosumiShirakawa.TokyoMetro.Oshiage.SaturdayHoliday"
+      ],
+      "odpt:connectingRailway": [
+        "odpt.Railway:Toei.Oedo"
+      ],
+      "odpt:connectingStation": [
+        "odpt.Station:Toei.Oedo.KiyosumiShirakawa"
+      ]
+    },
+    {
+      "@id": "urn:ucode:_00001C000000000000010000030C4751",
+      "@type": "odpt:Station",
+      "dc:date": "2024-06-27T08:00:00+09:00",
+      "geo:lat": 35.684928,
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "三越前",
+      "geo:long": 139.77308,
+      "owl:sameAs": "odpt.Station:TokyoMetro.Hanzomon.Mitsukoshimae",
+      "odpt:railway": "odpt.Railway:TokyoMetro.Hanzomon",
+      "odpt:operator": "odpt.Operator:TokyoMetro",
+      "odpt:stationCode": "Z09",
+      "odpt:stationTitle": {
+        "en": "Mitsukoshimae",
+        "ja": "三越前",
+        "ko": "미쓰코시마에",
+        "ja-Hrkt": "みつこしまえ",
+        "zh-Hans": "三越前",
+        "zh-Hant": "三越前"
+      },
+      "odpt:passengerSurvey": [
+        "odpt.PassengerSurvey:TokyoMetro.Mitsukoshimae"
+      ],
+      "odpt:stationTimetable": [
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Mitsukoshimae.TokyoMetro.Shibuya.Weekday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Mitsukoshimae.TokyoMetro.Shibuya.SaturdayHoliday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Mitsukoshimae.TokyoMetro.Oshiage.Weekday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Mitsukoshimae.TokyoMetro.Oshiage.SaturdayHoliday"
+      ],
+      "odpt:connectingRailway": [
+        "odpt.Railway:TokyoMetro.Ginza",
+        "odpt.Railway:JR-East.SobuRapid"
+      ],
+      "odpt:connectingStation": [
+        "odpt.Station:TokyoMetro.Ginza.Mitsukoshimae",
+        "odpt.Station:JR-East.SobuRapid.ShinNihombashi"
+      ]
+    },
+    {
+      "@id": "urn:ucode:_00001C000000000000010000030C472D",
+      "@type": "odpt:Station",
+      "dc:date": "2024-03-27T09:00:00+09:00",
+      "geo:lat": 35.678407,
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "永田町",
+      "geo:long": 139.738865,
+      "owl:sameAs": "odpt.Station:TokyoMetro.Hanzomon.Nagatacho",
+      "odpt:railway": "odpt.Railway:TokyoMetro.Hanzomon",
+      "odpt:operator": "odpt.Operator:TokyoMetro",
+      "odpt:stationCode": "Z04",
+      "odpt:stationTitle": {
+        "en": "Nagatacho",
+        "ja": "永田町",
+        "ko": "나가타초",
+        "ja-Hrkt": "ながたちょう",
+        "zh-Hans": "永田町",
+        "zh-Hant": "永田町"
+      },
+      "odpt:passengerSurvey": [
+        "odpt.PassengerSurvey:TokyoMetro.Nagatacho"
+      ],
+      "odpt:stationTimetable": [
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Nagatacho.TokyoMetro.Shibuya.Weekday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Nagatacho.TokyoMetro.Shibuya.SaturdayHoliday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Nagatacho.TokyoMetro.Oshiage.Weekday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Nagatacho.TokyoMetro.Oshiage.SaturdayHoliday"
+      ],
+      "odpt:connectingRailway": [
+        "odpt.Railway:TokyoMetro.Ginza",
+        "odpt.Railway:TokyoMetro.Marunouchi",
+        "odpt.Railway:TokyoMetro.Namboku",
+        "odpt.Railway:TokyoMetro.Yurakucho"
+      ],
+      "odpt:connectingStation": [
+        "odpt.Station:TokyoMetro.Ginza.AkasakaMitsuke",
+        "odpt.Station:TokyoMetro.Marunouchi.AkasakaMitsuke",
+        "odpt.Station:TokyoMetro.Namboku.Nagatacho",
+        "odpt.Station:TokyoMetro.Yurakucho.Nagatacho"
+      ]
+    },
+    {
+      "@id": "urn:ucode:_00001C000000000000010000030C46DC",
+      "@type": "odpt:Station",
+      "dc:date": "2024-03-27T09:00:00+09:00",
+      "geo:lat": 35.665143,
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "表参道",
+      "geo:long": 139.712383,
+      "owl:sameAs": "odpt.Station:TokyoMetro.Hanzomon.OmoteSando",
+      "odpt:railway": "odpt.Railway:TokyoMetro.Hanzomon",
+      "odpt:operator": "odpt.Operator:TokyoMetro",
+      "odpt:stationCode": "Z02",
+      "odpt:stationTitle": {
+        "en": "Omote-sando",
+        "ja": "表参道",
+        "ko": "오모테산도",
+        "ja-Hrkt": "おもてさんどう",
+        "zh-Hans": "表参道",
+        "zh-Hant": "表參道"
+      },
+      "odpt:passengerSurvey": [
+        "odpt.PassengerSurvey:TokyoMetro.OmoteSando"
+      ],
+      "odpt:stationTimetable": [
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.OmoteSando.TokyoMetro.Shibuya.Weekday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.OmoteSando.TokyoMetro.Shibuya.SaturdayHoliday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.OmoteSando.TokyoMetro.Oshiage.Weekday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.OmoteSando.TokyoMetro.Oshiage.SaturdayHoliday"
+      ],
+      "odpt:connectingRailway": [
+        "odpt.Railway:TokyoMetro.Chiyoda",
+        "odpt.Railway:TokyoMetro.Ginza"
+      ],
+      "odpt:connectingStation": [
+        "odpt.Station:TokyoMetro.Chiyoda.OmoteSando",
+        "odpt.Station:TokyoMetro.Ginza.OmoteSando"
+      ]
+    },
+    {
+      "@id": "urn:ucode:_00001C000000000000010000030C46D7",
+      "@type": "odpt:Station",
+      "dc:date": "2024-03-27T09:00:00+09:00",
+      "geo:lat": 35.708467,
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "押上〈スカイツリー前〉",
+      "geo:long": 139.813735,
+      "owl:sameAs": "odpt.Station:TokyoMetro.Hanzomon.Oshiage",
+      "odpt:railway": "odpt.Railway:TokyoMetro.Hanzomon",
+      "odpt:operator": "odpt.Operator:TokyoMetro",
+      "odpt:stationCode": "Z14",
+      "odpt:stationTitle": {
+        "en": "Oshiage<SKYTREE>",
+        "ja": "押上〈スカイツリー前〉",
+        "ko": "오시아게<스가이트리>",
+        "ja-Hrkt": "おしあげ<スカイツリーまえ>",
+        "zh-Hans": "押上<晴空塔>",
+        "zh-Hant": "押上<晴空塔>"
+      },
+      "odpt:passengerSurvey": [
+        "odpt.PassengerSurvey:TokyoMetro.Oshiage"
+      ],
+      "odpt:stationTimetable": [
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Oshiage.TokyoMetro.Shibuya.Weekday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Oshiage.TokyoMetro.Shibuya.SaturdayHoliday"
+      ],
+      "odpt:connectingRailway": [
+        "odpt.Railway:Keisei.Oshiage",
+        "odpt.Railway:Tobu.TobuSkytreeBranch",
+        "odpt.Railway:Toei.Asakusa"
+      ],
+      "odpt:connectingStation": [
+        "odpt.Station:Keisei.Oshiage.Oshiage",
+        "odpt.Station:Tobu.TobuSkytreeBranch.Oshiage",
+        "odpt.Station:Toei.Asakusa.Oshiage"
+      ]
+    },
+    {
+      "@id": "urn:ucode:_00001C000000000000010000030C46D5",
+      "@type": "odpt:Station",
+      "dc:date": "2024-06-27T08:00:00+09:00",
+      "geo:lat": 35.686745,
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "大手町",
+      "geo:long": 139.764905,
+      "owl:sameAs": "odpt.Station:TokyoMetro.Hanzomon.Otemachi",
+      "odpt:railway": "odpt.Railway:TokyoMetro.Hanzomon",
+      "odpt:operator": "odpt.Operator:TokyoMetro",
+      "odpt:stationCode": "Z08",
+      "odpt:stationTitle": {
+        "en": "Otemachi",
+        "ja": "大手町",
+        "ko": "오테마치",
+        "ja-Hrkt": "おおてまち",
+        "zh-Hans": "大手町",
+        "zh-Hant": "大手町"
+      },
+      "odpt:passengerSurvey": [
+        "odpt.PassengerSurvey:TokyoMetro.Otemachi"
+      ],
+      "odpt:stationTimetable": [
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Otemachi.TokyoMetro.Shibuya.Weekday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Otemachi.TokyoMetro.Shibuya.SaturdayHoliday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Otemachi.TokyoMetro.Oshiage.Weekday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Otemachi.TokyoMetro.Oshiage.SaturdayHoliday"
+      ],
+      "odpt:connectingRailway": [
+        "odpt.Railway:TokyoMetro.Chiyoda",
+        "odpt.Railway:TokyoMetro.Marunouchi",
+        "odpt.Railway:TokyoMetro.Tozai",
+        "odpt.Railway:Toei.Mita"
+      ],
+      "odpt:connectingStation": [
+        "odpt.Station:TokyoMetro.Chiyoda.Otemachi",
+        "odpt.Station:TokyoMetro.Marunouchi.Otemachi",
+        "odpt.Station:TokyoMetro.Tozai.Otemachi",
+        "odpt.Station:Toei.Mita.Otemachi"
+      ]
+    },
+    {
+      "@id": "urn:ucode:_00001C000000000000010000030C4704",
+      "@type": "odpt:Station",
+      "dc:date": "2024-06-27T08:00:00+09:00",
+      "geo:lat": 35.65945,
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "渋谷",
+      "geo:long": 139.701035,
+      "owl:sameAs": "odpt.Station:TokyoMetro.Hanzomon.Shibuya",
+      "odpt:railway": "odpt.Railway:TokyoMetro.Hanzomon",
+      "odpt:operator": "odpt.Operator:TokyoMetro",
+      "odpt:stationCode": "Z01",
+      "odpt:stationTitle": {
+        "en": "Shibuya",
+        "ja": "渋谷",
+        "ko": "시부야",
+        "ja-Hrkt": "しぶや",
+        "zh-Hans": "涩谷",
+        "zh-Hant": "澀谷"
+      },
+      "odpt:passengerSurvey": [
+        "odpt.PassengerSurvey:TokyoMetro.Hanzomon.Shibuya"
+      ],
+      "odpt:stationTimetable": [
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Shibuya.TokyoMetro.Oshiage.Weekday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Shibuya.TokyoMetro.Oshiage.SaturdayHoliday"
+      ],
+      "odpt:connectingRailway": [
+        "odpt.Railway:TokyoMetro.Fukutoshin",
+        "odpt.Railway:TokyoMetro.Ginza",
+        "odpt.Railway:JR-East.SaikyoKawagoe",
+        "odpt.Railway:JR-East.ShonanShinjuku",
+        "odpt.Railway:JR-East.Yamanote",
+        "odpt.Railway:Keio.Inokashira",
+        "odpt.Railway:Tokyu.DenEnToshi",
+        "odpt.Railway:Tokyu.Toyoko"
+      ],
+      "odpt:connectingStation": [
+        "odpt.Station:TokyoMetro.Fukutoshin.Shibuya",
+        "odpt.Station:TokyoMetro.Ginza.Shibuya",
+        "odpt.Station:JR-East.SaikyoKawagoe.Shibuya",
+        "odpt.Station:JR-East.ShonanShinjuku.Shibuya",
+        "odpt.Station:JR-East.Yamanote.Shibuya",
+        "odpt.Station:Keio.Inokashira.Shibuya",
+        "odpt.Station:Tokyu.DenEnToshi.Shibuya",
+        "odpt.Station:Tokyu.Toyoko.Shibuya"
+      ]
+    },
+    {
+      "@id": "urn:ucode:_00001C000000000000010000030C4715",
+      "@type": "odpt:Station",
+      "dc:date": "2024-06-27T08:00:00+09:00",
+      "geo:lat": 35.683,
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "水天宮前",
+      "geo:long": 139.785171,
+      "owl:sameAs": "odpt.Station:TokyoMetro.Hanzomon.Suitengumae",
+      "odpt:railway": "odpt.Railway:TokyoMetro.Hanzomon",
+      "odpt:operator": "odpt.Operator:TokyoMetro",
+      "odpt:stationCode": "Z10",
+      "odpt:stationTitle": {
+        "en": "Suitengumae",
+        "ja": "水天宮前",
+        "ko": "스이텐구마에",
+        "ja-Hrkt": "すいてんぐうまえ",
+        "zh-Hans": "水天宮前",
+        "zh-Hant": "水天宮前"
+      },
+      "odpt:passengerSurvey": [
+        "odpt.PassengerSurvey:TokyoMetro.Suitengumae"
+      ],
+      "odpt:stationTimetable": [
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Suitengumae.TokyoMetro.Shibuya.Weekday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Suitengumae.TokyoMetro.Shibuya.SaturdayHoliday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Suitengumae.TokyoMetro.Oshiage.Weekday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Suitengumae.TokyoMetro.Oshiage.SaturdayHoliday"
+      ],
+      "odpt:connectingRailway": [
+        "odpt.Railway:TokyoMetro.Hibiya",
+        "odpt.Railway:Toei.Asakusa"
+      ],
+      "odpt:connectingStation": [
+        "odpt.Station:TokyoMetro.Hibiya.Ningyocho",
+        "odpt.Station:Toei.Asakusa.Ningyocho"
+      ]
+    },
+    {
+      "@id": "urn:ucode:_00001C000000000000010000030C4717",
+      "@type": "odpt:Station",
+      "dc:date": "2024-03-27T09:00:00+09:00",
+      "geo:lat": 35.688704,
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "住吉",
+      "geo:long": 139.815667,
+      "owl:sameAs": "odpt.Station:TokyoMetro.Hanzomon.Sumiyoshi",
+      "odpt:railway": "odpt.Railway:TokyoMetro.Hanzomon",
+      "odpt:operator": "odpt.Operator:TokyoMetro",
+      "odpt:stationCode": "Z12",
+      "odpt:stationTitle": {
+        "en": "Sumiyoshi",
+        "ja": "住吉",
+        "ko": "수미요시",
+        "ja-Hrkt": "すみよし",
+        "zh-Hans": "住吉",
+        "zh-Hant": "住吉"
+      },
+      "odpt:passengerSurvey": [
+        "odpt.PassengerSurvey:TokyoMetro.Sumiyoshi"
+      ],
+      "odpt:stationTimetable": [
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Sumiyoshi.TokyoMetro.Shibuya.Weekday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Sumiyoshi.TokyoMetro.Shibuya.SaturdayHoliday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Sumiyoshi.TokyoMetro.Oshiage.Weekday",
+        "odpt.StationTimetable:TokyoMetro.Hanzomon.Sumiyoshi.TokyoMetro.Oshiage.SaturdayHoliday"
+      ],
+      "odpt:connectingRailway": [
+        "odpt.Railway:Toei.Shinjuku"
+      ],
+      "odpt:connectingStation": [
+        "odpt.Station:Toei.Shinjuku.Sumiyoshi"
+      ]
+    }
+  ]
+}

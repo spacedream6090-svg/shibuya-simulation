@@ -1,0 +1,17 @@
+# 経済 affordance クラスタ 概観 — 両面市場 / ネットワーク経済 / メカニズムデザイン / 情報経済・評判
+- リンク: 両面市場 [Rochet&Tirole 系レビュー(Northwestern PDF)](https://faculty.wcas.northwestern.edu/apa522/Two-Sided-Market-and-Network-Effects.pdf) / cold-start [chicken-and-egg(Platform Chronicles)](https://platformchronicles.substack.com/p/the-chicken-and-egg-problem-of-marketplaces) / 非対称情報 [Nobel 2001 解説(NobelPrize.org)](https://www.nobelprize.org/prizes/economic-sciences/2001/popular-information/) | 分野: world/resource, social-network, actions, observer | 重要度: P1(§4 チェーンの affordance として畳む)
+- 主張(claim):
+  - **両面市場(Rochet&Tirole)**: 複数の異なる利用者群がプラットフォーム経由で相互作用し、一方の参加が他方の効用を高める(**間接ネットワーク効果**)。**critical mass** を超えると自己持続、以下では崩壊。
+  - ★ **cold-start / chicken-and-egg**: 売り手なしに買い手は来ず、買い手なしに売り手は来ない。初期ブートストラップが最難関。
+  - **情報の非対称(Akerlof lemons / Spence signaling / Stiglitz screening)**: 情報格差 → 逆選択(低品質が市場を駆逐)。**signaling(発信)・screening(選別)・評判(reputation)** で緩和。
+  - **メカニズムデザイン**: 非対称情報下でインセンティブを整合させる制度・契約の設計(逆問題=望む均衡から規則を設計)。
+- 機構(mechanism): 間接ネットワーク効果 → 正のフィードバック(critical mass 超で離陸 / 未満で死)= 相転移的。評判 = 取引履歴の累積が noisy な品質シグナル → 分散的規律で信頼形成。
+- 効く seam:
+  - ★ **cold-start = [[mas__li2026_moltbook]] の「規模だけでは社会化が創発しない」問題の経済版**。critical mass 未満 = 崩壊、超 = 自己持続 = [[complexity__phase-transition-methodology]] の相転移 / k*。→ **社会/コミュニティ形成の bootstrapping を critical-mass 力学で捉える**。
+  - `social-network`(4層の社会ネットワーク層): **評判・信頼**を辺の属性に(signaling/screening を verb に)。非対称情報 → エージェント間の情報格差(= [[envpsych__cognitive-maps-affordance-overview]] の不完全認知地図と対)。
+  - `world/resource` + `actions`: 両面市場・資源プール = group-formation(Bundle C)の経済 affordance。マッチング・交換 verb。
+  - **メカニズムデザイン = 制度創発の設計版**([[ontology__searle1995_institutional-facts]] status function / [[collective-action__institutions-framing-overview]] Ostrom)。ただし**規則を hardcode せず、エージェントが評判/制度を創発**させる affordance に留める。
+- "結論でなく seam として"の入れ方: 評判システム・マッチング市場は**存在可能性(affordance)**として置き、価格・規則は創発させ post-hoc 観測。critical mass 閾値は測定対象(k* と並ぶ秩序変数)。
+- コスト/スケール含意: 評判 = 累積集計(非LLM cheap tier)。マッチングは安価アルゴリズム。critical-mass 検出 = observer の相転移解析に相乗り。
+- 批判・限界: 経済学は合理的エージェント仮定 → LLM エージェントは限定合理・sycophantic([[llm__agents-validity-model-choice]])。「両面ネットワーク効果は死んだ、多面アルゴリズム市場へ」との実務批判もあり(適用は渋谷社会文脈に calibration)。engagement 設計に寄りすぎると injection リスク。
+- 関連: [[mas__li2026_moltbook]](cold-start=社会化ブートストラップ)/ [[complexity__phase-transition-methodology]](critical mass=相転移)/ [[ontology__searle1995_institutional-facts]](メカニズムデザイン=制度)/ [[network__diffusion-overview]](ネットワーク効果)/ [[envpsych__cognitive-maps-affordance-overview]](情報非対称)

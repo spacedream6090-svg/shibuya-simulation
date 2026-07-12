@@ -1,0 +1,130 @@
+{
+  "_meta": {
+    "source": "公共交通オープンデータセンター (Public Transportation Open Data Center, ODPT)",
+    "source_url": "https://www.odpt.org/",
+    "api_base": "https://api.odpt.org/api/v4/",
+    "api_version": "v4",
+    "attribution": "本データは公共交通オープンデータセンターのデータを利用して作成。出典表示および ODPT 利用規約の遵守が必要。",
+    "disclaimer": "データの正確性・完全性は保証されない。ODPT および各事業者は本データの利用によって生じた損害について責任を負わない。",
+    "usage_note": "決定論保護のため、シミュ実行中はこの静的キャッシュのみ読む(実行時の API 呼び出しは禁止)。詳細: docs/research/odpt-integration.md",
+    "datatype": "odpt:Station",
+    "label": "東急東横線",
+    "railway": "odpt.Railway:Tokyu.Toyoko",
+    "fetched_at": "2026-07-07T15:34:05.236487+00:00",
+    "count": 8
+  },
+  "data": [
+    {
+      "@id": "urn:ucode:_00001C00000000000001000003102B43",
+      "@type": "odpt:Station",
+      "dc:date": "2023-03-18T11:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "菊名",
+      "owl:sameAs": "odpt.Station:Tokyu.Toyoko.Kikuna",
+      "odpt:railway": "odpt.Railway:Tokyu.Toyoko",
+      "odpt:operator": "odpt.Operator:Tokyu",
+      "odpt:stationTitle": {
+        "en": "Kikuna",
+        "ja": "菊名"
+      }
+    },
+    {
+      "@id": "urn:ucode:_00001C00000000000001000003102B3F",
+      "@type": "odpt:Station",
+      "dc:date": "2023-03-18T11:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "元住吉",
+      "owl:sameAs": "odpt.Station:Tokyu.Toyoko.Motosumiyoshi",
+      "odpt:railway": "odpt.Railway:Tokyu.Toyoko",
+      "odpt:operator": "odpt.Operator:Tokyu",
+      "odpt:stationTitle": {
+        "en": "Motosumiyoshi",
+        "ja": "元住吉"
+      }
+    },
+    {
+      "@id": "urn:ucode:_00001C00000000000001000003102B3E",
+      "@type": "odpt:Station",
+      "dc:date": "2023-03-18T11:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "武蔵小杉",
+      "owl:sameAs": "odpt.Station:Tokyu.Toyoko.MusashiKosugi",
+      "odpt:railway": "odpt.Railway:Tokyu.Toyoko",
+      "odpt:operator": "odpt.Operator:Tokyu",
+      "odpt:stationTitle": {
+        "en": "Musashi-kosugi",
+        "ja": "武蔵小杉"
+      }
+    },
+    {
+      "@id": "urn:ucode:_00001C00000000000001000003102B48",
+      "@type": "odpt:Station",
+      "dc:date": "2023-03-18T11:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "横浜",
+      "owl:sameAs": "odpt.Station:Tokyu.Toyoko.Yokohama",
+      "odpt:railway": "odpt.Railway:Tokyu.Toyoko",
+      "odpt:operator": "odpt.Operator:Tokyu",
+      "odpt:stationTitle": {
+        "en": "Yokohama",
+        "ja": "横浜"
+      }
+    },
+    {
+      "@id": "urn:ucode:_00001C00000000000001000003102B3A",
+      "@type": "odpt:Station",
+      "dc:date": "2023-03-18T11:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "自由が丘",
+      "owl:sameAs": "odpt.Station:Tokyu.Toyoko.Jiyugaoka",
+      "odpt:railway": "odpt.Railway:Tokyu.Toyoko",
+      "odpt:operator": "odpt.Operator:Tokyu",
+      "odpt:stationTitle": {
+        "en": "Jiyugaoka",
+        "ja": "自由が丘"
+      }
+    },
+    {
+      "@id": "urn:ucode:_00001C00000000000001000003102B40",
+      "@type": "odpt:Station",
+      "dc:date": "2024-03-27T09:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "日吉",
+      "owl:sameAs": "odpt.Station:Tokyu.Toyoko.Hiyoshi",
+      "odpt:railway": "odpt.Railway:Tokyu.Toyoko",
+      "odpt:operator": "odpt.Operator:Tokyu",
+      "odpt:stationTitle": {
+        "en": "Hiyoshi",
+        "ja": "日吉"
+      }
+    },
+    {
+      "@id": "urn:ucode:_00001C00000000000001000003102B36",
+      "@type": "odpt:Station",
+      "dc:date": "2024-03-27T09:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "中目黒",
+      "owl:sameAs": "odpt.Station:Tokyu.Toyoko.NakaMeguro",
+      "odpt:railway": "odpt.Railway:Tokyu.Toyoko",
+      "odpt:operator": "odpt.Operator:Tokyu",
+      "odpt:stationTitle": {
+        "en": "Naka-meguro",
+        "ja": "中目黒"
+      }
+    },
+    {
+      "@id": "urn:ucode:_00001C00000000000001000003102B34",
+      "@type": "odpt:Station",
+      "dc:date": "2024-03-27T09:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "渋谷",
+      "owl:sameAs": "odpt.Station:Tokyu.Toyoko.Shibuya",
+      "odpt:railway": "odpt.Railway:Tokyu.Toyoko",
+      "odpt:operator": "odpt.Operator:Tokyu",
+      "odpt:stationTitle": {
+        "en": "Shibuya",
+        "ja": "渋谷"
+      }
+    }
+  ]
+}

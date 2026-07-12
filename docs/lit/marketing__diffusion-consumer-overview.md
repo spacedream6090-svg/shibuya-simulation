@@ -1,0 +1,12 @@
+# マーケティング・消費者行動 概観 — イノベーション普及(Rogers)+ オピニオンリーダー
+- リンク: [Diffusion of Innovations(TheoryHub, Newcastle)](https://open.ncl.ac.uk/theories/8/diffusion-of-innovations/) / [オピニオンリーダー特定・社会ネットワーク法(ScienceDirect)](https://www.sciencedirect.com/science/article/abs/pii/S0040162511001272) | 分野: labeling, network, observer, factors | 重要度: P1
+- 主張(claim): Rogers の普及理論 = 新規性が集団に広がる速度は(1)知覚属性(相対優位・両立性・複雑性・試用可能性・観察可能性)(2)**採用者カテゴリ**(革新者2.5% / 初期採用者13.5% / 前期多数派34% / 後期多数派34% / ラガード16%)(3)コミュニケーション経路・**オピニオンリーダー**で決まる。初期採用者=influencer/role model、critical mass 達成の鍵。
+- 機構(mechanism): オピニオンリーダーが WoM(口コミ)で社会ネットワークに経験を伝播 → 初期採用者から前期多数派へ移る際、対面伝達が重要に。知覚属性が採用率を規定。
+- 効く seam:
+  - ★ **採用者カテゴリ = tail 構造の実証版**: 革新者/初期採用者(上位~16%)= §2 の joint upper tail・世界改変者コホートの母集団的裏づけ。[[network__diffusion-overview]] の Centola tipping ~25% / committed minority と数量的に整合。
+  - `labeling/propagation`: ラベル/制度の採用を普及曲線で観測。**オピニオンリーダー = high-influence node / keystone**([[ecology__ecosystem-metaphor-overview]] / [[bizeco__business-ecosystem-overview]])。
+  - `factors`: 初期採用者特性(高学歴・高地位・メディア接触・cosmopolitan・共感)= trait の観測相関(**事後測定、初期注入しない**)。
+- "結論でなく seam として"の入れ方: 採用者カテゴリを**初期分布に焼き込まない**(OPEN#3 は trait 分布として置き、「誰が革新者になるか」は創発+事後分類)。知覚属性 = ラベル/制度の affordance 特性として観測。
+- コスト/スケール含意: 普及曲線・採用者分類は observer の集計(非LLM)。オピニオンリーダー検出 = ネットワーク中心性(cheap)。
+- 批判・限界: DOI は**成功した普及に事後的**(生存者バイアス)。採用者%は経験則で文脈依存。マーケ応用は操作的意図を含む(→ affordance/観測に限定、誘導しない)。RLHF の同調が普及を人工的に加速しうる([[llm__agents-validity-model-choice]])。
+- 関連: [[network__diffusion-overview]](complex contagion/tipping と統合)/ [[labeling__cultural-evolution-overview]](ラベル普及)/ [[ecology__ecosystem-metaphor-overview]](オピニオンリーダー=keystone)/ [[econ__affordance-cluster-overview]](critical mass)/ [[measurement__validation-overview]](tail 確保)

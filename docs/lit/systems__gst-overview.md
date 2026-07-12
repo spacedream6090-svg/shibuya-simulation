@@ -1,0 +1,13 @@
+# システム哲学 概観 — 一般システム理論(Bertalanffy)/ 創発・equifinality・フィードバック・autopoiesis
+- リンク: [Systems theory(Wikipedia, 概観)](https://en.wikipedia.org/wiki/Systems_theory) / [Bertalanffy General Systemology & Cybernetics(PMC)](https://pmc.ncbi.nlm.nih.gov/articles/PMC4610108/) | 分野: complexity, engine, philosophy, meta | 重要度: P1(プロジェクト全体のメタ枠組み)
+- 主張(claim): 一般システム理論(GST, Bertalanffy)= 自然・社会システムの原理を統一的に扱う学際枠。**還元主義より全体論(holism)**、機械論より有機体論。鍵概念: 開放系(open system)/ **創発(emergence)** / **equifinality(等結果性)** / 均衡 / 同型性(isomorphism)。**サイバネティクス**= フィードバックと制御。**autopoiesis(Maturana&Varela)**= 自己産出。GST は複雑系・カオス・適応系の先駆。
+- 機構(mechanism): 部分の相互作用から全体特性が創発。★ **equifinality = 異なる初期状態から同一の終状態に到達しうる**(開放系の特性)。フィードバックループが系の挙動を規定。autopoiesis = 系が自らの構成要素を produce し続けて存続。
+- 効く seam:
+  - ★★ **equifinality = 本プロジェクトの k* 問いの一般システム論版**: 「初期条件で決まる(init-determined)vs 経路で決まる(path-dominated)」= equifinality が成り立つ/崩れる境界。**k* = equifinality が破れて初期分岐が終状態を支配し始める結合強度**、と再定式化できる([[complexity__phase-transition-methodology]] を GST 言語で裏づけ)。
+  - ★ **フィードバック(cybernetics)= k の接地の上流**: [[state-update__open2-overview]] の k=フィードバックゲインは GST/サイバネティクスの中核概念。
+  - ★ **autopoiesis = anti-collapse の理論目標**: 自己産出的に存続する社会 = [[mas__li2026_moltbook]] 崩壊の対極。「社会が自己維持するか」= autopoietic かの問い。
+  - `engine`: open system / isomorphism = 4層基層の相互作用設計の指針。
+- "結論でなく seam として"の入れ方: GST は**メタ枠組み・語彙**として使い、特定の系方程式を hardcode しない。equifinality/autopoiesis/feedback を**測定対象の概念**に落とす(observer)。プロジェクト全体の理論的統合レイヤー(§ の背骨)。
+- コスト/スケール含意: 概念枠ゆえ直接コストなし。ただし equifinality/autopoiesis の測定は多 seed・長時間シミュを要求([[measurement__validation-overview]])。
+- 批判・限界: GST は一般性ゆえ具体的予測力が弱い(「何でも説明できる=何も予測しない」批判)。autopoiesis の社会系への適用は Luhmann 以来論争。→ **統合語彙**として使い、反証可能な操作化([[complexity__phase-transition-methodology]] の k*)に必ず落とす。
+- 関連: [[complexity__phase-transition-methodology]](equifinality 破れ=相転移/k*)/ [[state-update__open2-overview]](feedback=k)/ [[mas__li2026_moltbook]](autopoiesis=崩壊回避)/ [[ecology__ecosystem-metaphor-overview]](生態系=開放系)/ [[value__axiology-overview]](系の目的性)/ [[project-charter]]

@@ -1,0 +1,18 @@
+# 環境・知覚心理学 概観 — 認知地図(Tolman)+ affordance 知覚(Gibson)
+- リンク: [Oxford Handbook: Environmental Perception, Wayfinding & Spatial Cognition](https://academic.oup.com/edited-volume/36322/chapter/318669085) / [地理空間認知レビュー(Taylor&Francis 2025)](https://www.tandfonline.com/doi/full/10.1080/19475683.2025.2451228) | 分野: cognition, world/spatial, agents | 重要度: P0(空間認知)/ affordance は方法論の柱
+- 主張(claim):
+  - **Tolman: 認知地図(cognitive map)** = 環境の内的心的表象。柔軟だが不完全で、経験で更新される。探索パターンが地図の正確さを規定(よく繋がった領域を探索した個体ほど正確)。
+  - **Gibson: affordance** = 環境が行為者に提供する**行為可能性**。★ affordance は**知覚に依存**(知覚されない affordance は行為に影響しない)。
+  - wayfinding = 目的地到達の全過程、認知地図がその基盤。
+- 機構(mechanism): 環境 → 知覚(affordance のピックアップ)→ 認知地図構築/更新 → wayfinding 意思決定。個体差(探索傾向・空間能力)で地図の質が変わる。Lynch の imageability は「良い認知地図を作りやすい環境特性」。
+- 効く seam:
+  - `agents/cognition`: 各エージェントは**部分観測から自前の認知地図を構築**(全知でない)。渋谷の心的表象は個体ごとに異なり更新される。
+  - `world/spatial`: 空間は **affordance の束**(通行・滞留・集会・POI 機能)として提示。→ [[urban__lynch1960_image-of-the-city]] の要素は affordance の知覚結果。
+  - `actions`: verb registry = エージェントが知覚した affordance の集合。
+- "結論でなく seam として"の入れ方:
+  - ★ **affordance = 本プロジェクトの設計原則の心理学的接地**。「行動を hardcode せず、可能性(affordance)だけ与える」= Gibson の affordance そのもの(= [[ontology__searle1995_institutional-facts]] の deontic affordance と対)。
+  - 認知地図の**不完全性・個体差**を seam に: 全エージェントが同じ世界地図を持たない → 情報の非対称・誤認が創発の余地(Moltbook の「個体慣性」問題への一手)。
+  - 認知地図の**収束/分岐**を observer で測定(共有心的地図 = 社会の imageability、[[labeling__cultural-evolution-overview]] の naming 収束の空間版)。
+- コスト/スケール含意: 認知地図は cheap tier で近似(訪問頻度・経路グラフ)。完全なLLM空間推論は trigger 時のみ(LOD)。
+- 批判・限界: Gibson の直接知覚論は認知主義と対立(論争継続、我々は両者を折衷=affordance 提示+内的地図)。認知地図の"地図"比喩は過度に幾何学的との批判(グラフ/ラベル的表象の方が妥当な場合)。
+- 関連: [[urban__lynch1960_image-of-the-city]](imageability=良い地図を作れる環境)/ [[ontology__searle1995_institutional-facts]](affordance+deontic)/ [[labeling__cultural-evolution-overview]](心的地図の収束)/ [[factors__personality-motivation-overview]](空間能力=個体差)

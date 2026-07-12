@@ -1,0 +1,16 @@
+# 動機づけ 概観 — 自己決定理論(SDT: Deci&Ryan)+ フロー(Csikszentmihalyi)
+- リンク: [Ryan&Deci 2000 SDT(selfdeterminationtheory.org PDF)](https://selfdeterminationtheory.org/SDT/documents/2000_RyanDeci_SDT.pdf) / [Flow Theory(TheoryHub, Newcastle)](https://open.ncl.ac.uk/academic-theories/8/flow-theory/) | 分野: factors, state-update, actions | 重要度: P1(⚠️engagement=injection 注意)
+- 主張(claim):
+  - **SDT**: 人には3つの基本心理欲求 **自律(autonomy)/ 有能感(competence)/ 関係性(relatedness)** がある。これらが満たされる環境で**内発的動機**が育つ。
+  - **フロー**: 挑戦と技能が拮抗するとき完全没入(flow)が生じる。9要素(達成可能な挑戦・明確な目標・即時フィードバック・自己意識消失・時間感覚歪み・autotelic=それ自体が報酬 等)。
+- 機構(mechanism): 環境が3欲求を支持 → 内発的動機 → 持続的関与・well-being。挑戦/技能バランス → flow。外的統制は自律を損ない内発的動機を下げる(→ gamification の過正当化と連結)。
+- 効く seam:
+  - `factors`: 自律/有能感/関係性の**感受性**をエージェント個体差(trait)に(誰が何で動くか)。SIMCA の集団効力感([[state-update__open2-overview]])と competence が接続。
+  - `state-update`: 欲求充足度を state 更新の入力の一つに(Bandura 4源泉と並置)。flow = 挑戦/技能マッチ時の高関与 state。
+  - `actions`: relatedness → group-formation(Bundle C)の動機づけ基盤。
+- "結論でなく seam として"の入れ方:
+  - ⚠️ ★ **報酬・動機を injection しない**。3欲求は「充足**できる**環境 affordance」(選択肢・達成可能タスク・繋がれる相手)として置き、**動機の発生自体は創発**させ observer で測定。SDT を「こう動け」と埋め込むと世界改変の内発性が設計者の指紋になる。
+  - flow の「挑戦/技能バランス」= 難易度 affordance のパラメータ(config)。world-changer は高挑戦・高コスト行動([[state-update__open2-overview]] ファネル d)に flow で没入する仮説を**観測**。
+- コスト/スケール含意: 欲求充足度は cheap tier で近似(選択の自由度・成功率・接続数の集計)。LLM は trigger 時のみ。
+- 批判・限界: 3欲求の普遍性・文化差に議論。flow は自己申告依存(silicon sampling の tail 問題= [[measurement__validation-overview]])。RLHF は関係性=同調に偏らせうる([[llm__agents-validity-model-choice]])。
+- 関連: [[state-update__open2-overview]](Bandura/SIMCA と並置)/ [[factors__personality-motivation-overview]](trait 個体差)/ [[gamification__extrinsic-reward-overview]](過正当化=injection 警告)/ [[behdesign__fogg-nudge-overview]](動機×能力)

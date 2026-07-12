@@ -1,0 +1,13 @@
+# ゲーミフィケーション 概観 — PBL(点/バッジ/ランキング)と過正当化効果
+- リンク: [Hamari et al.「Do points, levels and leaderboards harm intrinsic motivation?」(ResearchGate)](https://www.researchgate.net/publication/264310429_Do_points_levels_and_leaderboards_harm_intrinsic_motivation_An_empirical_analysis_of_common_gamification_elements) / [ゲーミフィケーション meta-analysis(Springer ETR&D 2023)](https://link.springer.com/article/10.1007/s11423-023-10337-7) | 分野: actions, observer, config | 重要度: P1(⚠️engagement=injection 最重要警告)
+- 主張(claim): PBL(points/badges/leaderboards)は competence/autonomy/relatedness 欲求を満たせば内発的動機を上げ得る(Hamari 2014)。**しかし外的報酬の多用は過正当化効果(overjustification)**で内発的動機を蝕む。証拠は**一貫せず**(meta で「内発的動機・自律・関係性は上がるが有能感効果は最小」等ばらつき大)。
+- 機構(mechanism): 報酬 → 動機の所在が内(「面白い」)から外(「点が欲しい」)へシフト = 過正当化。公開絶対ランキングは下位者に負。相対ランキングは緩和。= SDT の自律を損なうと逆効果([[motivation__sdt-flow-overview]])。
+- 効く seam:
+  - `observer`: PBL 的な外的シグナル(評判・地位=[[econ__affordance-cluster-overview]])が創発したとき、それが内発的世界改変を**促進か抑制か**を測る対象。
+  - `config`: 報酬構造を**実験変数**として on/off できる seam(過正当化の有無を観測)。
+- "結論でなく seam として"の入れ方:
+  - ⚠️ ★★ **最重要 injection 警告**: ゲーミフィケーション報酬を**エンジンに組み込むと、観たい内発的世界改変が過正当化で系統的に歪む**([[measurement__validation-overview]] の効果量水増しと同型の脅威)。→ **報酬・スコアは既定で入れない**。地位・評判が**創発**した場合のみ observer で追跡し、その過正当化的副作用を検証。
+  - もし報酬機構を試すなら**アブレーション実験の一条件**として(model×k と並ぶ交互作用要因)。
+- コスト/スケール含意: PBL 集計は cheap(非LLM)。ただし導入自体が交絡源なので既定 off。
+- 批判・限界: 効果の非一貫性・publication bias。教育文脈中心で社会シミュへの外挿限定。実務ブログ多数(出所信頼性まちまち→ meta-analysis を一次に採用)。
+- 関連: [[motivation__sdt-flow-overview]](過正当化=自律毀損)/ [[behdesign__fogg-nudge-overview]](報酬≠唯一の動機)/ [[measurement__validation-overview]](交絡・効果量歪み)/ [[econ__affordance-cluster-overview]](評判=創発的地位)

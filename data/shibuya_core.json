@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "name": "shibuya_core",
+    "description": "渋谷駅中心部 約600m四方の歩行者ネットワーク(手作り近似版)。ユーザー指定(2026-07-03): 交流・面白い事象が観察できる密度を優先し半径1kmから縮小。座標=スクランブル交差点原点のローカル平面(m, x=東, y=北)。後日 OSM 抽出(scripts/build_map.py)で精密化し JGD2011 系IX へ変換する。",
+    "crs": "local-m",
+    "origin_jgd2011_ix_approx": [-37907.0, -11891.0],
+    "note": "origin は概算。PLATEAU 重畳時に測量値で更新すること。"
+  },
+  "nodes": [
+    { "id": "scramble",        "x": 0,    "y": 0,    "poi": "square",   "name": "スクランブル交差点" },
+    { "id": "hachiko",         "x": 45,   "y": -35,  "poi": "square",   "name": "ハチ公前広場" },
+    { "id": "station_hachiko", "x": 85,   "y": -70,  "poi": "station",  "name": "渋谷駅ハチ公口" },
+    { "id": "center_ent",      "x": -45,  "y": 35,   "poi": null,       "name": "センター街入口" },
+    { "id": "center_mid",      "x": -165, "y": 95,   "poi": "shopping", "name": "渋谷センター街" },
+    { "id": "center_west",     "x": -285, "y": 155,  "poi": null,       "name": "センター街西端" },
+    { "id": "shibuya109",      "x": -115, "y": -55,  "poi": "landmark", "name": "SHIBUYA109前" },
+    { "id": "dogenzaka_mid",   "x": -265, "y": -145, "poi": "street",   "name": "道玄坂" },
+    { "id": "bunkamura_mid",   "x": -265, "y": -20,  "poi": "street",   "name": "文化村通り" },
+    { "id": "inokashira_w",    "x": -325, "y": 45,   "poi": null,       "name": "井の頭通り西" },
+    { "id": "koen_dori",       "x": -15,  "y": 150,  "poi": "street",   "name": "公園通り入口" },
+    { "id": "parco_mae",       "x": -45,  "y": 320,  "poi": "landmark", "name": "渋谷PARCO前" },
+    { "id": "spain_zaka",      "x": -150, "y": 195,  "poi": "street",   "name": "スペイン坂" },
+    { "id": "meiji_dori_n",    "x": 115,  "y": 110,  "poi": null,       "name": "明治通り(神宮方面)" },
+    { "id": "miyashita_s",     "x": 220,  "y": 220,  "poi": "park",     "name": "宮下公園 南" },
+    { "id": "miyashita_n",     "x": 265,  "y": 420,  "poi": "park",     "name": "宮下公園 北" },
+    { "id": "miyamasu_shita",  "x": 185,  "y": -40,  "poi": "street",   "name": "宮益坂下" },
+    { "id": "miyamasu_ue",     "x": 385,  "y": 15,   "poi": "street",   "name": "宮益坂上" },
+    { "id": "stream",          "x": 125,  "y": -225, "poi": "landmark", "name": "渋谷ストリーム前" }
+  ],
+  "edges": [
+    { "u": "station_hachiko", "v": "hachiko" },
+    { "u": "hachiko",         "v": "scramble" },
+    { "u": "scramble",        "v": "center_ent" },
+    { "u": "center_ent",      "v": "center_mid" },
+    { "u": "center_mid",      "v": "center_west" },
+    { "u": "center_west",     "v": "inokashira_w" },
+    { "u": "scramble",        "v": "shibuya109" },
+    { "u": "shibuya109",      "v": "dogenzaka_mid" },
+    { "u": "shibuya109",      "v": "bunkamura_mid" },
+    { "u": "bunkamura_mid",   "v": "inokashira_w" },
+    { "u": "center_ent",      "v": "koen_dori" },
+    { "u": "koen_dori",       "v": "parco_mae" },
+    { "u": "parco_mae",       "v": "spain_zaka" },
+    { "u": "spain_zaka",      "v": "center_mid" },
+    { "u": "scramble",        "v": "meiji_dori_n" },
+    { "u": "meiji_dori_n",    "v": "miyashita_s" },
+    { "u": "miyashita_s",     "v": "miyashita_n" },
+    { "u": "station_hachiko", "v": "miyamasu_shita" },
+    { "u": "miyamasu_shita",  "v": "miyamasu_ue" },
+    { "u": "miyamasu_shita",  "v": "miyashita_s" },
+    { "u": "station_hachiko", "v": "stream" }
+  ]
+}

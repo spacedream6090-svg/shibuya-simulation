@@ -1,0 +1,14 @@
+# 行動心理学 概観 — オペラント条件づけ・強化スケジュール(Skinner)
+- リンク: [Operant Conditioning(Simply Psychology)](https://www.simplypsychology.org/operant-conditioning.html) / [強化スケジュールと動機の経験依存変化(PMC)](https://pmc.ncbi.nlm.nih.gov/articles/PMC9090977/) | 分野: state-update, actions, observer | 重要度: P1(⚠️engagement=injection 注意)
+- 主張(claim): 行動は**結果**で形成される(Skinner)。強化された行動は増え、罰/非強化は減る/消去。スケジュール(fixed/variable × interval/ratio)で応答率と消去抵抗が変わる。★ **変動比率(variable ratio)= 最も高く安定した応答率、最も消去に強い**(=ギャンブル/依存の機構)。**shaping** = 目標行動へ逐次接近を強化。
+- 機構(mechanism): 行動→結果→(強化/罰)→頻度変化。variable ratio は予測不能な報酬で高持続。消去は強化停止後にゆっくり。
+- 効く seam:
+  - `state-update`: 行動結果のフィードバックが state(効力感・動機)を更新する因果構造の低次版(Bandura「達成経験」= 強化の認知版、[[state-update__open2-overview]])。
+  - `actions`: 行動選択が過去の結果で重み付けされる(cheap tier のルールベース学習=非LLM で安価)。
+  - `observer`: 環境の強化構造(何が報われるか)が世界改変行動を促進/消去するかを測定。
+- "結論でなく seam として"の入れ方:
+  - ⚠️ ★ **強化スケジュールを設計者が操作しない**。「行動には結果が伴う」という因果 affordance(資源が減る/評判が動く 等)だけ置き、報酬設計で特定行動を強化しない(= [[gamification__extrinsic-reward-overview]] 過正当化と同じ injection 警告)。variable-ratio 的報酬は依存を生む操作ベクトルなので既定で入れない。
+  - 消去抵抗 = 世界改変行動の**持続性/挫折**を説明する observer レンズ(なぜ運動が続く/消えるか)。
+- コスト/スケール含意: 強化学習的な行動更新は cheap tier(表形式・重み)で極めて安価 → LOD の masses 層の行動則に最適。LLM 不要。
+- 批判・限界: 純行動主義は内的状態を無視(認知革命で SDT/Bandura に補完される)。人間の複雑行動への還元に限界 → 低次ゲートとしてのみ使い、高次は LLM/認知層に委譲。
+- 関連: [[state-update__open2-overview]](Bandura 達成=強化の認知版)/ [[gamification__extrinsic-reward-overview]](variable ratio=報酬設計の危険)/ [[behdesign__fogg-nudge-overview]](結果=Fogg の動機)/ [[motivation__sdt-flow-overview]](外的強化 vs 内発)

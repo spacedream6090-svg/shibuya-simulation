@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "note": "渋谷主要ビルの実フロア構成(地下階含む)と駅⇄ビル/ビル⇄ビルの直結(connections)を公式フロアガイド・アクセスページ等より 2026-07 調査。テナントは入替があり得る概略。詳細な間取り(区画配置)は非公開のため収録せず、フロア構成と接続の実在事実に限定。用途カテゴリ: restaurant/fashion/beauty/lifestyle/food/office/observation/hall/theatre/hotel/station/park/bus。connections の via=接続手段, level=当該ビル側の階(負値=地下)。",
+    "sources": [
+      "https://www.shibuya-scramble-square.com/floorguide/",
+      "https://www.shibuya-scramble-square.com/access/",
+      "https://www.hikarie.jp/floorguide/",
+      "https://www.hikarie.jp/access/",
+      "https://shibuya109.jp/floor-map/",
+      "https://www.s-markcity.co.jp/floor/",
+      "https://www.s-markcity.co.jp/access/",
+      "https://shibuyastream.jp/",
+      "https://ja.wikipedia.org/wiki/渋谷ストリーム",
+      "https://shibuya.parco.jp/floor/",
+      "https://www.0101.co.jp/721/info/",
+      "https://mitsui-shopping-park.com/urban/miyashita/floorguide.html",
+      "https://www.shibuya-fukuras.jp/floorguide/",
+      "https://www.tokyu.co.jp/shibuyachikamichi/shibuyatsuu",
+      "https://www.shibuyabunka.com/blog.php?id=1040"
+    ]
+  },
+  "buildings": [
+    {"match": ["渋谷スクランブルスクエア", "スクランブルスクエア", "SHIBUYA SCRAMBLE SQUARE"], "floors": [
+      {"f": -2, "use": "food", "label": "フード(食物販)"},
+      {"f": -1, "use": "food", "label": "フード"},
+      {"f": 1, "use": "food", "label": "フード・エントランス"},
+      {"f": 2, "use": "fashion", "label": "ファッション"},
+      {"f": 3, "use": "fashion", "label": "ファッション"},
+      {"f": 4, "use": "fashion", "label": "ファッション"},
+      {"f": 5, "use": "fashion", "label": "ファッション"},
+      {"f": 6, "use": "beauty", "label": "ビューティー"},
+      {"f": 7, "use": "fashion", "label": "ファッション"},
+      {"f": 8, "use": "fashion", "label": "ファッション"},
+      {"f": 9, "use": "lifestyle", "label": "ライフスタイル雑貨(ハンズ)"},
+      {"f": 10, "use": "lifestyle", "label": "ライフスタイル雑貨(ハンズ)"},
+      {"f": 11, "use": "lifestyle", "label": "ライフスタイル雑貨(ハンズ)"},
+      {"f": 12, "use": "restaurant", "label": "レストラン"},
+      {"f": 13, "use": "restaurant", "label": "レストラン"},
+      {"f": 14, "use": "observation", "label": "SHIBUYA SKY チケット/入口"},
+      {"f": 15, "use": "office", "label": "共創施設 SHIBUYA QWS"},
+      {"f": 17, "use": "office", "label": "オフィス(17〜45F)"},
+      {"f": 45, "use": "observation", "label": "SHIBUYA SKY 屋内展望 SKY GALLERY"},
+      {"f": 46, "use": "observation", "label": "SHIBUYA SKY 移動空間"},
+      {"f": 47, "use": "observation", "label": "屋上展望 SKY STAGE"}
+    ], "connections": [
+      {"to_building": "渋谷駅", "via": "JR線・東京メトロ銀座線改札に直結(駅直上)", "level": 2},
+      {"to_building": "渋谷駅", "via": "東急線・メトロ半蔵門線/副都心線に地下で直結", "level": -2},
+      {"to_building": "渋谷ヒカリエ", "via": "2階連絡デッキ(スカイウェイ)", "level": 2},
+      {"to_building": "渋谷ストリーム", "via": "国道246号横断歩行者デッキ", "level": 2}
+    ]},
+    {"match": ["渋谷ヒカリエ", "ヒカリエ", "Hikarie"], "floors": [
+      {"f": -3, "use": "food", "label": "東横のれん街/副都心線改札方面"},
+      {"f": -2, "use": "food", "label": "東横のれん街(スイーツ・ベーカリー)"},
+      {"f": -1, "use": "beauty", "label": "ShinQs Beauty(化粧品)"},
+      {"f": 1, "use": "beauty", "label": "ShinQs Beauty・ファッション雑貨"},
+      {"f": 2, "use": "fashion", "label": "ShinQs Fashion(雑貨)"},
+      {"f": 3, "use": "fashion", "label": "ShinQs Fashion(アパレル)"},
+      {"f": 4, "use": "fashion", "label": "ShinQs Fashion・ライフスタイル"},
+      {"f": 5, "use": "lifestyle", "label": "ShinQs Lifestyle(生活雑貨)"},
+      {"f": 6, "use": "restaurant", "label": "dining 6(カフェ&レストラン)"},
+      {"f": 7, "use": "restaurant", "label": "TABLE 7(カフェ&レストラン)"},
+      {"f": 8, "use": "hall", "label": "8/ クリエイティブスペース"},
+      {"f": 9, "use": "hall", "label": "ヒカリエホール(イベント)"},
+      {"f": 11, "use": "theatre", "label": "東急シアターオーブ スカイロビー"},
+      {"f": 16, "use": "theatre", "label": "東急シアターオーブ(劇場)"},
+      {"f": 17, "use": "office", "label": "オフィス(〜34F)"}
+    ], "connections": [
+      {"to_building": "渋谷駅", "via": "アーバンコア3階=JR山手線中央改札に連絡", "level": 3},
+      {"to_building": "渋谷駅", "via": "アーバンコア1階=渋谷駅東口", "level": 1},
+      {"to_building": "渋谷駅", "via": "アーバンコアB2=東京メトロ改札(ヒカリエ改札口)", "level": -2},
+      {"to_building": "渋谷駅", "via": "地下3階で東急東横線・メトロ副都心線 渋谷駅に直結", "level": -3},
+      {"to_building": "渋谷スクランブルスクエア", "via": "2階連絡デッキ", "level": 2}
+    ]},
+    {"match": ["SHIBUYA109", "SHIBUYA 109", "渋谷109", "109"], "floors": [
+      {"f": -2, "use": "food", "label": "MOG MOG STAND(スイーツ)"},
+      {"f": -1, "use": "fashion", "label": "ファッション"},
+      {"f": 1, "use": "fashion", "label": "ファッション"},
+      {"f": 2, "use": "fashion", "label": "ファッション"},
+      {"f": 3, "use": "fashion", "label": "ファッション"},
+      {"f": 4, "use": "beauty", "label": "コスメ・アクセサリー"},
+      {"f": 5, "use": "beauty", "label": "ビューティー・セルフフォト"},
+      {"f": 6, "use": "beauty", "label": "ビューティー・カルチャー"},
+      {"f": 7, "use": "restaurant", "label": "コラボカフェ・イベント"},
+      {"f": 8, "use": "office", "label": "イベントスペース/SHIBUYA109 lab"}
+    ]},
+    {"match": ["渋谷マークシティ", "マークシティ", "Mark City"], "floors": [
+      {"f": 1, "use": "restaurant", "label": "ウエスト/イーストモール(ショップ&レストラン・京王井の頭線改札)"},
+      {"f": 2, "use": "restaurant", "label": "モール2F(飲食・コンビニ)"},
+      {"f": 3, "use": "restaurant", "label": "イーストモール3F"},
+      {"f": 4, "use": "restaurant", "label": "アベニュー4F(飲食・ホテルロビー連絡)"},
+      {"f": 5, "use": "hotel", "label": "渋谷エクセルホテル東急"},
+      {"f": 6, "use": "office", "label": "オフィス(イースト棟)"}
+    ], "connections": [
+      {"to_building": "渋谷駅", "via": "京王井の頭線中央改札に直結(2階)", "level": 2},
+      {"to_building": "渋谷駅", "via": "JR・玉川改札方面に連絡", "level": 1},
+      {"to_building": "渋谷フクラス", "via": "2階歩行者デッキ", "level": 2}
+    ]},
+    {"match": ["渋谷ストリーム", "ストリーム", "Shibuya Stream"], "floors": [
+      {"f": 1, "use": "restaurant", "label": "商業ゾーン(レストラン・渋谷川沿い広場)"},
+      {"f": 2, "use": "restaurant", "label": "商業ゾーン"},
+      {"f": 3, "use": "restaurant", "label": "商業ゾーン"},
+      {"f": 4, "use": "hall", "label": "ホール+ホテルフロント"},
+      {"f": 5, "use": "hall", "label": "渋谷ストリームホール"},
+      {"f": 6, "use": "hall", "label": "渋谷ストリームホール"},
+      {"f": 9, "use": "hotel", "label": "渋谷ストリームエクセルホテル東急(9〜13F)"},
+      {"f": 14, "use": "office", "label": "オフィス(14〜35F・Google日本法人)"}
+    ], "connections": [
+      {"to_building": "渋谷駅", "via": "東急東横線・メトロ副都心線 渋谷駅(旧東横線ホーム跡)に地下で連絡", "level": -1},
+      {"to_building": "渋谷スクランブルスクエア", "via": "国道246号横断歩行者デッキ", "level": 2}
+    ]},
+    {"match": ["渋谷パルコ", "渋谷PARCO", "PARCO", "パルコ"], "floors": [
+      {"f": -1, "use": "restaurant", "label": "CHAOS KITCHEN(ダイニング・バー)"},
+      {"f": 1, "use": "fashion", "label": "ファッション/ラグジュアリー"},
+      {"f": 2, "use": "fashion", "label": "ファッション"},
+      {"f": 3, "use": "fashion", "label": "ファッション"},
+      {"f": 4, "use": "fashion", "label": "ファッション/アート"},
+      {"f": 5, "use": "lifestyle", "label": "ライフスタイル・雑貨"},
+      {"f": 6, "use": "fashion", "label": "CYBERSPACE SHIBUYA(Nintendo TOKYO・ポケモンセンター等)"},
+      {"f": 7, "use": "restaurant", "label": "レストラン・PARCO MUSEUM"},
+      {"f": 8, "use": "hall", "label": "劇場・イベント"},
+      {"f": 10, "use": "restaurant", "label": "屋上 ComMunE(カフェ&バー)"}
+    ]},
+    {"match": ["渋谷モディ", "渋谷MODI", "MODI", "モディ"], "floors": [
+      {"f": 1, "use": "fashion", "label": "物販・カフェ"},
+      {"f": 2, "use": "fashion", "label": "ファッション・雑貨"},
+      {"f": 3, "use": "fashion", "label": "ファッション・雑貨"},
+      {"f": 4, "use": "lifestyle", "label": "雑貨・サービス"},
+      {"f": 5, "use": "lifestyle", "label": "HMV&BOOKS SHIBUYA(書籍)"},
+      {"f": 6, "use": "lifestyle", "label": "HMV&BOOKS SHIBUYA(書籍)"},
+      {"f": 7, "use": "lifestyle", "label": "HMV&BOOKS SHIBUYA(音楽・イベント)"},
+      {"f": 8, "use": "restaurant", "label": "飲食・サービス"},
+      {"f": 9, "use": "office", "label": "クリニック・サービス"}
+    ]},
+    {"match": ["MIYASHITA PARK", "ミヤシタパーク", "宮下公園", "RAYARD"], "floors": [
+      {"f": 1, "use": "restaurant", "label": "渋谷横丁(郷土料理 約19店)・サービス"},
+      {"f": 2, "use": "fashion", "label": "ファッション・雑貨・カフェ"},
+      {"f": 3, "use": "fashion", "label": "ファッション・雑貨・カフェ"},
+      {"f": 4, "use": "park", "label": "屋上 区立宮下公園(芝生・スポーツ施設)"}
+    ]},
+    {"match": ["渋谷フクラス", "フクラス", "東急プラザ渋谷", "Fukuras"], "floors": [
+      {"f": 1, "use": "bus", "label": "渋谷駅西口バスターミナル"},
+      {"f": 2, "use": "fashion", "label": "東急プラザ渋谷(日本文化・工芸)"},
+      {"f": 3, "use": "fashion", "label": "東急プラザ渋谷(物販)"},
+      {"f": 4, "use": "beauty", "label": "健康・美"},
+      {"f": 5, "use": "office", "label": "サービス"},
+      {"f": 6, "use": "restaurant", "label": "シブヤグラン食堂"},
+      {"f": 7, "use": "restaurant", "label": "シブヤグラン食堂"},
+      {"f": 8, "use": "restaurant", "label": "飲食・サービス"},
+      {"f": 9, "use": "office", "label": "オフィス(9〜16F)"},
+      {"f": 17, "use": "park", "label": "ルーフトップ SHIBU NIWA"}
+    ], "connections": [
+      {"to_building": "渋谷駅", "via": "西口/2階歩行者デッキで渋谷駅に連絡", "level": 2},
+      {"to_building": "渋谷スクランブルスクエア", "via": "2階歩行者デッキ", "level": 2},
+      {"to_building": "渋谷マークシティ", "via": "2階歩行者デッキ", "level": 2}
+    ]},
+    {"match": ["渋谷駅", "Shibuya Station"], "floors": [
+      {"f": 3, "use": "station", "label": "東京メトロ銀座線ホーム(高架3F)"},
+      {"f": 2, "use": "station", "label": "JR山手線・埼京線・湘南新宿ラインホーム"},
+      {"f": 1, "use": "station", "label": "ハチ公口・中央改札・地上コンコース"},
+      {"f": -1, "use": "station", "label": "地下コンコース(渋谷ちかみち)"},
+      {"f": -3, "use": "station", "label": "田園都市線・半蔵門線ホーム(地下3F)"},
+      {"f": -5, "use": "station", "label": "東横線・副都心線ホーム(地下5F)"}
+    ], "connections": [
+      {"to_building": "渋谷スクランブルスクエア", "via": "駅直上・各線改札に直結", "level": 1},
+      {"to_building": "渋谷ヒカリエ", "via": "アーバンコアで連絡(3F=JR中央改札 / B2=メトロ改札)", "level": 3},
+      {"to_building": "渋谷ストリーム", "via": "東横線・副都心線側で地下連絡", "level": -1},
+      {"to_building": "渋谷マークシティ", "via": "京王井の頭線中央改札に直結", "level": 2},
+      {"to_building": "渋谷フクラス", "via": "西口歩行者デッキで連絡", "level": 2}
+    ]}
+  ]
+}

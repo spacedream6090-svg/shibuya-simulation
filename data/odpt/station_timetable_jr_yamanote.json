@@ -1,0 +1,18 @@
+{
+  "_meta": {
+    "source": "公共交通オープンデータセンター (Public Transportation Open Data Center, ODPT)",
+    "source_url": "https://www.odpt.org/",
+    "api_base": "https://api.odpt.org/api/v4/",
+    "api_version": "v4",
+    "attribution": "本データは公共交通オープンデータセンターのデータを利用して作成。出典表示および ODPT 利用規約の遵守が必要。",
+    "disclaimer": "データの正確性・完全性は保証されない。ODPT および各事業者は本データの利用によって生じた損害について責任を負わない。",
+    "usage_note": "決定論保護のため、シミュ実行中はこの静的キャッシュのみ読む(実行時の API 呼び出しは禁止)。詳細: docs/research/odpt-integration.md",
+    "datatype": "odpt:StationTimetable",
+    "label": "JR山手線",
+    "railway": "odpt.Railway:JR-East.Yamanote",
+    "station": "odpt.Station:JR-East.Yamanote.Shibuya",
+    "fetched_at": "2026-07-07T15:33:59.965237+00:00",
+    "count": 0
+  },
+  "data": []
+}

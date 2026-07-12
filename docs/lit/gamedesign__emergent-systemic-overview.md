@@ -1,0 +1,13 @@
+# ゲームデザイン・HCI・サービスデザイン 概観 — MDA / 創発的ゲームプレイ / システミック設計
+- リンク: [MDA Framework(原典解説, Game Developer)](https://www.gamedeveloper.com/design/revisiting-the-mda-framework) / [Redefining MDA: game design ontology(MDPI Information 2021)](https://www.mdpi.com/2078-2489/12/10/395) | 分野: actions, world, design-principle | 重要度: P1(設計哲学の工学的接地)
+- 主張(claim): **MDA(Mechanics-Dynamics-Aesthetics)**: ゲームは Mechanics(規則・アルゴリズム)→ Dynamics(プレイヤー入力との相互作用で生じる挙動)→ Aesthetics(情動体験)の3層。★ **創発的ゲームプレイ(emergent gameplay)= オブジェクト/プレイヤー行為の相互作用が、開発者が計画・予測していない二次的帰結を生む**。小さな mechanics 変更が全層にカスケード。**プレイヤー・エージェンシー** = ツールと規則を与え、体験はプレイヤーが自ら創る。
+- 機構(mechanism): 設計者は Mechanics(規則/affordance)を作る。Dynamics/Aesthetics は**創発**して直接設計できない。systemic design = 各層が相互作用する動的システムとして扱う。
+- 効く seam:
+  - ★★ **MDA = 本プロジェクトの no-fingerprint 原則の設計工学版**: 我々は **Mechanics(= affordance / verb registry / 4層基層)だけ設計**し、**Dynamics(= 世界改変・制度創発・ラベル伝播)は創発させ観測**する。「Dynamics を hardcode しない」= emergent gameplay の思想そのもの([[ontology__searle1995_institutional-facts]] affordance / [[envpsych__cognitive-maps-affordance-overview]] Gibson と三重一致)。
+  - `actions`: player agency = agent agency。verb を与え結果は創発。
+  - `world`: 「小さな mechanics 変更が全層にカスケード」= k(結合強度)を上げると path-dominance が増す我々の相転移仮説と同型([[complexity__phase-transition-methodology]])。
+  - **HCI/サービスデザイン(同族)**: affordance の知覚可能性・フィードバック設計 = エージェントが affordance を"見つけられる"UI 相当([[envpsych__cognitive-maps-affordance-overview]])。サービスデザインの共創(co-creation)= [[bizeco__business-ecosystem-overview]] 価値共創と接続。
+- "結論でなく seam として"の入れ方: MDA を**設計規律**として採用(「Dynamics/Aesthetics を書きたくなったら、それは Mechanics=affordance に落とせないか自問する」)。emergent gameplay の予測不能性を**歓迎し観測対象**にする(バグでなく feature)。
+- コスト/スケール含意: 設計哲学ゆえ直接コストなし。ただし「Mechanics のみ設計」は検証負荷を observer に移す(創発を測る計装が必要)。
+- 批判・限界: MDA は分析枠で規範的処方は弱い(DDE 等の改良版あり)。ゲーム=娯楽文脈で、社会シミュの妥当性とは別(emergent≠valid、[[measurement__validation-overview]] で担保)。実務由来で学術的厳密さは限定。
+- 関連: [[ontology__searle1995_institutional-facts]](affordance)/ [[envpsych__cognitive-maps-affordance-overview]](Gibson affordance)/ [[complexity__phase-transition-methodology]](mechanics カスケード=k)/ [[behdesign__fogg-nudge-overview]](改変者=環境=mechanics 設計者)/ [[project-charter]](no-fingerprint)

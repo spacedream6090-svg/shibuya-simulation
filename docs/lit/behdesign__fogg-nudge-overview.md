@@ -1,0 +1,16 @@
+# 行動デザイン 概観 — Fogg 行動モデル(B=MAP)+ ナッジ(Thaler&Sunstein)
+- リンク: [Fogg Behavior Model(Stanford Behavior Design Lab)](https://behaviordesign.stanford.edu/resources/fogg-behavior-model) / [Fogg Behavior Model(The Decision Lab)](https://thedecisionlab.com/reference-guide/psychology/fogg-behavior-model) | 分野: actions, cognition, world | 重要度: P1(⚠️engagement=injection 注意)
+- 主張(claim):
+  - **Fogg B=MAP**: 行動は **動機(Motivation)× 能力(Ability)× プロンプト(Prompt/旧Trigger)** が**同時**に揃った瞬間に生じる。能力が高いほど必要な動機は少なく、逆も然り(トレードオフ曲線)。
+  - **ナッジ(choice architecture)**: 選択肢を禁止・報酬変更せずに、**環境の設計で望ましい行動を容易化**する(Thaler&Sunstein)。Fogg はナッジより広く動機も含む診断枠組み。
+- 機構(mechanism): 3要素の閾値曲線を超えると行動発火。Prompt 種別: Spark(高能力・低動機)/ Facilitator(高動機・低能力)/ Signal(両高)。ナッジ=能力側(摩擦低減)・Prompt 側の設計。
+- 効く seam:
+  - `actions`: 行動発火を **B=MAP の3要素同時性**で機構化(高コスト行動=世界改変は能力 or 動機の不足で発火しにくい → ファネル d の障壁の別表現)。
+  - `world` / `cognition`: 環境が Prompt を提供(POI・イベント・他者の行動が cue)。摩擦(ability)= 空間・資源 affordance のコスト。
+  - `state-update`: 動機は SDT/SIMCA([[motivation__sdt-flow-overview]] / [[state-update__open2-overview]])から供給、能力は自己効力感/技能。
+- "結論でなく seam として"の入れ方:
+  - ⚠️ ★ **ナッジを設計者が仕込まない**。choice architecture は「環境がどんな affordance/摩擦を持つか」の**記述**として使い、**特定行動へ誘導する nudge は埋め込まない**(埋め込めば世界改変が設計者の操作物になる)。むしろ **エージェント(特に世界改変者)が他者に対して nudge/Prompt を仕掛ける**能力を affordance として与え、それを observer で測る = 「改変者は環境設計者になる」仮説。
+  - B=MAP は「なぜ高コスト行動が稀か」を説明する診断レンズ(observer)。
+- コスト/スケール含意: 3要素の充足チェックは cheap tier の閾値判定で安価(LLM 不要)→ LOD の行動発火ゲートに最適。LLM は Prompt 解釈・高次判断のみ。
+- 批判・限界: ナッジの効果量は近年 meta で過大評価との批判(publication bias)。操作主義=倫理批判(本プロジェクトは「エージェント間の nudge」を観測対象にし、設計者→エージェントの nudge は避ける)。RLHF は Prompt への過剰応答を生みうる。
+- 関連: [[motivation__sdt-flow-overview]](動機の中身)/ [[state-update__open2-overview]](能力=効力感)/ [[gamification__extrinsic-reward-overview]](報酬設計の副作用)/ [[envpsych__cognitive-maps-affordance-overview]](affordance=能力側)/ [[ontology__searle1995_institutional-facts]](改変者=環境設計者)

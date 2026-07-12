@@ -1,0 +1,16 @@
+# Searle 1995 — 社会的現実の構成(制度的事実)+ Harari 虚構
+- リンク: 解説 [Britannica: Searle, Philosophy of social institutions](https://www.britannica.com/biography/John-Searle/Philosophy-of-social-institutions) / 精読 [Barry Smith, "John Searle: From speech acts to social reality" (PhilArchive)](https://philarchive.org/rec/SMIJSF) | 分野: symbolic, labeling, collective-action, philosophy | 重要度: P0(象徴レイヤー/ラベル/制度創発の哲学的接地)
+- 主張(claim): 社会的現実は **「X counts as Y in context C」** の反復適用で構成される。物理的事実(brute fact)X に、**集合的志向性(collective intentionality)** による合意で **地位機能(status function)** Y が付与され、**制度的事実(institutional fact)** が生じる。金・所有・政府・結婚はすべて status function。
+- 機構(mechanism):
+  - 3要素: **機能の付与 + 集合的志向性 + 構成的ルール(constitutive rule)**。構成的ルールは規制でなく**構成する**(存在させる)。
+  - status function は **deontic power(権利・義務・許可・authorization)** をエージェントに与える = 行為可能性そのものを生成。
+  - ★ **言語が制度を創る**: status function は **Status Function Declaration**(宣言型発話行為)で創出・維持される。「これを Y とみなす」という集合的表象が制度を存在させ続ける。
+  - **Harari(補完)**: 大規模協力は共有された**虚構(fiction)**= 貨幣・国家・企業・法 = 想像上の秩序への共同信念で成立。Searle の哲学版を人類史スケールで敷衍。
+- 効く seam: `world/symbolic`(4層の象徴層 = ラベル・制度が乗る層)/ `labeling`(ラベル = X counts as Y の縮約)/ `collective-action`(制度の創発 = [[collective-action__institutions-framing-overview]] の Ostrom ルール創発の哲学的裏づけ)。
+- "結論でなく seam として"の入れ方:
+  - ★ **制度を hardcode しない**。エージェントに「宣言(このPOIは〇〇だ / この規範に従う)」という **affordance**(発話・ラベル付け verb)を与え、**集合的受容が閾値を超えたとき制度的事実が"創発"** する機構にする(broadcast でなく [[network__diffusion-overview]] の complex contagion + [[labeling__cultural-evolution-overview]] の tipping ~25%)。= 世界改変者による**新しい status function の樹立**が「世界改変」の operational 定義の一つ。
+  - deontic power = エージェントの action space を制度が動的に拡縮する(創発した規範が新 verb を解禁/禁止)。verb registry を制度状態依存にする seam。
+  - 世界2.0「ルールとペナルティ」affordance の哲学的接地。
+- コスト/スケール含意: 「集合的受容度」は非LLMの集計(何%がラベル/規範を採用したか)で安価に追跡 → observer 層。宣言・受容判定のみLLM(labeling-trigger と統合)。
+- 批判・限界: **free-standing Y**(物理Xなき制度=電子マネー)問題 → 純記号的制度も許容する設計に。集合的志向性の還元不能性に哲学論争。Harari は歴史叙述で反証可能性低い(affordance/観測の着想源に留め、主張として実装しない)。RLHF が制度への同調を過剰生成しうる([[llm__agents-validity-model-choice]])。
+- 関連: [[labeling__cultural-evolution-overview]](ラベル創発=status function 縮約)/ [[collective-action__institutions-framing-overview]](Ostrom 制度創発)/ [[network__diffusion-overview]](受容の伝播)/ [[urban__lynch1960_image-of-the-city]](空間の象徴化)/ [[project-charter]]

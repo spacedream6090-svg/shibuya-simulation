@@ -1,0 +1,102 @@
+{
+  "_meta": {
+    "source": "公共交通オープンデータセンター (Public Transportation Open Data Center, ODPT)",
+    "source_url": "https://www.odpt.org/",
+    "api_base": "https://api.odpt.org/api/v4/",
+    "api_version": "v4",
+    "attribution": "本データは公共交通オープンデータセンターのデータを利用して作成。出典表示および ODPT 利用規約の遵守が必要。",
+    "disclaimer": "データの正確性・完全性は保証されない。ODPT および各事業者は本データの利用によって生じた損害について責任を負わない。",
+    "usage_note": "決定論保護のため、シミュ実行中はこの静的キャッシュのみ読む(実行時の API 呼び出しは禁止)。詳細: docs/research/odpt-integration.md",
+    "datatype": "odpt:Station",
+    "label": "東急田園都市線",
+    "railway": "odpt.Railway:Tokyu.DenEnToshi",
+    "fetched_at": "2026-07-07T15:34:07.166392+00:00",
+    "count": 6
+  },
+  "data": [
+    {
+      "@id": "urn:ucode:_00001C00000000000001000003102B70",
+      "@type": "odpt:Station",
+      "dc:date": "2023-03-18T11:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "中央林間",
+      "owl:sameAs": "odpt.Station:Tokyu.DenEnToshi.ChuoRinkan",
+      "odpt:railway": "odpt.Railway:Tokyu.DenEnToshi",
+      "odpt:operator": "odpt.Operator:Tokyu",
+      "odpt:stationTitle": {
+        "en": "Chuo-rinkan",
+        "ja": "中央林間"
+      }
+    },
+    {
+      "@id": "urn:ucode:_00001C00000000000001000003102B5C",
+      "@type": "odpt:Station",
+      "dc:date": "2023-03-18T11:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "二子玉川",
+      "owl:sameAs": "odpt.Station:Tokyu.DenEnToshi.FutakoTamagawa",
+      "odpt:railway": "odpt.Railway:Tokyu.DenEnToshi",
+      "odpt:operator": "odpt.Operator:Tokyu",
+      "odpt:stationTitle": {
+        "en": "Futako-tamagawa",
+        "ja": "二子玉川"
+      }
+    },
+    {
+      "@id": "urn:ucode:_00001C00000000000001000003102B6B",
+      "@type": "odpt:Station",
+      "dc:date": "2023-03-18T11:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "長津田",
+      "owl:sameAs": "odpt.Station:Tokyu.DenEnToshi.Nagatsuta",
+      "odpt:railway": "odpt.Railway:Tokyu.DenEnToshi",
+      "odpt:operator": "odpt.Operator:Tokyu",
+      "odpt:stationTitle": {
+        "en": "Nagatsuta",
+        "ja": "長津田"
+      }
+    },
+    {
+      "@id": "urn:ucode:_00001C00000000000001000003102B63",
+      "@type": "odpt:Station",
+      "dc:date": "2023-03-18T11:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "鷺沼",
+      "owl:sameAs": "odpt.Station:Tokyu.DenEnToshi.Saginuma",
+      "odpt:railway": "odpt.Railway:Tokyu.DenEnToshi",
+      "odpt:operator": "odpt.Operator:Tokyu",
+      "odpt:stationTitle": {
+        "en": "Saginuma",
+        "ja": "鷺沼"
+      }
+    },
+    {
+      "@id": "urn:ucode:_00001C00000000000001000003102B65",
+      "@type": "odpt:Station",
+      "dc:date": "2024-03-27T09:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "あざみ野",
+      "owl:sameAs": "odpt.Station:Tokyu.DenEnToshi.Azamino",
+      "odpt:railway": "odpt.Railway:Tokyu.DenEnToshi",
+      "odpt:operator": "odpt.Operator:Tokyu",
+      "odpt:stationTitle": {
+        "en": "Azamino",
+        "ja": "あざみ野"
+      }
+    },
+    {
+      "@id": "urn:ucode:_00001C00000000000001000003102B56",
+      "@type": "odpt:Station",
+      "dc:date": "2024-03-27T09:00:00+09:00",
+      "@context": "http://vocab.odpt.org/context_odpt_Station.jsonld",
+      "dc:title": "渋谷",
+      "owl:sameAs": "odpt.Station:Tokyu.DenEnToshi.Shibuya",
+      "odpt:railway": "odpt.Railway:Tokyu.DenEnToshi",
+      "odpt:operator": "odpt.Operator:Tokyu",
+      "odpt:stationTitle": {
+        "en": "Shibuya",
+        "ja": "渋谷"
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "name": "poi_patch_shibuya",
+    "description": "手動POI補完(第9バッチ 2026-07-07)。docs/research/poi-reality-check.md §4 の提案から、本番地図(v3)の bbox 内に収まる項目を採録。座標は原点=スクランブル交差点のローカルm。node は scripts/patch_map.py が最寄り道路ノードへ決定論で解決する。bbox 外(代々木公園・TRUNK(HOTEL)・青山学院など)は広域地図(wide v6)移行時に一括解決する(poi-reality-check.md Tier A)。",
+    "source": "docs/research/poi-reality-check.md §4(出典は同ドキュメントの出典一覧)"
+  },
+  "pois": [
+    {"name": "渋谷ストリームホテル", "cat": "hotel",     "x": 233,  "y": -281, "note": "渋谷ストリーム内。旧・渋谷ストリームエクセルホテル東急"},
+    {"name": "渋谷東急REIホテル",    "cat": "hotel",     "x": 269,  "y": -210, "note": "桜丘寄り"},
+    {"name": "忠犬ハチ公像",         "cat": "attraction", "x": -1,   "y": -50,  "note": "待ち合わせ名所(v3 に landmark カテゴリが無いため attraction)"},
+    {"name": "モヤイ像",             "cat": "attraction", "x": 25,   "y": -210, "note": "南口・待ち合わせ名所"},
+    {"name": "北谷公園",             "cat": "leisure",   "x": -174, "y": 354,  "note": "神南の公園(回復環境=leisure)"},
+    {"name": "渋谷区役所本庁舎",     "cat": "service",   "x": -273, "y": 486,  "note": "行政中枢(本番は分庁舎のみだった)"},
+    {"name": "金王八幡宮",           "cat": "attraction", "x": 595,  "y": -464, "note": "区内有数の神社。渋谷警察署裏"},
+    {"name": "WOMB",                 "cat": "nightlife", "x": -418, "y": -276, "note": "円山町の大箱クラブ(OSM 未取得ぶんの補完)"},
+    {"name": "Spotify O-EAST",       "cat": "nightlife", "x": 622,  "y": -442, "note": "ライブハウス大箱(v3 に hall カテゴリが無いため nightlife)"},
+    {"name": "SOUND MUSEUM VISION",  "cat": "nightlife", "x": -400, "y": -342, "note": "道玄坂のクラブ"},
+    {"name": "渋谷消防署",           "cat": "service",   "x": 270,  "y": 122,  "note": "防災シナリオ(H4)の拠点"},
+    {"name": "実践女子学園",         "cat": "education", "x": 758,  "y": -453, "note": "東2丁目(v3 の学校カテゴリは education)"}
+  ]
+}

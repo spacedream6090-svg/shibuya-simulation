@@ -1,0 +1,1944 @@
+{
+ "meta": {
+  "generator": "scripts/build_orgs.py",
+  "seed": 42,
+  "note": "架空の組織台帳(R17: 実在企業名・学校名なし)。構成比・事業内容・教育課程・時間構造は現実準拠。設計根拠と出典は docs/research/shibuya-organizations.md。POI束縛は地図ノード参照のみ。",
+  "sources_doc": "docs/research/shibuya-organizations.md",
+  "industry_share_reference": {
+   "サービス業": 0.29,
+   "卸売・小売業": 0.28,
+   "飲食店・宿泊業": 0.15,
+   "不動産業": 0.09,
+   "情報通信業": 0.08,
+   "製造業": 0.035,
+   "建設業": 0.03,
+   "その他(医療福祉教育金融運輸)": 0.1,
+   "note": "東京商工会議所渋谷支部(事業所統計・平成18/総数30,572)。IT は渋谷特有の集積で台帳は現実比よりやや厚め。"
+  },
+  "work_hours_standard": {
+   "start": "09:00",
+   "end": "18:00",
+   "break_min": 60,
+   "work_min": 480
+  },
+  "school_ladder_shibuya": {
+   "区立小学校": 17,
+   "区立中学校": 7,
+   "小中一貫校": 1,
+   "note": "区の実数(§2.1)。台帳は各段階の代表校を収録。"
+  },
+  "counts": {
+   "companies": 42,
+   "schools": 10
+  },
+  "map": "data/shibuya_osm.json"
+ },
+ "companies": [
+  {
+   "id": "co_it_01",
+   "name": "(株)スクランブル計画",
+   "industry": "情報通信業",
+   "industry_key": "IT",
+   "sector_detail": "業務SaaS",
+   "products_services": [
+    "勤怠・労務管理SaaSの開発提供",
+    "業務効率化ツールの受託開発"
+   ],
+   "size": {
+    "employees": 90,
+    "band": "50-99"
+   },
+   "wage_tier": "会社員",
+   "workplace_poi": {
+    "cat": "office",
+    "poi_id": "p_n10271277486",
+    "node": "n11932522358",
+    "x": -326.6,
+    "y": 220.1
+   },
+   "roles": [
+    "エンジニア",
+    "デザイナー",
+    "プロダクトマネージャー",
+    "営業",
+    "コーポレート"
+   ],
+   "generalist_roles": [
+    "営業",
+    "プロダクトマネージャー",
+    "コーポレート"
+   ],
+   "output_kinds": [
+    "software",
+    "service"
+   ]
+  },
+  {
+   "id": "co_it_02",
+   "name": "(株)ハチ公ラボ",
+   "industry": "情報通信業",
+   "industry_key": "IT",
+   "sector_detail": "受託開発/DX",
+   "products_services": [
+    "企業のDX受託開発",
+    "Web/業務システム構築"
+   ],
+   "size": {
+    "employees": 45,
+    "band": "10-49"
+   },
+   "wage_tier": "会社員",
+   "workplace_poi": {
+    "cat": "office",
+    "poi_id": "p_n10802626845",
+    "node": "n6223284883",
+    "x": -83.2,
+    "y": -2.9
+   },
+   "roles": [
+    "エンジニア",
+    "デザイナー",
+    "プロダクトマネージャー",
+    "営業",
+    "コーポレート"
+   ],
+   "generalist_roles": [
+    "営業",
+    "プロダクトマネージャー",
+    "コーポレート"
+   ],
+   "output_kinds": [
+    "software",
+    "service"
+   ]
+  },
+  {
+   "id": "co_it_03",
+   "name": "センターガイ・ゲームス(株)",
+   "industry": "情報通信業",
+   "industry_key": "IT",
+   "sector_detail": "ゲーム開発",
+   "products_services": [
+    "スマホゲームの開発・運営",
+    "ゲーム内課金サービス"
+   ],
+   "size": {
+    "employees": 160,
+    "band": "100-299"
+   },
+   "wage_tier": "会社員",
+   "workplace_poi": {
+    "cat": "office",
+    "poi_id": "p_n11632364877",
+    "node": "n266083654",
+    "x": -224.8,
+    "y": -89.9
+   },
+   "roles": [
+    "エンジニア",
+    "デザイナー",
+    "プロダクトマネージャー",
+    "営業",
+    "コーポレート"
+   ],
+   "generalist_roles": [
+    "営業",
+    "プロダクトマネージャー",
+    "コーポレート"
+   ],
+   "output_kinds": [
+    "game",
+    "service"
+   ]
+  },
+  {
+   "id": "co_it_04",
+   "name": "(株)道玄坂ソフトウェア",
+   "industry": "情報通信業",
+   "industry_key": "IT",
+   "sector_detail": "クラウド/API",
+   "products_services": [
+    "クラウドインフラ/API提供",
+    "SREコンサルティング"
+   ],
+   "size": {
+    "employees": 70,
+    "band": "50-99"
+   },
+   "wage_tier": "会社員",
+   "workplace_poi": {
+    "cat": "office",
+    "poi_id": "p_n11929974576",
+    "node": "n5001546598",
+    "x": 341.4,
+    "y": 63.3
+   },
+   "roles": [
+    "エンジニア",
+    "デザイナー",
+    "プロダクトマネージャー",
+    "営業",
+    "コーポレート"
+   ],
+   "generalist_roles": [
+    "営業",
+    "プロダクトマネージャー",
+    "コーポレート"
+   ],
+   "output_kinds": [
+    "software",
+    "service"
+   ]
+  },
+  {
+   "id": "co_it_05",
+   "name": "(株)宮益フィンテック",
+   "industry": "情報通信業",
+   "industry_key": "IT",
+   "sector_detail": "フィンテックSaaS",
+   "products_services": [
+    "決済・請求SaaSの開発提供",
+    "会計連携API"
+   ],
+   "size": {
+    "employees": 55,
+    "band": "50-99"
+   },
+   "wage_tier": "会社員",
+   "workplace_poi": {
+    "cat": "office",
+    "poi_id": "p_n12074811026",
+    "node": "n11932522330",
+    "x": -393.4,
+    "y": 328.5
+   },
+   "roles": [
+    "エンジニア",
+    "デザイナー",
+    "プロダクトマネージャー",
+    "営業",
+    "コーポレート"
+   ],
+   "generalist_roles": [
+    "営業",
+    "プロダクトマネージャー",
+    "コーポレート"
+   ],
+   "output_kinds": [
+    "software",
+    "service"
+   ]
+  },
+  {
+   "id": "co_it_06",
+   "name": "(株)神南データワークス",
+   "industry": "情報通信業",
+   "industry_key": "IT",
+   "sector_detail": "データ分析/AI",
+   "products_services": [
+    "データ分析・AIモデルの受託",
+    "BIダッシュボード提供"
+   ],
+   "size": {
+    "employees": 35,
+    "band": "10-49"
+   },
+   "wage_tier": "会社員",
+   "workplace_poi": {
+    "cat": "office",
+    "poi_id": "p_n12074811027",
+    "node": "n13440143608",
+    "x": -395.6,
+    "y": 315.8
+   },
+   "roles": [
+    "エンジニア",
+    "デザイナー",
+    "プロダクトマネージャー",
+    "営業",
+    "コーポレート"
+   ],
+   "generalist_roles": [
+    "営業",
+    "プロダクトマネージャー",
+    "コーポレート"
+   ],
+   "output_kinds": [
+    "software",
+    "service"
+   ]
+  },
+  {
+   "id": "co_it_07",
+   "name": "(株)公園通りメディア",
+   "industry": "情報通信業",
+   "industry_key": "IT",
+   "sector_detail": "Webメディア/CMS",
+   "products_services": [
+    "Webメディア運営",
+    "CMSプラットフォーム提供"
+   ],
+   "size": {
+    "employees": 28,
+    "band": "10-49"
+   },
+   "wage_tier": "会社員",
+   "workplace_poi": {
+    "cat": "office",
+    "poi_id": "p_n12089903796",
+    "node": "n13042424438",
+    "x": 312.1,
+    "y": -211.4
+   },
+   "roles": [
+    "エンジニア",
+    "デザイナー",
+    "プロダクトマネージャー",
+    "営業",
+    "コーポレート"
+   ],
+   "generalist_roles": [
+    "営業",
+    "プロダクトマネージャー",
+    "コーポレート"
+   ],
+   "output_kinds": [
+    "content",
+    "service"
+   ]
+  },
+  {
+   "id": "co_it_08",
+   "name": "(株)渋谷ヘルスケアIT",
+   "industry": "情報通信業",
+   "industry_key": "IT",
+   "sector_detail": "医療系SaaS",
+   "products_services": [
+    "医療・健康管理SaaSの開発提供",
+    "オンライン診療支援"
+   ],
+   "size": {
+    "employees": 48,
+    "band": "10-49"
+   },
+   "wage_tier": "会社員",
+   "workplace_poi": {
+    "cat": "office",
+    "poi_id": "p_n12332999963",
+    "node": "n614612983",
+    "x": -304.8,
+    "y": 168.1
+   },
+   "roles": [
+    "エンジニア",
+    "デザイナー",
+    "プロダクトマネージャー",
+    "営業",
+    "コーポレート"
+   ],
+   "generalist_roles": [
+    "営業",
+    "プロダクトマネージャー",
+    "コーポレート"
+   ],
+   "output_kinds": [
+    "software",
+    "service"
+   ]
+  },
+  {
+   "id": "co_ad_01",
+   "name": "(株)スクランブル・クリエイティブ",
+   "industry": "広告・コンテンツ制作",
+   "industry_key": "AD",
+   "sector_detail": "広告運用/クリエイティブ",
+   "products_services": [
+    "デジタル広告の運用",
+    "クリエイティブ制作"
+   ],
+   "size": {
+    "employees": 60,
+    "band": "50-99"
+   },
+   "wage_tier": "会社員",
+   "workplace_poi": {
+    "cat": "office",
+    "poi_id": "p_n12452266952",
+    "node": "n5905537913",
+    "x": 231.5,
+    "y": -253.0
+   },
+   "roles": [
+    "デザイナー",
+    "プランナー",
+    "ディレクター",
+    "営業",
+    "制作進行"
+   ],
+   "generalist_roles": [
+    "プランナー",
+    "ディレクター",
+    "営業",
+    "制作進行"
+   ],
+   "output_kinds": [
+    "ad",
+    "content"
+   ]
+  },
+  {
+   "id": "co_ad_02",
+   "name": "(株)ミヤシタ映像制作",
+   "industry": "広告・コンテンツ制作",
+   "industry_key": "AD",
+   "sector_detail": "映像/動画制作",
+   "products_services": [
+    "映像・動画コンテンツ制作",
+    "配信番組の企画制作"
+   ],
+   "size": {
+    "employees": 30,
+    "band": "10-49"
+   },
+   "wage_tier": "会社員",
+   "workplace_poi": {
+    "cat": "office",
+    "poi_id": "p_n12452266968",
+    "node": "n5904090801",
+    "x": 276.4,
+    "y": -283.1
+   },
+   "roles": [
+    "デザイナー",
+    "プランナー",
+    "ディレクター",
+    "営業",
+    "制作進行"
+   ],
+   "generalist_roles": [
+    "プランナー",
+    "ディレクター",
+    "営業",
+    "制作進行"
+   ],
+   "output_kinds": [
+    "content",
+    "ad"
+   ]
+  },
+  {
+   "id": "co_ad_03",
+   "name": "(株)道玄坂デザイン事務所",
+   "industry": "広告・コンテンツ制作",
+   "industry_key": "AD",
+   "sector_detail": "グラフィック/ブランディング",
+   "products_services": [
+    "ブランディング・グラフィックデザイン",
+    "パッケージ/ロゴ制作"
+   ],
+   "size": {
+    "employees": 18,
+    "band": "10-49"
+   },
+   "wage_tier": "会社員",
+   "workplace_poi": {
+    "cat": "office",
+    "poi_id": "p_n12452266978",
+    "node": "n5904090807",
+    "x": 277.1,
+    "y": -248.8
+   },
+   "roles": [
+    "デザイナー",
+    "プランナー",
+    "ディレクター",
+    "営業",
+    "制作進行"
+   ],
+   "generalist_roles": [
+    "プランナー",
+    "ディレクター",
+    "営業",
+    "制作進行"
+   ],
+   "output_kinds": [
+    "design",
+    "content"
+   ]
+  },
+  {
+   "id": "co_ad_04",
+   "name": "(株)センガイ・アドテク",
+   "industry": "広告・コンテンツ制作",
+   "industry_key": "AD",
+   "sector_detail": "広告配信/アドテク",
+   "products_services": [
+    "広告配信プラットフォーム運用",
+    "アドテク支援"
+   ],
+   "size": {
+    "employees": 42,
+    "band": "10-49"
+   },
+   "wage_tier": "会社員",
+   "workplace_poi": {
+    "cat": "office",
+    "poi_id": "p_n12452329271",
+    "node": "n256180207",
+    "x": 285.3,
+    "y": -122.0
+   },
+   "roles": [
+    "デザイナー",
+    "プランナー",
+    "ディレクター",
+    "営業",
+    "制作進行"
+   ],
+   "generalist_roles": [
+    "プランナー",
+    "ディレクター",
+    "営業",
+    "制作進行"
+   ],
+   "output_kinds": [
+    "ad",
+    "service"
+   ]
+  },
+  {
+   "id": "co_ad_05",
+   "name": "(株)渋谷コンテンツスタジオ",
+   "industry": "広告・コンテンツ制作",
+   "industry_key": "AD",
+   "sector_detail": "SNS/インフルエンサー運用",
+   "products_services": [
+    "SNS運用代行",
+    "インフルエンサーマーケティング"
+   ],
+   "size": {
+    "employees": 25,
+    "band": "10-49"
+   },
+   "wage_tier": "会社員",
+   "workplace_poi": {
+    "cat": "office",
+    "poi_id": "p_n12452329275",
+    "node": "n1251060607",
+    "x": 307.1,
+    "y": -96.0
+   },
+   "roles": [
+    "デザイナー",
+    "プランナー",
+    "ディレクター",
+    "営業",
+    "制作進行"
+   ],
+   "generalist_roles": [
+    "プランナー",
+    "ディレクター",
+    "営業",
+    "制作進行"
+   ],
+   "output_kinds": [
+    "content",
+    "ad"
+   ]
+  },
+  {
+   "id": "co_ap_01",
+   "name": "(株)渋谷ファッションワークス",
+   "industry": "卸売・小売業(アパレル)",
+   "industry_key": "AP",
+   "sector_detail": "アパレル企画/EC/店舗",
+   "products_services": [
+    "アパレルの企画・EC・店舗販売"
+   ],
+   "size": {
+    "employees": 120,
+    "band": "100-299"
+   },
+   "wage_tier": "店員",
+   "workplace_poi": {
+    "cat": "shop",
+    "poi_id": "p_n10271277487",
+    "node": "n11932522358",
+    "x": -322.2,
+    "y": 211.8
+   },
+   "roles": [
+    "販売スタッフ",
+    "店長",
+    "バイヤー",
+    "EC運営",
+    "VMD"
+   ],
+   "generalist_roles": [
+    "店長",
+    "バイヤー",
+    "EC運営",
+    "VMD"
+   ],
+   "output_kinds": [
+    "goods",
+    "retail"
+   ]
+  },
+  {
+   "id": "co_ap_02",
+   "name": "(株)センター街アパレル",
+   "industry": "卸売・小売業(アパレル)",
+   "industry_key": "AP",
+   "sector_detail": "セレクトショップ",
+   "products_services": [
+    "セレクトショップ運営",
+    "衣料・服飾雑貨販売"
+   ],
+   "size": {
+    "employees": 40,
+    "band": "10-49"
+   },
+   "wage_tier": "店員",
+   "workplace_poi": {
+    "cat": "shop",
+    "poi_id": "p_n10271277491",
+    "node": "n11932522357",
+    "x": -275.5,
+    "y": 165.7
+   },
+   "roles": [
+    "販売スタッフ",
+    "店長",
+    "バイヤー",
+    "EC運営",
+    "VMD"
+   ],
+   "generalist_roles": [
+    "店長",
+    "バイヤー",
+    "EC運営",
+    "VMD"
+   ],
+   "output_kinds": [
+    "goods",
+    "retail"
+   ]
+  },
+  {
+   "id": "co_ap_03",
+   "name": "(株)ヒカリエ・スタイル",
+   "industry": "卸売・小売業(アパレル)",
+   "industry_key": "AP",
+   "sector_detail": "婦人服企画・小売",
+   "products_services": [
+    "婦人服の企画・小売"
+   ],
+   "size": {
+    "employees": 65,
+    "band": "50-99"
+   },
+   "wage_tier": "店員",
+   "workplace_poi": {
+    "cat": "shop",
+    "poi_id": "p_n10290506834",
+    "node": "n11932522320",
+    "x": -305.0,
+    "y": 289.7
+   },
+   "roles": [
+    "販売スタッフ",
+    "店長",
+    "バイヤー",
+    "EC運営",
+    "VMD"
+   ],
+   "generalist_roles": [
+    "店長",
+    "バイヤー",
+    "EC運営",
+    "VMD"
+   ],
+   "output_kinds": [
+    "goods",
+    "retail"
+   ]
+  },
+  {
+   "id": "co_ap_04",
+   "name": "(株)公園通りセレクト",
+   "industry": "卸売・小売業(アパレル)",
+   "industry_key": "AP",
+   "sector_detail": "雑貨・ライフスタイル小売",
+   "products_services": [
+    "生活雑貨・ライフスタイル用品の小売"
+   ],
+   "size": {
+    "employees": 22,
+    "band": "10-49"
+   },
+   "wage_tier": "店員",
+   "workplace_poi": {
+    "cat": "shop",
+    "poi_id": "p_n10296756190",
+    "node": "n2140290587",
+    "x": -139.8,
+    "y": 290.6
+   },
+   "roles": [
+    "販売スタッフ",
+    "店長",
+    "バイヤー",
+    "EC運営",
+    "VMD"
+   ],
+   "generalist_roles": [
+    "店長",
+    "バイヤー",
+    "EC運営",
+    "VMD"
+   ],
+   "output_kinds": [
+    "goods",
+    "retail"
+   ]
+  },
+  {
+   "id": "co_ap_05",
+   "name": "(株)宮下ストア",
+   "industry": "卸売・小売業(アパレル)",
+   "industry_key": "AP",
+   "sector_detail": "スニーカー/ストリート小売",
+   "products_services": [
+    "スニーカー・ストリートウェア販売"
+   ],
+   "size": {
+    "employees": 18,
+    "band": "10-49"
+   },
+   "wage_tier": "店員",
+   "workplace_poi": {
+    "cat": "shop",
+    "poi_id": "p_n10297053985",
+    "node": "n3608568769",
+    "x": -297.3,
+    "y": 115.8
+   },
+   "roles": [
+    "販売スタッフ",
+    "店長",
+    "バイヤー",
+    "EC運営",
+    "VMD"
+   ],
+   "generalist_roles": [
+    "店長",
+    "バイヤー",
+    "EC運営",
+    "VMD"
+   ],
+   "output_kinds": [
+    "goods",
+    "retail"
+   ]
+  },
+  {
+   "id": "co_ap_06",
+   "name": "(株)渋谷古着コレクティブ",
+   "industry": "卸売・小売業(アパレル)",
+   "industry_key": "AP",
+   "sector_detail": "古着/リユース",
+   "products_services": [
+    "古着・リユース衣料の買取と販売"
+   ],
+   "size": {
+    "employees": 14,
+    "band": "10-49"
+   },
+   "wage_tier": "店員",
+   "workplace_poi": {
+    "cat": "shop",
+    "poi_id": "p_n10297053986",
+    "node": "n6219729362",
+    "x": -256.3,
+    "y": 96.7
+   },
+   "roles": [
+    "販売スタッフ",
+    "店長",
+    "バイヤー",
+    "EC運営",
+    "VMD"
+   ],
+   "generalist_roles": [
+    "店長",
+    "バイヤー",
+    "EC運営",
+    "VMD"
+   ],
+   "output_kinds": [
+    "goods",
+    "retail"
+   ]
+  },
+  {
+   "id": "co_ap_07",
+   "name": "(株)道玄坂コスメ&ビューティ小売",
+   "industry": "卸売・小売業(アパレル)",
+   "industry_key": "AP",
+   "sector_detail": "コスメ物販",
+   "products_services": [
+    "化粧品・美容雑貨の小売"
+   ],
+   "size": {
+    "employees": 20,
+    "band": "10-49"
+   },
+   "wage_tier": "店員",
+   "workplace_poi": {
+    "cat": "shop",
+    "poi_id": "p_n11034183301",
+    "node": "n12880326219",
+    "x": -95.5,
+    "y": 171.7
+   },
+   "roles": [
+    "販売スタッフ",
+    "店長",
+    "バイヤー",
+    "EC運営",
+    "VMD"
+   ],
+   "generalist_roles": [
+    "店長",
+    "バイヤー",
+    "EC運営",
+    "VMD"
+   ],
+   "output_kinds": [
+    "goods",
+    "retail"
+   ]
+  },
+  {
+   "id": "co_ca_01",
+   "name": "(株)スクランブル珈琲",
+   "industry": "飲食・カフェ",
+   "industry_key": "CA",
+   "sector_detail": "スペシャルティコーヒー",
+   "products_services": [
+    "スペシャルティコーヒーの提供",
+    "カフェ運営"
+   ],
+   "size": {
+    "employees": 35,
+    "band": "10-49"
+   },
+   "wage_tier": "店員",
+   "workplace_poi": {
+    "cat": "food",
+    "poi_id": "p_n10028760586",
+    "node": "n12192494039",
+    "x": 372.4,
+    "y": -333.9
+   },
+   "roles": [
+    "バリスタ",
+    "ホール",
+    "キッチン",
+    "店長"
+   ],
+   "generalist_roles": [
+    "店長"
+   ],
+   "output_kinds": [
+    "food",
+    "service"
+   ]
+  },
+  {
+   "id": "co_ca_02",
+   "name": "(株)渋谷ベーカリーカフェ",
+   "industry": "飲食・カフェ",
+   "industry_key": "CA",
+   "sector_detail": "ベーカリーカフェ",
+   "products_services": [
+    "ベーカリー・カフェの運営",
+    "焼きたてパンの販売"
+   ],
+   "size": {
+    "employees": 28,
+    "band": "10-49"
+   },
+   "wage_tier": "店員",
+   "workplace_poi": {
+    "cat": "food",
+    "poi_id": "p_n10068507630",
+    "node": "n6486005959",
+    "x": -165.4,
+    "y": 280.1
+   },
+   "roles": [
+    "バリスタ",
+    "ホール",
+    "キッチン",
+    "店長"
+   ],
+   "generalist_roles": [
+    "店長"
+   ],
+   "output_kinds": [
+    "food",
+    "service"
+   ]
+  },
+  {
+   "id": "co_ca_03",
+   "name": "(株)センガイ・ダイニング",
+   "industry": "飲食・カフェ",
+   "industry_key": "CA",
+   "sector_detail": "カフェ&ビストロ",
+   "products_services": [
+    "カフェ&ビストロの運営",
+    "ランチ・ディナー提供"
+   ],
+   "size": {
+    "employees": 45,
+    "band": "10-49"
+   },
+   "wage_tier": "店員",
+   "workplace_poi": {
+    "cat": "food",
+    "poi_id": "p_n10113431087",
+    "node": "n3608568766",
+    "x": -123.7,
+    "y": 42.5
+   },
+   "roles": [
+    "バリスタ",
+    "ホール",
+    "キッチン",
+    "店長"
+   ],
+   "generalist_roles": [
+    "店長"
+   ],
+   "output_kinds": [
+    "food",
+    "service"
+   ]
+  },
+  {
+   "id": "co_ca_04",
+   "name": "(株)ハチ公ティースタンド",
+   "industry": "飲食・カフェ",
+   "industry_key": "CA",
+   "sector_detail": "ティースタンド",
+   "products_services": [
+    "ティー・ドリンクのテイクアウト販売"
+   ],
+   "size": {
+    "employees": 16,
+    "band": "10-49"
+   },
+   "wage_tier": "店員",
+   "workplace_poi": {
+    "cat": "food",
+    "poi_id": "p_n10270132402",
+    "node": "n3608568767",
+    "x": -170.8,
+    "y": 55.5
+   },
+   "roles": [
+    "バリスタ",
+    "ホール",
+    "キッチン",
+    "店長"
+   ],
+   "generalist_roles": [
+    "店長"
+   ],
+   "output_kinds": [
+    "food",
+    "service"
+   ]
+  },
+  {
+   "id": "co_ca_05",
+   "name": "(株)道玄坂フードサービス",
+   "industry": "飲食・カフェ",
+   "industry_key": "CA",
+   "sector_detail": "定食/ランチ",
+   "products_services": [
+    "定食・ランチ食堂の運営"
+   ],
+   "size": {
+    "employees": 22,
+    "band": "10-49"
+   },
+   "wage_tier": "店員",
+   "workplace_poi": {
+    "cat": "food",
+    "poi_id": "p_n10271277483",
+    "node": "n11932522364",
+    "x": -356.4,
+    "y": 166.1
+   },
+   "roles": [
+    "バリスタ",
+    "ホール",
+    "キッチン",
+    "店長"
+   ],
+   "generalist_roles": [
+    "店長"
+   ],
+   "output_kinds": [
+    "food",
+    "service"
+   ]
+  },
+  {
+   "id": "co_ca_06",
+   "name": "(株)公園通りロースタリー",
+   "industry": "飲食・カフェ",
+   "industry_key": "CA",
+   "sector_detail": "焙煎+カフェ",
+   "products_services": [
+    "コーヒー豆の焙煎・卸",
+    "ロースタリーカフェ運営"
+   ],
+   "size": {
+    "employees": 19,
+    "band": "10-49"
+   },
+   "wage_tier": "店員",
+   "workplace_poi": {
+    "cat": "food",
+    "poi_id": "p_n10271277485",
+    "node": "n1108870901",
+    "x": -340.8,
+    "y": 176.2
+   },
+   "roles": [
+    "バリスタ",
+    "ホール",
+    "キッチン",
+    "店長"
+   ],
+   "generalist_roles": [
+    "店長"
+   ],
+   "output_kinds": [
+    "food",
+    "goods"
+   ]
+  },
+  {
+   "id": "co_bt_01",
+   "name": "(株)渋谷ヘアデザイン",
+   "industry": "生活関連サービス(美容)",
+   "industry_key": "BT",
+   "sector_detail": "美容室",
+   "products_services": [
+    "ヘアカット・カラー・パーマ等の美容サービス"
+   ],
+   "size": {
+    "employees": 24,
+    "band": "10-49"
+   },
+   "wage_tier": "店員",
+   "workplace_poi": {
+    "cat": "shop",
+    "poi_id": "p_n11682857324",
+    "node": "n1558819055",
+    "x": 28.6,
+    "y": 20.9
+   },
+   "roles": [
+    "スタイリスト",
+    "アシスタント",
+    "受付",
+    "店長"
+   ],
+   "generalist_roles": [
+    "店長",
+    "受付"
+   ],
+   "output_kinds": [
+    "service"
+   ]
+  },
+  {
+   "id": "co_bt_02",
+   "name": "(株)センガイ・ビューティ",
+   "industry": "生活関連サービス(美容)",
+   "industry_key": "BT",
+   "sector_detail": "ヘア/ネイルサロン",
+   "products_services": [
+    "ヘア・ネイルのトータルサロン運営"
+   ],
+   "size": {
+    "employees": 18,
+    "band": "10-49"
+   },
+   "wage_tier": "店員",
+   "workplace_poi": {
+    "cat": "shop",
+    "poi_id": "p_n11764192916",
+    "node": "n13686157523",
+    "x": -154.6,
+    "y": 271.7
+   },
+   "roles": [
+    "スタイリスト",
+    "アシスタント",
+    "受付",
+    "店長"
+   ],
+   "generalist_roles": [
+    "店長",
+    "受付"
+   ],
+   "output_kinds": [
+    "service"
+   ]
+  },
+  {
+   "id": "co_bt_03",
+   "name": "(株)公園通りサロン",
+   "industry": "生活関連サービス(美容)",
+   "industry_key": "BT",
+   "sector_detail": "トータルビューティ",
+   "products_services": [
+    "ヘア・エステ・メイクのビューティサービス"
+   ],
+   "size": {
+    "employees": 16,
+    "band": "10-49"
+   },
+   "wage_tier": "店員",
+   "workplace_poi": {
+    "cat": "shop",
+    "poi_id": "p_n11764192919",
+    "node": "n356643553",
+    "x": -210.1,
+    "y": -81.6
+   },
+   "roles": [
+    "スタイリスト",
+    "アシスタント",
+    "受付",
+    "店長"
+   ],
+   "generalist_roles": [
+    "店長",
+    "受付"
+   ],
+   "output_kinds": [
+    "service"
+   ]
+  },
+  {
+   "id": "co_bt_04",
+   "name": "(株)宮益スパ&リラクゼーション",
+   "industry": "生活関連サービス(美容)",
+   "industry_key": "BT",
+   "sector_detail": "リラク/エステ",
+   "products_services": [
+    "リラクゼーション・エステの提供"
+   ],
+   "size": {
+    "employees": 14,
+    "band": "10-49"
+   },
+   "wage_tier": "店員",
+   "workplace_poi": {
+    "cat": "shop",
+    "poi_id": "p_n12265954501",
+    "node": "n10733066132",
+    "x": 358.9,
+    "y": 24.7
+   },
+   "roles": [
+    "スタイリスト",
+    "アシスタント",
+    "受付",
+    "店長"
+   ],
+   "generalist_roles": [
+    "店長",
+    "受付"
+   ],
+   "output_kinds": [
+    "service"
+   ]
+  },
+  {
+   "id": "co_re_01",
+   "name": "(株)渋谷不動産パートナーズ",
+   "industry": "不動産業",
+   "industry_key": "RE",
+   "sector_detail": "賃貸仲介/管理",
+   "products_services": [
+    "賃貸物件の仲介・管理"
+   ],
+   "size": {
+    "employees": 30,
+    "band": "10-49"
+   },
+   "wage_tier": "会社員",
+   "workplace_poi": {
+    "cat": "office",
+    "poi_id": "p_n12452329285",
+    "node": "n8007394277",
+    "x": 109.3,
+    "y": -256.7
+   },
+   "roles": [
+    "営業",
+    "事務",
+    "物件管理"
+   ],
+   "generalist_roles": [
+    "営業",
+    "事務",
+    "物件管理"
+   ],
+   "output_kinds": [
+    "service"
+   ]
+  },
+  {
+   "id": "co_re_02",
+   "name": "(株)道玄坂リアルエステート",
+   "industry": "不動産業",
+   "industry_key": "RE",
+   "sector_detail": "オフィス仲介",
+   "products_services": [
+    "オフィス・店舗物件の仲介"
+   ],
+   "size": {
+    "employees": 22,
+    "band": "10-49"
+   },
+   "wage_tier": "会社員",
+   "workplace_poi": {
+    "cat": "office",
+    "poi_id": "p_n12452359641",
+    "node": "n9931234171",
+    "x": 102.5,
+    "y": -268.0
+   },
+   "roles": [
+    "営業",
+    "事務",
+    "物件管理"
+   ],
+   "generalist_roles": [
+    "営業",
+    "事務",
+    "物件管理"
+   ],
+   "output_kinds": [
+    "service"
+   ]
+  },
+  {
+   "id": "co_re_03",
+   "name": "(株)宮下地所",
+   "industry": "不動産業",
+   "industry_key": "RE",
+   "sector_detail": "開発/PM",
+   "products_services": [
+    "不動産開発・プロパティマネジメント"
+   ],
+   "size": {
+    "employees": 55,
+    "band": "50-99"
+   },
+   "wage_tier": "会社員",
+   "workplace_poi": {
+    "cat": "office",
+    "poi_id": "p_n12452359655",
+    "node": "n11687249285",
+    "x": 124.1,
+    "y": -289.4
+   },
+   "roles": [
+    "営業",
+    "事務",
+    "物件管理"
+   ],
+   "generalist_roles": [
+    "営業",
+    "事務",
+    "物件管理"
+   ],
+   "output_kinds": [
+    "service"
+   ]
+  },
+  {
+   "id": "co_pr_01",
+   "name": "スクランブル総合会計事務所",
+   "industry": "専門サービス業",
+   "industry_key": "PR",
+   "sector_detail": "税務/会計",
+   "products_services": [
+    "税務・会計・記帳代行"
+   ],
+   "size": {
+    "employees": 26,
+    "band": "10-49"
+   },
+   "wage_tier": "会社員",
+   "workplace_poi": {
+    "cat": "office",
+    "poi_id": "p_n12452551978",
+    "node": "n7092260266",
+    "x": 165.4,
+    "y": -116.4
+   },
+   "roles": [
+    "会計士",
+    "コンサルタント",
+    "営業",
+    "アシスタント"
+   ],
+   "generalist_roles": [
+    "コンサルタント",
+    "会計士",
+    "営業",
+    "アシスタント"
+   ],
+   "output_kinds": [
+    "service"
+   ]
+  },
+  {
+   "id": "co_pr_02",
+   "name": "(株)渋谷ヒューマンリソース",
+   "industry": "専門サービス業",
+   "industry_key": "PR",
+   "sector_detail": "人材紹介/派遣",
+   "products_services": [
+    "人材紹介・人材派遣"
+   ],
+   "size": {
+    "employees": 38,
+    "band": "10-49"
+   },
+   "wage_tier": "会社員",
+   "workplace_poi": {
+    "cat": "office",
+    "poi_id": "p_n12452551983",
+    "node": "n6948559015",
+    "x": 140.9,
+    "y": -97.1
+   },
+   "roles": [
+    "コンサルタント",
+    "会計士",
+    "営業",
+    "アシスタント"
+   ],
+   "generalist_roles": [
+    "コンサルタント",
+    "会計士",
+    "営業",
+    "アシスタント"
+   ],
+   "output_kinds": [
+    "service"
+   ]
+  },
+  {
+   "id": "co_pr_03",
+   "name": "(株)センガイ・コンサルティング",
+   "industry": "専門サービス業",
+   "industry_key": "PR",
+   "sector_detail": "経営/ITコンサル",
+   "products_services": [
+    "経営・IT導入コンサルティング"
+   ],
+   "size": {
+    "employees": 34,
+    "band": "10-49"
+   },
+   "wage_tier": "会社員",
+   "workplace_poi": {
+    "cat": "office",
+    "poi_id": "p_n12452551990",
+    "node": "n8401481035",
+    "x": 129.6,
+    "y": -112.6
+   },
+   "roles": [
+    "コンサルタント",
+    "会計士",
+    "営業",
+    "アシスタント"
+   ],
+   "generalist_roles": [
+    "コンサルタント",
+    "会計士",
+    "営業",
+    "アシスタント"
+   ],
+   "output_kinds": [
+    "service"
+   ]
+  },
+  {
+   "id": "co_wh_01",
+   "name": "(株)渋谷トレーディング",
+   "industry": "卸売業/メーカー本社",
+   "industry_key": "WH",
+   "sector_detail": "生活雑貨卸",
+   "products_services": [
+    "生活雑貨の卸売・輸入"
+   ],
+   "size": {
+    "employees": 48,
+    "band": "10-49"
+   },
+   "wage_tier": "会社員",
+   "workplace_poi": {
+    "cat": "office",
+    "poi_id": "p_n12452573402",
+    "node": "n8401484876",
+    "x": 133.2,
+    "y": -143.9
+   },
+   "roles": [
+    "営業",
+    "企画",
+    "物流管理",
+    "事務"
+   ],
+   "generalist_roles": [
+    "営業",
+    "企画",
+    "物流管理",
+    "事務"
+   ],
+   "output_kinds": [
+    "goods",
+    "service"
+   ]
+  },
+  {
+   "id": "co_wh_02",
+   "name": "(株)ハチ公プロダクツ",
+   "industry": "卸売業/メーカー本社",
+   "industry_key": "WH",
+   "sector_detail": "雑貨メーカー本社",
+   "products_services": [
+    "雑貨の企画・製造(本社機能)"
+   ],
+   "size": {
+    "employees": 52,
+    "band": "50-99"
+   },
+   "wage_tier": "会社員",
+   "workplace_poi": {
+    "cat": "office",
+    "poi_id": "p_n12822988495",
+    "node": "n5752379289",
+    "x": 38.4,
+    "y": 314.6
+   },
+   "roles": [
+    "企画",
+    "営業",
+    "物流管理",
+    "事務"
+   ],
+   "generalist_roles": [
+    "営業",
+    "企画",
+    "物流管理",
+    "事務"
+   ],
+   "output_kinds": [
+    "goods"
+   ]
+  },
+  {
+   "id": "co_lg_01",
+   "name": "(株)スクランブル・デリバリー",
+   "industry": "運輸・物流業",
+   "industry_key": "LG",
+   "sector_detail": "配達プラットフォーム",
+   "products_services": [
+    "フードデリバリー等の配達プラットフォーム運営",
+    "ラストワンマイル配送"
+   ],
+   "size": {
+    "employees": 80,
+    "band": "50-99"
+   },
+   "wage_tier": "会社員",
+   "workplace_poi": {
+    "cat": "office",
+    "poi_id": "p_n12825856981",
+    "node": "n517547751",
+    "x": 291.3,
+    "y": 189.1
+   },
+   "roles": [
+    "オペレーション",
+    "営業",
+    "配達員"
+   ],
+   "generalist_roles": [
+    "オペレーション",
+    "営業"
+   ],
+   "output_kinds": [
+    "service"
+   ]
+  },
+  {
+   "id": "co_fl_01",
+   "name": "渋谷フリーランス・コレクティブ",
+   "industry": "個人事業(制作)",
+   "industry_key": "GF",
+   "sector_detail": "制作系フリーランス",
+   "products_services": [
+    "デザイン・開発・ライティングの個人事業"
+   ],
+   "size": {
+    "employees": 1,
+    "band": "1"
+   },
+   "wage_tier": "自営",
+   "workplace_poi": {
+    "cat": null
+   },
+   "roles": [
+    "フリーランス"
+   ],
+   "generalist_roles": [
+    "フリーランス"
+   ],
+   "output_kinds": [
+    "service",
+    "content"
+   ]
+  },
+  {
+   "id": "co_fl_02",
+   "name": "渋谷フォトグラファーズ(個人事業)",
+   "industry": "個人事業(写真)",
+   "industry_key": "GP",
+   "sector_detail": "写真/映像",
+   "products_services": [
+    "写真・映像撮影の個人事業"
+   ],
+   "size": {
+    "employees": 1,
+    "band": "1"
+   },
+   "wage_tier": "自営",
+   "workplace_poi": {
+    "cat": null
+   },
+   "roles": [
+    "フォトグラファー"
+   ],
+   "generalist_roles": [
+    "フォトグラファー"
+   ],
+   "output_kinds": [
+    "content"
+   ]
+  },
+  {
+   "id": "co_mu_01",
+   "name": "渋谷ミュージシャンズ・ギルド",
+   "industry": "個人事業(音楽)",
+   "industry_key": "GM",
+   "sector_detail": "音楽/ライブ",
+   "products_services": [
+    "音楽・ライブ活動(個人)"
+   ],
+   "size": {
+    "employees": 1,
+    "band": "1"
+   },
+   "wage_tier": "自営",
+   "workplace_poi": {
+    "cat": null
+   },
+   "roles": [
+    "ミュージシャン"
+   ],
+   "generalist_roles": [
+    "ミュージシャン"
+   ],
+   "output_kinds": [
+    "content"
+   ]
+  }
+ ],
+ "schools": [
+  {
+   "id": "sc_es_01",
+   "name": "渋谷区立スクランブル小学校",
+   "school_type": "区立小学校",
+   "timetable": {
+    "period_min": 45,
+    "periods_per_day": 5,
+    "start": "08:30"
+   },
+   "capacity": 620,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n12914982265",
+    "node": "n517547805",
+    "x": 354.7,
+    "y": 257.7
+   },
+   "roles": [
+    "教員",
+    "職員",
+    "学生"
+   ],
+   "subjects": [
+    "国語",
+    "社会",
+    "算数",
+    "理科",
+    "生活",
+    "音楽",
+    "図画工作",
+    "家庭",
+    "体育",
+    "外国語",
+    "道徳",
+    "外国語活動",
+    "総合的な学習の時間",
+    "特別活動"
+   ]
+  },
+  {
+   "id": "sc_es_02",
+   "name": "渋谷区立宮益小学校",
+   "school_type": "区立小学校",
+   "timetable": {
+    "period_min": 45,
+    "periods_per_day": 5,
+    "start": "08:30"
+   },
+   "capacity": 540,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n13433345048",
+    "node": "n1014529576",
+    "x": -473.7,
+    "y": -27.8
+   },
+   "roles": [
+    "教員",
+    "職員",
+    "学生"
+   ],
+   "subjects": [
+    "国語",
+    "社会",
+    "算数",
+    "理科",
+    "生活",
+    "音楽",
+    "図画工作",
+    "家庭",
+    "体育",
+    "外国語",
+    "道徳",
+    "外国語活動",
+    "総合的な学習の時間",
+    "特別活動"
+   ]
+  },
+  {
+   "id": "sc_js_01",
+   "name": "渋谷区立道玄坂中学校",
+   "school_type": "区立中学校",
+   "timetable": {
+    "period_min": 50,
+    "periods_per_day": 6,
+    "start": "08:30"
+   },
+   "capacity": 480,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n1420772948",
+    "node": "n13440128700",
+    "x": -409.4,
+    "y": 274.9
+   },
+   "roles": [
+    "教員",
+    "職員",
+    "学生"
+   ],
+   "subjects": [
+    "国語",
+    "社会",
+    "数学",
+    "理科",
+    "音楽",
+    "美術",
+    "保健体育",
+    "技術・家庭",
+    "外国語",
+    "道徳",
+    "総合的な学習の時間",
+    "特別活動"
+   ]
+  },
+  {
+   "id": "sc_js_02",
+   "name": "渋谷区立神南中学校",
+   "school_type": "区立中学校",
+   "timetable": {
+    "period_min": 50,
+    "periods_per_day": 6,
+    "start": "08:30"
+   },
+   "capacity": 430,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n1657336557",
+    "node": "n3608623431",
+    "x": -234.7,
+    "y": -66.5
+   },
+   "roles": [
+    "教員",
+    "職員",
+    "学生"
+   ],
+   "subjects": [
+    "国語",
+    "社会",
+    "数学",
+    "理科",
+    "音楽",
+    "美術",
+    "保健体育",
+    "技術・家庭",
+    "外国語",
+    "道徳",
+    "総合的な学習の時間",
+    "特別活動"
+   ]
+  },
+  {
+   "id": "sc_ce_01",
+   "name": "渋谷区立公園通り小中一貫校",
+   "school_type": "小中一貫校",
+   "timetable": {
+    "period_min": 50,
+    "periods_per_day": 6,
+    "start": "08:30"
+   },
+   "capacity": 820,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n1681422095",
+    "node": "n9929149711",
+    "x": 134.2,
+    "y": 128.3
+   },
+   "roles": [
+    "教員",
+    "職員",
+    "学生"
+   ],
+   "subjects": [
+    "国語",
+    "社会",
+    "算数・数学",
+    "理科",
+    "音楽",
+    "美術・図画工作",
+    "保健体育",
+    "技術・家庭",
+    "外国語",
+    "道徳",
+    "総合的な学習の時間",
+    "特別活動"
+   ]
+  },
+  {
+   "id": "sc_hs_01",
+   "name": "渋谷セントラル高等学校(仮称)",
+   "school_type": "高校",
+   "timetable": {
+    "period_min": 50,
+    "periods_per_day": 6,
+    "start": "08:40"
+   },
+   "capacity": 900,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n1681496679",
+    "node": "n2393500092",
+    "x": 172.8,
+    "y": 157.2
+   },
+   "roles": [
+    "教員",
+    "職員",
+    "学生"
+   ],
+   "subjects": [
+    "国語",
+    "地理歴史",
+    "公民",
+    "数学",
+    "理科",
+    "保健体育",
+    "芸術",
+    "外国語",
+    "家庭",
+    "情報",
+    "総合的な探究の時間",
+    "特別活動"
+   ]
+  },
+  {
+   "id": "sc_un_01",
+   "name": "渋谷総合大学(仮称)",
+   "school_type": "大学",
+   "timetable": {
+    "period_min": 90,
+    "periods_per_day": 5,
+    "start": "09:00"
+   },
+   "capacity": 6000,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n1681496789",
+    "node": "n1116808689",
+    "x": 216.1,
+    "y": 155.2
+   },
+   "roles": [
+    "教員",
+    "職員",
+    "学生"
+   ],
+   "faculties": [
+    "文学部",
+    "経済学部",
+    "社会学部",
+    "情報学部",
+    "芸術学部"
+   ],
+   "lecture_fields": [
+    "文学・言語",
+    "経済学",
+    "社会学",
+    "情報科学・プログラミング",
+    "メディア表現"
+   ]
+  },
+  {
+   "id": "sc_un_02",
+   "name": "宮益工科大学(仮称)",
+   "school_type": "大学",
+   "timetable": {
+    "period_min": 90,
+    "periods_per_day": 5,
+    "start": "09:00"
+   },
+   "capacity": 4200,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n5020289823",
+    "node": "n8661077873",
+    "x": 427.3,
+    "y": 151.6
+   },
+   "roles": [
+    "教員",
+    "職員",
+    "学生"
+   ],
+   "faculties": [
+    "理工学部",
+    "情報学部",
+    "建築学部",
+    "デザイン工学部"
+   ],
+   "lecture_fields": [
+    "数理・物理",
+    "情報科学・AI",
+    "建築・都市",
+    "デザイン工学"
+   ]
+  },
+  {
+   "id": "sc_vo_01",
+   "name": "渋谷デザイン&ファッション専門学校(仮称)",
+   "school_type": "専門学校",
+   "timetable": {
+    "period_min": 90,
+    "periods_per_day": 4,
+    "start": "09:20"
+   },
+   "capacity": 1200,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_w140507715",
+    "node": "n650086689",
+    "x": 47.7,
+    "y": -373.3
+   },
+   "roles": [
+    "教員",
+    "職員",
+    "学生"
+   ],
+   "lecture_fields": [
+    "グラフィックデザイン",
+    "ファッションデザイン",
+    "映像制作",
+    "インテリア"
+   ]
+  },
+  {
+   "id": "sc_vo_02",
+   "name": "渋谷IT&ゲーム専門学校(仮称)",
+   "school_type": "専門学校",
+   "timetable": {
+    "period_min": 90,
+    "periods_per_day": 4,
+    "start": "09:20"
+   },
+   "capacity": 1500,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n12914982265",
+    "node": "n517547805",
+    "x": 354.7,
+    "y": 257.7
+   },
+   "roles": [
+    "教員",
+    "職員",
+    "学生"
+   ],
+   "lecture_fields": [
+    "プログラミング",
+    "ゲーム開発",
+    "AI・データサイエンス",
+    "Web/UXデザイン"
+   ]
+  }
+ ]
+}
