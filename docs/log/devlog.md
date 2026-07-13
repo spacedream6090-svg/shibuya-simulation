@@ -4,7 +4,7 @@
 > **プロトコル**: ユーザーとの1往復ごとに1エントリ追記。エントリが10に達したら圧縮して [devlog-compressed.md](./devlog-compressed.md) へ移し、本ファイルをリセット。設計の正典は [../design.md](../design.md)。
 > **圧縮履歴**: devlog-compressed.md(Block #0: プロトコル前史 / #1: ログ機構〜分野1-3 / #2: リサーチ完走〜決定アジェンダ / #3: D0-D17決定→P0実装→世界v2-v5 / #4: 生態系→docs完遂→現実ギャップ全波→第9バッチ / #5: ODPT実ダイヤ→制度深化完遂→自己モデル・出来事誘発内省→現実較正→実LLM初証拠→日常プロファイル(第10〜14バッチ) / **#6: 開放行動→世界解釈の観察→マルチモデル対応(第15〜24バッチ)**)。
 
-**ライブエントリ数: 5 / 10**
+**ライブエントリ数: 6 / 10**
 
 ---
 
@@ -64,3 +64,29 @@
   小さくできる」免責。⑧は「計算はPython・LLMは言語化のみ+数値exact-match照合ガード」でR4防壁維持。
   W1-W4の4ウェーブ・工数2〜3バッチ。
 - **実装なし・コード無変更**。両計画ともユーザー確認待ち。
+
+### Entry 6 — 2026-07-14 — 第30バッチ: 入力解像度LOD実装(I1+I2)+分析W1実装(Fable計画・①Fable直轄/②Opus実行)
+- **依頼**: 両計画とも提案どおり進めて可。追加要件=①は**既存LOD機構に準拠**(LOD側の変更が波及する一貫設計)
+  +**モジュール切り離し可能**な実装。
+- **①入力解像度LOD(Fable直轄=cognition/perception中核)**:
+  - **cognition/lod.py に共通のLOD軸割当機構を新設**(assign_axis=軸専用stream・trait非依存・share累積で
+    決定論割当)。入力解像度が最初の消費者・将来のモデル級LOD(M3)も同機構を使う=**割当設計の変更は
+    ここ1箇所で全軸に波及**(準拠要件の実装)。軸ごとに独立stream=直交実験を保証。
+  - 5ノブ配線: nearby_pois/nearby_names/recent/retrieve/feed の件数を agent.input_res から読む
+    (OFF=属性なし→既定値=現行定数=バイト一致)。salience_k はゲート有効時のみ個体上書き。
+    beliefs(k路)と全員共通行は対象外。水準 narrow/mid/wide(mid=現行定数の契約をテスト固定)。
+    config は lod.input_res.enabled 1キーで切り離し。agents.json に水準を共変量記録。
+  - テスト5本+ガード(golden/contracts/determinism/firing)全緑。**発見: mockはプロンプト内容に反応する**
+    (行き先候補・doマーカーをプロンプトから拾う)→「ON=内容差→行動差」はmockでも出る=不変量は
+    「OFF=バイト一致」+「ONの同seed再現」として固定。実LLMマイクロスモーク(6体24step)成功
+    (narrow×2/mid×1/wide×3割当・11呼・安定)。
+- **②分析W1(Opus実装・Fable検収18本自前緑)**:
+  - scripts/analyze_flows_grid.py=25mメッシュ×1hビン(pass/present/unique)→ heatmap_grid.parquet+
+    **自己完結heatmap.html(時間スライダ)**+**FruinのLOS**(閾値はFHWA HCM Ch.13のTABLE 3を一次確認して
+    確定: A>3.2〜F<0.5 m²/人)。実データ: daily300_100d(12Mイベント73秒)で**最混雑セル=スクランブル
+    交差点直近(25,-75)m・夕18-20時ピーク**=現実の渋谷と整合。LOS全Aは在圏proxyの疎性による=相対密度と
+    正直に明記。÷n_days正規化はFable承認(ラン長の異なる比較に必須)。
+  - panel_stats拡張=paired Cohen's d・Cliff's δ・置換検定p・**BH-FDR q**・t分布CI+p値限界の免責。
+    実演: n=3ではd=-2.3の大効果もq=1.0に洗われる=「効果量主・p従」の主張をデータで示した。
+- **検証**: フルスイート **626本全緑(31分34秒)**(+17本: input_res 5・flows_grid 6・panel_stats_ext 6)。
+- 次: W2(OD行列+介入比較)→W3→W4、①はI3(実LLM検証ラン)とI4(R×D 2因子実験)がシミュ解禁待ち。
