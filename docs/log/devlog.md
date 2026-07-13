@@ -90,3 +90,55 @@
     実演: n=3ではd=-2.3の大効果もq=1.0に洗われる=「効果量主・p従」の主張をデータで示した。
 - **検証**: フルスイート **626本全緑(31分34秒)**(+17本: input_res 5・flows_grid 6・panel_stats_ext 6)。
 - 次: W2(OD行列+介入比較)→W3→W4、①はI3(実LLM検証ラン)とI4(R×D 2因子実験)がシミュ解禁待ち。
+
+### Entry 7 — 2026-07-14 未明 — 第31バッチ: 分析W2-W4完遂+夜間実験ラン(シミュ解禁7:30まで)
+- **依頼**: 「シミュレーションは7時30分まで可能。実装の続きが終わった後に回し始めて」。
+- **実装(Opus 3体並列・Fable検収)**: 環境にpandas無し→pyarrow+純Python流儀を全体に徹底。
+  - W2: analyze_od.py(トリップ=route_start→arrive・ゲートウェイ=域外ゾーン・目的帰属spend/建物/day_plan・
+    自己完結flowmap.html)+compare_runs.py(CRNペア+置換検定・DiD・**CRN健全性チェック**=L1突合。
+    セルフチェック=同一ラン→全37指標差ゼロp=1.0確認)。daily300 1200万イベント38.7秒。
+  - W3: analyze_communities増設(network_ts=密度/平均次数/クラスタ係数/次数gini/最大成分比/紐帯重み・
+    tie_decay・community_flows=alluvial)+build_panel増設(time_budget・tempogram=睡眠が00-06hに集中を確認)+
+    calibrate_report増設(生活時間配分表+KS/EMD自作。**参照分布は発明しない**=平日/休日比較に適用)。
+  - W4: summarize_run.py(KPI表=kpi_tables.json単一真実→制約プロンプト→**数値照合ガード**=正規表現抽出→
+    exact-match・不一致は破棄→再生成→全滅で決定論フォールバック・忠実性スコア記録・R4防壁)。
+    mock実行はガードで弾かれフォールバック=設計どおり(忠実性1.000)。
+  - I3分析器: analyze_resolution.py(Fable直轄)=水準別に飢餓チャネル(fallback/空応答)と低注意チャネル
+    (distinct-n/訪問先エントロピー)を分離集計・K1判定材料・OFFランは明示拒否。
+  - テスト新規46本+後方互換全緑。コミット 89a3dd9 プッシュ済(シークレットスキャン清)。
+- **夜間ラン**(実行順・GPU逐次):
+  1. ablit品質スモーク15体×1日: fallback 0%・空0・日本語崩れ0・belief 15/15。distinct-2は標本量補正で
+     instruct 0.190 vs ablit 0.148(やや低・プロファイル違いの参考値)→ 一次失格条件なし=**ゲート合格**。
+     多様性の本判定はセル内ペア比較で。単発疎通: think=true だと思考飢餓が再現(既知)・think=false 正常。
+  2. model×k 4セル×2シード(42,7)= 15体×2日×8ラン(conf/experiments/modelk_4cell.yaml・条件優先展開=
+     時間切れでもinstructペア=k再検証から確保)実行中(~03:10開始・予定~2.5h)。
+  3. 待機: I3実LLM 30体×1日(input_res ON)→ analyze_resolution。
+- **並列リサーチ依頼(ユーザー・実行中に追加)**: エンジン群分類(Human/Economy/Information/Organization/
+  City/Society/Environment/Time/Integration+将来枠)の妥当性検証。Fable追加=Perception-Attention・
+  Belief-Worldview・Language-Dialogue・Space-Map・Demography・Tourism-Visitor・**Meta層**(Observer/
+  Reproducibility/Scenario/Calibration)。Opus2体起動: ①リポジトリ被覆照合(engine-coverage-map.md)
+  ②文献・外部実装(engine-lit-review.md: GA/AgentSociety/OASIS/Concordia/PIANO/CoALA・action extraction・
+  SUMO/群衆モデル/GOAP/RL)。**計画のみ・実装なし**=統合計画 docs/plans/engine-architecture.md はFableが起草。
+
+### Entry 7 追記 — 2026-07-14 早朝 — 夜間ラン結果+エンジン群リサーチ(第32バッチ)
+- **model×k 4セル×2シード(42,7)完走**(02:54-05:32・各1,065-1,293秒・計8ラン)+第3シード(instruct
+  free/off×s3)を追加実行。品質: **全セル fallback 0%・空応答0・日本語崩れ0**。belief書き戻しは
+  free セルで 28/29・27/27(inst)・29/29・28/28(ablit)=**reflect_think修正後の初のk比較が成立**
+  (旧パイロットは書き戻し全滅のまま測っていた)。
+- **発見(質的・n=2シードは方向のみ)**:
+  1. **初の世界改変ツール行使**: ablit_free_s42 で flyer_post 2件(agent 8・「渋谷の夜、新しいアイデアを
+     みんなと分かち合おう」)。過去の実LLM全ラン2,654回提示で0件だったものが **abliterated×k自由でのみ**発生。
+  2. k対照(free−off)は inst/ablit **同方向**(belief_diversity +0.64/+0.69・speech_diversity +0.025/+0.028)
+     = k*信号がモデルを跨いで保存される暫定示唆(アライメント固有アーティファクト説に不利)。
+  3. モデル対照(ablit−inst @free): SNS投稿 −6.7件/日・発話多様性 +0.013・ツール行使 2 vs 0 =
+     entropy-reduction 除去と整合する方向。distinct-2 同プロファイル比較で ablit≧inst 3/4 組=能力劣化の交絡なし。
+  4. CRN警告(compare_runs): 実LLMはラン間で応答が再現しない→ペアは独立2群として解釈(ツールが正しく警告)。
+- **I3(入力解像度・実LLM 30体×1日・narrow14/mid7/wide9)**: **K1 不発動**(fallback 0%・空0=飢餓なし)。
+  発話多様性(個体平均d2)は narrow 0.430 < mid 0.505 < wide 0.514 と**単調=仮説方向**。訪問先の広さは
+  逆方向(narrowがやや広い)=1日30体では未確定・I4へ進む価値あり。written_back率 全水準1.00=不変域健全。
+- **エンジン群リサーチ(ユーザー依頼・Opus2体→Fable統合)**: docs/research/engine-coverage-map.md
+  (61エンジン全数照合: ◎34/○21/△5/×1=90%実装済み・「将来枠」Politicalが実は最厚・parse_actionは
+  寛容な正規化+routine後退)+docs/research/engine-lit-review.md(4層分離はCoALA/Concordia/AgentSociety/
+  PIANOと合致・MobiVerse=routine+LLM修正の実証・SUMOは歩行者不向き・4B級JSON遵守の文献値)
+  → **docs/plans/engine-architecture.md**(計画のみ): 5層再構成案・P0-P3優先度+実装不要層(Ecology等)・
+  制約付きデコードノブ提案・SUMO/RL不採用所見・OPEN 4点(ユーザー判断待ち)。
