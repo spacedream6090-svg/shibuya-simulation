@@ -166,3 +166,20 @@
   所要時間で平均移動時間を厳密保存・窓別seed byte一致)。実データ検証: daily300 夕方2h=13窓/通過199人/
   軌跡点35,396・中心は地図の実在ノード「スクランブル交差点」(-4.3,-2.0) 自動導出。src/conf 差分ゼロ確認。
   限界の明記: 壁力・接触項なし=低中密度の揉まれ方の視覚実証(群集規模の再現ではない)。コミット済み。
+
+### Entry 9 — 2026-07-15 — 第34バッチ: 未実装棚卸しの実装ウェーブ1(A2-A5+A1ローカル分)
+- **依頼**: 「unimplemented-inventory.md の未実装リストの実装を進めて。プランを決め、文献リサーチしながら実装」。
+  計画=Wave0: A2 / Wave1: A3・A4・A1+A5(Opus3体並列)/ Wave2: C3 / Wave3: D3 / D1-D2はスケール戦略の確認待ち。
+- **A2**: production.yaml に model.reflect_think:false(+A1実測を受け reflect_max_tokens:768)。マージ検証済み。
+- **A3(接地率)**: detect_emergence 拡張=発話の固有名詞を実在名/シミュ内創発名/作話の3値分類・日次系列
+  (panel/grounding_rate.parquet)。実データ: wv_llm_7d 74.9%・modelk 52.3%(カタカナ一般名詞の混入で
+  過大な作話率=既知の限界を明記・抽出器拡充はフォローアップ)。作話実例=「ボードライブ」×105等。テスト16緑。
+- **A4(内省プロンプト改善)**: prompts.reflect_variety ノブ(既定OFF=ゴールデン緑)・4バリアント決定論
+  ローテーション。実LLM検収: 復唱17.9%→0%だが**丸写し(placeholder echo)33%発生=正味悪化**
+  → **Fable判断で daily/production とも OFF に戻す**(knob・テストは残置。再ON条件=丸写しガード or
+  reflect のみ8b)。エージェントの正直な報告が機能した好例。
+- **A1+A5**: bench.py に --lod(真のdecode tok/s=eval_count由来・実測~175tok/s・fallback0%)と
+  --analyze-runs(実ラン応答長の分布復元)。conf/profiles 3例(local-ollama/finals-vllm7/mixed-api)・
+  ops/launch-vllm-finals.ps1(dry-run既定)・finals-compute-checklist.md。**reflect_max_tokens 2048→768**
+  (実測 max=459字≈247tok の~2.2倍余裕・think=false前提・vLLMのKVスロット削減が本命)を daily/production に適用。
+- フルではなく対象テストで検収(計45本緑+ゴールデン)。棚卸しに現況更新節を追記。

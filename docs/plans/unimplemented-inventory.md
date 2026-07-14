@@ -3,6 +3,19 @@
 「計画書は書いたが、コードにはまだ入っていないもの」の全リスト。実装済みコードとの照合済み
 (EnvPack・作話メトリクス等は grep で不在を確認)。各項目に出典・待ち理由・工数目安を付す。
 
+## 現況更新(第34バッチ 2026-07-15)
+- **完了**: A2(production reflect_think:false)/ A3(接地率=detect_emergence拡張・3値分類)/
+  A5+A1ローカル分(bench --lod/--analyze-runs・conf/profiles 3例・ops/launch-vllm-finals.ps1・
+  reflect_max_tokens 2048→768 適用済み)/ C1+C2(model×k 4セル×2シード+s3・7-14夜に完走・
+  belief開通でのk再検証成立・ablitで初のツール行使)。
+- **A4は実装済みだが当面OFF**(Fable判断): 復唱17.9%→0%の一方、バリアント説明句の丸写しが33%発生=
+  belief品質が正味悪化。knob(prompts.reflect_variety)とテストは資産として残置。
+  **再ON条件**=丸写し棄却ガード(writeback率への影響設計込み)or reflect のみ qwen3:8b(router)。
+- **新規フォローアップ**: (i) A3の固有名詞抽出器の一般語彙リスト拡充(現状カタカナ一般名詞が作話に
+  混入=作話率過大。fiction検出と共有のため影響評価つきで)(ii) A4の丸写しガード/8b化(上記)
+  (iii) E1本選実測(speculative/prefix cache/step内バッチ= ops/finals-compute-checklist.md の手順で)。
+- **未着手のまま**: B1(討議待ち)・B2(ON化判断)・B3(E1実測後)・C3(次ウェーブ)・D1-D6・E1-E4。
+
 ---
 
 ## A. すぐ着手できるもの(計画確定・ご承認があれば即)
