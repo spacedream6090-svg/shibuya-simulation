@@ -142,3 +142,22 @@
   PIANOと合致・MobiVerse=routine+LLM修正の実証・SUMOは歩行者不向き・4B級JSON遵守の文献値)
   → **docs/plans/engine-architecture.md**(計画のみ): 5層再構成案・P0-P3優先度+実装不要層(Ecology等)・
   制約付きデコードノブ提案・SUMO/RL不採用所見・OPEN 4点(ユーザー判断待ち)。
+
+### Entry 8 — 2026-07-15 — 第33バッチ: エンジン計画の決定反映+制約付きデコード実装(計画A)
+- **ユーザー決定**(engine-architecture §6 に記録): ①P1=B採用(制約付きデコード+群衆物理)・実装前リサーチ必須
+  ②5層案採用(docs/architecture-layers.md に対応表を固定・コード再編なし) ③SUMO=使うとしても車限定(P2)
+  ④Skill討議は後回し。
+- **リサーチ(Opus2本)**: constrained-decoding.md=**現行 ollama.py は既に format=json を全呼び出しに無条件付与**
+  (計画Aの実体はノブ化+ガード+キャッシュ整備)・format+think は事実上併用不可(GBNFが<think>を禁じ
+  思考を殺す/破損実測)・品質文献は「封筒は強制・中身は自由」が落とし所・キャッシュキーへの format 追加必須。
+  social-force-crowd.md=推奨は**案a(オフライン合成)**・現行歩行速度1.333m/s はWeidmann 1.34m/sと既に一致・
+  ShibuyaSocial(arXiv 2512.18550・位置誤差0.07m)を一次確認(コード未公開)・渋谷較正値(平日26万人・1青1,000人以上)。
+- **計画A実装(Fable直轄=LLM配管は中核)**: `model.format: none|json`(**既定json=従来挙動・payload/キャッシュキー
+  とも完全互換**)。think=True の呼には format を送らない**境界ガード**(ollama/vLLM対称・reflectの思考殺し防止)。
+  cache._key は backend.cache_extra 参照方式(json→None=旧キー互換・noneのみ別キー=切替誤再生防止)。
+  fleet/router 子へも透過。テスト10本新規+API/router回帰+**ゴールデン(test_scenario)全緑=41本**+
+  実LLM 24stepスモーク正常(6体・23呼)。
+- **計画B(群衆物理・案a)**: PySocialForce の vendoring が権限クラシファイアに拒否されたため、
+  **文献公開のHelbing式+確定パラメータから最小SFMを自前実装**する方式に切替(外部取得なし・出典コメント必須)。
+  Opus実行中: viz/sfm.py+scripts/synth_crowd.py(メゾ所要時間を保存する希望速度設計=平均移動時間不変)+
+  crowd_demo.html(自己完結)。シミュ本体・conf は差分ゼロが検収条件。
