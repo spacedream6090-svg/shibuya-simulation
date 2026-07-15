@@ -183,3 +183,19 @@
   ops/launch-vllm-finals.ps1(dry-run既定)・finals-compute-checklist.md。**reflect_max_tokens 2048→768**
   (実測 max=459字≈247tok の~2.2倍余裕・think=false前提・vLLMのKVスロット削減が本命)を daily/production に適用。
 - フルではなく対象テストで検収(計45本緑+ゴールデン)。棚卸しに現況更新節を追記。
+
+### Entry 10 — 2026-07-15 — 第34バッチ続き: D3自由度P2完遂+C3 PIMMUR尋問テスト実施
+- **D3(Opus実装・Fable検収)**: freedom.p2=move_home(敷金障壁・新stream)/buy(既存spend+chosen)/
+  study(記録のみ=Skill討議に抵触せず)/partnership(bond/unbond抽出・片側closeness判定)/
+  deviance(無許可出店→既存enforcement摘発)。全て既定OFF=ゴールデンL1一致・R1呼数不変(_FixedLLM証明)・
+  P2ロジックは検査外 freedom_p2.py に隔離。検収54本緑+独立シードONスモークで全経路発火
+  (move_home5・declined14・study1・venture11)。コミット 5452710。
+- **C3(Opus実装・本走はセッション跨ぎでFableが再実行)**: scripts/pimmur_probe.py=in-domainの実プロンプト
+  (build_prompt出力そのまま)に尋問1行を付す方式・S1間接→S2/S3直接→S4メタ(ツール有無対)→S5第三者。
+  3モデル×4ペルソナ×温度2=126呼。**途中でablitが簡体字「谁」を出力→cp932進捗printが死ぬ**バグを
+  reconfigure(errors=replace)で修正して完走。
+- **C3結果**(docs/research/pimmur-results.md・全原文保存): in-domainのUnawarenessはほぼ完全
+  (S2直接8%・S4メタ0%・**S4ツール提示対でも0%=メニューは実験をtelegraphしていない**)。
+  S5第三者視点のみablit/8bが調査目的を言い当て(社会学・都市研究等を列挙)、**PIMMUR暫定=条件付き不合格**
+  (3/5モデル法の残り2枠は未導入=保留。看破判定語彙は広め=上限寄りと明記)。qwen3:4bのS5は英語生CoTが
+  content に漏れる別問題を記録。分類器テスト20本緑。
