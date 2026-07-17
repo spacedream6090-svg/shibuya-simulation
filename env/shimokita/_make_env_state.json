@@ -1,0 +1,59 @@
+{
+ "stage1": {
+  "nodes": 177,
+  "edges": 220,
+  "buildings": 492,
+  "residential_buildings": 435,
+  "pois": 188,
+  "poi_cats": {
+   "shop": 86,
+   "food": 69,
+   "service": 14,
+   "hall": 4,
+   "nightlife": 13,
+   "office": 1,
+   "cinema": 1
+  },
+  "gateways": 26,
+  "underground_edges": 11,
+  "deck_edges": 0,
+  "graph_nodes": 177,
+  "n_components": 1,
+  "largest_component": 177,
+  "largest_frac": 1.0,
+  "connected": true,
+  "unique_node_ids": true,
+  "ok": true,
+  "origin_latlon": [
+   35.66125,
+   139.668
+  ],
+  "origin_mode": "bbox-center",
+  "bbox": [
+   35.6595,
+   139.666,
+   35.663,
+   139.67
+  ],
+  "osm_elements": 4126,
+  "map_path": "env/shimokita/map.json"
+ },
+ "bbox": [
+  35.6595,
+  139.666,
+  35.663,
+  139.67
+ ],
+ "stage2": {
+  "available": false,
+  "mode": "walking",
+  "note": "徒歩の街として継続(transit 未生成)。理由: ODPT_API_KEY=あり / 路線識別子未定義"
+ },
+ "stage34": {
+  "todo_path": "env/shimokita/TODO.md",
+  "pref": "tokyo",
+  "personas_rel": "env/shimokita/personas_shimokita.json",
+  "personas_n": 20,
+  "personas_src": "data/personas_100_civic.json"
+ }
+}
