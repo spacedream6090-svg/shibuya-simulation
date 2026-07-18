@@ -221,3 +221,49 @@
 - **講演デモラン**: demo_event_200a3d=200体×3日・daily・seed42・日次checkpoint(23:47開始)。
   健全性: 0:36=967呼/3.05s/呼/エラー0、2:13=2,715呼/エラー0。ペース再計算で総~8,400呼≈7.4h・
   完走見込み~7:10(9時に十分)。完走後に分析スイート+ビューア一式を生成して納品予定。
+
+### Entry 12 — 2026-07-18 昼 — 第35バッチ完結: デモラン3日完走+チェックポイント部分納品の実運用
+- **試算ズレと運用判断**: 実測は~4,200呼/日(200体では社会的発火が15体比1.5倍)で当初試算~2,500を超過し、
+  3日完走は9時に間に合わないと日1チェックポイント(3:42)で判明。ユーザー指示「承認待ちで中断しない・
+  異常値のみ定期確認」に従い**ランは無停止続行**、納品はcheckpointのpart結合(scratchpad/assemble_parts.py)
+  による部分データ方式へ切替。日1(76,483イベント)で全パイプライン予行→日2(8:01到着・158,813イベント)で
+  講演用差し替え6点を8:25送付=**9時講演に2日分(昼夜リズム2周期)で間に合わせた**。
+- **3日完走(12:18)**: 432step・**238,993イベント**・LLM 13,161呼(deliberate 12,229+reflect 513)・
+  **fallbackわずか1件(0.008%)**・日別76,483/82,330/80,180=崩壊なし。reflect 513件全てbelief書き戻し。
+  社会指標: speak 11,315・hear 24,502・opinion_shift 33,185・relation_tier 13,170・交際成立11組・
+  sns_like 1,789・reshare 352・**viral_cascade 230**・議会選出1・転職1・病気7。
+- **最終納品**: フルデータからheatmap/OD/crowd(SFM)/summary_ja(忠実性0.947・決定論フォールバック=正常)/
+  viewer/dashboard(26.6MB)の6点を再生成し差し替え送付。監視はMonitor(summary.json出現orプロセス死)で
+  自動検知=手動ポーリング廃止。
+- **教訓**: 体数スケール時の呼数試算は「1体あたり」でなく発火率の非線形(関係密度↑→speak/deliberate↑)を
+  織り込む。checkpoint_every=日次+part flushの設計が「走行中ランからの納品」を可能にした(D4本選デモの
+  事前分岐ラン方式にも同じ機構を流用予定)。
+
+### Entry 13 — 2026-07-18 昼 — 第36バッチ計画: PLATEAU実形状化(UEガイド+Webビューア=D6-web)
+- **依頼**: ①UE5で実験データを載せる方法のまとめ ②現行Webビューアも実形状の渋谷に。まず計画。
+- **実査**: Desktop に CityGML渋谷2025展開済み(bldg 29タイル・シミュ圏4タイル~347MB・dem有)+
+  SDK for Unreal v3.2.2 zip+**手元UE 5.5=SDK対応と一致**。現行viewer3dはfootprint押出し描画=
+  メッシュ描画の追加が必要と特定。
+- **計画**(docs/plans/plateau-3d.md): A=UEクイックスタート(200体は mode="sequence" でBP不要が主経路)/
+  B=W1抽出(stdlib+numpy・dem実測で標高基準化)→W2照合(重心+IoU≥0.4)→W3 export_3d --plateau
+  (ハイブリッドglb・契約キー不変)→W4 viewer(BufferGeometry直描画・≤80MBゲート)→W5検収
+  (既定はバイト同一)。3D Tiles経路・テクスチャ・全区域は理由付きで不採用。OPEN 3点を提示し合意待ち。
+
+### Entry 14 — 2026-07-18 午後 — 第36バッチ完遂: PLATEAU実形状化(UEガイド+Webビューア)
+- **成果物A(Opus・検収合格)**: docs/guides/ue5-quickstart.md=実機情報(UE 5.5.4実読・SDK zip・
+  CityGML展開済みパス)埋込みの一本道6ステップ。200体は mode="sequence"=BP/C++不要が主経路。
+  検収でリポジトリ側2コマンドを実走し sim_ue.json(18.8MB・200体×432step)生成済み=UE側3手順のみの状態。
+- **W1抽出(Opus)**: plateau_extract.py=bbox→3次メッシュ自動選定(想定通り4タイル)・iterparse・
+  軸順sniff・GroundSurface優先footprint・DEM実測ground0=15.18m・6,311棟(LOD2 3,061/LOD1 3,250)・
+  npz 5.07MB・最高230.4m=スクランブルスクエアで実世界サニティ一致。railways除外のbbox判断も適切。
+- **W2照合(Opus)**: match_plateau.py=重心k-NN25m→0.5mラスタIoU≥0.4・貪欲1対1。
+  **地図食い違いを検収で検出**: ランの地図は wide_v7(7,210棟)で既定 shibuya_osm.json(1,181棟)と別物
+  → wide_v7 で照合し直し **3,531棟マッチ(IoU中央値0.633)**。周辺部はPLATEAU側に相手なし=箱のまま(設計通り)。
+- **W3/W4(Fable直轄)**: export_3d --plateau=照合建物を実測メッシュに置換したハイブリッドglb(53万三角形・
+  32.6MB)+scene.json height実測上書き(追加専用キーplateau:1)+plateau_web.json(int16×0.05m量子化・17.3MB)。
+  make_viewer3d=plateau_web自動検知→アンカー一意置換で描画注入(既定はバイト同一)・埋込版34.6MB(≤80MBゲート)
+  +分離版(lite 17.3MB+sidecar 17.3MB=JSONP方式でfile://のまま2ファイル構成)・PLATEAU出典をHUDに表示。
+- **W5検収**: 既定経路4ファイルのSHA256完全一致(バイト同一達成)・glTF構造/量子化ラウンドトリップ/注入マーカー
+  全合格・全pytest 819+34本緑。**既存バグ1件発見・修正**: test_daily_profile の reflect_max_tokens 期待値が
+  2048のまま(第34バッチで768に右サイズ化済み=テスト側の陳腐化。0bda751以来フルスイート未実行で潜伏)。
+- ブラウザでの目視(実形状の見え方・fps)のみユーザー確認待ち。3形式(埋込/分離/glb)納品済み。
