@@ -399,3 +399,15 @@
   (P0エンジン実測/P6組織台帳1.1万/P4観測ストリーミング)=Opus6体並列。
 - **SUMO**: winget公式版インストール開始(ガイドのID誤記 Eclipse.SUMO→EclipseFoundation.SUMO を修正)。
 - 次: 6体の検収→行間レイヤ設計文書→ユーザー承認→P1(SoA・Fable直営)+P2実装。
+
+### Entry 24 — 2026-07-20 — SUMO v0パイプライン初完走(公式版1.27.1・数ヶ月来のブロッカー解消)
+- winget公式版(EclipseFoundation.SUMO 1.27.1)導入完了。pip版のXML読込クラッシュは公式バイナリで
+  発生せず=pip範囲の既知バグと確定。
+- 互換修正3点: ①sumo_home()の優先順位を「環境変数→公式既定パス→pip」に反転(pip版exeを掴む事故を
+  防止) ②pyproj 3.7.2導入(公式sumolibの経緯度→net座標変換に必須・ガイドへ追記) ③od2trips 1.27が
+  interval id(h0..h23)を車種type=に書き未知車種エラーになる問題→trips.xmlからtype属性を除去する
+  決定論的後処理を追加。
+- **v0全段完走**: net(エッジ5,575・信号61)→demand(OD 7,719行→車両6,460台)→run(24h走行・
+  fcd 16.4MB)→convert(車両6,449・軌跡点99,662・144step→panel/sumo_traffic.parquet+segs.json)。
+  seed固定=再現可能。ビューアでの目視確認は未(ユーザーのビューア確認待ちリストに追加)。
+- 次: ライブ連成v1のgo/no-go判断材料が揃った。リサーチ3体+Wave1実装3体は進行中。

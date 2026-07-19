@@ -38,7 +38,12 @@ python -m pip install eclipse-sumo
 winget install --id EclipseFoundation.SUMO
 ```
 
-- インストーラが環境変数 `SUMO_HOME` を設定する。新しいシェルを開いてから使う。
+- インストーラが環境変数 `SUMO_HOME` を設定する(Machine スコープ)。新しいシェルを開いてから使う。
+- 公式版の sumolib は経緯度→net 座標変換に **pyproj が必要**(`pip install pyproj`。無いと
+  demand 段で `Network does not provide geo-projection or pyproj not installed` エラー)。
+  `rtree` は任意(無くても総当たりフォールバックで動く・遅いだけ)。
+- 検証済み(2026-07-20): winget 版 1.27.1 で v0 全段(net→demand→run→convert)完走。
+  pip 版の XML 読込クラッシュは公式バイナリでは発生しない。
 
 ### (C) MSI(公式インストーラ)
 
