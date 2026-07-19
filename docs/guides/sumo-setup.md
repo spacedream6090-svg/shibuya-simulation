@@ -35,7 +35,7 @@ python -m pip install eclipse-sumo
 ### (B) winget
 
 ```powershell
-winget install --id Eclipse.SUMO
+winget install --id EclipseFoundation.SUMO
 ```
 
 - インストーラが環境変数 `SUMO_HOME` を設定する。新しいシェルを開いてから使う。
