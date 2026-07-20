@@ -494,3 +494,16 @@
 - **行間レイヤ(interstitial-life)5スライス完成**: S1計画FW/S2ナラティブ補間/S3会話3層/
   S4ゆらぎ/S5退屈ドライブ。全て既定OFF・ゴールデンバイト一致・LLM呼数k非依存を維持。
   残: S6予算N比例+重畳(Fable直営)・S7方針キャッシュ(既定OFF)・P1 SoA・P3ローテーション。
+
+### Entry 31 — 2026-07-20 — S6a+S7完成=行間レイヤ全スライス着地+仕様書docs/spec.md
+- **S6a**(Fable直営): LLM予算のN比例化(lod.n_proportional=ceil(0.15×N)置換・P3で思考層Nへ拡張点)。
+- **S7**(Opus実装+Fable配線): 方針キャッシュ=k非依存の物理量キー(職業/年代/曜日型/時間帯/
+  場所種別/天気/活動cat)・埋め込み不使用のnear-match3段・再利用率上限0.6・有界LRU。朝計画パスは
+  Opus配線・熟慮パスはFableがscheduler差し込み(再利用時は行間バッファ非消費の順序)。mock実測:
+  朝計画呼22.2%削減・レパートリー汚染なし。関門テスト=k∈{free,off}で呼数一致・比較ハーネス
+  scripts/compare_policy_cache.py。**既定OFF運用**(ユーザー決定・本番採否はブラインドA/B)。
+- **仕様書 docs/spec.md**: 9層階層+状態マーカー(✅44/☑55/🔨/📋)・根拠リンク・要確認7件を明記。
+- **フルゲートの1失敗はS7無関係の環境ドリフト**: 親シェルにPYTHONIOENCODING=utf-8が入り、
+  test_analyze_resolutionの素のtext=True(cp932)デコードが子のUTF-8出力で死んだ。テスト側を
+  「子のstdioをUTF-8固定+UTF-8デコード」に統一し環境非依存化(1082 passed+当該4本green)。
+- **P2全員思考=行間レイヤはS1-S7全て着地**(残るはS6b=LLM/エンジン重畳のみ・Fable直営)。
