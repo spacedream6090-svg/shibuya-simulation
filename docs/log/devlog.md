@@ -507,3 +507,18 @@
   test_analyze_resolutionの素のtext=True(cp932)デコードが子のUTF-8出力で死んだ。テスト側を
   「子のstdioをUTF-8固定+UTF-8デコード」に統一し環境非依存化(1082 passed+当該4本green)。
 - **P2全員思考=行間レイヤはS1-S7全て着地**(残るはS6b=LLM/エンジン重畳のみ・Fable直営)。
+
+### Entry 32 — 2026-07-20 — P2-S6b完成=「全員思考+行間レイヤ」P2全スライス完結
+- **generate_many(CachedLLM)**: 共有状態(calls/hits/キャッシュ/ファイル)の更新を逐次フェーズに
+  限定しキャッシュ未命中のみ並行発行=ロック不要・逐次と結果/カウンタ/キャッシュ内容が完全一致。
+  重複プロンプトは初出のみ生成(逐次のキャッシュ命中と同じ見え方)。
+- **朝計画**: make_planをbuild/apply分割(既定経路=同一順序の純リファクタ)+schedulerに
+  「build id順→並行発行→id順apply」分岐。**夜内省**: agentic pull の2呼連鎖(recall→本呼)を
+  2ラウンド発行で解決・recall系イベントはBufferSinkで遅延させ「個体毎にrecall→reflect」の
+  逐次並びを完全再現。
+- 検証: mock 1日(144step・計画/内省両パス発火確認済み)で**バッチON(workers1/4)=OFFの
+  L1バイト一致**・agentic pull ONでも一致・呼数一致。スタブで並行性と要求順保存も固定。
+  フルスイート**1088 passed**(38:29)。
+- 意義: 全員思考の最大呼群(朝計画25万+夜内省25万/日)が実LLMサーバの継続バッチングを充填
+  できる形になった=実効38req/s前提の成立条件。engine.batch_llm.enabled(既定OFF)で本番ON。
+- **P2はS1-S7完結**。残るW2: P1後半(SoA+z列+hydrate)・P3ローテーション・P7本選ベンチ。
