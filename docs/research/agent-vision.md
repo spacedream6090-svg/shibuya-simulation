@@ -324,6 +324,11 @@ no-fingerprint** で再現できる。これが v0 の中身。画素画像が�
 
 > いずれも [`ask-before-extending`] / [`pre-coding-alignment`] に従い**実装前アジェンダでユーザー合意後に着手**。
 > 本書は設計まで(コード変更なし)。工数は**推定**。
+>
+> **実装状況(2026-07-21・第39バッチ)**: ユーザー決定「**Fまで実装・当面Bのみ作動・本番初日に総合判断**」により
+> v0-1/v0-2(scene_desc=本番プロファイルON)+v1休眠骨格(pov.py+render_pov.py=全プロファイルOFF・VLMはstub)を実装済み。
+> 初日判断の基準は [finals-day1-decisions.md](../plans/finals-day1-decisions.md) **D1** に登録。
+> 残: v1-1のビューアPOVカメラUI・実VLM配線と実測(本選Day-0)。
 
 | Phase | 内容 | 主な対象ファイル | 工数(推定) | 検収基準 |
 |---|---|---|---|---|

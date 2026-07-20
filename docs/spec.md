@@ -60,6 +60,8 @@
 | 経路探索 A* + OD キャッシュ | ✅ | [`world/routing.py`](../src/society/world/routing.py)。mode 別サブグラフ(walk/bicycle/car)・封鎖 invalidate・到達不能は徒歩フォールバック |
 | 知覚(空間ハッシュ) | ✅ | [`world/perception.py`](../src/society/world/perception.py) `PerceptIndex`(cell=perception_radius・近傍9セル走査・legacy O(n²) とバイト一致)。会話可聴=半径40m×同一階 |
 | 擬似視覚 LOS(壁遮蔽) | ☑ | [`world/vision.py`](../src/society/world/vision.py)。建物 id+階から手続き生成した壁+開口部で視線判定。`world.vision.enabled`(本番 ON)/ `outdoor` は重く据え置き。設計=[`research/vision-los.md`](./research/vision-los.md) |
+| 視覚 v0=構造化シーン記述(方式B) | ☑ | [`world/scene_desc.py`](../src/society/world/scene_desc.py)。方向つき視界・注視対象(LOS 尊重)・垂直関係(z 列接続)を発火プロンプトへ 2〜4 行注入(追加呼ゼロ・決定論・input_res 件数 LOD 対象)。`world.scene_desc.enabled`(**本番 ON**=方式F の作動部分。第39バッチ) |
+| 視覚 v1=顕著性 POV+VLM(方式F 休眠部) | ☑ | [`pov.py`](../src/society/pov.py)+[`viz/render_pov.py`](../viz/render_pov.py)。客観量ゲート(初訪問/人数/世界イベント・stream "pov_salience")→CPU 決定論 PNG→サイドカー+`pov_image`。VLM は stub。**全プロファイル OFF=本番初日に採否決定**([finals-day1-decisions.md](./plans/finals-day1-decisions.md) D1) |
 | 交通 ambient モード | ✅ | [`world/traffic.py`](../src/society/world/traffic.py)。通過車両を実規模で流す(`cars_per_day: 30000`)。`world.traffic.mode: ambient` |
 | 交通 od モード(車個体化) | ☑ | 各車が起終点ゲートウェイ・一方通行尊重・**信号**(ノード別期待待ち)・**車線容量**(超過で渋滞減速)。要 `data/traffic_features_shibuya.json`。`world.traffic.mode: od`(本番 ON=信号69基・一方通行295区間が初結線) |
 | 交通機関(定刻ダイヤ) | ✅ | [`world/transit.py`](../src/society/world/transit.py)。退出/帰還の運行時間制約(終電後は帰れない)。基底=近似ダイヤ `data/transit_shibuya.json` |
