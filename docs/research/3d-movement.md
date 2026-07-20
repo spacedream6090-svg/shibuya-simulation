@@ -280,7 +280,10 @@ million-scale §1.3–1.4 の逆算(25万同時・144step/日)に空間解像度
 
 各フェーズ = 内容 / 対象ファイル / 工数(小=数日 / 中=1-2週 / 大=数週)/ 依存 / R1安全性。すべて `pre-coding-alignment`・`ask-before-extending` に従いユーザー合意後に着手。
 
-### Phase 0 — 垂直z化(安い・独立に効く)★最初にやる価値大
+### Phase 0 — 垂直z化(安い・独立に効く)★最初にやる価値大 → **実装済み(2026-07-20)**
+> `src/society/world/elevation.py`(DEM 双一次・export_3d と同値・1.5µs/サンプル)+ `world.elevation.enabled`(既定 OFF)で
+> move_segment/arrive payload に z を追加。実地形サニティ=原点0m・東西の坂で上り。tests/test_elevation.py 8本。
+> ビューアは従来どおり terrain_web ドレープ(同一 DEM=描画は同値)。sim由来 z の直接消費は Phase 4 で。
 - **内容**: エージェントに任意zを持たせる(既定は表示専用=移動非依存)。stepごと(or 記録時)に `terrain.heights` 双一次補間 + `layer`/`floor` オフセットでzを算出し、`move_segment`/`arrive` payloadに `z`(と `layer`)を足す。ビューアはドレープをやめsim由来zを使う。
 - **対象**: [`scheduler.py`](../../src/society/engine/scheduler.py)(z算出ヘルパ・payload追加)/ 新規 `world/elevation.py`(terrain.npz読取+双一次補間+layer LUT)/ [`make_viewer3d.py`](../../viz/make_viewer3d.py)(z入力経路)。
 - **工数**: **小(数日)**。terrain.npz は抽出済み。R1: payloadキー追加は新規=既定OFFなら従来とバイト一致で足せる。

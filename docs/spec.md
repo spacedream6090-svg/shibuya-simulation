@@ -146,7 +146,7 @@
 | P | 内容 | 状態 | 根拠 |
 |---|---|---|---|
 | **P0** | エンジン実測ベースライン(規模別 c・ホットスポット特定) | ✅ | devlog Entry 25。N=300 で c=0.00042・**超線形** c∝N^0.6-0.73・主犯=SNS TL 順位付け O(閲覧者×投稿) |
-| **P1** | 背景 SoA + hydrate 基盤(★可否ライン) | 🔨 | 純オーバヘッド除去は着地(devlog Entry 27: 300体 0.00042→0.000238 / N=3000 **4倍改善** 0.00166→0.000418=超線形を線形圏へ)。**SoA配列化本体+hydrate/dehydrate+z列は未着手**(devlog Entry 30「残」)。Fable 直営 |
+| **P1** | 背景 SoA + hydrate 基盤(★可否ライン) | 🔨 | 純オーバヘッド除去は着地(devlog Entry 27: 300体 0.00042→0.000238 / N=3000 **4倍改善** 0.00166→0.000418=超線形を線形圏へ)。10000体深夜帯 c=0.000528=線形圏(devlog Entry 33 前後の実測)。**hydrate/dehydrate は P3 の DormantStore が実装**(Entry 33)・**z列(3D Phase 0)は着地**([`world/elevation.py`](../src/society/world/elevation.py)=DEM 双一次 O(1)・`world.elevation.enabled` 既定 OFF・ON で move_segment/arrive に z)。SoA 配列化本体は P3 のスリム化で要否再評価。Fable 直営 |
 | **P2** | 全員思考機構(=行間レイヤ S1-S7) | 🔨 | §5.2 参照。S1-S5+S6a 完了・S6b 実装中・S7 並行実装中 |
 | **P3** | ローテーション(日次入替・純関数 presence・resume 決定論) | 📋 | 全 devlog で「残」留置・着手記録なし。src に `presence`/`present_cap` 不在。[`plans/persona-pool.md`](./plans/persona-pool.md) §1.3 |
 | **P4** | 観測ストリーミング(row-group 逐次・保存ポリシー) | ✅ | devlog Entry 25。合成2,000万件で検収・ピーク 786MB(<2GB PASS)・4.68億件でも同水準見込み。[`observer/stream.py`](../src/society/observer/stream.py) |
@@ -285,7 +285,7 @@
 | A4 内省プロンプト改善(reflect_variety) | 💤 | 実装済みだが**当面 OFF**(丸写し33%で正味悪化・devlog Entry 9)。再ON条件=丸写し棄却ガード or reflect のみ8b |
 | 本選デモ(3幕構成 D4) | 📋 | 本選前・中に実施 |
 | 環境自動生成 make_env v1/v2 | 📋 | v0 完了(下北沢実証)。残=e-Stat IPF・LLM 一括+人手確認 |
-| 3D 詳細移動(連続2.5D+層状グラフ) | 📋 | リサーチ完了([`research/3d-visualization.md`](./research/3d-visualization.md))。Phase 0(z列)は P1 同梱・本体は本選後 |
+| 3D 詳細移動(連続2.5D+層状グラフ) | 🔨 | リサーチ完了([`research/3d-visualization.md`](./research/3d-visualization.md))。**Phase 0(z列)は実装済み**(`world/elevation.py`・既定 OFF)・Phase 1 以降(歩行NW/SoA/前景SFM)は本選後 |
 | ペルソナ深さ属性(P3) | — | **不採用決定済み**(manifold collapse 抵触)。他に archetype 集約 / RAP 木探索 / 動的モデルカスケード / <2B 背景利用も不採用 |
 
 ### 9.5 エンジン群アーキテクチャ(参考)— [`plans/engine-architecture.md`](./plans/engine-architecture.md)
@@ -296,7 +296,7 @@
 ## 10. 「要確認」項目一覧(捏造を避けるための正直な注記)
 
 1. (解消済み 2026-07-20)S7 方針キャッシュは本書作成と並行して実装着手済み=🔨。S6a(N比例cap)も同日コミット済み=☑(§5.2 に反映)。
-2. **P1 SoA 可否ライン**: 純オーバヘッド除去は着地したが SoA 配列化本体・hydrate・z列は未実装。go/no-go 閾値 c≤0.0002 の**最終確定は未**(devlog Entry 27/30)。
+2. **P1 SoA 可否ライン**: 純オーバヘッド除去・z列・hydrate(P3 DormantStore)は着地。10000体深夜帯 c=0.000528=線形圏で 25万外挿~5-10h/シミュ日=予算圏内。SoA 配列化本体は**P3 スリム化で RAM 問題の大半が解決したため要否再評価**(昼帯大 N の再計測が残)。
 3. **本選ハードの正確な世代**: 168GB=24GB×7 は確度高いが、A5000 24GB か RTX 5000 Ada 32GB かは**銘板未確認**([`plans/finals-hardware-plan.md`](./plans/finals-hardware-plan.md) [要確定])。占有/共有・ホスト RAM も未確認。
 4. **在場25万規模は未実行**: 実測の最大は 200体(実LLM)/300体(mock)。25万×全員思考はスケール計画上の目標値で、実スケール検証は P4 の合成2,000万イベントのみ。
 5. **人口周辺分布の一部が暫定**: 年齢5歳階級×性別・職業大分類の渋谷区実数は静的取得不成立([`data/shibuya_population.json`](../data/shibuya_population.json) `status: partially-real`)。性比・昼夜比・来街者比0.56は国調由来。
