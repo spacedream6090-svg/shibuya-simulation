@@ -4,7 +4,7 @@
 > **プロトコル**: ユーザーとの1往復ごとに1エントリ追記。エントリが10に達したら圧縮して [devlog-compressed.md](./devlog-compressed.md) へ移し、本ファイルをリセット。設計の正典は [../design.md](../design.md)。
 > **圧縮履歴**: devlog-compressed.md(Block #0: プロトコル前史 / #1: ログ機構〜分野1-3 / #2: リサーチ完走〜決定アジェンダ / #3: D0-D17決定→P0実装→世界v2-v5 / #4: 生態系→docs完遂→現実ギャップ全波→第9バッチ / #5: ODPT実ダイヤ→制度深化完遂→自己モデル→現実較正→実LLM初証拠→日常プロファイル(第10〜14バッチ) / #6: 開放行動→世界解釈の観察→マルチモデル対応(第15〜24バッチ) / #7: 復元→git化→入力解像度LOD→分析スイート→制約デコード→自由度P2(第25〜34バッチ) / #8: EnvPack→PLATEAU実形状→第37バッチ6トラック→現実スケール転換(第35〜38バッチ) / #9: 同時滞在実測→全員思考転換→行間レイヤS1-S5(第38バッチW2) / **#10: W2完結→視覚F→オントロジー多軸→物流・乗れる交通→並列ゲート(第38W2後半〜第43バッチ)**)。全文アーカイブ: devlog-block6-fulltext.md / devlog-block7to9-fulltext.md / devlog-block10-fulltext.md。
 
-**ライブエントリ数: 3 / 10**(Entry 40 から=継続採番)
+**ライブエントリ数: 4 / 10**(Entry 40 から=継続採番)
 
 ---
 ### Entry 40 — 2026-07-21 — run.start_tod着地=コールドスタート完全解(1306緑・並列ゲート3:13)
@@ -67,3 +67,31 @@
 - 検収: 対象34本自前→**フルゲート1340本green・3:57**。コミット 1043bbb(関係性)/aba9ec0(語彙viz)。
 - メモ: friend_graph の acq_extra=20 は小集団では密(スケール前提較正)。colleague系の有効化は
   organizations.enabled=true が前提。関係性パッケージ(S-R1〜S-R5)これで完結。
+
+---
+### Entry 43 — 2026-07-22 — 第46-49バッチ: 自走キュー完走(経済①-⑤完結・v-Ride-2/3・職場束ね直し・1391緑)
+ユーザー指示「次の実装に進もう。最後まで通していい」で4バッチを順次自走(Opus実行/Fable検収・各バッチで
+フルゲート+コミット)。
+- **第46(fdf8c82)経済③+⑤**: services.py=サービス実体6種(理美容/任意受診/塾/ジム/クリーニング/汎用・
+  滞在+課金+効果hook on_service[mood/vitality/learning→不透明magnitude]・新stream service・k不変273一致)。
+  b2b.py=補充供給元を卸orgへ内生化(最寄り決定論選定・生産→org在庫→仕入=金+物の保存則テスト・
+  卸枯渇=補充失敗の欠品波及=供給網雪崩の観測基盤・乱数ゼロ)。現行地図のservice POIは70件
+  (1,994件は広域地図由来)=名ヒント特化は疎・データ駆動でPOI増に自動スケール。
+- **第47(bf1b9c9)経済④宅配**: delivery.py=注文(食事帯在宅・外食代替=二重課金なし・新stream delivery)
+  →在庫減→最寄りgig配達員を決定論配車(実体は物理移動・不在は抽象トリップgraceful)→到着課金+gig収入。
+  会計恒等式(注文者支出=店売上+配達員収入+手数料)をテストで検証。**経済スライス①-⑤全完結**。
+- **第48(2d13d83)v-Ride-2/3**: bus_table.py+build_bus_table.py=GTFS→静的表(停留所/系統/発時刻/累積所要)
+  →実ダイヤ近似乗車(待ち+区間所要→到着hold量子化=taxi-live同型)。**実GTFS未fetch=正直記録**
+  (匿名403・キー404・ckanはHTML=手動DL→build_bus_table.pyで即機能)。合成GTFS(中立名)で全経路検証。
+  相乗り=自前決定論greedyShared(同方向内積+回り道上限1.4・束ごと1予約=SUMOに真の相乗りは委ねない)・
+  並行配車=id昇順。SUMO実走テストも通過。
+- **第49(166a697)職場束ね直し**: pool L2のwork_node穴(occupation∉_WORK_CAT=serve/org_output/colleague
+  から漏れ)を2段束ね=①org_id→台帳workplace_poi.node直束ね ②地図に無い/org無しは決定論POIマッチ
+  (hashlib純関数・run.seed非依存・乱数ゼロ)。present L2の職場保有**17/57→57/57**。hydrate再入同一・
+  rotation resumeバイト一致。既定地図は台帳ノード4014/11000のみ=多くはカテゴリ近似(wide地図で全直束ね)。
+- **統合スモーク**(mock 144step・新機能ON): 完走23,545イベント・joint_activity 19・friend_graph_built・
+  service_use・partner_formed発火。宅配は率を上げた確認ランで注文12→配達12全件成立。b2b/restockの0件は
+  前提疎(org従業者=personas_file要/1日では発注点未達)=各専用テストでE2E検証済みの正常挙動。
+- ゲート推移: 1370→1382→**1391本**(全バッチgreen・3分強/回)。全既定OFF=ゴールデンL1バイト一致維持。
+- 残(ユーザー/環境待ち): ビューア目視(語彙タブ)・実バスGTFS手動DL・P7本選ベンチ・LLM上塗り(D7)・
+  family_dinner/daily_rate等の較正(calibrate実測後)。
