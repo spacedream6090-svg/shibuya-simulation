@@ -4,7 +4,7 @@
 > **プロトコル**: ユーザーとの1往復ごとに1エントリ追記。エントリが10に達したら圧縮して [devlog-compressed.md](./devlog-compressed.md) へ移し、本ファイルをリセット。設計の正典は [../design.md](../design.md)。
 > **圧縮履歴**: devlog-compressed.md(Block #0: プロトコル前史 / #1: ログ機構〜分野1-3 / #2: リサーチ完走〜決定アジェンダ / #3: D0-D17決定→P0実装→世界v2-v5 / #4: 生態系→docs完遂→現実ギャップ全波→第9バッチ / #5: ODPT実ダイヤ→制度深化完遂→自己モデル→現実較正→実LLM初証拠→日常プロファイル(第10〜14バッチ) / #6: 開放行動→世界解釈の観察→マルチモデル対応(第15〜24バッチ) / #7: 復元→git化→入力解像度LOD→分析スイート→制約デコード→自由度P2(第25〜34バッチ) / #8: EnvPack→PLATEAU実形状→第37バッチ6トラック→現実スケール転換(第35〜38バッチ) / #9: 同時滞在実測→全員思考転換→行間レイヤS1-S5(第38バッチW2) / **#10: W2完結→視覚F→オントロジー多軸→物流・乗れる交通→並列ゲート(第38W2後半〜第43バッチ)**)。全文アーカイブ: devlog-block6-fulltext.md / devlog-block7to9-fulltext.md / devlog-block10-fulltext.md。
 
-**ライブエントリ数: 2 / 10**(Entry 40 から=継続採番)
+**ライブエントリ数: 3 / 10**(Entry 40 から=継続採番)
 
 ---
 ### Entry 40 — 2026-07-21 — run.start_tod着地=コールドスタート完全解(1306緑・並列ゲート3:13)
@@ -39,3 +39,31 @@
   日次率は高めに出る(joint_activity 実測→calibrate で調整可。機構は正)。同性2人family世帯の続柄は
   同居人へ後退(正直な簡略化)。残スライス: S-R2友人グラフ(homophily)・S-R4職場会食(階層依存)・
   S-R5来街者party(party_size実体化)。
+
+---
+### Entry 42 — 2026-07-22 — 第45バッチ: 関係性パッケージ完結(S-R2/S-R4/S-R5)+語彙伝播の可視化(1340緑)
+- **S-R2 友人グラフ**(新規 friends.py・新ブロック friend_graph 既定OFF): homophily(McPherson=
+  年齢>職業)+共有所属(同work org=34.0%・学生同士=31.6%)+同住建物近接をスコア化し、Dunbar層
+  (親友3-5=tier3/友人7-12=tier2/知人20=tier1)の次数で relations closeness/tier へ直接注入
+  (二重辺は代入で防止)。**乱数streamゼロ=(pidペア,seed)のblake2b純関数=run.seed非依存**
+  (比較実験の要。地理項のみ直接ランでrun.seed感応=名簿+w_same_area=0で厳密実証)。観測kind
+  friend_graph_built{n_edges,mean_degree}。
+- **S-R4 職場会食の階層依存**(joint.py拡張): activities に companion_type(friend/housemate/
+  colleague)+hierarchical を追加、accept_prob = base+tier_bonus−hierarchy_penalty(0.35)。
+  組織台帳に役職(rank)データ無し(org_role=職種名)→**上司判定は年齢差>10歳の代理指標**と正直に
+  明記。colleague_lunch(0.02)/colleague_dinner(0.03・hierarchical)は**コメントアウト同梱**
+  (activitiesマップに足すと語順=POIハッシュが動くため既定4種を保護)。
+- **S-R5 来街者party実体化**(新規 party.py・新ブロック party 既定OFF): プール未使用だった
+  party_size(1-5)を初使用。present判定の**後**にid昇順グループ化=同一初期ノード・相互relations
+  (tier2/closeness5.0)・共有回遊POI(party_dest・新stream "party"・帯10-22時)。presence純関数
+  無風=test_pool_rotation(resume バイト一致)green。観測は joint_activity{type:"party"} 再利用。
+- **語彙伝播の可視化**(aba9ec0・viz のみ・ユーザー要望「どのように語彙が広がっていくのか」):
+  L1に全データ実在(vocab_coin+発生文脈context/transmission{from,channel}=聴取1辺ごと/
+  label_adopt)。build_data に trans[[step,from,to,channel]]+ctx+caps(1語2000辺・採用者の
+  第一聴取辺を最優先で残す決定論間引き=実測で採用者270人全員生存)。💬語彙タブ=語クリック→
+  採用曲線(s0連動)+伝播ネットワーク(黄金角スパイラル・チャネル色分け=対面緑/DM桃/SNS青/
+  メディア琥珀)+伝播ログ(🌱誕生行に発生文脈)。地図に「語彙(語別)」mode=採用済濃/聴取済中間/
+  未接触灰=時間スライダーで街への広がりが見える。
+- 検収: 対象34本自前→**フルゲート1340本green・3:57**。コミット 1043bbb(関係性)/aba9ec0(語彙viz)。
+- メモ: friend_graph の acq_extra=20 は小集団では密(スケール前提較正)。colleague系の有効化は
+  organizations.enabled=true が前提。関係性パッケージ(S-R1〜S-R5)これで完結。
