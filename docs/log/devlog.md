@@ -195,3 +195,15 @@
   既定OFFバイト一致・LLM呼ゼロ増・k∈{free,off}一致。テスト19本・フルスイート**1254 passed**(45:37)。
 - 残課題(正典§7の次段): 補充頻度のper-category化・venture/buy経路の在庫接続・B2B(⑤)・
   配送の実体化(④=配達員/SUMO貨物)。次キュー: タクシーv1(go/no-go 6条件適用)。
+
+### Entry 38 追記3 — 2026-07-21 — タクシーv1着地=乗れるタクシー(go/no-go全PASS・1263緑)
+- **v-Ride-1**(Opus実装・Fable検収・コミット本件): ハイブリッド連成=SUMO別プロセス(traci)+
+  配車の純関数化+wait-hold量子化(配車待ち+信号/渋滞超過を到着stepの追加待ちへ・車道走行は既存
+  car速度流用=「SUMOは待ちと到着stepだけを変える」を構造化)。**go/no-go 6条件すべてPASS=GO**:
+  ①k=free/off呼数67=67厳密一致(compute_matched下) ②mock/実SUMOとも同seedバイト一致
+  (pickup=321s/dropoff=581sを2回再現) ③wall=SUMO起動0.79s・3.55s/予約 ④Windows安定
+  ⑤wait_s/ride_s/delay_s全記録+taxi_unmatched ⑥n_proportional下でも呼数k不変。
+  ON/OFF総呼数Δ2は到着遅延→co-location変化の下流効果=間接影響レポートの整理どおり仕様として
+  透明記録。未配車=徒歩フォールバック。既定OFF=SUMO非起動=バイト一致。テスト9本(実SUMO
+  決定論含む)・フルスイート**1263 passed**(50:04)。
+- v-Ride-2/3(並行配車・相乗りgreedyShared・バスpt静的表)は次段。次キュー: 歩行者信号SFM一斉横断。
