@@ -185,3 +185,13 @@
   free=off=88実証)。**発見: Clock開始は07:00ハードコード**→07:00開始では遅寝層9/20の回復に
   とどまり、完全解は開始時刻設定可能化(run.start_tod・既定07:00)との併用=ユーザー承認待ち。
   フルスイート**1235 passed**(44:47)。次: 物流スライス①(在庫+補充)。
+
+### Entry 38 追記2 — 2026-07-21 — 物流①+②着地(1254緑)
+- **物流スライス①+②**(Opus実装・Fable検収・コミット本件): goods.py=在庫・(s,S)補充・配送・
+  封鎖判定・商品カタログを隔離。在庫decrement→stock_low→delivery_trip(eta付き)→restockの全ループが
+  **乱数ゼロの完全決定論**(新streamすら不要)。品切れ=spend不成立+stock_out(src:inventory)+
+  scarcity不満。商品実体=spendにitem(「カレー」等・config由来・日替わり決定論)。封鎖
+  (shock_closure/運休)で補充失敗→欠品波及=**災害物流断絶の土台**。streaming集計goods_usage 1系統。
+  既定OFFバイト一致・LLM呼ゼロ増・k∈{free,off}一致。テスト19本・フルスイート**1254 passed**(45:37)。
+- 残課題(正典§7の次段): 補充頻度のper-category化・venture/buy経路の在庫接続・B2B(⑤)・
+  配送の実体化(④=配達員/SUMO貨物)。次キュー: タクシーv1(go/no-go 6条件適用)。
