@@ -4,7 +4,7 @@
 > **プロトコル**: ユーザーとの1往復ごとに1エントリ追記。エントリが10に達したら圧縮して [devlog-compressed.md](./devlog-compressed.md) へ移し、本ファイルをリセット。設計の正典は [../design.md](../design.md)。
 > **圧縮履歴**: devlog-compressed.md(Block #0: プロトコル前史 / #1: ログ機構〜分野1-3 / #2: リサーチ完走〜決定アジェンダ / #3: D0-D17決定→P0実装→世界v2-v5 / #4: 生態系→docs完遂→現実ギャップ全波→第9バッチ / #5: ODPT実ダイヤ→制度深化完遂→自己モデル→現実較正→実LLM初証拠→日常プロファイル(第10〜14バッチ) / #6: 開放行動→世界解釈の観察→マルチモデル対応(第15〜24バッチ) / #7: 復元→git化→入力解像度LOD→分析スイート→制約デコード→自由度P2(第25〜34バッチ) / #8: EnvPack→PLATEAU実形状→第37バッチ6トラック→現実スケール転換(第35〜38バッチ) / #9: 同時滞在実測→全員思考転換→行間レイヤS1-S5(第38バッチW2) / **#10: W2完結→視覚F→オントロジー多軸→物流・乗れる交通→並列ゲート(第38W2後半〜第43バッチ)**)。全文アーカイブ: devlog-block6-fulltext.md / devlog-block7to9-fulltext.md / devlog-block10-fulltext.md。
 
-**ライブエントリ数: 6 / 10**(Entry 40 から=継続採番)
+**ライブエントリ数: 7 / 10**(Entry 40 から=継続採番)
 
 ---
 ### Entry 40 — 2026-07-21 — run.start_tod着地=コールドスタート完全解(1306緑・並列ゲート3:13)
@@ -121,3 +121,35 @@
   sparkタグでなく名簿イベント+transmission追跡の事後トレーサ。
 - 計画: 第50バッチ(レンズ=T1+T2+T6+viz)∥第51(T3監査+運実力=scripts/docsのみ=並列可)→
   第52(T4自助努力)→第53(T5 spark+D13追記)。実装はユーザー承認後。
+
+---
+### Entry 46 — 2026-07-23 — 第50-54バッチ: アドバイス翻訳5本+不確実性モード完走(1474緑)
+ユーザー承認(バッチ間許可不要・昼まで)で5バッチ連続自走。Entry 45 の精査どおり「重複3件は既存拡張」
+「spark=trait-blind既定」「住民別は事後層」で実装。
+- **第50(fd32dca)観測レンズ3本**: 新規 observer/lens.py=kind→軸のデータ駆動2段マッチ共通機構。
+  T1価値4軸(values.TAGS正準を再利用=新分類なし)・T2 3M欲望(earn/love/recognition・love軸の疎と
+  理美容代理の判断を正直註記)・T6信用内訳(status.material_breakdown純関数追加=新スコアなし)。
+  L2は全体スカラー9列のみ・住民別/遷移/シフトはviewer build_dataの事後計算。ダッシュボードに
+  価値/欲望/信用タブ(データ有時のみ注入=既存ランバイト同一)。行動への逆流ゼロ(lens OFF==ON L1不変)。
+- **第51(5248109)不確実性監査+運/実力**: named stream約60本を全数列挙・機能分類。mock実測=
+  想定外5.24件/人日・96.2%遭遇・揺らぎは全イベントの1.7%。**運/実力分解(既存OLS資産再利用)の発見:
+  関係=運ΔR²0.19>実力R²0.17(寄り道が出会いを生む既存主経路)・収入=実力0.75/運0.001(職業構造が
+  ほぼ決定)**→第54の較正の狙い所を定量特定。LUCK_KINDS共有表にchance_event受け口。
+- **第52(727031a)自助努力affordance**: agent.self_dev(経験由来・states監査外)。塾→skill・ジム→fitness、
+  累積 gain/(1+x)=練習冪乗則+日次減衰で有界均衡。経済経路は_pay_wage単一点×(1+coef×skill)の
+  1本のみ(既定coef=0=会計不変・fitnessは観測のみ)。k呼数一致・resume自動保存。
+- **第53(54595c0)spark treatment**: 新規spark.py。**trait-blind純関数選抜**(traits全面改変・run.seed変更
+  でも名簿不変をテストで実証=生得vs創発への交絡ゼロ)。3メニュー=(a)初期関係束(friends._inject流儀)
+  (b)資本・在庫上乗せ (c)集会アンカー(bias×exp(-decay·step)=(a)(b)はt0一発・減衰は(c)のみ)。
+  spark_roster 1件+事後トレーサtrace_spark.py(sparked発transmissionのBFS波及・活動量比)。D13追記
+  (縮退既定=OFF・純観察優先)。
+- **第54(27095dd)不確実性モード**(ユーザー追加要望「再現性 vs 純観察の選択」): 決定論エンジンは不変の
+  まま3本柱=①chance.py偶発層(windfall/loss/encounter・(agent,day)個体別stream "chance"・効果は
+  money/relations/記憶のみ=発火非接続・encounterのclose1.5は第51の「関係=運」主経路へ、金額帯は
+  収入の運無感応ギャップを埋める設計レバーと明記)②run.seed=auto/seed_auto=OSエントロピー採取+
+  config/summary記録=**「選ばないが失わない」**(採れたseedで再実行=バイト再現をテスト済)
+  ③conf/observe.yaml観察プロファイル(chance/確率的実行/退屈/天候/関係を束ねON)。LUCK_KINDS
+  1行接続で運/実力分解が自動で拾う。D14追記(縮退既定=再現性実験モード)。
+- ゲート推移: 1435→1448→1463→**1474本**(全バッチgreen・3分強/回)。全既定OFF=ゴールデン維持。
+- 検収条件5項目(OFFバイト一致・compute_matched・no-fingerprint・ダッシュボード目視可・devlog記録)
+  すべて充足。アドバイス→observable/affordance/treatment翻訳の設計判断はEntry 45+各コード註に記録。
