@@ -90,3 +90,71 @@
 
 → **タスクB の各指標は複数日で意味を持つ**(0埋まり・NaN でない)ことを確認。順位 τ の上昇トレンドは、
 固着の成立可否を見るには 7日では足りず 30日級の観察窓が要る、という**長期ランの必要性を裏づける**サイン。
+
+## 8. 屋内ミクロ観察 ON 時の長期コスト(第58バッチ B9 2026-07-24)
+
+> §1–7 は屋内 OFF(建物粒度)の見積り。本節は **屋内ミクロ観察 ON**(`indoor.enabled=true`+markov/sfm/
+> meeting/tracks・会社観測 `work.service.ledger/by_org/indoor_fields`)を足したときの追加コストを実測+外挿する。
+> 観測のみ(介入でなく観察=LLM 呼数不変・k 非依存=`tests/test_indoor_invariance.py`)。既存 §1–7 の記述は不変。
+
+### 8.1 SFM 性能較正(24step・100体・屋内全ON・mock)
+
+屋内 ON のコストは遷移駆動 SFM 積分が支配する(24step100体: OFF **1.96–2.78s** → ON **32.0s** ×約12–16)。
+conf レバーを系統的に振った実測(seed=42・tracks ON。①実行時間 ②遭遇検出数 ③space_move 数=SFM 非依存の sanity):
+
+| 設定 | 実行時間 | space_move | 遭遇(contacts) | 軌跡サンプル | 判定 |
+|---|---|---|---|---|---|
+| OFF(indoor off) | 2.78s | 0 | 0 | 0 | 参照 |
+| baseline(dt0.2/msub900/samp5) | 32.00s | 293 | 5 | 28,810 | 基準 |
+| **max_substeps=300** | **24.45s(−24%)** | 293 | 5(不変) | 12,599(**−56%**) | ◎ 時間+ストレージ削減・品質不変 |
+| sample_interval=10 | 32.08s | 293 | 5(不変) | 14,363(−50%) | ◯ ストレージのみ削減(時間コストゼロ) |
+| dt=0.3 | 31.87s | 293 | **115(+2200%)** | 27,873 | ✗ waypoint 超過で遭遇が偽増=品質劣化 |
+| dt=0.4 | 31.62s | 293 | 14(+180%) | 26,870 | ✗ 同上(時間短縮は僅少) |
+| bystander_cap 8/12・neighbor_cap 8 | ~31–32s | 293 | 5(不変) | 28,810 | − 自然密度では効果なし(同居が疎)=高密度セルの安全弁 |
+
+- **壁非貫通**: 実レイアウト(vision 手続き生成・8 movers+6 bystanders)で dt∈{0.2,0.3,0.4,0.5}×max_substeps∈{300,900}
+  の全組で **wall_crossings=0**(`indoor_flow.segment_hits_wall` 判定=`test_indoor_flow` と同一)。どの候補値も壁貫通を破らない。
+- **推奨**: `sfm.max_substeps=300` + `sfm.sample_interval=10`(dt/各 cap は既定のまま)。実行時間 **−24%**・軌跡サイドカー
+  **−78%**(msub −56% × samp −50%)・遭遇検出数と壁非貫通は不変。max_substeps=300=60s は直交フロア横断(~40m/1.2m/s≈33s)に十分。
+  **dt は上げない**(0.3+ は積分不安定で遭遇が偽増=観測品質を壊す。時間短縮も僅少)。
+- **既定は変更しない**(提案止まり=親が判断)。理由: `indoor.enabled=false` が既定=ゴールデンは不変だが、`sfm.*` 既定を
+  変えると屋内 ON ランの軌跡/遭遇サイドカーのバイト内容が変わり、屋内 ON テスト群の期待値の再ベースラインが要る。推奨値は
+  `conf/observe.yaml`・`conf/longrun30.yaml`・D16 のコメントに記載し、本選 param 選択は親に委ねる。
+
+### 8.2 7日実測(1008step・40体・屋内全ON+org ON・推奨param・mock)
+
+`indoor` 全 ON(msub300/samp10)+ `organizations`+`work.service`(ledger/by_org/indoor_fields, personas_80)・
+`checkpoint_every=576`(4日ごと flush)で 1008step を実測:
+
+| 量 | 実測(40体・1008step) |
+|---|---|
+| 実行時間(mock) | 307.3s(5.1min)= **304.8 ms/step** |
+| L1 parquet | 2.90MB(うち space_move **1,211 行**) |
+| indoor_tracks_samples | **483.5KB** |
+| indoor_tracks_contacts | 2.1KB(遭遇は疎) |
+| org_ledger | 2.73KB(**99 行**=会社×日) |
+| ピーク RAM(working set・4日flush) | **339MB** |
+
+**resume==straight のバイト一致(屋内状態込み)**: 3日(432step)・40体・同 conf を straight と split(216+216 resume)で回し、
+`l1_events`(1,314,606B)/`indoor_tracks_samples`(234,700B)/`indoor_tracks_contacts`(2,132B)/`org_ledger`(2,535B)
+の **4 系列すべてバイト一致**(既存 `test_resume_matches_straight` の 24step を 7日級で実地確認)。分割夜間実行でも屋内サイドカーが崩れない。
+
+### 8.3 30日100体への外挿
+
+per-agent-step 単価(§4 と同流儀=最長=最安定ランの単価)+ 密度超線形(40→100体で per-agent-step ×1.23=
+24step 実測 (32.0/100)/(10.45/40) 由来。SFM のセル内対人斥力が O(n²))で 30日100体(4320step)へ外挿:
+
+| 量 | 30日×100体 の外挿(屋内 ON 追加分) | 備考 |
+|---|---|---|
+| indoor エンジン時間(mock・OFF比の**増分**) | **+65min**(24step実測 OFF2.78s→ON24.45s=+0.90s/step) | 既定param(msub900)なら **+88min**(=B3 の「+85分」と一致)。**実LLMでは§5 のとおり LLM レイテンシに隠れ req/s 律速は不変** |
+| indoor_tracks_samples | **≈5.1MB** | 483.5KB×(100/40)×(4320/1008)。既定 sample_interval=5 なら ≈10MB |
+| indoor_tracks_contacts | ≈40KB | 遭遇は疎=無視可 |
+| org_ledger | ≈25KB | 会社×日=無視可 |
+| L1 space_move 追加行 | ≈13,000 行 | L1 へ加算(支配項でない) |
+| ピーク RAM 上乗せ | 数百MB(checkpoint で有界) | §5 の longrun 本体 2.0GB(checkpoint_every=1440)に屋内バッファ分を上乗せ |
+
+- **含意**: 屋内 ON の追加コストは **①SFM エンジン時間**(推奨 param で 30日100体 +65min mock)と **②indoor_tracks_samples ストレージ**
+  (推奨 param で ≈5MB/30日)の 2 つが支配項。org_ledger・contacts・space_move の L1 加算はいずれも小。RAM は checkpoint flush で有界。
+- **本選 GPU 予算への含意**(§5 と同じ論理): 上表は mock エンジン単価。本選=実 LLM ではエンジン計算(SFM 含む)は LLM 呼の
+  レイテンシに隠れ、per-step 実時間は req/s と在場数で決まる=**屋内 ON でも本選の壁時計は延びない**(SFM が LLM レイテンシ窓に収まる限り)。
+  屋内 ON は「余剰枠で観測解像度(遭遇ネットワーク/在館/会社在席)を上げる」追加オプション(判断=D16)。
