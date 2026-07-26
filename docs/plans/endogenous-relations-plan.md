@@ -107,6 +107,21 @@ no-fingerprint走査外・mobility/gossipと同層)。conf `relations.endogenous
 - フェーズ3(誘う相手の内生化): 対象は `joint._companions` の決定論選抜。前日出力の志向抽出+
   フォールバック。Dunbar上限は `friends.py` の層次数上限(close 3-5/friend 7-12/acq +20)をconf参照で維持。
   観測: 誘い先分布の関係強度分布からの乖離・弱い紐帯誘いの発生率・クラスタ係数/直径。
+  - **実装済み(第64バッチ 2026-07-27)・実験投入は phase3_go ゲート**(analyze_endo_treatment の
+    機械判定合格が条件=実装と実験実施の分離)。conf `relations.endogenous_invite.*` 既定 OFF。
+    friend 経路の候補集合の並べ替え・拡張のみ(枠組み・min/max_group・daily_rate 不変):
+    ①前日計画 with(従来=最優先)→②前日発話の明示キュー(フェーズ1 `_has_positive_cue` の役割交換
+    で invite 方向に再利用=語彙は accept ブロックと共用)→③closeness 降順(較正事前分布の維持=
+    二段構えの invite 版)→④弱い紐帯探索枠(tier=1 知人・(agent,day) 安定ハッシュ=乱数ゼロ・末尾。
+    `weak_tie_slots=1`=誘い先が知人である現実頻度の直接統計は文献に見つからず保守的既定。理論根拠:
+    Granovetter 1973 AJS 78(6) / Onnela et al. 2007 PNAS 104(18):7332=交流量の大半は強い紐帯)。
+    層次数上限は不変更(誘い=一時的接触・tier 遷移は relations の closeness 蓄積経由のみ=構造上
+    新規超過しない)。"joint" stream は承諾抽選専用を維持(invite 側は乱数ゼロ。ON で候補列が変わる
+    ことによる承諾 draw 数差は treatment そのもの)。観測: `joint_invite.source`(accept ON 時のみ
+    L1 に出る=正直な限界)+ L2 `invite_weak_tie_rate` / `invite_endo_share`(analyze_endo_treatment
+    の KPI_COLS へ接続済み)+ クラスタ係数/直径は `analyze_weak_ties.py` へ追加(既存 analyze 系に
+    事後算出が無かったため)。resume==straight(`_invite_state` を checkpoint 中央管理)。
+    テスト: `tests/test_endogenous_invite.py`。
 - フェーズ4(関係の質): 会話由来の増減を closeness への不透明magnitude片方向hook(現 `note_contact` は
   valence符号のみ=magnitude一定なので拡張点は明確)。発火判定には流さない。優先度低・本選前不要。
 
