@@ -1,0 +1,109 @@
+# 関係性の内生化 — 検証済み実装計画・実験設計(2026-07-27)
+
+> 出自: `docs/endogenous-relations-implementation.md`(Claudeチャット由来の実装指示・2026-07-27精査)を、
+> コード実査(Explore)+Web文献リサーチで検証・具体化した**正典**。原文書は本書へ吸収済みのため削除
+> (全文は git 履歴 c8866e2 以降のコミットに保存)。
+> 状態: **計画確定・実装未着手(ユーザー承認待ち)**。体制: Fable計画/検収・Opus実行。
+
+---
+
+## 1. 妥当性検証の結論(原文書に対する所見)
+
+**骨格は妥当・文献支持あり**。「較正値を候補提示の事前分布に残し、最終判断のみ委譲する二段構え」は
+LLMを較正済み測定器として使う先行設計(LLMs as Calibrated Measurement Instruments, arXiv:2602.01022)と
+同型。二層切り分け(初期構造=機構維持/変化=委譲)も交絡排除として正しい。
+
+**訂正・具体化 5点**:
+
+1. **「エージェント思考が社会的位置を変えられない」は部分的に旧い**。第60バッチ(job_search=LLM選択由来の
+   転職)・B3b(遭遇→会話相手)・第61(gossip)で内生経路は既に存在する。ただし関係形成の中心=誘い承諾は
+   なお較正確率の抽選(`joint.py:346-348`・S-R3/S-R4共通・stream "joint")であり、勝負どころの選定は正しい。
+2. **技術的前提の訂正(最重要)**: 原文書の推奨「同stepでLLM思考層に載っている出力から抽出」は**現phase順で
+   不成立**。`_phase_joint`(承諾判定)は日境界=真夜中に走り、当日の `_phase_planning`(朝)・発話(`_phase_drive`)
+   より**前**。被誘者の当日LLM出力は承諾時点で未生成。→ 主経路を**構造化・決定論抽出**に変更する(§2)。
+   phase順の移動は draw 順・既存挙動への波及が大きく不採用。
+3. **sycophancyリスクは実証済みの既定路線**: LLMに受諾/拒否を直接生成させると承諾率が現実統計から上振れする
+   (Simulated Customers Never Walk Away, arXiv:2606.20708 が定量確認。Generative Agents では招待12→来場5=
+   不履行型の脱落もある)。本計画の設計は**LLMにYES/NOを聞かない**(呼数ゼロ制約の副産物として構造化出力からの
+   決定論読み取りになる)ためこのバイアスの侵入経路は限定されるが、k↑で計画自体が社交過多になる経路は残る。
+   → **承諾率乖離KPIをフェーズ移行の合否判定に第一級化**(§3)。
+4. **較正の器が無い**: `calibrate_report.py` の REALITY バンドに承諾率・共同行動率は不在(較正基準は
+   `docs/research/relationships-activities.md` §2.5-2.6 とjoint.py DEFAULTSコメントに埋没)。
+   フェーズ1で新バンド+L2列+`analyze_sweep._EXTRA_L2_SERIES` 接続を必須実装とする。
+5. **gossipとの合成順序の明示**: 第61の `gossip.joint_penalty` が既に承諾式へ介入済み。合成は
+   `p = clamp(w·p_calib + (1−w)·p_endo) − gossip_penalty`(gossipは常に最後の減算=第61の不変則維持)。
+
+**日本語態度抽出の限界(文献)**: 敬語・婉曲拒否(「行きたいのは山々ですが…」)は辞書法で誤検出しやすい。
+自由文からの抽出は**明示キューに限定**し、曖昧例はフォールバックへ(フォールバック率自体を品質指標に)。
+
+---
+
+## 2. フェーズ1: 承諾/拒否の内生化(実装設計・確定)
+
+変更点は `joint.py` 承諾抽選の1箇所+新モジュール `src/society/relations_endo.py`(society直下=
+no-fingerprint走査外・mobility/gossipと同層)。conf `relations.endogenous_accept.*` 既定OFF。
+
+- **always-draw, conditionally-use**: ONでも "joint" stream の draw 数を不変に保つ(drawして条件次第で
+  結果を破棄=compute_matchedのRNG版。draw列のズレ防止・監査容易・resume無風)。
+- **判定材料(優先順・全て決定論・LLM呼ゼロ・中間状態が監査可能)**:
+  1. **予定帳簿の当日衝突**(`schedule.py` の appointment 台帳・schedule ON時): 誘いの時間帯と重複する
+     当日予定があれば拒否(conflict_veto)。
+  2. **前日 `day_schedule` の志向**: `with` に誘い主の名が載る=積極受諾/solo系cat卓越=消極。
+     (構造化フィールドのみ=敬語・婉曲問題を構造的に回避)
+  3. **関係台帳の直近valence**(relations ON時): 直近の負交流→拒否傾向。
+  4. **判定不能→較正確率フォールバック**(fallback率をL2記録=「どれだけ内生化できたか」)。
+- **自由文抽出**は明示キュー(前日発話中の「(相手名)と…したい/行こう」型)のみ・パターンの層分割は
+  schedule.py 前例(基盤=コード・地名/固有=conf)を踏襲。
+- **conf**: `relations.endogenous_accept.{enabled=false, prior_weight=0.5, conflict_veto=true,
+  positive_boost, negative_cut, fallback="calibrated"}`。
+- **観測(L2・ON時のみ)**: `joint_accept_rate` / `joint_endo_share`(内生判定率=1−fallback率)/
+  `joint_accept_calib_gap`(較正基準との乖離pp)。+ `calibrate_report.py` REALITYバンド追加
+  (レジャー白書§2.5-2.6基準)+ `analyze_sweep._EXTRA_L2_SERIES` へ接続(deviation_mean前例)。
+- **履行率の観測(文献由来の追加)**: 承諾→実同席の率(`joint.observe` 同席観測と突合)と脱落理由。
+  Generative Agents の「関心はあるが不履行」を弁別する。
+- **検収**: OFF=ゴールデンL1バイト一致・draw数不変・compute_matched・no-fingerprint・
+  resume==straight(状態はagent属性 or checkpoint中央管理=第59-61前例)・ダッシュボードで乖離と
+  fallback率が目視可能。
+
+## 3. フェーズ2: treatment比較の実験設計(確定)
+
+- **条件**: endogenous_accept {OFF, ON} × k {off, degraded(α=0.5), free} = **6セル**。
+  `run_experiment.py` + `conf/experiments/endogenous_accept.yaml` のconf宣言方式(spark前例)。
+- **seedペア(CRN)**: 同一seedでOFF/ONをペア比較(ABM標準の分散低減・arXiv:2409.02086)。
+  always-draw設計により分岐前のRNG消費が同一=ペアの共分散が保たれる。
+- **規模**: 予備=7日100体×各セルseed3(mock=配線・指標感度の検証のみ。実LLM判断は本選)。
+  本実験=14日×seed5/セル(30ラン)を本選GPU予算内で(D17)。
+- **指標**: タスクB4種(edge_churn/コミュニティJaccard/中心性turnover/順位τ固着=
+  `structure.py`+`analyze_structure.py` の既存列がそのまま対応)+承諾率乖離+fallback率+履行率+
+  弱い紐帯レンズ(第59 `analyze_weak_ties.py`)。
+- **検定**: seedペア差の permutation(sign-flip)。ネットワーク構造比較は double permutation を推奨
+  (Farine 2022=素朴置換は過大有意)。
+- **仮説(理論から導出・Jackson-Wolinsky/triadic closure×homophily)**:
+  - H1: ON で edge churn↑(主体選択が構造を動かす)
+  - H2: 同時に homophily×三者閉包でコミュニティ固着帯も発生(**H1と両立**=Science Advances aax7310)
+  - H3: k×ON の交互作用(k↑でONのみ構造変動が増える=本命)
+- **フェーズ3進出の合否**: H1/H3 のいずれかが3seed以上で符号一致、かつ承諾率乖離が±15pp以内
+  (超過時はプロンプトでなく prior_weight で調整=呼数不変のまま)。満たさなければ結果をdevlogに記録し終了
+  (原文書の「フェーズ2を飛ばさない」を維持)。
+
+## 4. フェーズ3/4(条件付き・原文書の方針を踏襲)
+
+- フェーズ3(誘う相手の内生化): 対象は `joint._companions` の決定論選抜。前日出力の志向抽出+
+  フォールバック。Dunbar上限は `friends.py` の層次数上限(close 3-5/friend 7-12/acq +20)をconf参照で維持。
+  観測: 誘い先分布の関係強度分布からの乖離・弱い紐帯誘いの発生率・クラスタ係数/直径。
+- フェーズ4(関係の質): 会話由来の増減を closeness への不透明magnitude片方向hook(現 `note_contact` は
+  valence符号のみ=magnitude一定なので拡張点は明確)。発火判定には流さない。優先度低・本選前不要。
+
+## 5. 本選判断
+
+`finals-day1-decisions.md` D17 に登録: endogenous_accept 条件を本選で回すか(6セル×ラン数のGPU配分)。
+
+## 主要出典
+
+- Simulated Customers Never Walk Away(sycophancy承諾上振れの直接実証): arXiv:2606.20708
+- Generative Agents(招待12→来場5=不履行型脱落): arXiv:2304.03442
+- LLMs as Calibrated Measurement Instruments(二段構えの同型): arXiv:2602.01022
+- CRN in ABM(seedペア分散低減): arXiv:2409.02086 / Farine 2022(double permutation): 10.1111/2041-210X.13741
+- Windrum et al. 2007(calibration/validation分離): JASSS 10/2/8
+- Jackson & Wolinsky 1996(戦略的ネットワーク形成)/ triadic closure×homophily: 10.1126/sciadv.aax7310
+- LLM社会シムの検証が中心課題: 10.1007/s10462-025-11412-6 / arXiv:2603.00113
