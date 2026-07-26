@@ -3,7 +3,9 @@
 > 出自: `docs/endogenous-relations-implementation.md`(Claudeチャット由来の実装指示・2026-07-27精査)を、
 > コード実査(Explore)+Web文献リサーチで検証・具体化した**正典**。原文書は本書へ吸収済みのため削除
 > (全文は git 履歴 c8866e2 以降のコミットに保存)。
-> 状態: **計画確定・実装未着手(ユーザー承認待ち)**。体制: Fable計画/検収・Opus実行。
+> 状態: **フェーズ1=第62バッチ(d6731e5)・フェーズ2=第63バッチで実装済み**。フェーズ3/4は実装承認済み
+> (2026-07-27 ユーザー「1〜4まで進めていい」)・実験としての実施はフェーズ2評価(本選実LLM=D17)の合否ゲート。
+> 体制: Fable計画/検収・実行役=Fable継承サブ(2026-07-27〜)。
 
 ---
 
@@ -85,6 +87,20 @@ no-fingerprint走査外・mobility/gossipと同層)。conf `relations.endogenous
 - **フェーズ3進出の合否**: H1/H3 のいずれかが3seed以上で符号一致、かつ承諾率乖離が±15pp以内
   (超過時はプロンプトでなく prior_weight で調整=呼数不変のまま)。満たさなければ結果をdevlogに記録し終了
   (原文書の「フェーズ2を飛ばさない」を維持)。
+
+**実装済み(第63バッチ 2026-07-27)・実行手順**:
+- マニフェスト: `conf/experiments/endogenous_accept.yaml`(本実験=14日100体×6セル×seed[11,13,17,19,23]
+  =30ラン・CRN)/ `endogenous_accept_pilot.yaml`(予備=7日100体×seed3・mock固定)/
+  `endogenous_accept_wiring.yaml`(配線検証=7日60体×seed2=12ラン・実行済み)。
+- 実行: `python scripts/run_experiment.py conf/experiments/endogenous_accept.yaml`(本選=D17 は
+  common に model.backend=vllm 等を重ねる。mock は配線検証のみ=fallback支配でONの効果ほぼゼロが正)。
+- 解析: `python scripts/analyze_endo_treatment.py "runs/endo14_*" --out runs/_endo14`
+  = CRNペア差+sign-flip 主検定(n≤12 全列挙 / n>12 MC 1万回=Phipson & Smyth 2010)+日次ブロック
+  符号反転の副検定(Künsch 1989 の趣旨)+H1/H2/H3 と乖離ゲートの機械判定。ネットワーク内置換は
+  しない(Farine 2022 の過大有意回避=ラン単位置換)→ `python scripts/make_endo_report.py runs/_endo14`
+  (自己完結HTML の条件比較ビュー)。
+- 配線検証実測(mock・7日60体・12ラン): 合計約22分(1ラン94–112秒)。全ペア差 p=1.0=「差なし」を
+  正しく検出・calib_gap +0.8〜+3.5pp(±15pp内)・endo_share 0.06–0.11(fallback支配=設計どおり)。
 
 ## 4. フェーズ3/4(条件付き・原文書の方針を踏襲)
 
