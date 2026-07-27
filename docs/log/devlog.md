@@ -107,3 +107,22 @@ C2会話の基幹経路として既存(物理近接hearers_of→meet_prob→reco
   **追加のみ**=LICENSE(Apache-2.0推奨)+README ライセンス節(Code/Data 2段=ODbL/政府標準利用規約2.0/ODPT)。
   代替案=既存リポ直接公開(rm --cached方式・履歴に2件残置)/filter-repo直接書換(最も侵襲的)も併記し
   AskUserQuestionで方式・LICENSE・作者メール書換・実行タイミングを確認に出した。
+
+---
+### Entry 56 — 2026-07-28 — GitHub公開実施: フィルタ済みミラー方式で公開リポ稼働
+ユーザー4点確認(AskUserQuestion)=ミラー方式・Apache-2.0・作者メール公開側のみnoreply書換・今すぐ公開まで実行。
+- **フォルダー修正は追加4ファイルのみ**(8092625): LICENSE(Apache-2.0全文)+NOTICE+READMEライセンス節
+  (Code/Data二段=OSM ODbL継承・人流=政府標準利用規約2.0・ODPT=_meta出典付与済み・フロアガイド=カテゴリ
+  事実のみ・組織台帳=合成・three.js MIT)+ops/publish_public_mirror.ps1。削除ゼロ=ユーザー制約
+  「GitHub上で処理できるものはGitHub上で」を充足。
+- **ミラー生成と検証**: 一時cloneにgit filter-repo(--invert-paths)でreference/2d-fire-sim/+docs/AUTOMATA*
+  を全履歴除去+mailmapでnoreply書換(個人メールはスクリプト不記載=実行時にgitから導出)。検証実測=
+  ミラー140=private140コミット・除去パス履歴残存0件・メールはnoreply単一・シークレット走査は擬陽性1件のみ
+  (監査文書がスキャンパターン文字列を引用する行)・icloudアドレスのファイル内容混入0件。
+- **公開**: https://github.com/spacedream6090-svg/shibuya-simulation-public =作成(private)→push→
+  リモートHEAD一致確認→public切替→Secret scanning+Push protection有効→branch protection(可視性変更直後の
+  一時ロック403→20秒後リトライで成功)。GitHubがApache-2.0を自動検出。filter-repoは決定論なので以後の同期は
+  同スクリプト再実行=fast-forward 1コマンド。
+- 付随: private originへ120+コミットをpush(バックアップ同期)・メモリgithub-repo.mdを2本体制に更新・
+  finals-gpu-application.md §3.7実施記録を追記。残タスク=ODPT規約原文の目視再確認(SPAで自動取得不能)・
+  主催メモ節除外の一言確認(任意・ユーザーから)。

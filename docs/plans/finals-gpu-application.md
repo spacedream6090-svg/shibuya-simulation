@@ -367,6 +367,25 @@ git commit -m "Initial public release (history squashed)"
 > あわせて **公開直後に Secret scanning + Push protection を ON**、`main` に branch protection を設定。
 > ODPT の規約原文再確認(`odpt-integration.md` §(d)6 が自ら求めている)は公開前に一度行う。
 
+### 3.7 実施記録(2026-07-28・本節の計画とは方式を変更して実施)
+
+ユーザー確認(4 点: 方式・LICENSE・作者メール・タイミング)の上で **§3.2 の「既存リポの可視性切替」ではなく
+「フィルタ済みミラー公開」方式**で実施した(ユーザー制約「GitHub 上で処理できるものは GitHub 上で・
+フォルダー修正は最小限」に適合。§3.5-(i) の filter-repo を**一時 clone 上でのみ**使う変形)。
+
+- **公開 URL**: https://github.com/spacedream6090-svg/shibuya-simulation-public (private 本体は無傷で維持)
+- 手段: `ops/publish_public_mirror.ps1` = 一時 clone → `git filter-repo` で `reference/2d-fire-sim/` +
+  `docs/AUTOMATA*` を全履歴除去 + 作者メールを公開側のみ noreply へ書換 → push。決定論なので再実行は
+  fast-forward(提出前の同期が 1 コマンド)。
+- 検証実測: ミラー 140 コミット = private 140 コミット(除去 2 パスだけを触るコミット無し)・除去パスの
+  履歴残存 **0 件**・作者/コミッタメールは noreply 単一・シークレット走査は擬陽性 1 件のみ(§3.3 の監査表が
+  スキャンパターン文字列自体を引用している行)。
+- 設定: Apache-2.0 を GitHub が自動検出・Secret scanning + Push protection 有効・`main` へ force push/削除禁止
+  (可視性変更直後は "Repository has been locked" 403 → 約 20 秒後のリトライで成功)。
+- フォルダー修正は**追加 4 ファイルのみ**(LICENSE / NOTICE / README ライセンス節 / 同期スクリプト・コミット 8092625)。削除ゼロ。
+- 未了のまま残るもの: ODPT 規約原文の再確認(§4-7。developer.odpt.org が SPA で自動取得不能・既存リサーチ
+  結論のまま)・主催メモ節を除外した旨の主催への一言確認(任意・ユーザーから)。
+
 ---
 
 ## §4 未確定として残した項目(本書で埋めなかったもの)
