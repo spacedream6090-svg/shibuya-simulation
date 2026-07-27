@@ -3,8 +3,9 @@
 > 出自: `docs/endogenous-relations-implementation.md`(Claudeチャット由来の実装指示・2026-07-27精査)を、
 > コード実査(Explore)+Web文献リサーチで検証・具体化した**正典**。原文書は本書へ吸収済みのため削除
 > (全文は git 履歴 c8866e2 以降のコミットに保存)。
-> 状態: **フェーズ1=第62バッチ(d6731e5)・フェーズ2=第63バッチで実装済み**。フェーズ3/4は実装承認済み
-> (2026-07-27 ユーザー「1〜4まで進めていい」)・実験としての実施はフェーズ2評価(本選実LLM=D17)の合否ゲート。
+> 状態: **フェーズ1=第62バッチ(d6731e5)・フェーズ2=第63バッチ・フェーズ3=第64バッチ(6ad4b12)・
+> フェーズ4=第65バッチで実装済み**(2026-07-27 ユーザー「1〜4まで進めていい」)・フェーズ3/4の
+> 実験としての実施はフェーズ2評価(本選実LLM=D17)の phase3_go 合否ゲート。
 > 体制: Fable計画/検収・実行役=Fable継承サブ(2026-07-27〜)。
 
 ---
@@ -124,6 +125,31 @@ no-fingerprint走査外・mobility/gossipと同層)。conf `relations.endogenous
     テスト: `tests/test_endogenous_invite.py`。
 - フェーズ4(関係の質): 会話由来の増減を closeness への不透明magnitude片方向hook(現 `note_contact` は
   valence符号のみ=magnitude一定なので拡張点は明確)。発火判定には流さない。優先度低・本選前不要。
+  - **実装済み(第65バッチ 2026-07-27)・実験投入は phase3_go ゲート**(フェーズ3と同じ扱い=実装と
+    実験実施の分離)。conf `relations.endogenous_quality.*` 既定 OFF・要 `relations.enabled=true`。
+    `relations.note_contact` が `magnitude`(既定 1.0=×1.0 は IEEE754 で厳密=OFF バイト一致)を受け、
+    増減**量**にのみ乗る。値の算出は `relations_endo.magnitude_of/contact_magnitude`(既生成テキストの
+    決定論抽出=LLM 呼ゼロ・乱数ゼロ): ①発話長(len_chars 正規化・len_gain まで)②往復数(相手別
+    リングバッファ `_dialog_hist` の蓄積・turn_gain/回・turn_max 上限)③明示キュー共起(フェーズ1
+    `positive_cues` をそのまま再利用=語彙は単一の源・cue_gain)④`hedge_markers` 共起は**中立 1.0**へ
+    (曖昧例を落とす=フェーズ1と同じ保守側)→ [mag_min, mag_max] へ clamp。
+    文献: Altman & Taylor 1973(社会的浸透)/ Reis & Shaver 1988(親密さ=自己開示+応答性)/
+    Laurenceau, Barrett & Pietromonaco 1998 JPSP 74(5):1238-1251(開示の**深さ**と応答性が当日の親密さを
+    予測・事実より感情の開示)。**正直な限界**: 文字数は「深さ」の代理にならないので len_gain は最大の
+    加点にしない(0.5=cue 0.4/turn 0.45 と同程度)。
+    **片方向 hook の厳守**: magnitude は engine の `_quality_mag`→`_contact` 以外へ渡らない=発火判定・
+    会話ペアリング・tier 閾値の式・誘い/承諾判定には流さない。tier 閾値を凍結すると quality ON/OFF で
+    L1 が**完全一致**し LLM 呼数も一致することをテストで固定(通常設定で tier 遷移の時期が動くのは
+    closeness 蓄積速度の変化経由=treatment そのもの)。観測: L2 `quality_magnitude_mean`(当日の会話由来
+    magnitude 平均。`analyze_sweep._EXTRA_L2_SERIES` と `analyze_endo_treatment.KPI_COLS` へ接続)。
+    resume==straight(`_quality_state` を checkpoint 中央管理・日境界の初期化は `_phase_relations_day`)。
+    テスト: `tests/test_endogenous_quality.py`。
+    mock 実測(432step・60体・quality+accept+invite+関係系 ON): 会話由来 magnitude 1601 件・
+    mean 1.255 / min 1.000 / max 1.875・中立(hedge 共起)18.7%・上限 clamp 到達 0%
+    (mock の発話は 1 文で短く長さ加点が飽和しないため。実LLM ではより長い発話=分布は上振れし得る)。
+  - **第64からの引き継ぎ(追加実装なし)**: source=weak_tie 起点の接触が tier 遷移に至る率は、
+    既存 L1 の `joint_invite.source` と `relation_tier`(other/tier/step)の事後突合で算出できる
+    (`analyze_weak_ties.py` の材料が揃っている)=新規実装は不要。
 
 ## 5. 本選判断
 
@@ -137,4 +163,7 @@ no-fingerprint走査外・mobility/gossipと同層)。conf `relations.endogenous
 - CRN in ABM(seedペア分散低減): arXiv:2409.02086 / Farine 2022(double permutation): 10.1111/2041-210X.13741
 - Windrum et al. 2007(calibration/validation分離): JASSS 10/2/8
 - Jackson & Wolinsky 1996(戦略的ネットワーク形成)/ triadic closure×homophily: 10.1126/sciadv.aax7310
+- フェーズ4(会話の質→関係の深化): Altman & Taylor 1973 社会的浸透理論 / Reis & Shaver 1988 対人過程
+  モデル(自己開示+応答性)/ Laurenceau, Barrett & Pietromonaco 1998 JPSP 74(5):1238-1251
+  (日誌法: 知覚された開示の**深さ**と応答性が当日の親密さを予測・事実より感情の開示が効く)
 - LLM社会シムの検証が中心課題: 10.1007/s10462-025-11412-6 / arXiv:2603.00113
