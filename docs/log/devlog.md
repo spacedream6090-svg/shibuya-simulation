@@ -145,3 +145,28 @@ C2会話の基幹経路として既存(物理近接hearers_of→meet_prob→reco
 - **PDF共有方法の提案**: 推奨=リポジトリ外のローカルフォルダ(例 Desktop\shared-refs\)に置きパスを共有
   (ReadツールでPDF直読可・公開ミラー混入リスク構造ゼロ)。Web入手可ならURLのみで可。Google Drive連携は
   未認証のため非推奨。
+
+---
+### Entry 58 — 2026-07-29 — 第1回全提出物の横断分析実行(PDF2本+31リポ・Opus5×8体・IDEA228件)
+ユーザー指示: Desktop\PDF資料の2本を参考に第1回の他参加者コード/リポを分析し、shibuya-simulationに
+活かせそうな点・技術的に面白い点を記録。記録物への知見はwebリサーチで補強。記録方法は柔軟に(1ファイル
+に押し込まない)。**途中指示: 調査内容は公開GitHubにコミットしない**。
+- **PDF**: report.pdf=匿名実践レポート「言葉が世界を動かすまで」(12人30日・Qwen3.5 4B・否定的結果の
+  正直な記録)を精読→pdf-notes.md(「LLM判断2回」設計ドリフト・文章/画面/因果の三分法・oracle=評価装置
+  自体の検証・not_reached区別・出自固定表)。はぐら氏kibo_crew_sim資料=画像15頁をPNG化しG4担当が全頁
+  視覚読解(リポより新しい事実上のREADME=Run3/4/5比較・行動プロファイル類型)。
+- **体制**: docs/research/hackathon1-analysis/ を新設(ハブREADME・00ルーブリック・01自チーム・02上位3・
+  teams/32本・ideas/8本・ideas-ledger統合台帳・pdf-notes)。Opus5サブ8体並列(自チーム/ルーブリック+未評価/
+  上位3/中位下位5グループ)・各チーム=講評+_eval_review+コード実査+スライド(fitz抽出orPNG視覚)+web
+  リサーチ(URL付き)。**IDEA総起票228件(★★★102/★★111/★15)**を機械抽出で索引化し台帳へ統合。
+- **主結論**(台帳T1-T7): ①C軸は総合点と最強相関r=0.942・自チームC-2.0はほぼ全量README将来展望不在=
+  文書で回収可能(上位3に唯一負けた軸もCのみ) ②A軸は防御軸・減点は「誘導が残る層の成果物への近さ」で
+  決まる→no-fingerprintのCI機械証明を提出物表層へ(31チーム中我々のみ可能) ③観測ギャップ=LLM成功率/
+  fallback率のL2系列が現行に無い(第1回「エラー率83.7%事後判明」+report.pdf「判断2回」と同じ穴)→健全性
+  KPI+watchdogゲート ④研究輸入品=未定義行動(enum外)計測=改変者の操作的定義候補(kibo)・規範化の言語
+  形式検出(lunar_sim)・LLM臨界質量が人間25%(Centola2018)より低い可能性(beyond-badminton 80%即時採用)・
+  初期個体差ゼロ対照(workplace)・初期フレーム共変量(kibo/mars固着)・ground_truth/rumorペア5分類(Alberia)
+  ⑤講評はリポのみ読んで採点(スライド不参照)→スライド情報のREADME/RESULTS回収が必須。
+- **公開防御**: publish_public_mirror.ps1の除去パスに docs/research/hackathon1-analysis を追加(filter-repo
+  --path+push前検証regex)=公開ミラーへ構造的に混入しない。PDF原本はリポ外のまま。実装・提出物への反映は
+  standing rule(実装前確認)に従い別途合意して着手。
