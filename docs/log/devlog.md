@@ -126,3 +126,22 @@ C2会話の基幹経路として既存(物理近接hearers_of→meet_prob→reco
 - 付随: private originへ120+コミットをpush(バックアップ同期)・メモリgithub-repo.mdを2本体制に更新・
   finals-gpu-application.md §3.7実施記録を追記。残タスク=ODPT規約原文の目視再確認(SPAで自動取得不能)・
   主催メモ節除外の一言確認(任意・ユーザーから)。
+
+---
+### Entry 57 — 2026-07-29 — 第1回ハッカソンAIレビューリポの実査+分析計画の提示
+ユーザー指示: ①ryukih/SD-Hackathon-Reviewer(2URLは同一リポ=旧名リダイレクト)をざっくり把握し分析計画を
+提示 ②社会シミュレーション関連の他者PDFの共有方法を提案。
+- **実査**: 第1回(2026-05-14)全提出のClaude自動採点リポ。40点ルーブリック(A創発設計/B世界設定/C発展性/
+  D技術実装・各10点・2回採点平均+独立再検証+検証総括)・評価md31組・スライドPDF・評価スキル定義
+  (.claude/skills/evaluate-submission/SKILL.md)・参照実装のみ収録(チーム本体コードはgitignore=各自の
+  公開リポリンクで辿る)。**shibuya-sim(syota/Aji)は4位35.0/40**(A9.0/B9.0/C8.0/D9.0=最弱軸C発展性)。
+  上位=lunar_agents 37.0・Project_Gaara 37.0・near-future-ai-society 36.0。ルーブリックA軸「生データのみ・
+  行動指示なし」は本プロジェクトのR9/no-fingerprintと同型=現行設計の強い追い風。
+- **分析計画(3フェーズ・実行はユーザー承認待ち)**: P1=自チーム講評精読→現行shibuya-simulationとの
+  解消状況対照表→未解消の本選タスク化(C軸減点理由の精査を最優先)。P2=ルーブリック逆算チェックリスト+
+  上位3作品との差分分析(eval根拠引用+スライド+必要なら公開リポのコード)。P3=全31評価の軸別分布・
+  頻出強み弱み語彙の横断集計。成果物=docs/research/hackathon1-review-analysis.md+本選提出物チェック
+  リスト。第2回が同一ルーブリックとは限らない旨の正直註記つき。
+- **PDF共有方法の提案**: 推奨=リポジトリ外のローカルフォルダ(例 Desktop\shared-refs\)に置きパスを共有
+  (ReadツールでPDF直読可・公開ミラー混入リスク構造ゼロ)。Web入手可ならURLのみで可。Google Drive連携は
+  未認証のため非推奨。
