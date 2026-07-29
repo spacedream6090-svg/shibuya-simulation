@@ -7,3 +7,17 @@
 **ライブエントリ数: 0 / 10**(Entry 61 から=継続採番)
 
 ---
+
+---
+### Entry 61 — 2026-07-29 — 第67バッチ: A1環境条件スキーマ+実высさ配線(レーン1第2波a・1808緑)
+- **実高さ**: scripts/build_heights.py→data/building_heights_shibuya.json(215KB・3,531棟・再生成バイト一致)。
+  world.heights(既定OFF)ONでCityMapが建物にheight_m/height_src付与(既定地図1,181棟=plateau971/levels210/不明0)。
+  高さ定義はheight−base(zmax−zmin)を採用=plateau_index.heightはground0基準頂部標高で坂上過大
+  (corr 0.681>0.628で裏付け)。属性付与のみ=消費者ゼロ(C0/B-L1が後続消費)・ON/OFFともL1バイト一致。
+- **world.mod**(既定OFF・profile=conf/worldmod/*.yaml): 反実仮想の条件パラメータ化。①edges_closed=既存closed
+  フラグ経由でrouting迂回(通過ゼロ実測)②edge_speed_scale=実効長写像でA*と移動予算の両方に効く
+  (cost_scaleでxy_alongが幾何位置を保持)③open_hours.cats=filter_open両向き④gate_capacity=予約フィールド
+  (現行に容量概念なし=未消費と正直明記)。summary.jsonにworld_mod 2キー(ON時のみ)。乱数ゼロ・R1契約明記。
+- 正直な限界: open_hoursのPOI単位未消費(commerce.is_open_poiがcat単位)・world.modとscenario.shock_closureは
+  併用不可(同じclosedフラグ共有)・speed_scale ON時はmove_segment.dist_mが走行コスト長になる(x,yは幾何位置)。
+- 検収(Fable): golden+draw数一致+新規36テスト+フル1808緑(251s)。検収59本再走緑。
