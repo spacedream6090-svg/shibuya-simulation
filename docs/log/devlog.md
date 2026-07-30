@@ -35,3 +35,26 @@
 - **レーン1総括**: 計画(twin-physics-vision-affordance-plan.md)の6バッチを同日完了(第66-69バッチ・
   1739→1846テスト)。全て既定OFF=本選10日ランへのリスクゼロで、A環境改変・C可視計算・D痕跡の器が仕込み済み。
   計画書ステータス更新。持ち越し=analyze_sweepへのllm_health接続・U-10承認(閾値+診断日数)・B-L1以降(レーン2/3)。
+
+---
+### Entry 63 — 2026-07-30 — DT統合計画+ハッカソンIDEA組込計画(Opus5×3調査→計画書2本・実装は承認待ち)
+ユーザー指示: ①企業DT/3Dシムとの組み合わせを大枠→深掘り→実装案まで ②第1回IDEAからシム組込で面白い/
+世界再現度が上がるものの分析と実装計画。
+- **調査**: Opus5×3=DT業界大枠(dt-landscape.md 446行)/技術深掘り=リポ照合つき(dt-integration-deep.md
+  822行)/IDEA選定=リポ照合つき(hackathon1-analysis/ideas-shortlist.md 28候補採点+上位8ミニ設計)。
+- **DT計画**(dt-integration-plan.md): 一般則=「一方向・事後」結合のみ原則と整合(リアルタイム同化は全て
+  非整合=差別化)・商用DTに「なぜ行くか」の内生層は不在・社会エージェント状態の交換標準は世界に存在しない
+  →「Digital Model」を正確に名乗る方が強い。優先順=P0軌跡バイナリ化(1万体1日でviewer90.4MB=ゲート超過・
+  UE10日9.8GBが前提で折れる)→P6追いかけ再生(flush_segmentのpart parquetを読むだけ=ライブ風・ドクトリン
+  無傷)→P5 SUMO反実仮想(信号A/B→edge_speed_scale注入=H_Bの実測供給)→P4' USD書き出しのみ→P7較正限定
+  同化→P1 Cesium/3D Tiles→P2 UE5(バージョン三竦み=PLATEAU SDK5.5.4/City Sample5.6+/MetaHuman5.8+
+  日本語パスビルドエラーに注意)。却下=Unity本体(歩道RnSideWalk非export→官製RoadNetwork-Generator+既製
+  歩行空間ネットワークで代替)・Isaac Sim本体(RTコア必須+本選GPU余剰ゼロ+CPU決定論POV既存)。
+- **IDEA計画**(hackathon1-ideas-implementation-plan.md): 28候補中8件実装済み/13部分/7新規。採用8=
+  ①エコー/自己反復の計測と伝播カウント除外(grep0件の完全な穴=他候補の前提)②未定義行動レジスタ+沈黙
+  第一級化(enum外をfallbackに捨てている→「行動空間の外へ出る個体」の操作的定義)③規範化ステージ4段+
+  命名者/制度化者分離(観測のみ・k*二層化なら論文級)④ゼロ対照+初期フレーム共変量⑤ダンバー維持コスト
+  ⑥場所二層知覚+館内放送⑦誤情報構造化(ground_truth/rumor・5分類・信念別チャネル)⑧健全性3点。
+  バッチ編成=第70(①②)第71(③④)第72(⑤)+本選後(⑥⑦)・計約11日・全て既定OFF。
+- 未決=DT-U1(P0/P6を本選前に入れるか=推奨入れる)・ID-U1(第70-71まで本選前=推奨)ほか。実装着手は
+  standing rule通りユーザー承認後。
