@@ -2,7 +2,7 @@
 
 > **更新プロトコル**: 実装バッチのコミットごとに必ず本ファイルを更新する(検収の一部)。
 > ここは「今どこにいるか」の一覧だけを持ち、詳細は各リンク先(計画書・devlog)が正典。
-> 最終更新: **2026-07-31**(第70バッチ検収完了・DT再提案提示済み・テスト **1876 緑**)
+> 最終更新: **2026-07-31**(第71バッチ検収完了・フルゲートは xdist 並列 4.5 分に是正・テスト **1902 緑**)
 
 ## 1. 実装済み(主要システムの現在地)
 
@@ -18,6 +18,7 @@
 | 実高さ・可視 | building_heights(3,531棟)・build_visibility(2.5D LOS 行列) | 第67-68 |
 | 場所の意味づけ | labeling.place_binding(造語の場所束縛→知覚1行) | 第69 |
 | エコー計測・未定義行動・沈黙 | observer.echo(L2 常設5列・enabled:false で退避可)+freedom.undefined_register / explicit_nothing(既定 OFF)・伝播 KPI のエコー除外は新列並記 | 第70 |
+| LLM 全文ジャーナル+REPLAY | model.journal(既定 ON・gz 11.5x=1万体10日≈1GB)・model.cache_mode: free/replay(fail-fast・フォールバック無し)・run_manifest.json(git SHA/config hash/全トグル) | 第71 |
 | 決定論・再現基盤 | RngHub named streams(68+)・CachedLLM(llm_cache.jsonl=応答の内容アドレスキャッシュ・D13)・golden L1 バイト一致・k非依存(controls.mode=compute_matched)・no-fingerprint | 恒常 |
 
 ## 2. 実装中・計画済み(統合実装順=確定・2026-07-31)
@@ -29,8 +30,8 @@ DT 系は [dt-integration-plan.md](docs/plans/dt-integration-plan.md)。
 | バッチ | 内容 | 状態 |
 |---|---|---|
 | 第70 | IDEA①エコー計測+②未定義行動レジスタ+沈黙 | **完了**(2026-07-31 検収済み・新30テスト) |
-| 第71 | LLM 入出力ジャーナル(プロンプト全文)+REPLAY fail-fast+run_manifest | **実装中**(S0 相乗りはユーザー判断待ち) |
-| 第72 | 機能レジストリ(repro_tier)+ランモード observe/journal/verify | 計画済み |
+| 第71 | LLM 入出力ジャーナル(プロンプト全文)+REPLAY fail-fast+run_manifest | **完了**(2026-07-31 検収済み・新26テスト。S0=入力来歴はユーザー承認後に manifest へ追補) |
+| 第72 | 機能レジストリ(repro_tier)+ランモード observe/journal/verify | **実装中** |
 | 第73 | 真偽台帳ミニマル(fact+信念+伝播木+検証行動+漏洩検査) | 計画済み |
 | 第74 | 規範化ステージ+coiner/institutionalizer+コホートタグ+ゼロ対照(IDEA③④+Part E1) | 計画済み |
 | 第75 | ダンバー維持コスト(IDEA⑤) | 計画済み |

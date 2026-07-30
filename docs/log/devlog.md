@@ -4,7 +4,7 @@
 > **プロトコル**: ユーザーとの1往復ごとに1エントリ追記。エントリが10に達したら圧縮して [devlog-compressed.md](./devlog-compressed.md) へ移し、本ファイルをリセット。設計の正典は [../design.md](../design.md)。
 > **圧縮履歴**: devlog-compressed.md(Block #0: プロトコル前史 / #1: ログ機構〜分野1-3 / #2: リサーチ完走〜決定アジェンダ / #3: D0-D17決定→P0実装→世界v2-v5 / #4: 生態系→docs完遂→現実ギャップ全波→第9バッチ / #5: ODPT実ダイヤ→制度深化完遂→自己モデル→現実較正→実LLM初証拠→日常プロファイル(第10〜14バッチ) / #6: 開放行動→世界解釈の観察→マルチモデル対応(第15〜24バッチ) / #7: 復元→git化→入力解像度LOD→分析スイート→制約デコード→自由度P2(第25〜34バッチ) / #8: EnvPack→PLATEAU実形状→第37バッチ6トラック→現実スケール転換(第35〜38バッチ) / #9: 同時滞在実測→全員思考転換→行間レイヤS1-S5(第38バッチW2) / #10: W2完結→視覚F→オントロジー多軸→物流・乗れる交通→並列ゲート(第38W2後半〜第43バッチ) / #11: 関係性→経済完結→観測レンズ→日常観察ABC→マクロ⇄ミクロズーム(第44〜58バッチ) / **#12: 精査3スライス→関係内生化→GitHub公開→第1回分析→4系統拡張始動(第59〜66バッチ)**)。全文アーカイブ: devlog-block6-fulltext.md / devlog-block7to9-fulltext.md / devlog-block10-fulltext.md / devlog-block11-fulltext.md / devlog-block12-fulltext.md。
 
-**ライブエントリ数: 8 / 10**(Entry 61 から=継続採番)
+**ライブエントリ数: 9 / 10**(Entry 61 から=継続採番)
 
 ---
 
@@ -145,3 +145,22 @@ Opus実装をFable検収(seam実査+フルゲート)。新規4ファイル(obser
 固定パス衝突なしを一度検証してから)。GPU非使用は設計: テストはmockバックエンド限定(R1検収=seedからの
 バイト一致検証に非決定な実LLMは混ぜられない)・シム本体は純Python世界演算でGPU向き行列計算なし・
 GPUの出番は本選vLLM推論のみ(世界=CPU・言語=GPU)。
+
+---
+### Entry 69 — 2026-07-31 — 第71バッチ検収: LLM全文ジャーナル+REPLAY fail-fast+run_manifest(1902緑・xdist並列常用開始)
+Opus実装をFable検収。新規3(llm/journal.py=LlmJournal・observer/manifest.py・test_llm_journal.py=26テスト)+5変更。
+- **ジャーナル**(model.journal既定ON): 全LLM呼び出しの{seq,key,rng_key,prompt全文,response,params,cached,backend}を
+  llm_journal.jsonl.gzへappend-only記録。multi-member gzip(128件/メンバ)=常に有効な.gz+メンバ境界が安全な
+  切り詰め点。resumeはcheckpointがmark()を保存しloadがos.truncateで巻き戻し=二重記録なし(straight一致テスト)。
+  indexサイドカーでcheckpoint無しクラッシュも自己修復。**シム本体に読み経路ゼロ**(iter_recordsの出現を静的固定)。
+- **REPLAY**(model.cache_mode: free既定/replay): ミスで即例外(rng_key+key16桁明示)・generate/generate_many両経路・
+  many はフェーズ1で生成前にfail・cache=false×replayは起動時エラー。**フォールバック不在を実査確認**。
+  T2=FREE→REPLAYでL1全627行一致・呼数38=38・REPLAY再走はhits==calls。T5=1行削除で即例外。
+- **run_manifest.json**(既定ON): git SHA・resolved config sha256(定義はcheckpoint.pyの1箇所を共有)・全トグル状態・
+  history(再構築の追記記録)。既定ON根拠=out_dir一覧を比較するテストはgrepゼロ+ON/OFFのL1バイト一致をテスト固定。
+- **容量実測**: gzip 11.5x。production相当でgz≈350-400B/呼→**1万体10日≈0.6-1.1GB**(計画§4の「数十GB級」懸念は解消・
+  snapshotを削る必要なし)。mockランタイム+5.6%・実LLMでは0.1%未満。zstd+辞書は将来の上積み(32KB窓律速)。
+- **検収**: seam実査(fail-fast/読み経路/巻き戻し)+フルゲートを**xdist -n auto で2回走=両方1902緑**(266s/277s・
+  Entry 68の是正を適用し直列70分→4.5分・緑数は実行役の5分割直列合計とも一致=並列安全性の初回検証完了)。
+- 限界の正直記録: 同一out_dir作り直しは追記(historyで判別・fresh時のみ行数==llm_calls)・クラッシュ損失窓=最終flush
+  以降128件・REPLAY再走のcached列はFREEと不一致(事実の記録)。→第72バッチ(機能レジストリ+ランモード)起動。
