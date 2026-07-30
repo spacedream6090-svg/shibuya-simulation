@@ -4,7 +4,7 @@
 > **プロトコル**: ユーザーとの1往復ごとに1エントリ追記。エントリが10に達したら圧縮して [devlog-compressed.md](./devlog-compressed.md) へ移し、本ファイルをリセット。設計の正典は [../design.md](../design.md)。
 > **圧縮履歴**: devlog-compressed.md(Block #0: プロトコル前史 / #1: ログ機構〜分野1-3 / #2: リサーチ完走〜決定アジェンダ / #3: D0-D17決定→P0実装→世界v2-v5 / #4: 生態系→docs完遂→現実ギャップ全波→第9バッチ / #5: ODPT実ダイヤ→制度深化完遂→自己モデル→現実較正→実LLM初証拠→日常プロファイル(第10〜14バッチ) / #6: 開放行動→世界解釈の観察→マルチモデル対応(第15〜24バッチ) / #7: 復元→git化→入力解像度LOD→分析スイート→制約デコード→自由度P2(第25〜34バッチ) / #8: EnvPack→PLATEAU実形状→第37バッチ6トラック→現実スケール転換(第35〜38バッチ) / #9: 同時滞在実測→全員思考転換→行間レイヤS1-S5(第38バッチW2) / #10: W2完結→視覚F→オントロジー多軸→物流・乗れる交通→並列ゲート(第38W2後半〜第43バッチ) / #11: 関係性→経済完結→観測レンズ→日常観察ABC→マクロ⇄ミクロズーム(第44〜58バッチ) / **#12: 精査3スライス→関係内生化→GitHub公開→第1回分析→4系統拡張始動(第59〜66バッチ)**)。全文アーカイブ: devlog-block6-fulltext.md / devlog-block7to9-fulltext.md / devlog-block10-fulltext.md / devlog-block11-fulltext.md / devlog-block12-fulltext.md。
 
-**ライブエントリ数: 0 / 10**(Entry 61 から=継続採番)
+**ライブエントリ数: 4 / 10**(Entry 61 から=継続採番)
 
 ---
 
@@ -58,3 +58,23 @@
   バッチ編成=第70(①②)第71(③④)第72(⑤)+本選後(⑥⑦)・計約11日・全て既定OFF。
 - 未決=DT-U1(P0/P6を本選前に入れるか=推奨入れる)・ID-U1(第70-71まで本選前=推奨)ほか。実装着手は
   standing rule通りユーザー承認後。
+
+---
+### Entry 64 — 2026-07-31 — 二重化指示書3本の受領+一次実査・STATUS.md(現況台帳)新設
+ユーザー指示: ①リポ直下の claude-code-instructions{,-instruments,-instruments 1}.md と
+~/Downloads/dual-mode-requirements.md を読む ②「計画のみ/実装済み/判断待ち」一覧の.mdを**リポ直下**に置き
+毎実装で更新 ③R1制約も柔軟に変更可としてよい。
+- **指示書の中身**: 観察/検証ランの二重化=FREE/REPLAY/STRICT 3モード・content-addressedキャッシュ・
+  ジャーナル(LLM入出力全文)・状態ハッシュチェーン・metrics_spec_hash・機能レジストリ(repro_tier=
+  strict/journal/none+ランモード自動取捨)・真偽台帳+信念/伝播木/検証行動(Part B最優先)・コホートタグ(Part E)・
+  アブレーション4種+env.variant_id。受入基準T1-T8。※instruments 1はinstrumentsと**バイト同一の重複**。
+- **一次実査(grep+cache.py読解)**: T8は現行で既に成立(src/にdatetime.now/グローバル乱数ゼロ)。
+  CachedLLM(D13)=content-addressed応答キャッシュ既存(llm_cache.jsonl・key=sha256(model+params+think+prompt))
+  だが**REPLAYのfail-fastとプロンプト全文の永続化が無い**(L1bはcall_id/agent/purpose/step/cachedのみ)。
+  world.mod≈env.variant_id(第67でほぼ実装済み)・Part E≈IDEA③④(第71バッチ計画と重複)・
+  Part B≈IDEA⑦だが**投入時期が衝突**(指示書=本選前必須 vs IDEA計画=本選後)。新規性が高いのは
+  機能レジストリ・状態ハッシュチェーン・metrics_spec_hash・ablate.llm_off/propagation_off/shuffle_partners。
+  日程の食い違い(指示書=本選8/8-8/23 vs 現行認識=8/15-8/30)は要ユーザー確認。
+- **STATUS.md新設**(リポ直下): §1実装済み/§2計画のみ/§3判断待ち(U-10・DT-U*・ID-U*・NEW-1〜3)/
+  §4 R1柔軟化の現況/§5受領文書の処遇。**毎バッチのコミット手順に更新を組み込む**(メモリ
+  status-ledger-protocol にも保存)。実装はNEW-1判断後(検証→統合計画→承認→着手のいつもの順)。
