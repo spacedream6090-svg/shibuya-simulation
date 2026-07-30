@@ -1,0 +1,179 @@
+# 開発ログ 全文アーカイブ — Block #13(Entries 61〜70・2026-07-29 〜 07-31)
+
+> [devlog.md](./devlog.md) のライブエントリ 61〜70 の全文退避(圧縮版は [devlog-compressed.md](./devlog-compressed.md) Block #13)。
+
+---
+
+---
+### Entry 61 — 2026-07-29 — 第67バッチ: A1環境条件スキーマ+実高さ配線(レーン1第2波a・1808緑)
+- **実高さ**: scripts/build_heights.py→data/building_heights_shibuya.json(215KB・3,531棟・再生成バイト一致)。
+  world.heights(既定OFF)ONでCityMapが建物にheight_m/height_src付与(既定地図1,181棟=plateau971/levels210/不明0)。
+  高さ定義はheight−base(zmax−zmin)を採用=plateau_index.heightはground0基準頂部標高で坂上過大
+  (corr 0.681>0.628で裏付け)。属性付与のみ=消費者ゼロ(C0/B-L1が後続消費)・ON/OFFともL1バイト一致。
+- **world.mod**(既定OFF・profile=conf/worldmod/*.yaml): 反実仮想の条件パラメータ化。①edges_closed=既存closed
+  フラグ経由でrouting迂回(通過ゼロ実測)②edge_speed_scale=実効長写像でA*と移動予算の両方に効く
+  (cost_scaleでxy_alongが幾何位置を保持)③open_hours.cats=filter_open両向き④gate_capacity=予約フィールド
+  (現行に容量概念なし=未消費と正直明記)。summary.jsonにworld_mod 2キー(ON時のみ)。乱数ゼロ・R1契約明記。
+- 正直な限界: open_hoursのPOI単位未消費(commerce.is_open_poiがcat単位)・world.modとscenario.shock_closureは
+  併用不可(同じclosedフラグ共有)・speed_scale ON時はmove_segment.dist_mが走行コスト長になる(x,yは幾何位置)。
+- 検収(Fable): golden+draw数一致+新規36テスト+フル1808緑(251s)。検収59本再走緑。
+
+---
+### Entry 62 — 2026-07-29 — 第68-69バッチ: C0可視行列基盤+D1場所の意味づけ最小版=レーン1全6バッチ完了(1846緑)
+- **C0(c894267)**: build_visibility.py=視点グリッド×広告面のO(n·m) 2.5D LOS(扇の要変換で視点×辺の一回
+  行列演算・frac 0/0.5/1・自建物除外・背面カリング・--heights/--dem/--chunk)。実測=500m四方33,249視点
+  ×12面1.7s/可視率4.83%・スケール検証1,331万ペア37.5s/RSS211MB・決定論2回走バイト一致。面スキーマ
+  visibility-faces-1.0見本(実測サイネージでない旨明記)。既存ファイル変更ゼロ・新20テスト。
+- **D1(df0c446)**: labeling.place_binding(既定OFF)=造語を発生ノードへ束縛→同所滞在者の熟慮プロンプトに
+  中立1行(min_adoptersゲート・決定論1語)。乱数消費ゼロ・呼数不変・checkpointはLabelSystem pickle既存経路で
+  追加配線不要と判明・resume全層一致。ONスモークで「ジリワサら化」の場所知覚行の実注入を捕捉。
+  限界=熟慮coin経路のみ・ノード粒度。新18テスト。
+- **レーン1総括**: 計画(twin-physics-vision-affordance-plan.md)の6バッチを同日完了(第66-69バッチ・
+  1739→1846テスト)。全て既定OFF=本選10日ランへのリスクゼロで、A環境改変・C可視計算・D痕跡の器が仕込み済み。
+  計画書ステータス更新。持ち越し=analyze_sweepへのllm_health接続・U-10承認(閾値+診断日数)・B-L1以降(レーン2/3)。
+
+---
+### Entry 63 — 2026-07-30 — DT統合計画+ハッカソンIDEA組込計画(Opus5×3調査→計画書2本・実装は承認待ち)
+ユーザー指示: ①企業DT/3Dシムとの組み合わせを大枠→深掘り→実装案まで ②第1回IDEAからシム組込で面白い/
+世界再現度が上がるものの分析と実装計画。
+- **調査**: Opus5×3=DT業界大枠(dt-landscape.md 446行)/技術深掘り=リポ照合つき(dt-integration-deep.md
+  822行)/IDEA選定=リポ照合つき(hackathon1-analysis/ideas-shortlist.md 28候補採点+上位8ミニ設計)。
+- **DT計画**(dt-integration-plan.md): 一般則=「一方向・事後」結合のみ原則と整合(リアルタイム同化は全て
+  非整合=差別化)・商用DTに「なぜ行くか」の内生層は不在・社会エージェント状態の交換標準は世界に存在しない
+  →「Digital Model」を正確に名乗る方が強い。優先順=P0軌跡バイナリ化(1万体1日でviewer90.4MB=ゲート超過・
+  UE10日9.8GBが前提で折れる)→P6追いかけ再生(flush_segmentのpart parquetを読むだけ=ライブ風・ドクトリン
+  無傷)→P5 SUMO反実仮想(信号A/B→edge_speed_scale注入=H_Bの実測供給)→P4' USD書き出しのみ→P7較正限定
+  同化→P1 Cesium/3D Tiles→P2 UE5(バージョン三竦み=PLATEAU SDK5.5.4/City Sample5.6+/MetaHuman5.8+
+  日本語パスビルドエラーに注意)。却下=Unity本体(歩道RnSideWalk非export→官製RoadNetwork-Generator+既製
+  歩行空間ネットワークで代替)・Isaac Sim本体(RTコア必須+本選GPU余剰ゼロ+CPU決定論POV既存)。
+- **IDEA計画**(hackathon1-ideas-implementation-plan.md): 28候補中8件実装済み/13部分/7新規。採用8=
+  ①エコー/自己反復の計測と伝播カウント除外(grep0件の完全な穴=他候補の前提)②未定義行動レジスタ+沈黙
+  第一級化(enum外をfallbackに捨てている→「行動空間の外へ出る個体」の操作的定義)③規範化ステージ4段+
+  命名者/制度化者分離(観測のみ・k*二層化なら論文級)④ゼロ対照+初期フレーム共変量⑤ダンバー維持コスト
+  ⑥場所二層知覚+館内放送⑦誤情報構造化(ground_truth/rumor・5分類・信念別チャネル)⑧健全性3点。
+  バッチ編成=第70(①②)第71(③④)第72(⑤)+本選後(⑥⑦)・計約11日・全て既定OFF。
+- 未決=DT-U1(P0/P6を本選前に入れるか=推奨入れる)・ID-U1(第70-71まで本選前=推奨)ほか。実装着手は
+  standing rule通りユーザー承認後。
+
+---
+### Entry 64 — 2026-07-31 — 二重化指示書3本の受領+一次実査・STATUS.md(現況台帳)新設
+ユーザー指示: ①リポ直下の claude-code-instructions{,-instruments,-instruments 1}.md と
+~/Downloads/dual-mode-requirements.md を読む ②「計画のみ/実装済み/判断待ち」一覧の.mdを**リポ直下**に置き
+毎実装で更新 ③R1制約も柔軟に変更可としてよい。
+- **指示書の中身**: 観察/検証ランの二重化=FREE/REPLAY/STRICT 3モード・content-addressedキャッシュ・
+  ジャーナル(LLM入出力全文)・状態ハッシュチェーン・metrics_spec_hash・機能レジストリ(repro_tier=
+  strict/journal/none+ランモード自動取捨)・真偽台帳+信念/伝播木/検証行動(Part B最優先)・コホートタグ(Part E)・
+  アブレーション4種+env.variant_id。受入基準T1-T8。※instruments 1はinstrumentsと**バイト同一の重複**。
+- **一次実査(grep+cache.py読解)**: T8は現行で既に成立(src/にdatetime.now/グローバル乱数ゼロ)。
+  CachedLLM(D13)=content-addressed応答キャッシュ既存(llm_cache.jsonl・key=sha256(model+params+think+prompt))
+  だが**REPLAYのfail-fastとプロンプト全文の永続化が無い**(L1bはcall_id/agent/purpose/step/cachedのみ)。
+  world.mod≈env.variant_id(第67でほぼ実装済み)・Part E≈IDEA③④(第71バッチ計画と重複)・
+  Part B≈IDEA⑦だが**投入時期が衝突**(指示書=本選前必須 vs IDEA計画=本選後)。新規性が高いのは
+  機能レジストリ・状態ハッシュチェーン・metrics_spec_hash・ablate.llm_off/propagation_off/shuffle_partners。
+  日程の食い違い(指示書=本選8/8-8/23 vs 現行認識=8/15-8/30)は要ユーザー確認。
+- **STATUS.md新設**(リポ直下): §1実装済み/§2計画のみ/§3判断待ち(U-10・DT-U*・ID-U*・NEW-1〜3)/
+  §4 R1柔軟化の現況/§5受領文書の処遇。**毎バッチのコミット手順に更新を組み込む**(メモリ
+  status-ledger-protocol にも保存)。実装はNEW-1判断後(検証→統合計画→承認→着手のいつもの順)。
+
+---
+### Entry 65 — 2026-07-31 — ユーザー全決定→統合実装順確定(第70-78)・第70着手・DT再提案調査開始
+ユーザー決定: 本選8/15-8/30確定(指示書8/8は誤り)・GPU申請/ODPT確認完了・NEW-1/NEW-3承認(検証→計画→実装)・
+ID-U1=ダンバーまで本選前・DT-U1=P0+P6本選前・DT-U4/ID-U2/ID-U3は推奨どおり・U-10タイミング委任・
+ファイル処遇委任・**観察ランは再現性を厳密に求めない方針**・実装順は Fable 決定に委任。
+- **DT定義の転換**(ユーザー): DT=「物理・地形・乗り物・天気/気温・人を現実のある時点でコピーし舞台にする
+  スナップショット。現実はシムの解像度を高めるデータ収集ツール。同期不要」→ DT-U3(用語)は廃止し
+  **スナップショット型DTとしての統合案の再導出**を Opus リサーチに投入(journal等級ならラン中実データ注入も
+  復活しうる=前回「決定論と非整合」で却下した選択肢の再検討が核心)。天候は weather.py で合成済み=実データ化候補。
+- **統合計画書** dual-mode-observe-verify-plan.md 作成: 検証結果=既成立(T8/キャッシュ/L1ジャーナル/world.mod
+  ≈variant_id/mock=STRICT相当)vs 欠け(REPLAY fail-fast・プロンプト全文永続化・レジストリ・Part B/E1・ablate・
+  hash chain・metrics_spec_hash)。訂正5点(日程・閾値検査は解析時へ・Part B=IDEA⑦統合・Part E=IDEA③④統合・
+  モード新造せず)。**統合順=第70(IDEA①②)→71(LLMジャーナル+REPLAY+manifest)→72(レジストリ+ランモード)→
+  73(真偽台帳ミニマル)→74(規範化+コホート)→75(ダンバー)→76-77(DT P0/P6)→78(ablate+hash chain+指標凍結
+  →U-10承認依頼8/12-14)**。観測点(失われるもの)優先=指示書の思想を維持。
+- 原指示書3本は docs/plans/source/ へ原文保存・重複1本削除。計画書2本のステータス行更新。
+  第70バッチ実装(Opus)と DT 再提案調査(Opus)をバックグラウンド起動。PUB-U1(公開ミラー.md除外+適宜同期)は
+  新規相談事項として STATUS §3 に登録。
+
+---
+### Entry 66 — 2026-07-31 — DTスナップショット再提案完成(調査1,177行→提案書・DT-S1判断待ち)
+Opus調査(dt-snapshot-reproposal-notes.md・出典URL付き・未確認事項は§3.6に正直列挙)をFableが検分し
+提案書 dt-snapshot-integration-proposal.md に統合。要点:
+- **切り取り機構は既存**(build_map.py --osm-date=Overpass attic query・osm_date=2025-04-01凍結済み・
+  start_date:auto/seed:autoの「ロード時1回解決」作法も既出)=再提案は発明でなく横展開。
+- **最大の空白は天候**: weather.pyの8月は合成(32,25,雨30%)±3℃で35℃出現率14.5%・36℃以上出現不可・
+  「連続する猛暑」が構造的に出せない。本選10日ラン(8/16-8/26)は2025年の都心10日連続猛暑日(8/18-8/27)と
+  ほぼ重なる=DT-S1(S3+S4=3.5-4.5日・第75/78と競合)として判断提起。
+- **journal等級で復活するのは一方向強制のみ**(状態同化は研究設計上の理由で不採用のまま)。推奨=案A(事前
+  materialization・strict)土台+本選は案B(日次+resume・journal)・案Cは案Bへ縮退(coreのネット出口はLLM1本維持)。
+- 用語問題(旧DT-U3)解消: Kritzinger分類は自動データフローの向きだけで決まる→案A=Digital Model・
+  案B=Digital Shadowと正確に自己記述。前回計画へ訂正2点反映(④は「状態同化のみ不採用」に限定・DT-U3廃止)。
+- 安価な穴5件(observe.yamlが広域地図/実ダイヤを読まない・バス表未生成・jinryu未接続・入力ハッシュ未記録・
+  opening_hoursが抽出で落ちている=生応答には在る)→S-quick(S0/S1/S2/S5/S9≈1.8日・S0は第71相乗り)として承認待ち。
+- 本選中にしか取れない消えるデータ(Metro CrowdNavi=5日保持・人口マップ=24h・WBGT=10/21終了)は取得運用のみ提案。
+- ライセンス地雷2件(商業施設/区サイト転載不可・OSM由来テーブルのODbL share-alike)をPUB-U1に接続。
+- 新判断事項: DT-S1(天候・選択肢a/b/c)・S-quick承認。第70バッチ(Opus)は実装続行中。
+
+---
+### Entry 67 — 2026-07-31 — 第70バッチ検収: エコー計測+未定義行動レジスタ+沈黙第一級化(1876緑)
+Opus実装をFable検収(seam実査+フルゲート)。新規4ファイル(observer/echo.py・silence.py・テスト2本=30テスト)+13変更。
+- **①エコー計測**(observer.echo=L2常設5列・enabled:falseで退避可): rolling 144step窓で文字n-gram Jaccardの
+  自己反復/伝播新規性を集計。伝播KPIのエコー除外は**新列並記**(ID-U3どおり既存列不変)。事後解析
+  echo_novelty(measure/stream両実装+パリティテスト)・analyze.pyにecho.json+report節・sweep/endo KPI接続。
+  常設化に伴いecho_stateをcheckpoint中央管理(resume L2一致に必須=第62 joint状態と同型のギャップを事前回避)。
+  adopt側の除外は「相異なる2人以上から聞いた採用」=n_label_adopt_novel(complex contagion本来の趣旨)。
+- **②未定義行動+沈黙**(freedom.undefined_register/explicit_nothing・既定OFF): enum外出力をfallbackから
+  undefined_actionイベントへ**排他振り分け**(保存則テスト済み・ON時はllm_fallback_rateが下がる=watchdog閾値
+  読み替え注意)。payload=動詞名+キー名+最初の文字列値(L1のどこにも無かった情報)。「何もしない」は
+  ON時のみプロンプト1行追加(open_actionsと同型seam)+stay{chosen_nothing}記録+L2 4列。
+- 検収実測: golden 6緑・resume 5緑・関連684緑→**フル1876緑**(70分・並行負荷下)。mockスモーク=OFF/ON L1
+  686行完全一致・呼数45=45・強制発火でfallback13→0/undefined0→13・沈黙ONでstay17件。
+- 限界の正直記録: mockではundefined不発火(enum内しか返さない)・エコーは字面ベース(意味的言い換え不可・
+  閾値0.6は感度分析対象)・unused_facility_rate未実装(施設台帳走査が別レイヤ)。
+- 申し送り処理: 事前登録ドラフトに「echo_max==1.000のランはk*推定から除外・崩壊ラン別掲」を追記(承認前変更自由の
+  範囲)。リポ直下h.txt(ユーザーの繁華街調査メモ)は未追跡のまま触れない。→第71バッチ(LLM全文ジャーナル+
+  REPLAY fail-fast+run_manifest)起動。
+
+---
+### Entry 68 — 2026-07-31 — フルゲート実行方法の是正(ユーザー指摘): 直列70分→xdist並列へ
+ユーザー質問「フルスイートはCPU並列でやらないの? GPUを使わない理由は?」→実査: pytest-xdist 3.8.0導入済み・
+20コア機なのに第70検収は素の直列実行(1876本/4,240s)。過去記録「1808緑251s」は逆算≈16倍速=並列走の数字で、
+今回は実行方法のミス。**以後のフルゲートは `-n auto` を標準とする**(導入時に直列既知結果との緑数一致+
+固定パス衝突なしを一度検証してから)。GPU非使用は設計: テストはmockバックエンド限定(R1検収=seedからの
+バイト一致検証に非決定な実LLMは混ぜられない)・シム本体は純Python世界演算でGPU向き行列計算なし・
+GPUの出番は本選vLLM推論のみ(世界=CPU・言語=GPU)。
+
+---
+### Entry 69 — 2026-07-31 — 第71バッチ検収: LLM全文ジャーナル+REPLAY fail-fast+run_manifest(1902緑・xdist並列常用開始)
+Opus実装をFable検収。新規3(llm/journal.py=LlmJournal・observer/manifest.py・test_llm_journal.py=26テスト)+5変更。
+- **ジャーナル**(model.journal既定ON): 全LLM呼び出しの{seq,key,rng_key,prompt全文,response,params,cached,backend}を
+  llm_journal.jsonl.gzへappend-only記録。multi-member gzip(128件/メンバ)=常に有効な.gz+メンバ境界が安全な
+  切り詰め点。resumeはcheckpointがmark()を保存しloadがos.truncateで巻き戻し=二重記録なし(straight一致テスト)。
+  indexサイドカーでcheckpoint無しクラッシュも自己修復。**シム本体に読み経路ゼロ**(iter_recordsの出現を静的固定)。
+- **REPLAY**(model.cache_mode: free既定/replay): ミスで即例外(rng_key+key16桁明示)・generate/generate_many両経路・
+  many はフェーズ1で生成前にfail・cache=false×replayは起動時エラー。**フォールバック不在を実査確認**。
+  T2=FREE→REPLAYでL1全627行一致・呼数38=38・REPLAY再走はhits==calls。T5=1行削除で即例外。
+- **run_manifest.json**(既定ON): git SHA・resolved config sha256(定義はcheckpoint.pyの1箇所を共有)・全トグル状態・
+  history(再構築の追記記録)。既定ON根拠=out_dir一覧を比較するテストはgrepゼロ+ON/OFFのL1バイト一致をテスト固定。
+- **容量実測**: gzip 11.5x。production相当でgz≈350-400B/呼→**1万体10日≈0.6-1.1GB**(計画§4の「数十GB級」懸念は解消・
+  snapshotを削る必要なし)。mockランタイム+5.6%・実LLMでは0.1%未満。zstd+辞書は将来の上積み(32KB窓律速)。
+- **検収**: seam実査(fail-fast/読み経路/巻き戻し)+フルゲートを**xdist -n auto で2回走=両方1902緑**(266s/277s・
+  Entry 68の是正を適用し直列70分→4.5分・緑数は実行役の5分割直列合計とも一致=並列安全性の初回検証完了)。
+- 限界の正直記録: 同一out_dir作り直しは追記(historyで判別・fresh時のみ行数==llm_calls)・クラッシュ損失窓=最終flush
+  以降128件・REPLAY再走のcached列はFREEと不一致(事実の記録)。→第72バッチ(機能レジストリ+ランモード)起動。
+
+---
+### Entry 70 — 2026-07-31 — 第72バッチ検収: 機能レジストリ175件+ランモード+比較ガード=R1柔軟化の本体(1932緑)
+- **registry.py**=conf boolリーフ170件を全網羅+非bool5件(k.writeback/controls.mode/model.cache_mode/
+  world.scenario/labeling.mode)。等級内訳 **strict146/journal27/none2**(none=transit_ride.live系のみ=外部プロセス
+  応答が我々のジャーナルに残らず事後再生手段が無い、を捏造せず正直登録)。affects_k=6件(generate呼び出し点の
+  直接変化のみ=間接効果はcompute_matchedの役目とdocstringに限界明記)。fingerprint_risk known=4(spark系)。
+- **run.mode**(既定none=apply_modeが同一オブジェクトを返す=1バイト不変を実査確認)/observe/journal/verify。
+  等級超過は自動OFF(deepcopy後に落とす・WARNING列挙・manifestへrun_mode/等級つきenabled/auto_disabled/
+  undeclared=[])。verify完走実測=journal/none28件を強制ONにしても全部落として321events完走=Part A(3)
+  「OFFで因果が壊れない」の実証。★意味的決定: planning/tools/rulesはjournal等級(LLM自由文が世界状態になる層)
+  →verifyモードは既定ONのこの3つを落とす=「世界を変える行為はseed再現できない」という正直な宣言。
+- 未宣言検出=全namespaceのboolリーフ走査(偽キーfail確認)=**新機能の宣言忘れが構造的に不可能**。
+  比較ガード=compare_runs/analyze_sweep/analyze_endo_treatmentにrun_mode+等級集合照合
+  (既定拒否・--allow-tier-mismatchで警告続行・manifest無し旧ランは不明警告のみ)。
+- 検収: apply_mode不変構造の実査+フルゲートxdist **1932緑**(279s・新30テスト)。残課題=観察ランprofileに
+  run.mode=observeを明示するか(第78/U-10のタイミングで整理)。→本エントリで10/10到達=Block #13圧縮実施。
