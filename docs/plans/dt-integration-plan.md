@@ -1,6 +1,9 @@
 # デジタルツイン(DT)/3Dシミュレーションとの統合計画
 
-> ステータス: **計画(実装未着手・ユーザー承認待ち)**。2026-07-30 作成。
+> ステータス: **一部承認・実装待ち行列**(2026-07-31: DT-U1 承認=P0+P6 を本選前=統合順の第76-77・
+> DT-U4=本選後先頭・DT-U2=保留。**DT-U3 はユーザーの「スナップショット型 DT」定義の提示により再提案タスクへ置換**
+> =観察ランは再現性を厳密に求めない方針も確定。再提案は docs/research/dt-snapshot-reproposal-notes.md(調査中)→
+> 提案書化)。2026-07-30 作成。
 > 根拠調査: [dt-landscape.md](../research/dt-landscape.md)(業界大枠・446行・全主張URL付き)+
 > [dt-integration-deep.md](../research/dt-integration-deep.md)(結合経路の技術深掘り・822行・リポ file:line 照合つき)。
 > 4系統拡張計画([twin-physics-vision-affordance-plan.md](twin-physics-vision-affordance-plan.md)・レーン1完了)の

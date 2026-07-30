@@ -2,7 +2,7 @@
 
 > **更新プロトコル**: 実装バッチのコミットごとに必ず本ファイルを更新する(検収の一部)。
 > ここは「今どこにいるか」の一覧だけを持ち、詳細は各リンク先(計画書・devlog)が正典。
-> 最終更新: **2026-07-31**(〜第69バッチ+計画書2本 f9e2049+二重化指示書の一次実査まで反映・テスト 1846 緑)
+> 最終更新: **2026-07-31**(ユーザー決定の反映+統合実装順の確定+第70バッチ着手・テスト 1846 緑)
 
 ## 1. 実装済み(主要システムの現在地)
 
@@ -11,7 +11,7 @@
 
 | 領域 | 内容(主なトグル) | バッチ |
 |---|---|---|
-| 世界基盤 | 渋谷実地図(PLATEAU/OSM)・実ダイヤ(ODPT)・日次 presence 名簿制・経済/制度/物流・現実較正(calibrate_report) | 〜第58 |
+| 世界基盤 | 渋谷実地図(PLATEAU/OSM)・実ダイヤ(ODPT)・日次 presence 名簿制・経済/制度/物流・天候(weather.py)・現実較正(calibrate_report) | 〜第58 |
 | 関係性の内生化 | 承諾/拒否の内生(relations_endo)・treatment 実験一式(endogenous_accept)・誘い相手の内生(endogenous_invite) | 第62-64 |
 | LLM 健全性 | fallback 率など L2 KPI・watchdog_llm・observer.llm_health 3列 | 第66/P0 |
 | 反実仮想の器 | world.mod = edges_closed / edge_speed_scale / open_hours(+gate_capacity 予約) | 第67 |
@@ -19,52 +19,51 @@
 | 場所の意味づけ | labeling.place_binding(造語の場所束縛→知覚1行) | 第69 |
 | 決定論・再現基盤 | RngHub named streams(68+)・CachedLLM(llm_cache.jsonl=応答の内容アドレスキャッシュ・D13)・golden L1 バイト一致・k非依存(controls.mode=compute_matched)・no-fingerprint | 恒常 |
 
-## 2. 計画のみ(未実装)
+## 2. 実装中・計画済み(統合実装順=確定・2026-07-31)
 
-| 計画 | 内容 | 状態 |
+正典: [dual-mode-observe-verify-plan.md](docs/plans/dual-mode-observe-verify-plan.md) §2。
+IDEA 系の詳細は [hackathon1-ideas-implementation-plan.md](docs/plans/hackathon1-ideas-implementation-plan.md)、
+DT 系は [dt-integration-plan.md](docs/plans/dt-integration-plan.md)。
+
+| バッチ | 内容 | 状態 |
 |---|---|---|
-| [DT統合](docs/plans/dt-integration-plan.md) | P0 軌跡バイナリ化→P6 追いかけ再生→P5 SUMO→P4' USD→P7→P1 3D Tiles→P2 UE5 | **承認待ち**(DT-U1) |
-| [第1回IDEA組込](docs/plans/hackathon1-ideas-implementation-plan.md) | 第70(エコー計測+未定義行動+沈黙)→第71(規範化ステージ+ゼロ対照)→第72(ダンバー)→本選後(場所二層知覚・誤情報構造化) | **承認待ち**(ID-U1) |
-| [4系統拡張レーン2/3](docs/plans/twin-physics-vision-affordance-plan.md) | B-L1 歩行者ネットワーク以降・C1 広告接触・D2 以降 | レーン1完了・レーン2以降未着手 |
-| [非定常性の事前登録](docs/plans/stationarity-preregistration.md) | 閾値+診断ラン日数+10日ラン解釈方針 | **U-10 承認待ち** |
-| 観察/検証ランの二重化(新着) | FREE/REPLAY/STRICT・機能レジストリ(repro_tier)・真偽台帳・コホートタグ ほか(§5) | **受領のみ・検証/計画化前** |
-| 持ち越し小粒 | analyze_sweep への llm_health 3列接続・SFM 推奨 param 昇格・D16 屋内 ON・D17 実験 | 未着手 |
+| 第70 | IDEA①エコー計測+②未定義行動レジスタ+沈黙 | **実装中**(Opus 実行役・バックグラウンド) |
+| 第71 | LLM 入出力ジャーナル(プロンプト全文)+REPLAY fail-fast+run_manifest | 計画済み |
+| 第72 | 機能レジストリ(repro_tier)+ランモード observe/journal/verify | 計画済み |
+| 第73 | 真偽台帳ミニマル(fact+信念+伝播木+検証行動+漏洩検査) | 計画済み |
+| 第74 | 規範化ステージ+coiner/institutionalizer+コホートタグ+ゼロ対照(IDEA③④+Part E1) | 計画済み |
+| 第75 | ダンバー維持コスト(IDEA⑤) | 計画済み |
+| 第76-77 | DT P0 軌跡バイナリ化 → P6 追いかけ再生 | 計画済み(DT-U1 承認) |
+| 第78 | ablate 4種+状態ハッシュチェーン+metrics_spec_hash+指標凍結→U-10 承認依頼 | 計画済み(遅延時は ablate を本選前半へスリップ可) |
+| 並行 | DT スナップショット再提案(ユーザー定義に基づく再導出) | **調査中**(Opus リサーチ・バックグラウンド)→提案書化 |
+| 本選後 | 場所二層知覚(IDEA⑥)・誤情報構造化フル版(IDEA⑦=ID-U2)・SUMO 反実仮想(P5)・USD/3D Tiles(DT-U4)・UE5(DT-U2 保留) | レーン3 |
+| 持ち越し小粒 | analyze_sweep への llm_health 3列接続・SFM 推奨 param 昇格・D16 屋内 ON・D17 実験・4系統レーン2(B-L1 以降) | 未着手 |
 
 ## 3. ユーザー判断待ち
 
-| # | 事項 | 推奨 |
+| # | 事項 | 状態 |
 |---|---|---|
-| U-10 | 事前登録の閾値承認+診断ラン日数+「10日ラン=burn-in 内」の解釈方針 | 提案済み(過渡期観察と明示) |
-| DT-U1 | P0+P6(2.5-3.5日)を本選前に入れるか | 入れる |
-| DT-U2 | UE5 デモ動画を提出物に使うか | 保留(本選中判断) |
-| DT-U3 | 「Digital Model(一方向・事後)」の用語採用 | 採用 |
-| DT-U4 | 3D Tiles / USD 書き出しの優先度 | 本選後先頭 |
-| ID-U1 | 本選前は IDEA 第70-71 まで(≈4.5日)か第72まで含めるか | 第70-71 まで |
-| ID-U2 | 誤情報構造化の設計レビュー時期 | 本選後先頭(設計文書のみ先行可) |
-| ID-U3 | エコー除外を既存 KPI の既定にするか | 新列並記(既存列不変) |
-| NEW-1 | 二重化指示書(§5)の採否と範囲・IDEA/DT 計画との優先順位統合 | 検証→統合計画を先に作る |
-| NEW-2 | 指示書の想定日程「本選 8/8-8/23・8/8 締切」と現行認識「本選 8/15-8/30・GPU申請 8/9」の食い違い | 要ユーザー確認 |
-| NEW-3 | R1 制約の柔軟化(repro_tier 3等級+ランモード observe/journal/verify)を採用するか | 採用寄りで検証 |
-| (ユーザー側) | GPU 申請フォーム(締切 8/9)・ODPT 規約の目視確認 | — |
+| U-10 | 事前登録の閾値承認+10日ラン解釈方針 | タイミング委任済み(2026-07-31)→**第74 完了後〜第78 で承認依頼**(10日ラン 8/16 開始前) |
+| PUB-U1 | 公開ミラーの .md 除外範囲+「実装を適宜 public にコミット」の運用 | **要相談**(ユーザー発意 2026-07-31)。推奨: docs/**・STATUS.md を除外し README/ETHICS/LICENSE は残す・以後は各バッチ後に publish_public_mirror.ps1 を同期実行 |
+| DT-U2 | UE5 デモ動画 | 保留のまま(本選中判断) |
+
+### 決定済み(2026-07-31・履歴)
+NEW-2=本選 **8/15–8/30 で確定**(指示書の 8/8 は誤り)/GPU 申請・ODPT 規約確認=ユーザー側完了/
+NEW-1・NEW-3=承認(検証→計画→実装。R1 柔軟化は repro_tier 方式を採用)/ID-U1=**第72(ダンバー=現第75)まで本選前**/
+DT-U1=P0+P6 を本選前に実施/DT-U3=用語問題はユーザーの「スナップショット型 DT」定義の提示により**再提案タスクに置換**
+(観察ランは再現性を厳密に求めない方針も同時に確定)/DT-U4=本選後先頭/ID-U2=フル版は本選後(設計文書は先行可)/
+ID-U3=エコー除外は新列並記(既存列不変)/指示書ファイルの処遇=Fable 委任→docs/plans/source/ へ保存・重複1本削除。
 
 ## 4. 設計制約(R1 ドクトリン)の現況と柔軟化
 
-現行の恒常制約: ①新機能は既定 OFF ②既定 OFF で golden L1 バイト一致 ③k 非依存(LLM 呼数が世界を変えない)
-④no-fingerprint ⑤用途別乱数 stream ⑥観測がシムを変えない。
-これらは物理法則ではなく**現行ポリシー**。二重化指示書は「再現性を機能ごとの宣言属性
-(repro_tier = strict / journal / none)にし、ランモードで自動取捨する」柔軟化を提案しており(NEW-3)、
-採用すれば「観察ランは全部盛り・検証ランは strict のみ」が構造的に両立する。
+現行の恒常制約: ①新機能は既定 OFF ②既定 OFF で golden L1 バイト一致 ③k 非依存 ④no-fingerprint
+⑤用途別乱数 stream ⑥観測がシムを変えない。
+**2026-07-31 の方針確定**: 観察ラン(本選 10 日)は再現性を厳密に求めず、repro_tier=journal/none の機能も投入可。
+検証ラン(verify)は strict のみ。この二重化を第72(機能レジストリ+ランモード)で構造化する。
+既定値は現行動作のまま=golden 資産は verify 側の検収装置として恒久維持。
 
-## 5. 受領済み・計画化前の文書(2026-07-31 受領)
+## 5. 受領文書の処遇(2026-07-31 確定)
 
-| ファイル | 内容 | 処遇 |
-|---|---|---|
-| claude-code-instructions.md(リポ直下・未追跡) | 二重化 Phase 0-2(記録と再生・対照条件・完全決定論化・T1-T8) | 検証→計画化後に吸収・削除予定 |
-| claude-code-instructions-instruments.md(同) | 機能フラグ Part A〜G(レジストリ・真偽台帳・語彙帰無・認知階層・円環の閉じ・環境差分・指標凍結) | 同上 |
-| claude-code-instructions-instruments 1.md(同) | 上とバイト同一の重複 | 削除候補(要ユーザー確認) |
-| ~/Downloads/dual-mode-requirements.md(リポ外) | 上2本の要件定義版(FREE/REPLAY/STRICT の根拠) | リポ外のまま参照 |
-
-一次実査メモ(2026-07-31): T8(実時刻・グローバル乱数の不在)は**現行で既に成立**。
-CachedLLM は content-addressed 応答キャッシュとして既存だが、**REPLAY の fail-fast モードとプロンプト全文の
-永続化が無い**。world.mod≈env.variant_id、Part E≈IDEA③④、Part B≈IDEA⑦(投入時期が指示書=本選前必須 vs
-IDEA 計画=本選後で**衝突**)。新規性が高いのは機能レジストリ・状態ハッシュチェーン・metrics_spec_hash。
+二重化指示書は [docs/plans/source/](docs/plans/source/) に原文保存(dual-mode-instructions / dual-mode-instruments /
+dual-mode-requirements)。リポ直下の原本3本は移動・バイト同一重複1本(instruments 1)は削除。
+検証済みの統合計画は [dual-mode-observe-verify-plan.md](docs/plans/dual-mode-observe-verify-plan.md) が正典。
