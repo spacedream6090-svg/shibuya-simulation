@@ -4,7 +4,7 @@
 > **プロトコル**: ユーザーとの1往復ごとに1エントリ追記。エントリが10に達したら圧縮して [devlog-compressed.md](./devlog-compressed.md) へ移し、本ファイルをリセット。設計の正典は [../design.md](../design.md)。
 > **圧縮履歴**: devlog-compressed.md(Block #0: プロトコル前史 / #1: ログ機構〜分野1-3 / #2: リサーチ完走〜決定アジェンダ / #3: D0-D17決定→P0実装→世界v2-v5 / #4: 生態系→docs完遂→現実ギャップ全波→第9バッチ / #5: ODPT実ダイヤ→制度深化完遂→自己モデル→現実較正→実LLM初証拠→日常プロファイル(第10〜14バッチ) / #6: 開放行動→世界解釈の観察→マルチモデル対応(第15〜24バッチ) / #7: 復元→git化→入力解像度LOD→分析スイート→制約デコード→自由度P2(第25〜34バッチ) / #8: EnvPack→PLATEAU実形状→第37バッチ6トラック→現実スケール転換(第35〜38バッチ) / #9: 同時滞在実測→全員思考転換→行間レイヤS1-S5(第38バッチW2) / #10: W2完結→視覚F→オントロジー多軸→物流・乗れる交通→並列ゲート(第38W2後半〜第43バッチ) / #11: 関係性→経済完結→観測レンズ→日常観察ABC→マクロ⇄ミクロズーム(第44〜58バッチ) / **#12: 精査3スライス→関係内生化→GitHub公開→第1回分析→4系統拡張始動(第59〜66バッチ)**)。全文アーカイブ: devlog-block6-fulltext.md / devlog-block7to9-fulltext.md / devlog-block10-fulltext.md / devlog-block11-fulltext.md / devlog-block12-fulltext.md。
 
-**ライブエントリ数: 6 / 10**(Entry 61 から=継続採番)
+**ライブエントリ数: 7 / 10**(Entry 61 から=継続採番)
 
 ---
 
@@ -116,3 +116,23 @@ Opus調査(dt-snapshot-reproposal-notes.md・出典URL付き・未確認事項�
 - 本選中にしか取れない消えるデータ(Metro CrowdNavi=5日保持・人口マップ=24h・WBGT=10/21終了)は取得運用のみ提案。
 - ライセンス地雷2件(商業施設/区サイト転載不可・OSM由来テーブルのODbL share-alike)をPUB-U1に接続。
 - 新判断事項: DT-S1(天候・選択肢a/b/c)・S-quick承認。第70バッチ(Opus)は実装続行中。
+
+---
+### Entry 67 — 2026-07-31 — 第70バッチ検収: エコー計測+未定義行動レジスタ+沈黙第一級化(1876緑)
+Opus実装をFable検収(seam実査+フルゲート)。新規4ファイル(observer/echo.py・silence.py・テスト2本=30テスト)+13変更。
+- **①エコー計測**(observer.echo=L2常設5列・enabled:falseで退避可): rolling 144step窓で文字n-gram Jaccardの
+  自己反復/伝播新規性を集計。伝播KPIのエコー除外は**新列並記**(ID-U3どおり既存列不変)。事後解析
+  echo_novelty(measure/stream両実装+パリティテスト)・analyze.pyにecho.json+report節・sweep/endo KPI接続。
+  常設化に伴いecho_stateをcheckpoint中央管理(resume L2一致に必須=第62 joint状態と同型のギャップを事前回避)。
+  adopt側の除外は「相異なる2人以上から聞いた採用」=n_label_adopt_novel(complex contagion本来の趣旨)。
+- **②未定義行動+沈黙**(freedom.undefined_register/explicit_nothing・既定OFF): enum外出力をfallbackから
+  undefined_actionイベントへ**排他振り分け**(保存則テスト済み・ON時はllm_fallback_rateが下がる=watchdog閾値
+  読み替え注意)。payload=動詞名+キー名+最初の文字列値(L1のどこにも無かった情報)。「何もしない」は
+  ON時のみプロンプト1行追加(open_actionsと同型seam)+stay{chosen_nothing}記録+L2 4列。
+- 検収実測: golden 6緑・resume 5緑・関連684緑→**フル1876緑**(70分・並行負荷下)。mockスモーク=OFF/ON L1
+  686行完全一致・呼数45=45・強制発火でfallback13→0/undefined0→13・沈黙ONでstay17件。
+- 限界の正直記録: mockではundefined不発火(enum内しか返さない)・エコーは字面ベース(意味的言い換え不可・
+  閾値0.6は感度分析対象)・unused_facility_rate未実装(施設台帳走査が別レイヤ)。
+- 申し送り処理: 事前登録ドラフトに「echo_max==1.000のランはk*推定から除外・崩壊ラン別掲」を追記(承認前変更自由の
+  範囲)。リポ直下h.txt(ユーザーの繁華街調査メモ)は未追跡のまま触れない。→第71バッチ(LLM全文ジャーナル+
+  REPLAY fail-fast+run_manifest)起動。
