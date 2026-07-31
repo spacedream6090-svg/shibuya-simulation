@@ -2,7 +2,7 @@
 
 > **更新プロトコル**: 実装バッチのコミットごとに必ず本ファイルを更新する(検収の一部)。
 > ここは「今どこにいるか」の一覧だけを持ち、詳細は各リンク先(計画書・devlog)が正典。
-> 最終更新: **2026-07-31**(**第78バッチ検収完了=統合実装順 第70〜78 全9バッチ完結**・テスト **2150 緑**・U-10 承認パッケージ提示済み)
+> 最終更新: **2026-08-01**(第79=毎分レート化+天候W1 検収完了・テスト **2231 緑**・認知プログラム実装中)
 
 ## 1. 実装済み(主要システムの現在地)
 
@@ -26,6 +26,8 @@
 | DT P0 軌跡バイナリ化 | --tracks-binary(既定 OFF=既存出力バイト同一 31/31)= int16×0.05m 量子化+状態パレット+chunk sidecar 遅延ロード。viewer3d 86.1MiB→**24.7MiB(ラン長非依存)**・sim_ue 10日 0.23GB | 第76 |
 | P6 追いかけ再生 | scripts/live_viewer.py(読み取り専用別プロセス・src ゼロタッチ)= part parquet 増分読み→ライブ風 HTML(_live/・JSONP差し替え)。**Windows 共有フラグ事故を発見修正**(読み中 unlink で本体 finalize が落ちる→SHARE_DELETE で開く) | 第77 |
 | ablate 4種+検証装置 | ablate.llm_off / propagation_off(内容のみ遮断・捏造なし・fingerprint_risk=known 宣言・呼数差+1.6%=間接経路のみ)/ cognitive_tier / shuffle_partners(always-draw)・observer.state_hash(チェーン・T1/T6)・metrics_spec_hash(14ファイル・T7)・analyze_specialization.py(propagation_off 差分でのみ主張) | 第78 |
+| Δt 不変化 | run.dt_min(既定10=構造分岐で1バイト不変・1440の約数強制)・timeconv.py=分類テーブル130キー(rate13/prob26/steps31/invariant60・棚卸し全載 CI)・Δt=5/1 スモーク済み | 第79 |
+| 天候生成器(前半) | 気象庁東京8月930日凍結(data/snapshot/・同梱可ライセンス確認)+較正済み生成器 params(猛暑連長 KS p=0.97・年効果項が鍵)。weather.py 統合=W2 実装中 | 天候W1 |
 | 決定論・再現基盤 | RngHub named streams(68+)・CachedLLM(llm_cache.jsonl=応答の内容アドレスキャッシュ・D13)・golden L1 バイト一致・k非依存(controls.mode=compute_matched)・no-fingerprint | 恒常 |
 
 ## 2. 実装中・計画済み(統合実装順=確定・2026-07-31)
