@@ -2,7 +2,7 @@
 
 > **更新プロトコル**: 実装バッチのコミットごとに必ず本ファイルを更新する(検収の一部)。
 > ここは「今どこにいるか」の一覧だけを持ち、詳細は各リンク先(計画書・devlog)が正典。
-> 最終更新: **2026-08-01**(第80=観測チャンネル+σ実測 検収完了・テスト **2302 緑**・P2 選定はユーザー承認待ち)
+> 最終更新: **2026-08-01**(第81=閾値発火+同期バリア 検収完了・テスト **2348 緑**・P2 選定はユーザー承認待ち)
 
 ## 1. 実装済み(主要システムの現在地)
 
@@ -29,6 +29,7 @@
 | Δt 不変化 | run.dt_min(既定10=構造分岐で1バイト不変・1440の約数強制)・timeconv.py=分類テーブル130キー(rate13/prob26/steps31/invariant60・棚卸し全載 CI)・Δt=5/1 スモーク済み | 第79 |
 | 天候生成器 | weather.mode: synthetic(既定=不変)/ generated(較正生成器・"weather_gen" stream 一括生成=strict・resume 一致)/ table(実日付表引き)。10日窓でも10連猛暑到達可・来歴 sha256 を summary/manifest へ・**cal_day の checkpoint 欠落バグ(resume で weather 二重記録)を発見修正** | 天候W1-W2 |
 | 観測チャンネル+σ | cognition.channels(既定 OFF・ON でも L1 不変=サイドカーのみ)= 14チャンネル(外界5/身体8/予測不成立1=第81枠)・measure_sigma.py→data/calib/sigma_c.json 凍結(σ=0 は床でなく除外)・較正テーブル外部化(provisional 宣言)・precision weighting+イベント分節理論の文献根拠 | 第80 |
+| 閾値発火+同期バリア | cognition.fire(既定 OFF)= 認知イベントキュー((時刻,agent_id) 全順序)・発火源4種(periodic/salience/internal/social=会話・内省の第一級化)・単一作用点=_phase_drive の requesters 決定→**後方互換は厳密バイト一致**・T1 完了順序不変(workers=4 実並行含む)・T2 発火オラクル・S 寄与内訳を cog_fire に記録 | 第81 |
 | 決定論・再現基盤 | RngHub named streams(68+)・CachedLLM(llm_cache.jsonl=応答の内容アドレスキャッシュ・D13)・golden L1 バイト一致・k非依存(controls.mode=compute_matched)・no-fingerprint | 恒常 |
 
 ## 2. 実装中・計画済み(統合実装順=確定・2026-07-31)
