@@ -25,6 +25,7 @@
 
 意外な発見(先出し):
 1. **10日ランの3D再生は現行パイプラインでは物理的に無理**。10,000体×1日 で `tracks.json` 65.8MB / `viewer3d.html` **90.4MB(既に 80MB ゲート超過)**。10日は単純外挿で ~660MB / ~900MB(§1.3)。UE 経路も同じで `sim_ue.json` は **10,000体×10日 ≈ 9.8GB**(§1.2)。**3D の話をする前にここが折れる**。
+   **【訂正 2026-07-31・第76バッチ実測】** §1.2 の基準ラン `demo_event_200a3d` は 200体×**432step**(本文の 144step は誤り)のため 684 B/agent-step は**3倍過大**。実測は 228 B/agent-step(1万体スケールでは 61.7 B)で、**10日 JSON は ≈0.89GB**。「JSON では不可能」という結論は不変。P0 実装後はバイナリで **viewer3d.html 24.7MiB(ラン長非依存)/ sim_ue 0.23GB**。
 2. **「ライブっぽさ」はもう配線されている**。`ObserverLogger.flush_segment()` が checkpoint 毎に `l1_events.part-NNNN.parquet` を書き、finalize で結合して消す(`src/society/observer/logger.py:116-131,155-177`)。ラン中にこの part を読むだけで、シムに指一本触れずに「追いかけ再生」が成立する(§7.3)。
 3. **GPU レンダは決定論と非互換、という判断が既にリポに刻まれている**(`viz/render_pov.py:1-16`)。Isaac Sim を研究主経路に置けない理由は外部事情ではなく**自分の設計原則**である。加えて **Isaac Sim 6.0 は「RT コアの無い GPU(A100, H100)は非対応」と公式に明記**(§5.5)。
 4. **SUMO 側に「交通DT」の材料が既に全部ある**(net 5,575エッジ・OD・fcd・**実 SUMO 同 seed バイト一致のライブ連成**)。P5 は新規実装ではなく「既存 2 本の配線」に近い。しかも **CARLA↔SUMO の TraCI ロックステップこそが交通DTの業界標準パターン**で、我々は既にそれをやっている(§5.7)。
@@ -63,6 +64,7 @@
   **= 書き出し側は動くが、UE 側は 1 行も書かれていない/1 度も動いていない。**
 - **書き出し側は実際に走っている**(実測): `runs/demo_event_200a3d/scene3d/sim_ue.json` **19.7 MB**(200体×144step)、`runs/eco80_3day/scene3d/sim_ue.json` **10.1 MB** + `sim_ue.csv` 1.15 MB(80体×3日)。
   → **1 agent-step あたり ≈ 684 B**。**10,000体×10日 = 14.4M agent-step ≈ 9.8 GB** の JSON。`FJsonSerializer` に食わせる話にならない。**P0(バイナリ化)は UE 経路でも必須**。
+  **【訂正 2026-07-31】** 基準ランは 200体×**432step**(144 は誤記)なので正しくは **228 B/agent-step・10日 ≈ 0.89GB**(1万体実測 61.7 B/agent-step)。結論(バイナリ化必須)は不変。
 - **テストが無い**: `tests/` に `export_ue` / `sim_ue` を参照するテストはゼロ(`test_export3d.py` のみ)。
 - **人・車は `/Engine/BasicShapes` のシリンダとキューブ**(`viz/unreal/import_shibuya_sim.py:38-45`)。City Sample の群衆アセットや MetaHuman は**一切使っていない**。README_UE の「フォトリアル」は **PLATEAU 建物 + Lumen の話**であって群衆の話ではない。
 
@@ -335,7 +337,7 @@ Cesium にしても UE にしても、**軌跡の運搬形式は同じ問題を�
 
 ### 3B.12 UE 経路でも P0(バイナリ化)は必須
 
-`sim_ue.json` の実測(§1.2)から **684 B/agent-step**。
+`sim_ue.json` の実測(§1.2)から **684 B/agent-step**(【訂正 2026-07-31】正しくは 228 B/agent-step=§1.2 の訂正参照。以下の 9.8GB は 0.89GB と読み替え)。
 - 200体×1日 = 19.7 MB(OK)
 - 1,000体×1日 ≈ 98 MB(BeginPlay のパースが数十秒)
 - **10,000体×10日 ≈ 9.8 GB(不可能)**
