@@ -45,7 +45,8 @@ DT 系は [dt-integration-plan.md](docs/plans/dt-integration-plan.md)。
 | 第76 | DT P0 軌跡バイナリ化 | **完了**(2026-07-31 検収済み・新27テスト。ブラウザ実機の目視は未=成果物パスあり) |
 | 第77 | DT P6 追いかけ再生 | **完了**(2026-07-31 検収済み・新37テスト) |
 | 第78 | ablate 4種+状態ハッシュチェーン+metrics_spec_hash+指標凍結 | **完了**(2026-07-31 検収済み・新63テスト)=**統合実装順 9/9 完結**(T1〜T8 全達成) |
-| 次 | 観察ラン ON 構成の提案(run.mode=observe・beliefs/norm_stage/undefined 等の推奨 ON セット・dunbar×pool 幅) | **提案準備中**(プロファイル変更はユーザー承認後) |
+| 第79-86(案) | **認知(驚き駆動)・時間三層・物理スタブ**([cognition-physics-plan.md](docs/plans/cognition-physics-plan.md))= 毎分レート化→σ実測→閾値発火+同期バリア→watch spec+g/θ+F/N/P→θ較正→環境FB 3規則→Perception契約→physics.zones スタブ | **計画ドラフト・NEW-4 承認待ち**(物理エンジン本体は本選後=設計記録 §7 と dt-alignment §6 が支配) |
+| 次 | 観察ラン ON 構成の提案(run.mode=observe・beliefs/norm_stage/undefined 等の推奨 ON セット・dunbar×pool 幅) | **提案準備中**(プロファイル変更はユーザー承認後・第79系の採否と一体) |
 | 並行 | DT スナップショット再提案 | **提案書提示済み**([dt-snapshot-integration-proposal.md](docs/plans/dt-snapshot-integration-proposal.md))→ DT-S1 ほか判断待ち |
 | 本選後 | 場所二層知覚(IDEA⑥)・誤情報構造化フル版(IDEA⑦=ID-U2)・SUMO 反実仮想(P5)・USD/3D Tiles(DT-U4)・UE5(DT-U2 保留) | レーン3 |
 | 持ち越し小粒 | analyze_sweep への llm_health 3列接続・SFM 推奨 param 昇格・D16 屋内 ON・D17 実験・4系統レーン2(B-L1 以降)・**exit_building の node 張り替えと _apply_free_action/_route_to の整合調査**(第73実行役が発見した潜在バグ疑い・スコープ外として未着手)・**pool dehydrate の関係台帳20件切りと dunbar 休眠の相互作用**(pool ON では休眠が再会前に消えやすい=本選で dunbar ON にするなら要検討・第75実行役の実測)・**3D エクスポータ側のメモリ**(reconstruct_tracks が全展開=10日ラン規模で GB 級・「ブラウザに載るか」は第76で解決済みだが「一括で組めるか」は別課題) | 未着手 |
@@ -56,7 +57,9 @@ DT 系は [dt-integration-plan.md](docs/plans/dt-integration-plan.md)。
 |---|---|---|
 | U-10 | 事前登録の閾値承認+10日ラン解釈方針 | タイミング委任済み(2026-07-31)→**第74 完了後〜第78 で承認依頼**(10日ラン 8/16 開始前) |
 | PUB-U1 | 公開ミラーの .md 除外範囲+「実装を適宜 public にコミット」の運用 | **要相談**(ユーザー発意 2026-07-31)。推奨: docs/**・STATUS.md を除外し README/ETHICS/LICENSE は残す・以後は各バッチ後に publish_public_mirror.ps1 を同期実行。**注意: DT 調査でライセンス地雷2件確認**(商業施設/区サイト情報=転載不可・OSM 由来テーブル=ODbL share-alike が配布時発動)=提案書 §4 |
-| DT-S1 | 天候の実データ化 S3+S4(3.5-4.5日)を本選前に入れるか | **新規**([提案書](docs/plans/dt-snapshot-integration-proposal.md) §3)。選択肢 (a)入れる+ダンバー本選後へ(推奨・ただし ID-U1 決定の変更) (b)入れる+ablate スリップ (c)見送り(取得だけ本選中) |
+| DT-S1 | 天候の実データ化 S3+S4(3.5-4.5日)を本選前に入れるか | 第78完結で日程競合は解消済み=**(a')そのまま入れる**が可能に(ダンバーも ablate も犠牲不要) |
+| NEW-4 | 認知プログラム(第79-86)の承認+本選 10 日ランで驚き駆動を ON にする前提か | **新規**([cognition-physics-plan.md](docs/plans/cognition-physics-plan.md) §5)。推奨=承認・最終 ON/OFF は θ 較正パイロット実測で 8/14 確定 |
+| NEW-5 | F/N/P 初期値条件の本選配分 | パイロット後に提案 |
 | S-quick | S0/S1/S2/S5/S9(計≈1.8日・S0 は第71 相乗り)を本選前に入れるか | **新規・承認求む**(提案書 §3。入力来歴・observe.yaml 是正・バス表・実イベント表・ODD 文書) |
 | DT-U2 | UE5 デモ動画 | 保留のまま(本選中判断) |
 
@@ -81,3 +84,8 @@ planning/tools/rules=LLM 自由文が世界状態になる3機能も落とす=�
 二重化指示書は [docs/plans/source/](docs/plans/source/) に原文保存(dual-mode-instructions / dual-mode-instruments /
 dual-mode-requirements)。リポ直下の原本3本は移動・バイト同一重複1本(instruments 1)は削除。
 検証済みの統合計画は [dual-mode-observe-verify-plan.md](docs/plans/dual-mode-observe-verify-plan.md) が正典。
+
+**2026-07-31 受領の3本**(認知・物理・DT定義)も同所へ原文保存: physics-instructions / cognition-design-record
+(=設計決定の正典)/ dt-alignment-record。統合計画は [cognition-physics-plan.md](docs/plans/cognition-physics-plan.md)。
+dt-alignment の方針 1-7 は大半実装済み(可視性=C0・観測層=P0/P6・差分管理=world.mod)で、新規採用は
+「系譜的同一性」の自己記述語彙のみ。
