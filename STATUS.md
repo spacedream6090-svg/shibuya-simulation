@@ -2,7 +2,7 @@
 
 > **更新プロトコル**: 実装バッチのコミットごとに必ず本ファイルを更新する(検収の一部)。
 > ここは「今どこにいるか」の一覧だけを持ち、詳細は各リンク先(計画書・devlog)が正典。
-> 最終更新: **2026-08-01**(第82=watch spec+g/θ 更新則+F/N/P 検収完了・テスト **2430 緑**・P2 選定はユーザー承認待ち)
+> 最終更新: **2026-08-01**(第83=θ較正+発火観測装置 検収完了・テスト **2458 緑**・P2 選定はユーザー承認待ち)
 
 ## 1. 実装済み(主要システムの現在地)
 
@@ -31,6 +31,7 @@
 | 観測チャンネル+σ | cognition.channels(既定 OFF・ON でも L1 不変=サイドカーのみ)= 14チャンネル(外界5/身体8/予測不成立1=第81枠)・measure_sigma.py→data/calib/sigma_c.json 凍結(σ=0 は床でなく除外)・較正テーブル外部化(provisional 宣言)・precision weighting+イベント分節理論の文献根拠 | 第80 |
 | 閾値発火+同期バリア | cognition.fire(既定 OFF)= 認知イベントキュー((時刻,agent_id) 全順序)・発火源4種(periodic/salience/internal/social=会話・内省の第一級化)・単一作用点=_phase_drive の requesters 決定→**後方互換は厳密バイト一致**・T1 完了順序不変(workers=4 実並行含む)・T2 発火オラクル・S 寄与内訳を cog_fire に記録 | 第81 |
 | watch spec+可塑性 | cognition.watch / g_update / experiment.g_init(F/N/P)= LLM が期待値 ô+DSL トリガを出力(不透明記号 c01…=因子名をプロンプトに出さない・不正は前回仕様維持)・g 更新=慣れ/感作/引き戻し(Groves&Thompson 1970・適格性トレースで感作死の退行を修正)・θ 恒常性=日境界のみ・model-revision 行(中立文言)・analyze_g.py=分散分解(生まれつき vs 創発) | 第82 |
+| θ較正+発火観測 | calibrate_theta.py=θ全体スケールのみ掃引(0.03125 で f=7.90/日・誤差1.2%・凍結+dotlist 適用=src差分ゼロ)・**watch ON は27倍差=実LLM再較正が最重要**・analyze_firing.py=間隔分布/原因内訳/Kleinberg バースト/**発火連鎖グラフ**(A→B 因果候補・確度3段)/的中率・推論量見積(salience/人/日は人数不変・総呼数は不変でない=GPU外挿注意) | 第83 |
 | 決定論・再現基盤 | RngHub named streams(68+)・CachedLLM(llm_cache.jsonl=応答の内容アドレスキャッシュ・D13)・golden L1 バイト一致・k非依存(controls.mode=compute_matched)・no-fingerprint | 恒常 |
 
 ## 2. 実装中・計画済み(統合実装順=確定・2026-07-31)

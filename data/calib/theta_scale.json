@@ -1,0 +1,237 @@
+{
+  "inference_estimate": {
+    "assumption": "1 人あたり LLM 呼数が人数に対して不変(密度依存チャンネルがあるので自明ではない)",
+    "basis": {
+      "backend": "mock",
+      "calls_per_agent_day": 16.88946515397083,
+      "fires_per_agent_day": 72.37341977309563,
+      "measured_at_n_agents": 100,
+      "salience_per_agent_day": 7.904051863857375
+    },
+    "rows": [
+      {
+        "cog_fire": 72373.41977309564,
+        "days": 10.0,
+        "llm_calls": 16889.46515397083,
+        "n_agents": 100,
+        "salience": 7904.051863857375
+      },
+      {
+        "cog_fire": 723734.1977309564,
+        "days": 10.0,
+        "llm_calls": 168894.65153970828,
+        "n_agents": 1000,
+        "salience": 79040.51863857375
+      },
+      {
+        "cog_fire": 7237341.977309564,
+        "days": 10.0,
+        "llm_calls": 1688946.5153970828,
+        "n_agents": 10000,
+        "salience": 790405.1863857375
+      }
+    ],
+    "scale_check": {
+      "calls_per_agent_ratio_large_over_small": 1.3205596107055961,
+      "large": {
+        "calls_per_agent_day": 16.88946515397083,
+        "n_agents": 100,
+        "salience_per_agent_day": 7.904051863857375
+      },
+      "reading": "比が 1 から離れるほど『1 人あたり呼数は人数に依存する』= 上の外挿は人数が離れるほど外れる。2 点は 2 点でしかない。",
+      "small": {
+        "calls_per_agent_day": 12.789627228525122,
+        "n_agents": 50,
+        "salience_per_agent_day": 8.044084278768233
+      }
+    }
+  },
+  "meta": {
+    "design": "cognition-design-record.md 2.6 / 3.5",
+    "generator": "scripts/calibrate_theta.py",
+    "inputs": {
+      "calib_table": {
+        "file": "conf/cognition/calib_default.yaml",
+        "sha256": "63613f21730315515d84e740738a9069de62c4589db1d50fd68458d9b6b42cb2",
+        "status": "provisional",
+        "version": "0.2-provisional"
+      },
+      "sigma_c": {
+        "file": "data/calib/sigma_c.json",
+        "sha256": "e8a2a7e1183968582824c518f4eb1cf98daf36f1ed260a1b8ade3bb7aba3d5d7",
+        "status": "loaded"
+      }
+    },
+    "kind": "theta_scale",
+    "payload_sha256": "c47727404addb19fdd8a6fd41d3653fc00d29c07d1b8020b2fcda5d620b3b7df",
+    "policy": {
+      "apply": "conf へ書き戻さない。ランの dotlist で cognition.fire.theta_scale=<値> と明示的に上書きする",
+      "controlled_quantity": "salience 発火 [件/日/人](θ が門番をしているのはこの発火源だけ)",
+      "f_target_status": "provisional(f* は測定で決まる量ではなく宣言する量。人間側の実測にはまだ接地していない)",
+      "homeostasis": "較正中は theta_mu=0 で切る(開ループ利得を測るため)",
+      "lever": "cognition.fire.theta_scale (全文脈・全個体に一様な 1 スカラ)",
+      "preserved": "文脈別 θ 水準比 / ペルソナ由来の個体倍率 = **触らない**(設計 2.6「個体差は θ_i の分散として残す」)"
+    },
+    "run": {
+      "backend": "mock",
+      "dt_min": 10,
+      "g_update_enabled": true,
+      "n_agents": 100,
+      "n_steps": 144,
+      "overrides": [],
+      "seed": 42,
+      "source": "pilot",
+      "theta_mu": 0.0,
+      "watch_enabled": false
+    },
+    "schema": 1
+  },
+  "pilot_at_frozen_scale": {
+    "by_context": {
+      "resting": 366,
+      "talking": 2268,
+      "walking": 5064,
+      "working": 1605
+    },
+    "by_reason": {
+      "internal": 48,
+      "periodic": 8239,
+      "salience": 1016
+    },
+    "calls_per_agent_day": 16.88946515397083,
+    "days": 1.2854166666666667,
+    "f_salience_per_agent_day": 7.904051863857375,
+    "f_total_per_agent_day": 72.37341977309563,
+    "llm_cache_hits": 0,
+    "llm_calls": 2171,
+    "n_agents": 100,
+    "n_cog_event": 623,
+    "n_cog_fire": 9303,
+    "n_steps": 144,
+    "salience_per_agent": {
+      "frac_zero": 0.01,
+      "max": 24.0,
+      "mean": 10.16,
+      "median": 9.0,
+      "min": 0.0,
+      "n": 100,
+      "p10": 4.0,
+      "p90": 19.0,
+      "sd": 5.404300569589431
+    },
+    "total_per_agent": {
+      "frac_zero": 0.0,
+      "max": 129.0,
+      "mean": 93.03,
+      "median": 92.0,
+      "min": 76.0,
+      "n": 100,
+      "p10": 82.9,
+      "p90": 106.20000000000002,
+      "sd": 10.675616510477878
+    }
+  },
+  "result": {
+    "apply_override": "cognition.fire.theta_scale=0.03125",
+    "converged": true,
+    "f_observed_per_agent_day": 7.904051863857375,
+    "f_target_per_agent_day": 8.0,
+    "rel_error": 0.011993517017828137,
+    "theta_scale": 0.03125,
+    "tol": 0.1
+  },
+  "search": {
+    "bracket": [
+      0.015625,
+      0.03125
+    ],
+    "grid": [
+      0.015625,
+      0.03125,
+      0.0625,
+      0.125,
+      0.25,
+      0.5,
+      1.0,
+      2.0,
+      4.0,
+      8.0
+    ],
+    "monotone_on_grid": true,
+    "n_bisect": 0,
+    "n_evaluations": 10,
+    "n_extend": 3,
+    "trace": [
+      {
+        "f": 6.573743922204215,
+        "n_salience": 845,
+        "phase": "grid",
+        "rel_error": 0.17828200972447317,
+        "theta_scale": 0.125
+      },
+      {
+        "f": 4.73776337115073,
+        "n_salience": 609,
+        "phase": "grid",
+        "rel_error": 0.40777957860615877,
+        "theta_scale": 0.25
+      },
+      {
+        "f": 3.088492706645057,
+        "n_salience": 397,
+        "phase": "grid",
+        "rel_error": 0.6139384116693678,
+        "theta_scale": 0.5
+      },
+      {
+        "f": 0.8868719611021071,
+        "n_salience": 114,
+        "phase": "grid",
+        "rel_error": 0.8891410048622366,
+        "theta_scale": 1.0
+      },
+      {
+        "f": 0.13225283630470017,
+        "n_salience": 17,
+        "phase": "grid",
+        "rel_error": 0.9834683954619124,
+        "theta_scale": 2.0
+      },
+      {
+        "f": 0.0,
+        "n_salience": 0,
+        "phase": "grid",
+        "rel_error": 1.0,
+        "theta_scale": 4.0
+      },
+      {
+        "f": 0.0,
+        "n_salience": 0,
+        "phase": "grid",
+        "rel_error": 1.0,
+        "theta_scale": 8.0
+      },
+      {
+        "f": 6.2314424635332255,
+        "n_salience": 801,
+        "phase": "extend",
+        "rel_error": 0.2210696920583468,
+        "theta_scale": 0.0625
+      },
+      {
+        "f": 7.904051863857375,
+        "n_salience": 1016,
+        "phase": "extend",
+        "rel_error": 0.011993517017828137,
+        "theta_scale": 0.03125
+      },
+      {
+        "f": 10.300162074554295,
+        "n_salience": 1324,
+        "phase": "extend",
+        "rel_error": 0.28752025931928693,
+        "theta_scale": 0.015625
+      }
+    ]
+  }
+}
