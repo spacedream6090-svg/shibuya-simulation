@@ -1,0 +1,557 @@
+{
+ "meta": {
+  "schema_version": 1,
+  "generated_by": "scripts/fit_weather_gen.py",
+  "source_file": "data/snapshot/weather_tokyo_aug.json",
+  "source_payload_sha256": "98d251b4ff558ea507ba120b84e541d79650f2c14cedbaaa49b9549273c2bd23",
+  "source_fetched_at_utc": "2026-07-31T16:46:40Z",
+  "source_station": "東京",
+  "source_attribution": "出典: 気象庁ホームページ(https://www.data.jma.go.jp/stats/etrn/)",
+  "fit_window": {
+   "years": [
+    2015,
+    2025
+   ],
+   "month": 8,
+   "seg_len": 31
+  },
+  "wet_threshold_mm": 1.0,
+  "hot_day_c": 35.0,
+  "model": {
+   "name": "WGEN 系 3状態マルコフ + 状態別気温 + Matalas 2変量 AR(1) + 年効果",
+   "references": [
+    "Richardson, C.W. (1981) Stochastic simulation of daily precipitation, temperature, and solar radiation. Water Resources Research 17(1):182-190.",
+    "Richardson, C.W. & Wright, D.A. (1984) WGEN: A model for generating daily weather variables. USDA-ARS ARS-8.",
+    "Matalas, N.C. (1967) Mathematical assessment of synthetic hydrology. Water Resources Research 3(4):937-945.",
+    "Wilks, D.S. & Wilby, R.L. (1999) The weather generation game: a review of stochastic weather models. Progress in Physical Geography 23(3):329-357.",
+    "Chen, J., Brissette, F.P. & Leconte, R. (2010) A daily stochastic weather generator for preserving low-frequency of climate variability. Journal of Hydrology 388(3-4):480-490."
+   ],
+   "note": "設計の根拠と出典 URL は docs/research/weather-generator-design.md §1"
+  },
+  "caveats": [
+   "観測点は『東京』(北の丸公園)。渋谷の値ではない。都市キャノピー補正なし。",
+   "既定窓 2015-2025 は 11年 = 341 日。年効果 SD の推定は 11 標本=不確かさ大。",
+   "窓内にも強い上昇トレンドがある(2015年 猛暑日8日 → 2025年 18日)。生成器はこれを年効果の分散として吸収する=2026年の予報ではない。",
+   "WBGT は近似(全天日射量は日照時間からの代理)。公式の暑さ指数ではない。",
+   "8月のみ較正済み。他の月は未較正=生成モードでは使えない(合成へフォールバックすること)。"
+  ],
+  "determinism": "同じ入力・同じ引数ならバイト同一の JSON を出す(--stamp を付けない限り壁時計時刻を書かない)。",
+  "payload_sha256": "b912c745072557fac4d075f52036831428a686b893d2fc85531c1dd54d136d3f"
+ },
+ "months": {
+  "8": {
+   "n_days": 341,
+   "n_years": 11,
+   "years": [
+    2015,
+    2025
+   ],
+   "d_ref": 16.0,
+   "states": [
+    "晴",
+    "曇",
+    "雨",
+    "雪"
+   ],
+   "markov3": {
+    "transition": [
+     [
+      0.598425,
+      0.19685,
+      0.204724,
+      0.0
+     ],
+     [
+      0.244898,
+      0.459184,
+      0.295918,
+      0.0
+     ],
+     [
+      0.228571,
+      0.266667,
+      0.504762,
+      0.0
+     ],
+     [
+      0.378299,
+      0.293255,
+      0.328446,
+      0.0
+     ]
+    ],
+    "counts": [
+     [
+      76,
+      25,
+      26,
+      0
+     ],
+     [
+      24,
+      45,
+      29,
+      0
+     ],
+     [
+      24,
+      28,
+      53,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0
+     ]
+    ],
+    "marginal": [
+     0.378299,
+     0.293255,
+     0.328446,
+     0.0
+    ],
+    "note": "行 = 前日の状態, 列 = 当日の状態(順序は states)"
+   },
+   "markov2_wet_dry": {
+    "wet_threshold_mm": 1.0,
+    "p_wet_given_dry": 0.244444,
+    "p_wet_given_wet": 0.504762,
+    "p_wet_stationary": 0.330472,
+    "p_wet_empirical": 0.328446,
+    "counts": {
+     "dd": 170,
+     "dw": 55,
+     "wd": 52,
+     "ww": 53
+    },
+    "note": "WGEN 原型の2状態表現(生成器本体は markov3 を使う)"
+   },
+   "temp": {
+    "grand_mean_hi": 32.531378,
+    "grand_mean_lo": 24.808504,
+    "month_trend_hi_per_day": -0.082749,
+    "month_trend_lo_per_day": -0.046019,
+    "per_state": {
+     "晴": {
+      "n": 129,
+      "mean_hi": 33.997293,
+      "sd_hi": 1.743378,
+      "mean_lo": 25.484131,
+      "sd_lo": 1.433537
+     },
+     "曇": {
+      "n": 100,
+      "mean_hi": 32.856658,
+      "sd_hi": 2.454312,
+      "mean_lo": 25.06004,
+      "sd_lo": 1.99232
+     },
+     "雨": {
+      "n": 112,
+      "mean_hi": 30.552531,
+      "sd_hi": 2.992727,
+      "mean_lo": 23.805742,
+      "sd_lo": 1.683937
+     },
+     "雪": {
+      "n": 0,
+      "mean_hi": 32.531378,
+      "sd_hi": 2.82109,
+      "mean_lo": 24.808504,
+      "sd_lo": 1.837994,
+      "note": "標本不足のため全状態プールの値で代用"
+     }
+    },
+    "year_effect": {
+     "sd_hi": 1.352147,
+     "sd_lo": 0.88971,
+     "corr": 0.957075,
+     "within_sd_hi": 2.863514,
+     "within_sd_lo": 1.865635,
+     "n_years": 11,
+     "note": "一元配置ランダム効果 σ²_year=(MSB−MSW)/n̄。ラン開始時に1回だけ引く(=そのランは暑い年/涼しい年のどちらかになる)。標本 11 年からの推定=不確かさ大。"
+    },
+    "ar1": {
+     "M0": [
+      [
+       1.0,
+       0.731892
+      ],
+      [
+       0.731892,
+       1.0
+      ]
+     ],
+     "M1": [
+      [
+       0.526752,
+       0.545321
+      ],
+      [
+       0.5407,
+       0.632043
+      ]
+     ],
+     "A": [
+      [
+       0.274881,
+       0.344138
+      ],
+      [
+       0.168226,
+       0.50892
+      ]
+     ],
+     "B": [
+      [
+       0.817032,
+       0.0
+      ],
+      [
+       0.447662,
+       0.622077
+      ]
+     ],
+     "lag1_hi": 0.526752,
+     "lag1_lo": 0.632043,
+     "corr_hi_lo": 0.731892,
+     "decomposition": "cholesky",
+     "note": "χ(d) = A·χ(d−1) + B·ε(d), ε ~ N(0, I) (Matalas 1967)"
+    },
+    "clip": {
+     "hi_min": 19.2,
+     "hi_max": 39.7,
+     "lo_min": 16.6,
+     "lo_max": 31.4,
+     "margin_c": 1.0,
+     "source_years": [
+      1996,
+      2025
+     ],
+     "note": "凍結実測の全期間レンジ ± margin。正規 AR(1) の上側の裾の出しすぎを止める物理ガードであってモデルではない(切られた割合は validation.generated.share_clipped に出す)。"
+    }
+   },
+   "precip": {
+    "gamma_shape": 0.502188,
+    "gamma_scale": 35.176443,
+    "n_wet_days": 112,
+    "mean_wet_mm": 17.665179,
+    "max_observed_mm": 138.5,
+    "note": "モーメント法。極端豪雨の裾は再現しない(ガンマの既知の限界)"
+   },
+   "humidity": {
+    "per_state": {
+     "晴": {
+      "n": 129,
+      "mean": 73.015504,
+      "sd": 5.553693
+     },
+     "曇": {
+      "n": 100,
+      "mean": 75.96,
+      "sd": 6.100041
+     },
+     "雨": {
+      "n": 112,
+      "mean": 86.928571,
+      "sd": 6.495618
+     },
+     "雪": {
+      "n": 0,
+      "mean": 78.44868,
+      "sd": 8.539932,
+      "note": "標本不足のため全体値で代用"
+     }
+    },
+    "beta_on_temp_hi_anom": -0.729111,
+    "resid_sd": 5.656014,
+    "humid_min_from_mean_slope": 1.190711,
+    "humid_min_mean": 58.8739,
+    "wind_mean_mean": 3.053079,
+    "wind_mean_sd": 0.900211,
+    "note": "RH = mean_state + beta·(T_hi 年内偏差) + N(0, resid_sd)"
+   }
+  }
+ },
+ "wbgt": {
+  "formula": "WBGT = 0.735*Ta + 0.0374*RH + 0.00292*Ta*RH + 7.619*SR - 4.557*SR^2 - 0.0572*WS - 4.064",
+  "coef": {
+   "ta": 0.735,
+   "rh": 0.0374,
+   "ta_rh": 0.00292,
+   "sr": 7.619,
+   "sr2": -4.557,
+   "ws": -0.0572,
+   "const": -4.064
+  },
+  "citation": "小野雅司ら(2014)『通常観測気象要素を用いた WBGT の推定』日生気誌 50(4), 147-157。式は環境省 熱中症予防情報サイト掲載のもの https://www.wbgt.env.go.jp/wbgt_detail.php",
+  "measured_definition": {
+   "formula": "WBGT = 0.7*Tw + 0.2*Tg + 0.1*Ta",
+   "coef": {
+    "tw": 0.7,
+    "tg": 0.2,
+    "ta": 0.1
+   },
+   "note": "実測地点(全国47点)の定義。湿球 Tw・黒球 Tg を持たないので本バッチでは使わない"
+  },
+  "inputs_used": {
+   "Ta": "日最高気温[℃](日最高 WBGT の代理)",
+   "RH": "日最小相対湿度[%](日最高気温と同時刻に近いため)",
+   "SR": "日照時間から代理: SR = 0.75 * min(1, 日照時間 / 13.3)",
+   "WS": "日平均風速[m/s]"
+  },
+  "assumptions": [
+   "快晴日の日中平均全天日射量 = 0.75 kW/m^2(★仮定・実測ではない)",
+   "可照時間 = 13.3 h(8月中旬の東京の目安・★仮定)",
+   "日最高気温と日最小湿度が同時刻に起きるとみなす(★近似)",
+   "SR 項の寄与は SR=0.5 で +2.7℃、SR=0.75 で +3.2℃ ある=仮定の感度は小さくない"
+  ],
+  "alert_thresholds": {
+   "heat_alert_wbgt": 33.0,
+   "note": "熱中症警戒アラートは『翌日・当日の日最高暑さ指数(WBGT)が33(予測値)に達する場合に発表』(https://www.wbgt.env.go.jp/about_alert.php)。下の集計は本代理式の値であり、公式の暑さ指数ではない。"
+  },
+  "observed_proxy_distribution": {
+   "n": 341,
+   "mean": 29.181643,
+   "sd": 2.856867,
+   "p50": 29.803863,
+   "p90": 32.193389,
+   "max": 33.691133,
+   "share_ge_28": 0.70088,
+   "share_ge_31": 0.319648,
+   "share_ge_33": 0.008798
+  },
+  "validation_status": "★未検証。環境省の実測 WBGT(東京 44132・実況2010年〜)との突合は本バッチでは未実施(CSV は POST フォーム経由、WebAPI は https://www.wbgt.env.go.jp/api/v1/getSurveyData が HTTP 400 を返し引数仕様を確定できなかった)。次バッチの課題。"
+ },
+ "validation": {
+  "monte_carlo": {
+   "n_years": 3000,
+   "seg_len": 31,
+   "seed": 20260801,
+   "rng": "numpy PCG64 / SeedSequence([seed]) = RngHub と同型"
+  },
+  "observed": {
+   "n_days": 341,
+   "mean_hi": 32.531378,
+   "sd_hi": 3.227398,
+   "skew_hi": -1.208006,
+   "skew_lo": -0.920638,
+   "mean_lo": 24.808504,
+   "sd_lo": 2.090993,
+   "max_hi": 38.5,
+   "min_hi": 20.2,
+   "p_hi_ge_35": 0.234604,
+   "p_hi_ge_36": 0.073314,
+   "p_hi_ge_37": 0.026393,
+   "p_hi_ge_33": 0.542522,
+   "p_lo_ge_25": 0.545455,
+   "lag1_hi": 0.520574,
+   "interannual_sd_of_mean_hi": 1.446654,
+   "p_rain": 0.328446,
+   "spell": {
+    "threshold_c": 35.0,
+    "n_spells": 36,
+    "spells_per_year": 3.272727,
+    "mean_len": 2.222222,
+    "max_len": 10,
+    "share_len_ge_3": 0.277778,
+    "share_len_ge_5": 0.083333,
+    "share_len_ge_7": 0.055556,
+    "year_max_mean": 3.545455,
+    "p_year_has_len_ge_5": 0.181818,
+    "p_year_has_len_ge_10": 0.090909
+   }
+  },
+  "generated": {
+   "n_days": 93000,
+   "mean_hi": 32.498615,
+   "sd_hi": 3.200623,
+   "skew_hi": -0.391677,
+   "skew_lo": -0.074074,
+   "mean_lo": 24.803503,
+   "sd_lo": 2.079858,
+   "max_hi": 39.7,
+   "min_hi": 19.2,
+   "p_hi_ge_35": 0.221172,
+   "p_hi_ge_36": 0.129172,
+   "p_hi_ge_37": 0.067022,
+   "p_hi_ge_33": 0.46629,
+   "p_lo_ge_25": 0.468527,
+   "lag1_hi": 0.393343,
+   "interannual_sd_of_mean_hi": 1.606979,
+   "p_rain": 0.332312,
+   "spell": {
+    "threshold_c": 35.0,
+    "n_spells": 10013,
+    "spells_per_year": 3.337667,
+    "mean_len": 2.05423,
+    "max_len": 25,
+    "share_len_ge_3": 0.236792,
+    "share_len_ge_5": 0.081194,
+    "share_len_ge_7": 0.032058,
+    "year_max_mean": 3.164,
+    "p_year_has_len_ge_5": 0.226,
+    "p_year_has_len_ge_10": 0.037
+   },
+   "share_clipped": 0.006495
+  },
+  "generated_no_year_effect": {
+   "n_days": 93000,
+   "mean_hi": 32.524813,
+   "sd_hi": 2.910873,
+   "skew_hi": -0.503811,
+   "skew_lo": -0.092736,
+   "mean_lo": 24.816371,
+   "sd_lo": 1.887399,
+   "max_hi": 39.7,
+   "min_hi": 19.2,
+   "p_hi_ge_35": 0.19571,
+   "p_hi_ge_36": 0.099409,
+   "p_hi_ge_37": 0.041656,
+   "p_hi_ge_33": 0.474462,
+   "p_lo_ge_25": 0.470194,
+   "lag1_hi": 0.39549,
+   "interannual_sd_of_mean_hi": 0.895132,
+   "p_rain": 0.333419,
+   "spell": {
+    "threshold_c": 35.0,
+    "n_spells": 10238,
+    "spells_per_year": 3.412667,
+    "mean_len": 1.777789,
+    "max_len": 15,
+    "share_len_ge_3": 0.186951,
+    "share_len_ge_5": 0.048545,
+    "share_len_ge_7": 0.013382,
+    "year_max_mean": 2.899,
+    "p_year_has_len_ge_5": 0.157667,
+    "p_year_has_len_ge_10": 0.005333
+   }
+  },
+  "current_synthetic_weather_py": {
+   "n_days": 93000,
+   "mean_hi": 32.001161,
+   "sd_hi": 2.002036,
+   "skew_hi": -0.001354,
+   "skew_lo": -0.00452,
+   "mean_lo": 25.006022,
+   "sd_lo": 1.995868,
+   "max_hi": 35.0,
+   "min_hi": 29.0,
+   "p_hi_ge_35": 0.143839,
+   "p_hi_ge_36": 0.0,
+   "p_hi_ge_37": 0.0,
+   "p_hi_ge_33": 0.428355,
+   "p_lo_ge_25": 0.574656,
+   "lag1_hi": -0.035895,
+   "interannual_sd_of_mean_hi": 0.367933,
+   "p_rain": 0.299667,
+   "spell": {
+    "threshold_c": 35.0,
+    "n_spells": 11570,
+    "spells_per_year": 3.856667,
+    "mean_len": 1.15618,
+    "max_len": 6,
+    "share_len_ge_3": 0.017113,
+    "share_len_ge_5": 0.000432,
+    "share_len_ge_7": 0.0,
+    "year_max_mean": 1.486333,
+    "p_year_has_len_ge_5": 0.001667,
+    "p_year_has_len_ge_10": 0.0
+   }
+  },
+  "ks": {
+   "temp_hi_observed_vs_generated": {
+    "D": 0.091314,
+    "p": 0.006407
+   },
+   "temp_lo_observed_vs_generated": {
+    "D": 0.091176,
+    "p": 0.006518
+   },
+   "temp_hi_observed_vs_current": {
+    "D": 0.250915,
+    "p": 0.0
+   },
+   "spell_len_observed_vs_generated": {
+    "D": 0.081258,
+    "p": 0.965261,
+    "n_obs": 36,
+    "n_gen": 10013
+   },
+   "spell_len_observed_vs_current": {
+    "D": 0.391909,
+    "p": 1.9e-05,
+    "n_obs": 36,
+    "n_cur": 11570
+   },
+   "note": "p は漸近近似(scipy 非依存の自前実装)。生成側 n が大きいのでp は小さく出やすい=D の大小で比べること。"
+  },
+  "observed_years": 11,
+  "known_gaps": [
+   {
+    "metric": "lag-1 autocorrelation of daily Tmax (raw series)",
+    "observed": 0.520574,
+    "generated": 0.393343,
+    "current_synthetic": -0.035895,
+    "diagnosis": "標準化残差 χ の lag-1 は設計どおり再現している(実測 0.517 / 生成 0.509 を実測)。生の系列で差が出るのは、WGEN 系が『天気状態の連鎖』と『気温残差の AR(1)』を**独立**に置くため Cov(状態_t, 残差_{t-1}) が 0 になるから。実際には『今日が平年より暑い → 明日も晴れやすい』という結合がある。気温の条件付けを wet/dry 2状態(WGEN 原型)にしても 0.374 で改善しない(状態別 SD をプールしても 0.409)ので、本バッチでは3状態条件付けのまま採用した。",
+    "citation": "Weather generators generally underestimate persistence (Wilks & Wilby 1999 系の既知の指摘)。",
+    "impact": "連続猛暑の再現(=本件の目的)には効いていない: 猛暑連長の KS 距離は生成 D=0.09 に対し現行合成 D=0.39。年内最長連の平均も 実測 3.55 / 生成 3.13 / 現行合成 1.48。"
+   },
+   {
+    "metric": "skewness of daily Tmax",
+    "observed": -1.208006,
+    "generated": -0.391677,
+    "current_synthetic": -0.001354,
+    "diagnosis": "実測は左に歪む(歪度 −1.2 = 上限が詰まり下側に長い裾)。正規 AR(1) は対称なので上側を出しすぎる。temp.clip(凍結実測の全期間レンジ ±1℃)で物理ガードを掛けているが、P(Tmax>=36℃) は依然として実測より高めに出る。",
+    "impact": "36℃以上の日数を過大評価する。猛暑の『量』を論じるときは注意。"
+   }
+  ]
+ },
+ "sensitivity_alt_window": {
+  "years": [
+   1996,
+   2025
+  ],
+  "n_days": 930,
+  "observed": {
+   "n_days": 930,
+   "mean_hi": 31.862151,
+   "sd_hi": 3.146746,
+   "skew_hi": -0.958073,
+   "skew_lo": -0.744861,
+   "mean_lo": 24.779677,
+   "sd_lo": 2.22255,
+   "max_hi": 38.7,
+   "min_hi": 20.2,
+   "p_hi_ge_35": 0.134409,
+   "p_hi_ge_36": 0.043011,
+   "p_hi_ge_37": 0.017204,
+   "p_hi_ge_33": 0.424731,
+   "p_lo_ge_25": 0.535484,
+   "lag1_hi": 0.519207,
+   "interannual_sd_of_mean_hi": 1.380665,
+   "p_rain": 0.272043,
+   "spell": {
+    "threshold_c": 35.0,
+    "n_spells": 66,
+    "spells_per_year": 2.2,
+    "mean_len": 1.893939,
+    "max_len": 10,
+    "share_len_ge_3": 0.19697,
+    "share_len_ge_5": 0.045455,
+    "share_len_ge_7": 0.030303,
+    "year_max_mean": 2.166667,
+    "p_year_has_len_ge_5": 0.066667,
+    "p_year_has_len_ge_10": 0.033333
+   }
+  },
+  "p_wet_given_wet": 0.447699,
+  "p_wet_given_dry": 0.213313,
+  "grand_mean_hi": 31.862151,
+  "year_effect_sd_hi": 1.286439,
+  "lag1_hi": 0.524855,
+  "note": "感度分析用。観測点移転(2014-12-02)を跨ぐので系列に不連続がある"
+ }
+}
