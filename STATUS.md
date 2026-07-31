@@ -45,7 +45,7 @@ DT 系は [dt-integration-plan.md](docs/plans/dt-integration-plan.md)。
 | 第76 | DT P0 軌跡バイナリ化 | **完了**(2026-07-31 検収済み・新27テスト。ブラウザ実機の目視は未=成果物パスあり) |
 | 第77 | DT P6 追いかけ再生 | **完了**(2026-07-31 検収済み・新37テスト) |
 | 第78 | ablate 4種+状態ハッシュチェーン+metrics_spec_hash+指標凍結 | **完了**(2026-07-31 検収済み・新63テスト)=**統合実装順 9/9 完結**(T1〜T8 全達成) |
-| 第79-86(案) | **認知(驚き駆動)・時間三層・物理スタブ**([cognition-physics-plan.md](docs/plans/cognition-physics-plan.md))= 毎分レート化→σ実測→閾値発火+同期バリア→watch spec+g/θ+F/N/P→θ較正→環境FB 3規則→Perception契約→physics.zones スタブ | **計画ドラフト・NEW-4 承認待ち**(物理エンジン本体は本選後=設計記録 §7 と dt-alignment §6 が支配) |
+| 第79〜 | **認知・時間三層・物理**([cognition-physics-plan.md](docs/plans/cognition-physics-plan.md))= 毎分レート化→σ実測→閾値発火+同期バリア→watch spec+g/θ+F/N/P(発火源は内省・会話も第一級/驚き大=世界モデル書き換え)→θ較正→環境FB→Perception契約+**物理 P2 比較(前倒し)→P3 縫合〜8/11**+**天候生成器(サンプリング型)** | **承認済み・実装中**(NEW-4 大枠承認 2026-07-31・修正3点=計画 §6・実装前 web リサーチ必須・8/12-14 フリーズ) |
 | 次 | 観察ラン ON 構成の提案(run.mode=observe・beliefs/norm_stage/undefined 等の推奨 ON セット・dunbar×pool 幅) | **提案準備中**(プロファイル変更はユーザー承認後・第79系の採否と一体) |
 | 並行 | DT スナップショット再提案 | **提案書提示済み**([dt-snapshot-integration-proposal.md](docs/plans/dt-snapshot-integration-proposal.md))→ DT-S1 ほか判断待ち |
 | 本選後 | 場所二層知覚(IDEA⑥)・誤情報構造化フル版(IDEA⑦=ID-U2)・SUMO 反実仮想(P5)・USD/3D Tiles(DT-U4)・UE5(DT-U2 保留) | レーン3 |
@@ -57,9 +57,8 @@ DT 系は [dt-integration-plan.md](docs/plans/dt-integration-plan.md)。
 |---|---|---|
 | U-10 | 事前登録の閾値承認+10日ラン解釈方針 | タイミング委任済み(2026-07-31)→**第74 完了後〜第78 で承認依頼**(10日ラン 8/16 開始前) |
 | PUB-U1 | 公開ミラーの .md 除外範囲+「実装を適宜 public にコミット」の運用 | **要相談**(ユーザー発意 2026-07-31)。推奨: docs/**・STATUS.md を除外し README/ETHICS/LICENSE は残す・以後は各バッチ後に publish_public_mirror.ps1 を同期実行。**注意: DT 調査でライセンス地雷2件確認**(商業施設/区サイト情報=転載不可・OSM 由来テーブル=ODbL share-alike が配布時発動)=提案書 §4 |
-| DT-S1 | 天候の実データ化 S3+S4(3.5-4.5日)を本選前に入れるか | 第78完結で日程競合は解消済み=**(a')そのまま入れる**が可能に(ダンバーも ablate も犠牲不要) |
-| NEW-4 | 認知プログラム(第79-86)の承認+本選 10 日ランで驚き駆動を ON にする前提か | **新規**([cognition-physics-plan.md](docs/plans/cognition-physics-plan.md) §5)。推奨=承認・最終 ON/OFF は θ 較正パイロット実測で 8/14 確定 |
 | NEW-5 | F/N/P 初期値条件の本選配分 | パイロット後に提案 |
+| P2選定 | 物理エンジン(SFM 自前 vs RVO2)の選定承認 | 比較プロト完了後に提示 |
 | S-quick | S0/S1/S2/S5/S9(計≈1.8日・S0 は第71 相乗り)を本選前に入れるか | **新規・承認求む**(提案書 §3。入力来歴・observe.yaml 是正・バス表・実イベント表・ODD 文書) |
 | DT-U2 | UE5 デモ動画 | 保留のまま(本選中判断) |
 
@@ -69,6 +68,9 @@ NEW-1・NEW-3=承認(検証→計画→実装。R1 柔軟化は repro_tier 方�
 DT-U1=P0+P6 を本選前に実施/DT-U3=用語問題はユーザーの「スナップショット型 DT」定義の提示により**再提案タスクに置換**
 (観察ランは再現性を厳密に求めない方針も同時に確定)/DT-U4=本選後先頭/ID-U2=フル版は本選後(設計文書は先行可)/
 ID-U3=エコー除外は新列並記(既存列不変)/指示書ファイルの処遇=Fable 委任→docs/plans/source/ へ保存・重複1本削除。
+**2026-07-31 追加決定**: NEW-4=認知プログラム大枠承認(修正3点: ①天候=同期不要・サンプリング/生成型で可
+=DT-S1 はこの形で決着 ②物理=できれば本選前・直前数日は検証/調整に確保 ③発火源に内省・会話を追加・
+予測誤差大は「世界モデルの書き換え」を駆動)+実装前 web リサーチ必須+体制=Fable5 計画/Opus5 実行を継続。
 
 ## 4. 設計制約(R1 ドクトリン)の現況と柔軟化
 
