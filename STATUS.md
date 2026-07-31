@@ -2,7 +2,7 @@
 
 > **更新プロトコル**: 実装バッチのコミットごとに必ず本ファイルを更新する(検収の一部)。
 > ここは「今どこにいるか」の一覧だけを持ち、詳細は各リンク先(計画書・devlog)が正典。
-> 最終更新: **2026-08-01**(第84=環境フィードバック3規則 検収完了・テスト **2479 緑**・P2 選定はユーザー承認待ち)
+> 最終更新: **2026-08-01**(第85=Perception/Intent 契約 検収完了=**認知プログラム第79〜85 完結**・テスト **2536 緑**・P2 選定はユーザー承認待ち)
 
 ## 1. 実装済み(主要システムの現在地)
 
@@ -33,6 +33,7 @@
 | watch spec+可塑性 | cognition.watch / g_update / experiment.g_init(F/N/P)= LLM が期待値 ô+DSL トリガを出力(不透明記号 c01…=因子名をプロンプトに出さない・不正は前回仕様維持)・g 更新=慣れ/感作/引き戻し(Groves&Thompson 1970・適格性トレースで感作死の退行を修正)・θ 恒常性=日境界のみ・model-revision 行(中立文言)・analyze_g.py=分散分解(生まれつき vs 創発) | 第82 |
 | θ較正+発火観測 | calibrate_theta.py=θ全体スケールのみ掃引(0.03125 で f=7.90/日・誤差1.2%・凍結+dotlist 適用=src差分ゼロ)・**watch ON は27倍差=実LLM再較正が最重要**・analyze_firing.py=間隔分布/原因内訳/Kleinberg バースト/**発火連鎖グラフ**(A→B 因果候補・確度3段)/的中率・推論量見積(salience/人/日は人数不変・総呼数は不変でない=GPU外挿注意) | 第83 |
 | 環境フィードバック | env.feedback(既定 OFF・strict・LLM/乱数ゼロ)= ①ホーム密度+乗降→停車延長→遅延(回復運転 γ=0.7・不動点10分に収束を実測=T5)②改札飽和→入場規制(有限解除+クールダウン・gate_capacity を初消費)③POI 占有→待ち→filter_open 除外。**環の閉じを L1 実例で実証**(待たされた本人が密度に還る)・step 末一括・congestion 既存語彙のみ | 第84 |
+| Perception/Intent 契約 | cognition.contract(既定 OFF・strict)= 世界→Perception→prompt / LLM→Intent→実行の2型に結合面を限定。**ON/OFF で全プロンプト文字列まで完全一致**(無損失性の証明)・build_prompt 49引数と契約の集合一致をテスト固定・直接参照の残置リスト明示(planning.py=P3 前の第一候補)・body/salience はプロンプトに出ない構造=P3 no-fingerprint の前倒し | 第85 |
 | 決定論・再現基盤 | RngHub named streams(68+)・CachedLLM(llm_cache.jsonl=応答の内容アドレスキャッシュ・D13)・golden L1 バイト一致・k非依存(controls.mode=compute_matched)・no-fingerprint | 恒常 |
 
 ## 2. 実装中・計画済み(統合実装順=確定・2026-07-31)
@@ -56,7 +57,7 @@ DT 系は [dt-integration-plan.md](docs/plans/dt-integration-plan.md)。
 | 次 | 観察ラン ON 構成の提案(run.mode=observe・beliefs/norm_stage/undefined 等の推奨 ON セット・dunbar×pool 幅) | **提案準備中**(プロファイル変更はユーザー承認後・第79系の採否と一体) |
 | 並行 | DT スナップショット再提案 | **提案書提示済み**([dt-snapshot-integration-proposal.md](docs/plans/dt-snapshot-integration-proposal.md))→ DT-S1 ほか判断待ち |
 | 本選後 | 場所二層知覚(IDEA⑥)・誤情報構造化フル版(IDEA⑦=ID-U2)・SUMO 反実仮想(P5)・USD/3D Tiles(DT-U4)・UE5(DT-U2 保留) | レーン3 |
-| 持ち越し小粒 | analyze_sweep への llm_health 3列接続・SFM 推奨 param 昇格・D16 屋内 ON・D17 実験・4系統レーン2(B-L1 以降)・**exit_building の node 張り替えと _apply_free_action/_route_to の整合調査**(第73実行役が発見した潜在バグ疑い・スコープ外として未着手)・**pool dehydrate の関係台帳20件切りと dunbar 休眠の相互作用**(pool ON では休眠が再会前に消えやすい=本選で dunbar ON にするなら要検討・第75実行役の実測)・**3D エクスポータ側のメモリ**(reconstruct_tracks が全展開=10日ラン規模で GB 級・「ブラウザに載るか」は第76で解決済みだが「一括で組めるか」は別課題)・**WallCrowd.forces() が揺らぎ項 ξ を落としている**(壁ありで noise 完全無効を P2 比較で実測発見・P3 で決め直し要)・**test_watchdog の実 run.py スモークが xdist 並列負荷でフレーク**(単体緑・serial マーカー付与候補) | 未着手 |
+| 持ち越し小粒 | analyze_sweep への llm_health 3列接続・SFM 推奨 param 昇格・D16 屋内 ON・D17 実験・4系統レーン2(B-L1 以降)・**exit_building の node 張り替えと _apply_free_action/_route_to の整合調査**(第73実行役が発見した潜在バグ疑い・スコープ外として未着手)・**pool dehydrate の関係台帳20件切りと dunbar 休眠の相互作用**(pool ON では休眠が再会前に消えやすい=本選で dunbar ON にするなら要検討・第75実行役の実測)・**3D エクスポータ側のメモリ**(reconstruct_tracks が全展開=10日ラン規模で GB 級・「ブラウザに載るか」は第76で解決済みだが「一括で組めるか」は別課題)・**WallCrowd.forces() が揺らぎ項 ξ を落としている**(壁ありで noise 完全無効を P2 比較で実測発見・P3 で決め直し要)・**サブプロセス系テストの xdist 並列フレーク2件**(test_watchdog 実 run.py スモーク・test_taxi_live SUMO ブリッジ。いずれも単体緑=serial マーカー群の付与候補・フリーズ期間に対処) | 未着手 |
 
 ## 3. ユーザー判断待ち
 

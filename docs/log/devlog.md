@@ -4,7 +4,7 @@
 > **プロトコル**: ユーザーとの1往復ごとに1エントリ追記。エントリが10に達したら圧縮して [devlog-compressed.md](./devlog-compressed.md) へ移し、本ファイルをリセット。設計の正典は [../design.md](../design.md)。
 > **圧縮履歴**: devlog-compressed.md(Block #0: プロトコル前史 / #1: ログ機構〜分野1-3 / #2: リサーチ完走〜決定アジェンダ / #3: D0-D17決定→P0実装→世界v2-v5 / #4: 生態系→docs完遂→現実ギャップ全波→第9バッチ / #5: ODPT実ダイヤ→制度深化完遂→自己モデル→現実較正→実LLM初証拠→日常プロファイル(第10〜14バッチ) / #6: 開放行動→世界解釈の観察→マルチモデル対応(第15〜24バッチ) / #7: 復元→git化→入力解像度LOD→分析スイート→制約デコード→自由度P2(第25〜34バッチ) / #8: EnvPack→PLATEAU実形状→第37バッチ6トラック→現実スケール転換(第35〜38バッチ) / #9: 同時滞在実測→全員思考転換→行間レイヤS1-S5(第38バッチW2) / #10: W2完結→視覚F→オントロジー多軸→物流・乗れる交通→並列ゲート(第38W2後半〜第43バッチ) / #11: 関係性→経済完結→観測レンズ→日常観察ABC→マクロ⇄ミクロズーム(第44〜58バッチ) / #12: 精査3スライス→関係内生化→GitHub公開→第1回分析→4系統拡張始動(第59〜66バッチ) / #13: レーン1完了→DT/IDEA計画→二重化転換→統合実装順第70-78始動(第67〜72バッチ) / **#14: 観測点完結→DT P0/P6→ablate完結→認知プログラム始動→天候生成器(第73〜79バッチ+天候W1)**)。全文アーカイブ: devlog-block6-fulltext.md / devlog-block7to9-fulltext.md / devlog-block10-fulltext.md / devlog-block11-fulltext.md / devlog-block12-fulltext.md / devlog-block13-fulltext.md / devlog-block14-fulltext.md。
 
-**ライブエントリ数: 7 / 10**(Entry 81 から=継続採番)
+**ライブエントリ数: 8 / 10**(Entry 81 から=継続採番)
 
 ---
 ### Entry 81 — 2026-08-01 — 物理P2比較検収: 推奨=自前SFM(3条件付き)・選定はユーザー承認待ち
@@ -143,3 +143,22 @@ Opus実装をFable検収。新規2(envfeedback.py 561行・21テスト)+11変更
   係数は仮値(渋谷駅遅延統計での較正の口をconf明記)。
 - 検収: フルゲート1回目でtest_watchdogの実run.pyスモークがFileNotFound=**xdist並列負荷のフレーク**(単体緑・
   2回目フル2479全緑)→持ち越しにserialマーカー候補として登録。→第85(Perception/Intent契約)起動。
+
+---
+### Entry 88 — 2026-08-01 — 第85バッチ検収: Perception/Intent契約=認知プログラム第79〜85完結(2536緑)
+Opus実装をFable検収。新規2(perception_contract.py 460行=simを識別子として一度も参照しない純型module・
+57テスト)+5変更。cognition.contract既定OFF・strict。
+- **契約の中心=無損失性**: Perception.prompt_kwargs()が型付きフィールドからkwargsを再構成(dictを持ち回さない)
+  →**ON/OFFで全プロンプト文字列まで完全一致**(llm_journal全走査)=「型が全情報を捉えている」ことの証明。
+  build_promptの49引数と契約の対応が集合一致することもテスト固定=引数追加時の契約足し忘れが構造的に不可能。
+  branch by abstraction / parallel changeの標準型(出典付き)。
+- **P3前倒しのno-fingerprint**: body/internal/salienceはprompt_kwargs()に出ない構造=物理由来項目が裏口から
+  プロンプトに入らない。salienceは第80 channelsの再利用(二重計算なし)・canaryは既存関門に統合。
+- **残置リストの明示**: planning.py 5関数=P3前に契約経路へ寄せる第一候補(発話経路と同型化可)・
+  deliberateの薄いseam2関数は残置可(AST固定済み)・世界を読むのが本務のmodule群は集合をテスト凍結
+  (新規に生えたらfail)。urgency/avoidance/move_xyは現行スキーマに欄が無く**捏造せず既定値**(P3の写像
+  テーブル時点で決める)・bodyのblocked/contact/local_densityはNone(グラフ世界に無い量=P3で埋まる枠)。
+- 検収: 既定OFF golden・ON/OFF等価(L1/L2/L3・draw・呼数・全プロンプト)・resume一致・フルゲート1回目で
+  test_taxi_live SUMOブリッジがフレーク(**サブプロセス系xdistフレーク2例目**・単体緑・2回目フル2536全緑)
+  →持ち越しをserialマーカー群候補に更新。**これでcognition-physics-plan §4の第79〜85+天候W1/W2が全て完結**。
+  残=P3縫合(P2選定承認待ち)・フリーズ期間の較正/ON構成。
