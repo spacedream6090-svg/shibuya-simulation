@@ -54,7 +54,7 @@ DT 系は [dt-integration-plan.md](docs/plans/dt-integration-plan.md)。
 | 第77 | DT P6 追いかけ再生 | **完了**(2026-07-31 検収済み・新37テスト) |
 | 第78 | ablate 4種+状態ハッシュチェーン+metrics_spec_hash+指標凍結 | **完了**(2026-07-31 検収済み・新63テスト)=**統合実装順 9/9 完結**(T1〜T8 全達成) |
 | 第79〜 | **認知・時間三層・物理**([cognition-physics-plan.md](docs/plans/cognition-physics-plan.md))= 毎分レート化→σ実測→閾値発火+同期バリア→watch spec+g/θ+F/N/P(発火源は内省・会話も第一級/驚き大=世界モデル書き換え)→θ較正→環境FB→Perception契約+**物理 P2 比較(前倒し)→P3 縫合〜8/11**+**天候生成器(サンプリング型)** | **承認済み・実装中**(NEW-4 大枠承認 2026-07-31・修正3点=計画 §6・実装前 web リサーチ必須・8/12-14 フリーズ) |
-| 次 | 観察ラン ON 構成の提案(run.mode=observe・beliefs/norm_stage/undefined 等の推奨 ON セット・dunbar×pool 幅) | **提案準備中**(プロファイル変更はユーザー承認後・第79系の採否と一体) |
+| 次 | 観察ラン ON 構成 | **提案書提示済み**([observe-run-config-proposal.md](docs/plans/observe-run-config-proposal.md))→ OBS-U1〜U3 判断待ち・最終確定は 8/12-14(実 LLM 再較正後) |
 | 並行 | DT スナップショット再提案 | **提案書提示済み**([dt-snapshot-integration-proposal.md](docs/plans/dt-snapshot-integration-proposal.md))→ DT-S1 ほか判断待ち |
 | 本選後 | 場所二層知覚(IDEA⑥)・誤情報構造化フル版(IDEA⑦=ID-U2)・SUMO 反実仮想(P5)・USD/3D Tiles(DT-U4)・UE5(DT-U2 保留) | レーン3 |
 | 持ち越し小粒 | analyze_sweep への llm_health 3列接続・SFM 推奨 param 昇格・D16 屋内 ON・D17 実験・4系統レーン2(B-L1 以降)・**exit_building の node 張り替えと _apply_free_action/_route_to の整合調査**(第73実行役が発見した潜在バグ疑い・スコープ外として未着手)・**pool dehydrate の関係台帳20件切りと dunbar 休眠の相互作用**(pool ON では休眠が再会前に消えやすい=本選で dunbar ON にするなら要検討・第75実行役の実測)・**3D エクスポータ側のメモリ**(reconstruct_tracks が全展開=10日ラン規模で GB 級・「ブラウザに載るか」は第76で解決済みだが「一括で組めるか」は別課題)・**WallCrowd.forces() が揺らぎ項 ξ を落としている**(壁ありで noise 完全無効を P2 比較で実測発見・P3 で決め直し要)・**サブプロセス系テストの xdist 並列フレーク2件**(test_watchdog 実 run.py スモーク・test_taxi_live SUMO ブリッジ。いずれも単体緑=serial マーカー群の付与候補・フリーズ期間に対処) | 未着手 |
@@ -67,6 +67,7 @@ DT 系は [dt-integration-plan.md](docs/plans/dt-integration-plan.md)。
 | PUB-U1 | 公開ミラーの .md 除外範囲+「実装を適宜 public にコミット」の運用 | **要相談**(ユーザー発意 2026-07-31)。推奨: docs/**・STATUS.md を除外し README/ETHICS/LICENSE は残す・以後は各バッチ後に publish_public_mirror.ps1 を同期実行。**注意: DT 調査でライセンス地雷2件確認**(商業施設/区サイト情報=転載不可・OSM 由来テーブル=ODbL share-alike が配布時発動)=提案書 §4 |
 | NEW-5 | F/N/P 初期値条件の本選配分 | パイロット後に提案 |
 | P2選定 | 物理エンジンの選定承認 | **提示済み**([physics-engine-selection.md](docs/research/physics-engine-selection.md))。推奨=**自前 SFM(3条件付き: dt 0.02-0.05s・斥力2次元探索・密度依存 v0 の外付け較正)**。ORCA は交差流・境界縫合で優位のため第一代替として保持。決定論は両者バイト一致=差なし。**承認後に P3 縫合着手** |
+| OBS-U1〜U3 | 観察ラン ON 構成の承認([提案書](docs/plans/observe-run-config-proposal.md))・Δt_move 1分の扱い・認知 ON の 8/14 留保 | **新規**。推奨=§1 の ON セット+Δt=10 維持(1分は並行小ラン)+8/14 最終判断 |
 | S-quick | S0/S1/S2/S5/S9(計≈1.8日・S0 は第71 相乗り)を本選前に入れるか | **新規・承認求む**(提案書 §3。入力来歴・observe.yaml 是正・バス表・実イベント表・ODD 文書) |
 | DT-U2 | UE5 デモ動画 | 保留のまま(本選中判断) |
 
