@@ -2,7 +2,7 @@
 
 > **更新プロトコル**: 実装バッチのコミットごとに必ず本ファイルを更新する(検収の一部)。
 > ここは「今どこにいるか」の一覧だけを持ち、詳細は各リンク先(計画書・devlog)が正典。
-> 最終更新: **2026-08-01**(第73バッチ検収完了=真偽台帳ミニマル・テスト **1964 緑**)
+> 最終更新: **2026-07-31**(第74バッチ検収完了=規範化+コホート+ゼロ対照・テスト **2002 緑**)
 
 ## 1. 実装済み(主要システムの現在地)
 
@@ -21,6 +21,7 @@
 | LLM 全文ジャーナル+REPLAY | model.journal(既定 ON・gz 11.5x=1万体10日≈1GB)・model.cache_mode: free/replay(fail-fast・フォールバック無し)・run_manifest.json(git SHA/config hash/全トグル) | 第71 |
 | 機能レジストリ+ランモード | registry.py 175件(strict146/journal27/none2・未宣言は CI fail)・run.mode: none(既定=不変)/observe/journal/verify(自動 OFF+manifest 記録)・比較ガード3スクリプト | 第72 |
 | 真偽台帳ミニマル | beliefs.enabled / verify_actions(既定 OFF・journal 等級)= fact 8種・信念/伝播木・検証行動3種・漏洩3点ガード(静的+実行時 canary+全プロンプト検査)・beliefs_ledger.json・analyze_beliefs.py | 第73 |
+| 規範化+コホート+ゼロ対照 | labeling.norm_stage(4段検出・markers=conf 単一源・観測のみ)・coiner/definitizer/institutionalizer 分離・下方因果解析(analyze_norms.py・閾値は引数必須)・observer.initial_frame・experiment.flat_traits(CRN 乱数消費一致・zero_traits.yaml 4セル) | 第74 |
 | 決定論・再現基盤 | RngHub named streams(68+)・CachedLLM(llm_cache.jsonl=応答の内容アドレスキャッシュ・D13)・golden L1 バイト一致・k非依存(controls.mode=compute_matched)・no-fingerprint | 恒常 |
 
 ## 2. 実装中・計画済み(統合実装順=確定・2026-07-31)
@@ -34,9 +35,9 @@ DT 系は [dt-integration-plan.md](docs/plans/dt-integration-plan.md)。
 | 第70 | IDEA①エコー計測+②未定義行動レジスタ+沈黙 | **完了**(2026-07-31 検収済み・新30テスト) |
 | 第71 | LLM 入出力ジャーナル(プロンプト全文)+REPLAY fail-fast+run_manifest | **完了**(2026-07-31 検収済み・新26テスト。S0=入力来歴はユーザー承認後に manifest へ追補) |
 | 第72 | 機能レジストリ(repro_tier)+ランモード observe/journal/verify | **完了**(2026-07-31 検収済み・新30テスト) |
-| 第73 | 真偽台帳ミニマル(fact+信念+伝播木+検証行動+漏洩検査) | **完了**(2026-08-01 検収済み・新32テスト) |
-| 第74 | 規範化ステージ+coiner/institutionalizer+コホートタグ+ゼロ対照(IDEA③④+Part E1) | **実装中** |
-| 第75 | ダンバー維持コスト(IDEA⑤) | 計画済み |
+| 第73 | 真偽台帳ミニマル(fact+信念+伝播木+検証行動+漏洩検査) | **完了**(2026-07-31 検収済み・新32テスト) |
+| 第74 | 規範化ステージ+coiner/institutionalizer+コホートタグ+ゼロ対照(IDEA③④+Part E1) | **完了**(2026-07-31 検収済み・新38テスト)=**「記録しないと失われる」観測点はこれで全て投入済み** |
+| 第75 | ダンバー維持コスト(IDEA⑤) | **実装中** |
 | 第76-77 | DT P0 軌跡バイナリ化 → P6 追いかけ再生 | 計画済み(DT-U1 承認) |
 | 第78 | ablate 4種+状態ハッシュチェーン+metrics_spec_hash+指標凍結→U-10 承認依頼 | 計画済み(遅延時は ablate を本選前半へスリップ可) |
 | 並行 | DT スナップショット再提案 | **提案書提示済み**([dt-snapshot-integration-proposal.md](docs/plans/dt-snapshot-integration-proposal.md))→ DT-S1 ほか判断待ち |
