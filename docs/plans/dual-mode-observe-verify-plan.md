@@ -1,6 +1,7 @@
 # 観察/検証ランの二重化+機能レジストリ 実装計画(検証済み)
 
-> ステータス: **承認済み・実装中**(2026-07-31 ユーザー承認=NEW-1/NEW-3。実装順の決定は Fable に委任)。
+> ステータス: **実装完了**(第70〜78 全9バッチ・2026-07-31 同日完結・テスト 1846→2150。T1〜T8 全達成。
+> 2026-07-31 ユーザー承認=NEW-1/NEW-3・実装順の決定は Fable に委任)。
 > 原指示書3本(2026-07-31 受領): [dual-mode-instructions.md](source/dual-mode-instructions.md) /
 > [dual-mode-instruments.md](source/dual-mode-instruments.md) / [dual-mode-requirements.md](source/dual-mode-requirements.md)。
 > 前提日程: **本選 8/15–8/30・10日ラン 8/16–8/26**(指示書の「8/8 締切・本選 8/8–8/23」はユーザー確認により誤りと確定。

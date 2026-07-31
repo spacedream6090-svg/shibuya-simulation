@@ -4,7 +4,7 @@
 > **プロトコル**: ユーザーとの1往復ごとに1エントリ追記。エントリが10に達したら圧縮して [devlog-compressed.md](./devlog-compressed.md) へ移し、本ファイルをリセット。設計の正典は [../design.md](../design.md)。
 > **圧縮履歴**: devlog-compressed.md(Block #0: プロトコル前史 / #1: ログ機構〜分野1-3 / #2: リサーチ完走〜決定アジェンダ / #3: D0-D17決定→P0実装→世界v2-v5 / #4: 生態系→docs完遂→現実ギャップ全波→第9バッチ / #5: ODPT実ダイヤ→制度深化完遂→自己モデル→現実較正→実LLM初証拠→日常プロファイル(第10〜14バッチ) / #6: 開放行動→世界解釈の観察→マルチモデル対応(第15〜24バッチ) / #7: 復元→git化→入力解像度LOD→分析スイート→制約デコード→自由度P2(第25〜34バッチ) / #8: EnvPack→PLATEAU実形状→第37バッチ6トラック→現実スケール転換(第35〜38バッチ) / #9: 同時滞在実測→全員思考転換→行間レイヤS1-S5(第38バッチW2) / #10: W2完結→視覚F→オントロジー多軸→物流・乗れる交通→並列ゲート(第38W2後半〜第43バッチ) / #11: 関係性→経済完結→観測レンズ→日常観察ABC→マクロ⇄ミクロズーム(第44〜58バッチ) / #12: 精査3スライス→関係内生化→GitHub公開→第1回分析→4系統拡張始動(第59〜66バッチ) / **#13: レーン1完了→DT/IDEA計画→二重化転換→統合実装順第70-78始動(第67〜72バッチ)**)。全文アーカイブ: devlog-block6-fulltext.md / devlog-block7to9-fulltext.md / devlog-block10-fulltext.md / devlog-block11-fulltext.md / devlog-block12-fulltext.md / devlog-block13-fulltext.md。
 
-**ライブエントリ数: 5 / 10**(Entry 71 から=継続採番)
+**ライブエントリ数: 6 / 10**(Entry 71 から=継続採番)
 
 ---
 ### Entry 71 — 2026-07-31 — 第73バッチ検収: 真偽台帳ミニマル=fact+信念+伝播木+検証行動+漏洩3点(1964緑)
@@ -98,3 +98,28 @@ Opus実装をFable検収。新規2のみ(live_viewer.py 1,185行・test_live_vie
   ブラウザ実機未検証。
 - **U-10前倒し**: 事前登録ドラフトにE節(規範成立=stage≥3+3名・E1-E5)を追記し承認パッケージとして提示済み
   (b792df6)。→第78バッチ(ablate4種+状態ハッシュ+指標凍結=最終)起動。
+
+---
+### Entry 76 — 2026-07-31 — 第78バッチ検収=統合実装順 第70〜78 全9バッチ完結(2150緑・T1〜T8全達成)
+Opus実装をFable検収。新規7(ablate.py・state_hash.py・metrics_spec.py・analyze_specialization.py・テスト4本=63)+9変更。
+- **ablate 4種**(全既定OFF・registry宣言): llm_off=LLM 0本でルール層のみ(既存ニーズ充足+POI選好・新ヒューリスティック
+  なし)・propagation_off=発話生成するが他者文脈に一切入らない(**fingerprint自己点検を必須節で報告**: 話者の
+  自己連続性は保持・聞き手側の内容だけ切除・**捏造プレースホルダは拒否**=中立文自体が強い指紋になるため。
+  残存リスク=「誰も何も言わない世界」は原理的に消せない→fingerprint_risk=known を正直宣言)・
+  cognitive_tier=fleet強制下位(非fleetランの縮退をmanifestに宣言)・shuffle_partners(always-draw=RngHub
+  statelessなので新streamは既存draw順を乱さない=golden無風)。
+- **propagation_offの呼数**: 189vs186(+1.61%)。**呼び出しサイトの追加/削除/ゲートはゼロ**(ユニットテスト固定)
+  で、差は「聞かない→unknown_wordドライブが立たない→発火ゲートが変わる」という処置本来の間接経路のみ=
+  flat_traits(第74)と同じ構造。厳密一致はcompute_matchedの役目。<10%でテスト固定。
+- **state_hash**(既定OFF): 正準シリアライズ→sha256チェーン。T1=同seed一致・T6=workers1vs4一致・改竄3種検知。
+  3.5µs/agent/step(1万体≈50s/sim日→interval退避)。片側検定である事実を明記(不一致⇒確実に分岐・一致⇏完全同一
+  =厳密判定はL1バイト比較のまま)。
+- **metrics_spec_hash**: 指標定義14ファイルの正規化ハッシュ→manifest(T7=1バイト検知・実装中に自分で踏んで実証)。
+  metrics/への移動は「ついでのリファクタリング禁止」原則で不採用=コード内定数リスト(リスト自体もハッシュ対象)。
+- **専門化スコア**(凍結3指標の最後): analyze_specialization.py=語彙の狭まり/役割分化/時間持続をL1から決定論計算・
+  **propagation_off対照との差分でしか主張しない**構造・閾値は引数必須。mock実測=NOT_INTERACTION_DRIVEN
+  (Δ+0.008=テンプレ駆動のmock発話の期待どおり)。実装健全性と現象由来の検証を別セクション化(Part G要求)。
+- 副産物: build_prompt(reply_to=None)のKeyError潜在バグ修正(reply_to有りの出力は不変=golden維持)。
+- 検収: 既定OFF=golden・全OFF明示==素既定・フルゲートxdist **2150緑**(335s)。**同日で第70〜78=見積13.5-15日分を
+  完走**(1846→2150テスト・+304本)。残=観察ランON構成の提案(プロファイル変更はユーザー承認後)・
+  未決判断(U-10/DT-S1/S-quick/取得運用/PUB-U1)。
