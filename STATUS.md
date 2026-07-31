@@ -2,7 +2,7 @@
 
 > **更新プロトコル**: 実装バッチのコミットごとに必ず本ファイルを更新する(検収の一部)。
 > ここは「今どこにいるか」の一覧だけを持ち、詳細は各リンク先(計画書・devlog)が正典。
-> 最終更新: **2026-07-31**(第74バッチ検収完了=規範化+コホート+ゼロ対照・テスト **2002 緑**)
+> 最終更新: **2026-07-31**(第75バッチ検収完了=ダンバー認知枠・テスト **2023 緑**)
 
 ## 1. 実装済み(主要システムの現在地)
 
@@ -22,6 +22,7 @@
 | 機能レジストリ+ランモード | registry.py 175件(strict146/journal27/none2・未宣言は CI fail)・run.mode: none(既定=不変)/observe/journal/verify(自動 OFF+manifest 記録)・比較ガード3スクリプト | 第72 |
 | 真偽台帳ミニマル | beliefs.enabled / verify_actions(既定 OFF・journal 等級)= fact 8種・信念/伝播木・検証行動3種・漏洩3点ガード(静的+実行時 canary+全プロンプト検査)・beliefs_ledger.json・analyze_beliefs.py | 第73 |
 | 規範化+コホート+ゼロ対照 | labeling.norm_stage(4段検出・markers=conf 単一源・観測のみ)・coiner/definitizer/institutionalizer 分離・下方因果解析(analyze_norms.py・閾値は引数必須)・observer.initial_frame・experiment.flat_traits(CRN 乱数消費一致・zero_traits.yaml 4セル) | 第74 |
+| ダンバー認知枠 | relations.dunbar(既定 OFF・strict・乱数/LLM ゼロ)= 最外層上限51(縮約 scale 0.34・conf 化)・休眠=closeness 退避で可逆・relation_dormant/rekindle・弱い紐帯枠でのみ再会(Levin 2011)・L2 3列 | 第75 |
 | 決定論・再現基盤 | RngHub named streams(68+)・CachedLLM(llm_cache.jsonl=応答の内容アドレスキャッシュ・D13)・golden L1 バイト一致・k非依存(controls.mode=compute_matched)・no-fingerprint | 恒常 |
 
 ## 2. 実装中・計画済み(統合実装順=確定・2026-07-31)
@@ -37,12 +38,13 @@ DT 系は [dt-integration-plan.md](docs/plans/dt-integration-plan.md)。
 | 第72 | 機能レジストリ(repro_tier)+ランモード observe/journal/verify | **完了**(2026-07-31 検収済み・新30テスト) |
 | 第73 | 真偽台帳ミニマル(fact+信念+伝播木+検証行動+漏洩検査) | **完了**(2026-07-31 検収済み・新32テスト) |
 | 第74 | 規範化ステージ+coiner/institutionalizer+コホートタグ+ゼロ対照(IDEA③④+Part E1) | **完了**(2026-07-31 検収済み・新38テスト)=**「記録しないと失われる」観測点はこれで全て投入済み** |
-| 第75 | ダンバー維持コスト(IDEA⑤) | **実装中** |
-| 第76-77 | DT P0 軌跡バイナリ化 → P6 追いかけ再生 | 計画済み(DT-U1 承認) |
+| 第75 | ダンバー維持コスト(IDEA⑤) | **完了**(2026-07-31 検収済み・新21テスト) |
+| 第76 | DT P0 軌跡バイナリ化 | **実装中**(DT-U1 承認) |
+| 第77 | DT P6 追いかけ再生 | 計画済み(DT-U1 承認) |
 | 第78 | ablate 4種+状態ハッシュチェーン+metrics_spec_hash+指標凍結→U-10 承認依頼 | 計画済み(遅延時は ablate を本選前半へスリップ可) |
 | 並行 | DT スナップショット再提案 | **提案書提示済み**([dt-snapshot-integration-proposal.md](docs/plans/dt-snapshot-integration-proposal.md))→ DT-S1 ほか判断待ち |
 | 本選後 | 場所二層知覚(IDEA⑥)・誤情報構造化フル版(IDEA⑦=ID-U2)・SUMO 反実仮想(P5)・USD/3D Tiles(DT-U4)・UE5(DT-U2 保留) | レーン3 |
-| 持ち越し小粒 | analyze_sweep への llm_health 3列接続・SFM 推奨 param 昇格・D16 屋内 ON・D17 実験・4系統レーン2(B-L1 以降)・**exit_building の node 張り替えと _apply_free_action/_route_to の整合調査**(第73実行役が発見した潜在バグ疑い・スコープ外として未着手) | 未着手 |
+| 持ち越し小粒 | analyze_sweep への llm_health 3列接続・SFM 推奨 param 昇格・D16 屋内 ON・D17 実験・4系統レーン2(B-L1 以降)・**exit_building の node 張り替えと _apply_free_action/_route_to の整合調査**(第73実行役が発見した潜在バグ疑い・スコープ外として未着手)・**pool dehydrate の関係台帳20件切りと dunbar 休眠の相互作用**(pool ON では休眠が再会前に消えやすい=本選で dunbar ON にするなら要検討・第75実行役の実測) | 未着手 |
 
 ## 3. ユーザー判断待ち
 

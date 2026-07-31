@@ -4,7 +4,7 @@
 > **プロトコル**: ユーザーとの1往復ごとに1エントリ追記。エントリが10に達したら圧縮して [devlog-compressed.md](./devlog-compressed.md) へ移し、本ファイルをリセット。設計の正典は [../design.md](../design.md)。
 > **圧縮履歴**: devlog-compressed.md(Block #0: プロトコル前史 / #1: ログ機構〜分野1-3 / #2: リサーチ完走〜決定アジェンダ / #3: D0-D17決定→P0実装→世界v2-v5 / #4: 生態系→docs完遂→現実ギャップ全波→第9バッチ / #5: ODPT実ダイヤ→制度深化完遂→自己モデル→現実較正→実LLM初証拠→日常プロファイル(第10〜14バッチ) / #6: 開放行動→世界解釈の観察→マルチモデル対応(第15〜24バッチ) / #7: 復元→git化→入力解像度LOD→分析スイート→制約デコード→自由度P2(第25〜34バッチ) / #8: EnvPack→PLATEAU実形状→第37バッチ6トラック→現実スケール転換(第35〜38バッチ) / #9: 同時滞在実測→全員思考転換→行間レイヤS1-S5(第38バッチW2) / #10: W2完結→視覚F→オントロジー多軸→物流・乗れる交通→並列ゲート(第38W2後半〜第43バッチ) / #11: 関係性→経済完結→観測レンズ→日常観察ABC→マクロ⇄ミクロズーム(第44〜58バッチ) / #12: 精査3スライス→関係内生化→GitHub公開→第1回分析→4系統拡張始動(第59〜66バッチ) / **#13: レーン1完了→DT/IDEA計画→二重化転換→統合実装順第70-78始動(第67〜72バッチ)**)。全文アーカイブ: devlog-block6-fulltext.md / devlog-block7to9-fulltext.md / devlog-block10-fulltext.md / devlog-block11-fulltext.md / devlog-block12-fulltext.md / devlog-block13-fulltext.md。
 
-**ライブエントリ数: 2 / 10**(Entry 71 から=継続採番)
+**ライブエントリ数: 3 / 10**(Entry 71 から=継続採番)
 
 ---
 ### Entry 71 — 2026-07-31 — 第73バッチ検収: 真偽台帳ミニマル=fact+信念+伝播木+検証行動+漏洩3点(1964緑)
@@ -46,3 +46,21 @@ Opus実装をFable検収。新規6(observer/norms.py・initial_frame.py・analyz
   切り分け。initial_frame=初日N stepの決定論集計をsummaryへ=ラン単位共変量。
 - 検収: golden・L1/呼数不変(③観測のみ+④既定OFF)・registry 3件strict宣言・フルゲートxdist **2002緑**(306s)。
   日付誤記の訂正(Entry 71は07-31)。→第75バッチ(ダンバー維持コスト)起動。U-10承認依頼の材料はこれで完備。
+
+---
+### Entry 73 — 2026-07-31 — 第75バッチ検収: ダンバー認知枠=維持コスト+忘却/再会(2023緑)
+Opus実装をFable検収。新規2(dunbar.py・test_dunbar.py=21テスト)+10変更。乱数/LLMゼロ=strict等級。
+- **設計の要**: 休眠=closenessを退避して0にする単一の作用点。tierはclosenessの純関数なので、プロンプト間柄行/
+  joint候補/partnership閾値などの下流消費者を**1箇所も改変せず**「維持していない関係」化。OFFではdormantキー
+  自体が生えない=バイト一致の構造(relations.py/relations_endo.pyのゲートを実物確認)。
+- **層の縮約**: 素値5/15/50/150×scale0.34→最外層51のみ拘束(内側層拘束はcloseness書き換え=不可逆なので宣言に
+  留める・Lindenfors 2021の150懐疑も明記し感度分析軸としてconf化)。上限適用は日境界1回=接触時適用は振動を
+  実測(5739件)して棄却した過程を正直記録。keep_days=当日接触保護。
+- **再会規則**(一貫した1規則): 休眠はcloseness降順経路から自動的に外れ(tier0=コード変更ゼロ)・**弱い紐帯
+  探索枠でのみ再会し得る**(Levin, Walter & Murnighan 2011=休眠紐帯は新規性弱/信頼強)・明示的意向(計画with/
+  発話キュー)は休眠でも通す(名指しは淘汰より上位)。
+- 実測(288step・40体): dormant1378/rekindle252・active_relations_mean=8.0=上限ちょうど。同seed2ラン一致・
+  resume(日境界跨ぎ)L1+L2+L3一致・draw内訳1312完全一致・呼数37=37。フルゲートxdist **2023緑**(291s)。
+- **相互作用の発見**: pool dehydrateが関係台帳をcount上位20件に切るため、pool ONでは休眠が再会前に消えやすい
+  (dormant_events239→dormant_total117・rekindle0)。本選でdunbar ONにするなら要検討→STATUS持ち越し登録。
+  →第76バッチ(DT P0軌跡バイナリ化)起動。
