@@ -2,7 +2,7 @@
 
 > **更新プロトコル**: 実装バッチのコミットごとに必ず本ファイルを更新する(検収の一部)。
 > ここは「今どこにいるか」の一覧だけを持ち、詳細は各リンク先(計画書・devlog)が正典。
-> 最終更新: **2026-08-01**(天候W2=weather.py 統合 検収完了・テスト **2266 緑**・P2 選定はユーザー承認待ち)
+> 最終更新: **2026-08-01**(第80=観測チャンネル+σ実測 検収完了・テスト **2302 緑**・P2 選定はユーザー承認待ち)
 
 ## 1. 実装済み(主要システムの現在地)
 
@@ -28,6 +28,7 @@
 | ablate 4種+検証装置 | ablate.llm_off / propagation_off(内容のみ遮断・捏造なし・fingerprint_risk=known 宣言・呼数差+1.6%=間接経路のみ)/ cognitive_tier / shuffle_partners(always-draw)・observer.state_hash(チェーン・T1/T6)・metrics_spec_hash(14ファイル・T7)・analyze_specialization.py(propagation_off 差分でのみ主張) | 第78 |
 | Δt 不変化 | run.dt_min(既定10=構造分岐で1バイト不変・1440の約数強制)・timeconv.py=分類テーブル130キー(rate13/prob26/steps31/invariant60・棚卸し全載 CI)・Δt=5/1 スモーク済み | 第79 |
 | 天候生成器 | weather.mode: synthetic(既定=不変)/ generated(較正生成器・"weather_gen" stream 一括生成=strict・resume 一致)/ table(実日付表引き)。10日窓でも10連猛暑到達可・来歴 sha256 を summary/manifest へ・**cal_day の checkpoint 欠落バグ(resume で weather 二重記録)を発見修正** | 天候W1-W2 |
+| 観測チャンネル+σ | cognition.channels(既定 OFF・ON でも L1 不変=サイドカーのみ)= 14チャンネル(外界5/身体8/予測不成立1=第81枠)・measure_sigma.py→data/calib/sigma_c.json 凍結(σ=0 は床でなく除外)・較正テーブル外部化(provisional 宣言)・precision weighting+イベント分節理論の文献根拠 | 第80 |
 | 決定論・再現基盤 | RngHub named streams(68+)・CachedLLM(llm_cache.jsonl=応答の内容アドレスキャッシュ・D13)・golden L1 バイト一致・k非依存(controls.mode=compute_matched)・no-fingerprint | 恒常 |
 
 ## 2. 実装中・計画済み(統合実装順=確定・2026-07-31)
