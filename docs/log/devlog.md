@@ -4,7 +4,7 @@
 > **プロトコル**: ユーザーとの1往復ごとに1エントリ追記。エントリが10に達したら圧縮して [devlog-compressed.md](./devlog-compressed.md) へ移し、本ファイルをリセット。設計の正典は [../design.md](../design.md)。
 > **圧縮履歴**: devlog-compressed.md(Block #0: プロトコル前史 / #1: ログ機構〜分野1-3 / #2: リサーチ完走〜決定アジェンダ / #3: D0-D17決定→P0実装→世界v2-v5 / #4: 生態系→docs完遂→現実ギャップ全波→第9バッチ / #5: ODPT実ダイヤ→制度深化完遂→自己モデル→現実較正→実LLM初証拠→日常プロファイル(第10〜14バッチ) / #6: 開放行動→世界解釈の観察→マルチモデル対応(第15〜24バッチ) / #7: 復元→git化→入力解像度LOD→分析スイート→制約デコード→自由度P2(第25〜34バッチ) / #8: EnvPack→PLATEAU実形状→第37バッチ6トラック→現実スケール転換(第35〜38バッチ) / #9: 同時滞在実測→全員思考転換→行間レイヤS1-S5(第38バッチW2) / #10: W2完結→視覚F→オントロジー多軸→物流・乗れる交通→並列ゲート(第38W2後半〜第43バッチ) / #11: 関係性→経済完結→観測レンズ→日常観察ABC→マクロ⇄ミクロズーム(第44〜58バッチ) / #12: 精査3スライス→関係内生化→GitHub公開→第1回分析→4系統拡張始動(第59〜66バッチ) / #13: レーン1完了→DT/IDEA計画→二重化転換→統合実装順第70-78始動(第67〜72バッチ) / **#14: 観測点完結→DT P0/P6→ablate完結→認知プログラム始動→天候生成器(第73〜79バッチ+天候W1)**)。全文アーカイブ: devlog-block6-fulltext.md / devlog-block7to9-fulltext.md / devlog-block10-fulltext.md / devlog-block11-fulltext.md / devlog-block12-fulltext.md / devlog-block13-fulltext.md / devlog-block14-fulltext.md。
 
-**ライブエントリ数: 1 / 10**(Entry 81 から=継続採番)
+**ライブエントリ数: 2 / 10**(Entry 81 から=継続採番)
 
 ---
 ### Entry 81 — 2026-08-01 — 物理P2比較検収: 推奨=自前SFM(3条件付き)・選定はユーザー承認待ち
@@ -21,3 +21,21 @@ Opus実装(C)をFable検収。reference/physics_bench/(隔離・src/confゼロ�
   一致の実測)→STATUS持ち越し登録・P3で決め直し。
 - **推奨(承認事項)**: 自前SFM主候補(条件A=dt 0.02-0.05s・B=斥力2次元探索・C=密度依存v0外付け較正)・
   ORCAは捨てず第一代替(交差流・境界で上)。→ユーザー承認後にP3縫合(〜8/11目標)。天候W2起動。
+
+---
+### Entry 82 — 2026-08-01 — 天候W2検収: weather.py統合(mode 3種)+既存resumeバグの発見修正(2266緑)
+Opus実装をFable検収。新規2(weather_gen.py・test_weather_generated.py=35テスト)+12変更。
+- **mode 3種**: synthetic(既定=L1バイト一致・呼数319=319・enabled:false+generatedでも静的ファイル不読で
+  純既定一致)/generated("weather_gen" stream からラン開始時に全系列一括生成メモ化=prefix安定でresume再構築
+  同一・AR(1)状態をsimに持たせない=checkpoint追加なし)/table(実日付表引き・乱数0本・2025実データの9連猛暑
+  再現・年欠落は最新年へ写像し source="table_year_remapped" で必ず記録=黙って別年を使わない)。
+- **二重実装なしの証明**: fit_weather_gen.py がsrc側を import する向きに整理→fit再実行出力が凍結paramsと
+  16,698バイト完全一致・fit側32テスト無修正緑。
+- **generated統計**(シム実経路・2000seed): 31日窓でP(≥35℃)22.5%・連長2.04・P(5連)23.6%=W1較正値と全項目整合。
+  本選窓(8/16起点11日)はP(≥35℃)17.3%・**10連猛暑到達可**(月内トレンドで下旬涼=較正どおり)。現行合成は0%。
+- **★既存バグ発見修正**: sim._cal_day(日境界進行)がcheckpoint未収録→weather.enabled時のmid-day resumeで
+  同日を再処理しweatherイベント二重記録(rain_grievance二重加算)=resume≠straightの実在バグ。cal_day+当日
+  確定値をcheckpoint中央管理へ(旧ckpt互換.get・第62/70/75と同型のギャップの4例目)。
+- 来歴: generated/table時のみsummary/manifestにweather_params_sha256等+出典表示+フォールバック件数理由別。
+  プロンプト拡張はextra_prompt_fields既定false(分布差と書式差の交絡回避)。プロファイル不変=本選ONは
+  観察ラン構成の判断に含める。検収=フルゲートxdist **2266緑**(317s)。→第80(σ実測+観測チャンネル)起動。
