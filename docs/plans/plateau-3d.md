@@ -114,9 +114,13 @@ floor>levels 575→0 / 線路埋没 310→0 / 屋外の足元と地表の差 3.9
 ### テクスチャ経路(--plateau-tex)
 
 ```
-python scripts/export_3d.py runs/<name> --plateau --plateau-tex   # → runs/<name>/plateau_tex.js
+python scripts/export_3d.py runs/<name> --plateau --plateau-tex   # → plateau_tex.js + tracks.bin
 python viz/make_viewer3d.py runs/<name>                           # → viewer3d_lite.html が参照
 ```
+
+`--plateau-tex` は **`--tracks-binary` を自動で立てる**(標準経路・縮退策②)。`make_viewer3d` は
+`plateau_tex.js` と `scene3d/tracks.bin` が揃っているとき、**分離版だけ**軌跡をチャンク遅延ロードに
+切り替える(埋め込み版 `viewer3d.html` は「単一ファイルで完結」が存在理由なので触らない)。
 
 - **分離版だけがテクスチャを持つ**。埋め込み版 `viewer3d.html` はアトラス 1/2 で 80MB ゲートを
   必ず超えるため入れず、レイヤーパネルに「テクスチャ表示は viewer3d_lite.html で」と注記する。
@@ -136,21 +140,35 @@ python viz/make_viewer3d.py runs/<name>                           # → viewer3d
   ②`PLATEAU_SKIP` を空にして押出し箱を全部作り、「テクスチャ」トグル OFF のときだけ見せる
   (照合済みだけ skip すると未照合の箱が実形状に突き刺さる)。
 
-**サイズ実測**(runs/demo_event_200a3d・2026-08-02):
+### 80MB ゲート対策(縮退策①②・2026-08-02 実施)
 
-| 成果物 | サイズ |
-|---|---|
-| viewer3d.html(埋め込み・テクスチャ無し) | 40.28 MiB |
-| viewer3d_lite.html | 20.15 MiB |
-| plateau_mesh.js | 20.13 MiB |
-| plateau_tex.js | **65.33 MiB** |
-| **分離版合計** | **105.61 MiB**(80MB ゲート超過) |
+1. **`plateau_mesh.js` から統合メッシュ配列を落とす**(`positions_b64`/`indices_b64`/`colors_b64`)。
+   tex がテクスチャ付きタイルで置換するので `buildPlateau` は一度も読まない。残すのは
+   `matched_ids`・`extras`(歩道橋)・`ubld4`(地下街)・出典。何を落としたかは
+   `merged_mesh_omitted` キーに書き残す。**tex が無い経路では呼ばないので従来のサイドカーは
+   1 バイトも変わらない**。安全弁として `buildPlateau` は `!PLATEAU_DATA.positions_b64` でも
+   退避する(サイドカーだけ残して `plateau_tex.js` を消しても例外を出さない)。
+2. **分離版だけ軌跡をチャンク遅延ロード**(第76 の `tracks.bin`)。`--plateau-tex` が
+   `--tracks-binary` を自動で立て、`make_viewer3d` は `viewer3d_lite.html` だけをバイナリ経路に
+   する。埋め込み版は tracks.json 埋め込みのまま=単一ファイルで完結。
 
-縮退の選択肢(未実施・効果の実測/見積を先に置く):
-1. tex 経路では `plateau_mesh.js` の統合メッシュ配列(positions/indices/colors)が描画に
-   使われないので落とせる → **−18.9 MiB**(matched_ids・ubld4・attribution は残す必要あり)。
-2. `--tracks-binary` で軌跡を lite HTML から追い出す → **−15 MiB 前後**。
-3. アトラス 1/4 再縮小(レーンA 見積 WebP 33.2→9.9MB)→ −23 MiB 前後。**本バッチでは実施しない**。
+**サイズ実測**(runs/demo_event_200a3d・432 step・200体・2026-08-02):
+
+| 成果物 | 縮退前 | **縮退後** |
+|---|---|---|
+| viewer3d.html(埋め込み・テクスチャ無し・自己完結) | 40.28 MiB | 40.28 MiB |
+| viewer3d_lite.html | 20.15 | **5.54** |
+| plateau_mesh.js | 20.13 | **2.90** |
+| plateau_tex.js | 65.33 | 65.33 |
+| tracks_bin/chunk_*.js(分離版が実際に読む) | — | **5.62** |
+| **分離版合計** | **105.61**(超過) | **79.39 MiB(ゲート以内)** |
+
+(参考: `scene3d/tracks.bin` 自体は 4.25 MiB。ブラウザが読むのは base64 JSONP のチャンクなので
+上表は厳しい側の 5.62 MiB で計上した。`tracks.bin` 換算なら 78.03 MiB。)
+
+残る縮退の選択肢(未実施): アトラス 1/4 再縮小(レーンA 見積 WebP 33.2→9.9MB)→ −23 MiB 前後。
+ラン長が伸びるとチャンクだけが増える(テクスチャ 65.33 MiB はラン非依存)ので、
+10日ランでは `--step-stride` か `--sample-agents` の併用が要る。
 
 ### 地下街 LOD4.1(plateau_web.ubld4)
 
@@ -170,10 +188,14 @@ python viz/make_viewer3d.py runs/<name>                           # → viewer3d
 
 ### 検収
 
-- 既定(フラグなし)の再エクスポート+ビューワー再生成は HEAD 版と**全 8 ファイルがバイト同一**。
+- 既定(フラグなし)の再エクスポート+ビューワー再生成はレーンB 以前(5ff56c4)版と
+  **全 8 ファイルがバイト同一**(縮退策の追加後も再確認済み)。
 - `--plateau` は scene.json / buildings.glb / tracks.json / terrain_web.json が**バイト同一**、
   plateau_web.json の差分は `ubld4` キーの**追加のみ**(除去すると完全一致)。
-- 新規テスト 17 本(`tests/test_viewer3d_texture.py`)。esprima 構文検査 + QuickJS で
+  tex 無し経路の `plateau_mesh.js` は `plateau_web.json` の素の写しのまま。
+- 新規テスト 21 本(`tests/test_viewer3d_texture.py`)。esprima 構文検査 + QuickJS で
   出荷 JS そのものを実行し、位置/UV/索引/グループ/層/クリップ数を Python と突合。
+  縮退後は分離版のチャンクを QuickJS で復号し、tracks.json と**座標 |Δ|max 0.000m・
+  w/mode/traffic 完全一致**(5 step × 200 体)を確認。
 - **ブラウザ実機は未検証**(機械検査まで)。特に `flipY=false` の向きとアトラスの
   非 2 冪サイズ時のミップマップ挙動は実機で見る必要がある。
