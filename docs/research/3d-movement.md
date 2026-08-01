@@ -16,7 +16,7 @@
 
 ## 0. 結論(TL;DR)
 
-1. **現状のエージェント移動は純2D(x,y)**。位置はOSMグラフのノード + エッジ上の進捗(`edge_offset`)で決まり、`x,y` はエッジ折れ線の弧長補間([`map.py::xy_along`](../../src/society/world/map.py))。**z(高さ)はエージェント状態に存在しない**([`agent.py`](../../src/society/agents/agent.py):`node/x/y/edge_offset/floor/loc`。`floor` は整数の階のみ)。3Dは**ビューア側の描画時に地形へドレープ**しているだけ(`groundAt(x,y)+1.1`)。
+1. **現状のエージェント移動は純2D(x,y)**。位置はOSMグラフのノード + エッジ上の進捗(`edge_offset`)で決まり、`x,y` はエッジ折れ線の弧長補間([`map.py::xy_along`](../../src/society/world/map.py))。**z(高さ)はエージェント状態に存在しない**([`agent.py`](../../src/society/agents/agent.py):`node/x/y/edge_offset/floor/loc`。`floor` は整数の階のみ)。3Dは**ビューア側の描画時に地形へドレープ**しているだけ(屋外は `groundAt(x,y)` に**足元を接地**、屋内は建物の `gz + (floor-1)*floorH`。§1.3)。
 2. **「3D精緻化」は2つの独立軸に分解できる**:(A)**水平解像度**=歩道・横断歩道・地下通路・駅構内を反映した層状歩行ネットワーク上を歩かせる、(B)**垂直解像度**=地形DEM・デッキ・地下・階のzをエージェント座標に載せる。両者はデータも工数も別。
 3. **推奨アーキテクチャ = 連続2.5D座標 + 層状グラフのハイブリッド**(navmesh全面採用でも純グラフ維持でもない中庸)。前景/可視域は連続座標 + 局所回避(既存 [`viz/sfm.py`](../../viz/sfm.py) の Social Force を昇格)、背景は現行グラフ + SoA一括ベクトル演算で **0.0002s/agent-step 予算を死守**。zは全tier共通で**地形・レイヤーからのO(1)サンプリング**(移動計算には入れない=安い)。
 4. **データは大半が入手可能**。垂直(z)は**PLATEAU資産が抽出済み**(地形2m格子 heights float32・地下街 ubld・橋 brid、[`data/plateau/`](../../data/plateau/))。水平の精緻化は 国交省「歩行空間ネットワークデータ」+ OSM footway/crossing + PLATEAU tran(道路)+ 手持ちの [`floorguide_shibuya.json`](../../data/floorguide_shibuya.json) を層状に統合する。駅構内の連続ナビは屋内地図(IMDF/ODPT)次第で**入手性に難あり**(§3-e)。
@@ -49,7 +49,12 @@
 ### 1.3 3D可視化の現状(ビューア側でドレープ)
 
 - [`scripts/plateau_extract.py`](../../scripts/plateau_extract.py) がPLATEAU渋谷区2025から抽出済み: **建物LOD2**(`plateau_mesh.npz`)・**地形**(`terrain.npz`: heights float32・**2m格子・nx=1088×ny=921・ground0=15.18m・z∈[-8.14, 23.91]m**、[`terrain.json`](../../data/plateau/terrain.json))・**地下街 ubld**・**橋 brid**(`extras.npz`)。
-- [`make_viewer3d.py`](../../viz/make_viewer3d.py) の `groundAt(x,y)`(双一次補間)が地形高さを返し、エージェントは `groundAt(x,y)+1.1` に接地表示。道路/OSMは地表へドレープ。**sim側の x,y は不変で、zは描画時だけ付く**(地形なし時は `groundAt≡0` で従来動作とバイト一致)。
+- [`make_viewer3d.py`](../../viz/make_viewer3d.py) の `groundAt(x,y)`(双一次補間)が地形高さを返す。**sim側の x,y は不変で、zは描画時だけ付く**(地形なし時は `groundAt≡0` で従来動作とバイト一致)。接地の契約は以下(2026-08-02 の品質修正バッチで確定。それ以前は「中心を `groundAt+1.2` に置く」だったため、全高10.2mのカプセルの足元が地表下 3.9m に埋まっていた。旧版の本文にあった `groundAt+1.1` は移動手段グリフ(車の箱)の値で、人物カプセルの実装値 1.2 とも食い違っていた):
+  - **足元アンカー**: `footY(x,y,w)` が接地面を返し、インスタンス中心は `footY + 半高×表示倍率`。カプセル素寸法は人間比(半径0.45m・全高1.8m)で、表示倍率はUIスライダー(既定2.0倍=遠景での視認性)。
+  - **屋外**(`w=0`)の接地面 = `groundAt(x,y)`。
+  - **屋内**(`w≥1000`)の接地面 = `b.gz + (floor-1)*floorH`(建物基準)。`floorH = b.floorH || 3.5` で、`floorH` は PLATEAU 実測高がある建物の実効階高 `height/levels`(`export_3d --plateau` が付与)。`base`(=`-below*3.5`)は地下階の押出し下端であって階番号の原点ではないので足さない(sim の `floor` は 1=地上階)。`floor` は書き出し側で `1..min(levels,99)` にクランプし、ビューア側でも 0..99 にガードする。
+  - **地上線路**は `groundAt+z+0.6`、**道路**は地形セル幅(2m)以下に再分割してから `groundAt+0.4`、**建物**は `base+gz` から `depth=(levels+below)*3.5` 押出し(+下方3mスカート)。
+  - **OSM地図**は地形サーフェスと**同一 geometry** に平面UV投影で貼る(別平面のドレープは頂点密度が足りず地形と交差して溶けるため廃止)。
 - 移動の見た目は `move_segment.pts`(RDP間引きポリライン)を `posAt/alongPath` で step内補間する。**これが「現状: ノード間補間」の実体**。
 
 ### 1.4 既に存在する群衆物理の足場(重要)
@@ -266,7 +271,7 @@ million-scale §1.3–1.4 の逆算(25万同時・144step/日)に空間解像度
 
 | 改善 | 現状 | 改善後 | 実装面 |
 |---|---|---|---|
-| **接地z** | `groundAt(x,y)+1.1`(既実装) | デッキ/地下/階のlayer-zを反映(地下歩行者は地表下、デッキは+X m) | `make_viewer3d.py` の高さ関数に `agent.layer/floor` を渡す。sim側zを吐けば補間不要 |
+| **接地z** | 足元アンカー: 屋外=`groundAt(x,y)`・屋内=`gz+(floor-1)*floorH`(既実装・§1.3) | デッキ/地下のlayer-zを反映(地下歩行者は地表下、デッキは+X m) | `make_viewer3d.py` の `footY(x,y,w)` に `agent.layer` を足す。sim側zを吐けば補間不要 |
 | **歩道上の左右** | 中心線上を1点で移動 | 歩道幅内でのオフセット(進行方向法線に±) | 前景=SFM座標そのまま。中景=幅内ジッタの決定論版 |
 | **横断歩道の待ち** | 素通り | 信号連動の停止・青で一斉横断(スクランブル) | 前景のみ。SFM目標を信号状態でゲート(ShibuyaSocialのsigmoid信号と同型・social-force-crowd §3.2) |
 | **駅構内/地下の動線** | 駅ノードで瞬間移動(traffic-signals-audit) | 構内リンクに沿って移動(データがあれば・§3-e) | 層状グラフに構内リンクを足すだけで既存補間が効く |
