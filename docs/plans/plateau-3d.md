@@ -103,3 +103,77 @@ W1〜W5 の実装後に残っていた「地面の乱れ」「エージェント
 
 検収(`runs/demo_event_200a3d` 再エクスポート): 屋根+0.5m超の屋内サンプル 531→0 /
 floor>levels 575→0 / 線路埋没 310→0 / 屋外の足元と地表の差 3.90m→0.000m。
+
+## 追記: テクスチャ経路(松 B-1)+ 地下街 LOD4.1 表示(梅 B-2)(2026-08-02・レーンB)
+
+計画は [highfidelity-3d-physics-plan.md](highfidelity-3d-physics-plan.md) 第1段=梅・第3段=松。
+データは**レーンA**(コミット 5ff56c4)の `data/plateau/tiles_lod2/` と
+`data/plateau/ubld_lod4_mesh.npz`。本バッチは `viz/make_viewer3d.py` /
+`scripts/export_3d.py` / テストのみを触る(src・conf ゼロタッチ)。
+
+### テクスチャ経路(--plateau-tex)
+
+```
+python scripts/export_3d.py runs/<name> --plateau --plateau-tex   # → runs/<name>/plateau_tex.js
+python viz/make_viewer3d.py runs/<name>                           # → viewer3d_lite.html が参照
+```
+
+- **分離版だけがテクスチャを持つ**。埋め込み版 `viewer3d.html` はアトラス 1/2 で 80MB ゲートを
+  必ず超えるため入れず、レイヤーパネルに「テクスチャ表示は viewer3d_lite.html で」と注記する。
+- サイドカー `plateau_tex.js` は JSONP(`PLATEAU_TEX = {...};`・ASCII のみ)。中身はタイルごとに
+  xyz(int16・広いタイルのみ int32 が 2 枚)・UV(uint16)・三角形索引(uint16/uint32)・
+  WebP アトラス(`data:image/webp;base64,`)。file:// で `fetch` が使えないための JSONP は
+  既存 `plateau_mesh.js` と同じ思想。
+- **batch_shadowed を落とす**(refine=REPLACE の祖先重複)。707,452 → 596,386 三角形
+  (除外 111,066 = 15.70%)。除外後の gml_id は 6,478 件で**重複ゼロ**=同じ建物が二重に
+  描かれない(`tiles_batch_attrs.json` と突合して固定)。全 batch が影の 29 タイルは
+  サイドカーから消え、148 → 119 タイルになる。
+- 1 タイル = 1 ジオメトリ。テクスチャ付きプリミティブ由来の三角形(441,150)を前半、
+  無地(155,236)を後半に並べ、`addGroup` 2 つ + マテリアル配列 `[map 付き, 無彩色]` で描く
+  (タイルあたり最大 2 ドローコール)。UV は glTF 規約(原点=画像左上)のままで、
+  テクスチャ側を `flipY=false`(three.js の GLTFLoader と同じ扱い)。
+- **無テクスチャ `plateau_mesh` とは排他**。tex がある時は ①統合メッシュを作らない
+  ②`PLATEAU_SKIP` を空にして押出し箱を全部作り、「テクスチャ」トグル OFF のときだけ見せる
+  (照合済みだけ skip すると未照合の箱が実形状に突き刺さる)。
+
+**サイズ実測**(runs/demo_event_200a3d・2026-08-02):
+
+| 成果物 | サイズ |
+|---|---|
+| viewer3d.html(埋め込み・テクスチャ無し) | 40.28 MiB |
+| viewer3d_lite.html | 20.15 MiB |
+| plateau_mesh.js | 20.13 MiB |
+| plateau_tex.js | **65.33 MiB** |
+| **分離版合計** | **105.61 MiB**(80MB ゲート超過) |
+
+縮退の選択肢(未実施・効果の実測/見積を先に置く):
+1. tex 経路では `plateau_mesh.js` の統合メッシュ配列(positions/indices/colors)が描画に
+   使われないので落とせる → **−18.9 MiB**(matched_ids・ubld4・attribution は残す必要あり)。
+2. `--tracks-binary` で軌跡を lite HTML から追い出す → **−15 MiB 前後**。
+3. アトラス 1/4 再縮小(レーンA 見積 WebP 33.2→9.9MB)→ −23 MiB 前後。**本バッチでは実施しない**。
+
+### 地下街 LOD4.1(plateau_web.ubld4)
+
+- `--plateau` 時に `ubld_lod4_mesh.npz` があれば `plateau_web.json` に `ubld4` キーを足す
+  (**追加専用**・+2.11 MiB)。旧ランの plateau_web には無い=読み手は従来経路のまま。
+- 面種別(kind 11 種)を 5 群に塗り分け: 床/地面=不透明・内壁/壁/仕切=半透明 0.32・
+  扉/窓=強調色・階段等(installation)=別色・天井/屋根=ごく薄い蓋。
+- レーンA が床面 z のヒストグラムで分けた **4 層**(z = −13.25 / −10.25 / −6.75 / −4.75 m)ごとに
+  表示チップ(全/B1..B4)。層は三角形重心 z の最近傍ピークで決める。
+- 旧 `extras.ubld` の箱表示は置換(`ubld4` があれば描かない)。既定 OFF は維持。
+  ON の間だけ地表を半透明(0.28)にし OSM ドレープを退避する(地下は不透明な地表の下にあるため)。
+- **z 基準の検証**: 地表より上の頂点は 旧 extras 47.37% → 新メッシュ **2.85%**(最大 +1.19m)。
+  残りは全て最上層の installation 894 枚 + closure 10 枚 = **地上への階段の天端**で、
+  z 基準そのものは健全(旧 47% は粗い箱表現の産物)。ゼロではないので**地表クリップは維持**
+  (実物 JS を QuickJS で実行して 908/51,889 = 1.75%・Python 再現 900 枚。差 8 枚は
+  閾値ちょうどの同値が float32/float64 で割れる分)。
+
+### 検収
+
+- 既定(フラグなし)の再エクスポート+ビューワー再生成は HEAD 版と**全 8 ファイルがバイト同一**。
+- `--plateau` は scene.json / buildings.glb / tracks.json / terrain_web.json が**バイト同一**、
+  plateau_web.json の差分は `ubld4` キーの**追加のみ**(除去すると完全一致)。
+- 新規テスト 17 本(`tests/test_viewer3d_texture.py`)。esprima 構文検査 + QuickJS で
+  出荷 JS そのものを実行し、位置/UV/索引/グループ/層/クリップ数を Python と突合。
+- **ブラウザ実機は未検証**(機械検査まで)。特に `flipY=false` の向きとアトラスの
+  非 2 冪サイズ時のミップマップ挙動は実機で見る必要がある。
