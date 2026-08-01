@@ -2,7 +2,8 @@
 
 > **更新プロトコル**: 実装バッチのコミットごとに必ず本ファイルを更新する(検収の一部)。
 > ここは「今どこにいるか」の一覧だけを持ち、詳細は各リンク先(計画書・devlog)が正典。
-> 最終更新: **2026-08-01**(第85=Perception/Intent 契約 検収完了=**認知プログラム第79〜85 完結**・テスト **2536 緑**・P2 選定はユーザー承認待ち)
+> 最終更新: **2026-08-02**(サーベイ読解+現実フィードバック動線+高精細3D×物理計画の3文書追加・
+> 夜間実LLM検証ラン起動(100体×3日・Ollama qwen3:4b)・3Dビューワー品質修正バッチ実装中・判断待ちに 3D-U0〜U3/RW-U1/SV-U1 追加)
 
 ## 1. 実装済み(主要システムの現在地)
 
@@ -53,7 +54,10 @@ DT 系は [dt-integration-plan.md](docs/plans/dt-integration-plan.md)。
 | 第76 | DT P0 軌跡バイナリ化 | **完了**(2026-07-31 検収済み・新27テスト。ブラウザ実機の目視は未=成果物パスあり) |
 | 第77 | DT P6 追いかけ再生 | **完了**(2026-07-31 検収済み・新37テスト) |
 | 第78 | ablate 4種+状態ハッシュチェーン+metrics_spec_hash+指標凍結 | **完了**(2026-07-31 検収済み・新63テスト)=**統合実装順 9/9 完結**(T1〜T8 全達成) |
-| 第79〜 | **認知・時間三層・物理**([cognition-physics-plan.md](docs/plans/cognition-physics-plan.md))= 毎分レート化→σ実測→閾値発火+同期バリア→watch spec+g/θ+F/N/P(発火源は内省・会話も第一級/驚き大=世界モデル書き換え)→θ較正→環境FB→Perception契約+**物理 P2 比較(前倒し)→P3 縫合〜8/11**+**天候生成器(サンプリング型)** | **承認済み・実装中**(NEW-4 大枠承認 2026-07-31・修正3点=計画 §6・実装前 web リサーチ必須・8/12-14 フリーズ) |
+| 第79〜85 | **認知・時間三層・物理**([cognition-physics-plan.md](docs/plans/cognition-physics-plan.md))= 毎分レート化→σ実測→閾値発火+同期バリア→watch spec+g/θ+F/N/P(発火源は内省・会話も第一級/驚き大=世界モデル書き換え)→θ較正→環境FB→Perception契約+**物理 P2 比較(前倒し)**+**天候生成器 W1/W2** | **全完結**(2026-08-01・2536緑)。残=P3 縫合(P2 承認待ち・〜8/11)・8/12-14 フリーズ |
+| 3D品質 | **3D ビューワー品質修正**(2026-08-02 実査で原因特定: OSM ドレープ解像度 1/7 頭打ち=面積33%が地形下・地下街メッシュ露出・IDW スパイク・線路/道路の非接地・**sim floor 未クランプ**(2階建てに floor=42=描画5.4%が屋根超え)・カプセル中心配置) | **実装中**(観察レイヤのみ=src/ゼロタッチ。sim 側クランプは 3D-U0) |
+| 3D計画 | **高精細渋谷 3D×物理接合 統合計画**([highfidelity-3d-physics-plan.md](docs/plans/highfidelity-3d-physics-plan.md)=梅:地下街LOD4.1表示/竹:歩道LOD3+壁線分→SFM f_iW+P3統合レーン/松:テクスチャLOD2.2。手元zip に全素材あり) | **提案書提示済み**→ 3D-U1〜U3 判断待ち |
+| 検証ラン | **夜間実 LLM 検証ラン**(night_llm_100a3d=100体×3 sim日・production+Ollama qwen3:4b・checkpoint毎日・watchdog+live_viewer 併走) | **実行中**(2026-08-02 03:45 起動・推定 09:15 完走) |
 | 次 | 観察ラン ON 構成 | **提案書提示済み**([observe-run-config-proposal.md](docs/plans/observe-run-config-proposal.md))→ OBS-U1〜U3 判断待ち・最終確定は 8/12-14(実 LLM 再較正後) |
 | 並行 | DT スナップショット再提案 | **提案書提示済み**([dt-snapshot-integration-proposal.md](docs/plans/dt-snapshot-integration-proposal.md))→ DT-S1 ほか判断待ち |
 | 本選後 | 場所二層知覚(IDEA⑥)・誤情報構造化フル版(IDEA⑦=ID-U2)・SUMO 反実仮想(P5)・USD/3D Tiles(DT-U4)・UE5(DT-U2 保留) | レーン3 |
@@ -69,6 +73,10 @@ DT 系は [dt-integration-plan.md](docs/plans/dt-integration-plan.md)。
 | P2選定 | 物理エンジンの選定承認 | **提示済み**([physics-engine-selection.md](docs/research/physics-engine-selection.md))。推奨=**自前 SFM(3条件付き: dt 0.02-0.05s・斥力2次元探索・密度依存 v0 の外付け較正)**。ORCA は交差流・境界縫合で優位のため第一代替として保持。決定論は両者バイト一致=差なし。**承認後に P3 縫合着手** |
 | OBS-U1〜U3 | 観察ラン ON 構成の承認([提案書](docs/plans/observe-run-config-proposal.md))・Δt_move 1分の扱い・認知 ON の 8/14 留保 | **新規**。推奨=§1 の ON セット+Δt=10 維持(1分は並行小ラン)+8/14 最終判断 |
 | S-quick | S0/S1/S2/S5/S9(計≈1.8日・S0 は第71 相乗り)を本選前に入れるか | **新規・承認求む**(提案書 §3。入力来歴・observe.yaml 是正・バス表・実イベント表・ODD 文書) |
+| 3D-U0 | **sim 側 floor クランプ**(scheduler.py で建物階数超の floor がそのまま通る=L1 が変わる修正。表示側は 2026-08-02 修正済み) | **新規**。推奨=conf トグル既定 OFF で実装し観察ランで ON |
+| 3D-U1〜U3 | 高精細 3D の採否([計画書](docs/plans/highfidelity-3d-physics-plan.md)): U1=梅+竹(P3 統合レーン・〜8/11)/U2=松(テクスチャ LOD2.2)の時期/U3=都区部点群の追加調査 | **新規**。推奨=U1 承認(P2=SFM とセット)・U2 は本選中の観察レイヤ並行作業・U3 不要 |
+| RW-U1 | **現実フィードバック動線**([research](docs/research/real-world-feedback.md)): ライブカメラ自動取得=不採用(YouTube 規約)・目視転記のみ可・較正3層(L0 初期条件/L1 パラメータ較正/L2 事後検証・状態同化なし)・本選中取得計画(アメダス/WBGT/JARTIC/ODPT 自動+ダッシュボード目視) | **新規・承認求む**(事前準備の登録作業は 8/5〜の期限あり=提案 §4-1) |
+| SV-U1 | **サーベイ反映 18 項目**([research](docs/research/llm-social-sim-survey.md) §3)の採否。◎印=S-01 報告書 micro/macro/system 3節固定・S-02 stylized facts の事前登録追記・S-03 分散/分位列(k* 主張に直結)・S-04 主張境界の宣言・S-16 prompt_paraphrase ablate(S-quick への追加候補) | **新規**。実装コスト小の宣言系(S-01/S-02/S-04)だけでも本選前推奨 |
 | DT-U2 | UE5 デモ動画 | 保留のまま(本選中判断) |
 
 ### 決定済み(2026-07-31・履歴)
@@ -100,3 +108,7 @@ dual-mode-requirements)。リポ直下の原本3本は移動・バイト同一�
 (=設計決定の正典)/ dt-alignment-record。統合計画は [cognition-physics-plan.md](docs/plans/cognition-physics-plan.md)。
 dt-alignment の方針 1-7 は大半実装済み(可視性=C0・観測層=P0/P6・差分管理=world.mod)で、新規採用は
 「系譜的同一性」の自己記述語彙のみ。
+
+**2026-08-02 受領**: リポ直下 `3800683.pdf`(Mou et al., *From Individual to Society*, ACM Computing Surveys 58(11),
+2026 = LLM 社会シム・サーベイ)。**原本はユーザー管理のまま未コミット**(PDF 原本リポ外維持の掟)。
+読解と反映点 18 項目は [docs/research/llm-social-sim-survey.md](docs/research/llm-social-sim-survey.md)(SV-U1)。
