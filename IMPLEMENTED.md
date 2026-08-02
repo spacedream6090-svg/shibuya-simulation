@@ -376,7 +376,9 @@ ollama seed 非再現(ハーネス層のみ決定論と宣言)・モデル切替
 | レーンA | 3D データパイプライン3本(松A-1+竹-1+竹-2) | 2026-08-02 | +54 |
 | 竹-3 | SFM 対壁斥力 f_iW + ξ 欠落バグ修正 | 2026-08-02 | +21 |
 | レーンB | テクスチャ統合+梅塗り分け+80MB ゲート内化 | 2026-08-02 | +21 |
-| 竹-4 | **P3 境界縫合**(physics.zones+ORCA 昇格+guarded ゲート+知覚翻訳) | 2026-08-02 | +36 / **2687** = 高精細3D×物理(松案)**全レーン完結**・P3 目標 8/11 を9日前倒し |
+| 竹-4 | **P3 境界縫合**(physics.zones+ORCA 昇格+guarded ゲート+知覚翻訳) | 2026-08-02 | +36 / 2687 = 高精細3D×物理(松案)**全レーン完結**・P3 目標 8/11 を9日前倒し |
+| 第90 | モデル人間らしさバッテリー(A〜E層+プラセボ・qwen3 実測=8b の D層分散潰れを発見) | 2026-08-03 | +21 |
+| 保守 | ①**LLM 呼び出しハードデッドライン**(`llm/deadline.py`=タイマースレッドでソケット shutdown・`model.call_deadline_s:300`・4バックエンド・病的生成スタブで実発火検証)②xdist **loadgroup 直列化**(`subproc_run` 42s・フレーク根治)③`pool.relations_cap/episodes_cap` conf 化(dunbar 干渉の解消口・既定不変)④ゾーン通過の L1 位置=zone_gate 直線補間(補間と明示宣言)+所有中 node 更新(同席キーの古さ解消)⑤**exit_building×open_actions クラッシュバグ修正**(本選構成+実 LLM の where で `_phase_move` KeyError=実害を再現実証→ `not agent.building` guard 1行+回帰テスト。mock は where を返さず完全潜在化していた) | 2026-08-03 | +30 / **2738** |
 
 > ※ 第1〜69バッチの詳細は [devlog-compressed.md](docs/log/devlog-compressed.md) Block #0〜#13 が正典。
 > 主要な内容は本ファイル A〜Q 節にシステム別で収録済み。
