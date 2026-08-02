@@ -378,7 +378,8 @@ ollama seed 非再現(ハーネス層のみ決定論と宣言)・モデル切替
 | レーンB | テクスチャ統合+梅塗り分け+80MB ゲート内化 | 2026-08-02 | +21 |
 | 竹-4 | **P3 境界縫合**(physics.zones+ORCA 昇格+guarded ゲート+知覚翻訳) | 2026-08-02 | +36 / 2687 = 高精細3D×物理(松案)**全レーン完結**・P3 目標 8/11 を9日前倒し |
 | 第90 | モデル人間らしさバッテリー(A〜E層+プラセボ・qwen3 実測=8b の D層分散潰れを発見) | 2026-08-03 | +21 |
-| 保守 | ①**LLM 呼び出しハードデッドライン**(`llm/deadline.py`=タイマースレッドでソケット shutdown・`model.call_deadline_s:300`・4バックエンド・病的生成スタブで実発火検証)②xdist **loadgroup 直列化**(`subproc_run` 42s・フレーク根治)③`pool.relations_cap/episodes_cap` conf 化(dunbar 干渉の解消口・既定不変)④ゾーン通過の L1 位置=zone_gate 直線補間(補間と明示宣言)+所有中 node 更新(同席キーの古さ解消)⑤**exit_building×open_actions クラッシュバグ修正**(本選構成+実 LLM の where で `_phase_move` KeyError=実害を再現実証→ `not agent.building` guard 1行+回帰テスト。mock は where を返さず完全潜在化していた) | 2026-08-03 | +30 / **2738** |
+| 保守 | ①**LLM 呼び出しハードデッドライン**(`llm/deadline.py`=タイマースレッドでソケット shutdown・`model.call_deadline_s:300`・4バックエンド・病的生成スタブで実発火検証)②xdist **loadgroup 直列化**(`subproc_run` 42s・フレーク根治)③`pool.relations_cap/episodes_cap` conf 化(dunbar 干渉の解消口・既定不変)④ゾーン通過の L1 位置=zone_gate 直線補間(補間と明示宣言)+所有中 node 更新(同席キーの古さ解消)⑤**exit_building×open_actions クラッシュバグ修正**(本選構成+実 LLM の where で `_phase_move` KeyError=実害を再現実証→ `not agent.building` guard 1行+回帰テスト。mock は where を返さず完全潜在化していた) | 2026-08-03 | +30 / 2738 |
+| 第86 | **day_plan v1**(`cognition/day_plan.py` 1,147行・`planning.day_plan.enabled` 既定 false): 構造化スキーマ(act 12/place 15/purpose 10/priority×flex・contingency≤3・**新語ゼロ**=既存語彙棚卸し・reason 先頭=生成順の根拠つき)+検証→決定的修復→フォールバック3段(**再試行ゼロの設計判断**=25万体で最悪呼数2倍を回避・SchemaBench 非適合率 18〜36% はフォールバック常用経路と宣言)+ルール実行(場所解決=習慣/距離/営業・could+droppable 無料削除・must 危機のみ plan_exception→第81 fire キュー)+修復/後退のモデル別集計(バッテリー追加指標)。作用点3つ全て単一・OFF=RNG 3176=3176/呼数 119=119/golden 緑。根拠=ALBATROSS/ActivitySim/Doherty(CHASE)/MATSim/Roorda 2005 実測 | 2026-08-03 | +50 / **2788** |
 
 > ※ 第1〜69バッチの詳細は [devlog-compressed.md](docs/log/devlog-compressed.md) Block #0〜#13 が正典。
 > 主要な内容は本ファイル A〜Q 節にシステム別で収録済み。

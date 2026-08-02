@@ -16,7 +16,7 @@
 
 | バッチ | 内容 | 状態 |
 |---|---|---|
-| **第86** | **day_plan v1**: 構造化スキーマ(メタ+ブロック4〜8+contingency≤3・列挙型中心・reason=生成時説明)+スキーマ/物理検証→決定的修復→フォールバック3段+**ルール実行系**(場所解決はルール側・priority×flex 割り込み=could/droppable は無料で削り must 危機のみ再計画発火・空き時間=習慣ポリシー) | **実装中**(2026-08-03 着手) |
+| ~~第86~~ | day_plan v1(構造化スキーマ+検証/修復/フォールバック3段+ルール実行+priority×flex 割り込み) | **完了**(2026-08-03・新50テスト・[実装記録](docs/plans/dayplan-engaged-plan.md) §4 → [IMPLEMENTED.md](IMPLEMENTED.md)) |
 | ~~並行~~ | 保守バッチ(ハードデッドライン・xdist 直列化・dunbar×pool 幅・竹-4①②・exit_building) | **完了**(2026-08-03・exit_building は実害クラッシュを実証し guard 1行で修正→ [IMPLEMENTED.md](IMPLEMENTED.md)) |
 | **P4 較正** | 物理の高密度条件での較正+ゾーンのビューワー表示(竹-4 の残り) | 未着手・**8/12-14 フリーズ前に完了**が目標 |
 
