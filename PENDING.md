@@ -33,7 +33,7 @@
 | ~~第87~~ | engaged モード=**完了**(2026-08-03・新47テスト・実測エピソード 7.38/人/日=目標帯内・[実装記録](docs/plans/dayplan-engaged-plan.md) §5 → [IMPLEMENTED.md](IMPLEMENTED.md)) |
 | ~~第88~~ | 心モデル固定+三層知能=**完了**(2026-08-03・新38テスト・純関数割当=checkpoint不要・[実装記録](docs/plans/dayplan-engaged-plan.md) §6 → [IMPLEMENTED.md](IMPLEMENTED.md)) |
 | ~~第89~~ | プラセボ L1 3種=**完了**(2026-08-03・新55テスト・[梯子文書](docs/research/ablation-ladder.md)・[実装記録](docs/plans/dayplan-engaged-plan.md) §7 → [IMPLEMENTED.md](IMPLEMENTED.md)) |
-| 第91 | **退行シグナル監視+縦横煙プロファイル**: L2 監視列(分散・エントロピー・n-gram・発火率)+縦煙(2,500全期間)/横煙(25万数時間)conf+判定基準 |
+| ~~第91~~ | 退行シグナル監視+縦横煙=**完了**(2026-08-03・新40テスト・[判定基準](docs/research/regression-signals.md)・[実装記録](docs/plans/dayplan-engaged-plan.md) §9 → [IMPLEMENTED.md](IMPLEMENTED.md))。★DP-U3 の核心材料=**在場25万は presence cap で来街者ゼロ化・メモリ外挿316〜363GB=単ノード不成立**(総人口25万×在場制御の設計が必要) |
 
 (第90 バッテリーハーネスは **2026-08-03 完了**→ [IMPLEMENTED.md](IMPLEMENTED.md) O 節。正規版 D 層測定(n=30)と候補5〜6本への拡張は DP-U2 の材料として実施予定)
 

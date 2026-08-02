@@ -29,7 +29,7 @@
 | 第88 | **心モデル固定+三層知能**: agent→model_id 誕生時固定(専用 stream・manifest/ログ必須=交絡の記録)+基底/思考/高解像度層の conf 配置(高解像度 1〜5%) | **完了**(2026-08-03。§6 参照) |
 | 第89 | **プラセボ L1 3種**(context_shuffle/persona_swap/context_sever): 呼数・フォーマット・乱数消費同一の中身破壊(第78 ablate 枠に追加・fingerprint_risk 正直宣言) | **完了**(2026-08-03。§7 参照) |
 | 第90 | **バッテリーハーネス**(scripts 系): 共通ハーネス(同一プロンプト/シード/温度)+A層(社会生活基本調査比較)/B層(摂動応答)/C層(会話統計・名大コーパス)/D層(分散比=生命線)/E層(長期退行)+プラセボ対照 | 計画済み |
-| 第91 | **退行シグナル監視+縦横煙プロファイル**: L2 監視列(分散・エントロピー・n-gram・発火率)+縦煙(2,500全期間)/横煙(25万数時間)conf+判定基準 | 計画済み |
+| 第91 | **退行シグナル監視+縦横煙プロファイル**: L2 監視列(分散・エントロピー・n-gram・発火率)+縦煙(2,500全期間)/横煙(25万数時間)conf+判定基準 | **完了**(2026-08-03。§9 参照) |
 | 並行 | 保守バッチ: LLM 呼び出しハードデッドライン(本選前必須バグ)・serial マーカー・dunbar×pool 幅拡張・竹-4 持ち越し①②・exit_building 調査 | 実装中 |
 
 ## 3. ユーザー判断待ち(本計画から発生)
@@ -514,3 +514,171 @@ rng_key だけで応答を決める LLM プロキシ**(`_PromptBlindLLM`)を書�
 第90 バッテリーハーネス・第91 退行監視は本バッチの範囲外。
 `docs/research/ablation-ladder.md` には実行レシピ(conf 例)と読み方(禁止事項つき)まで
 書いたが、走らせてはいない。
+
+## 9. 第91バッチ 実装記録(2026-08-03 完了)
+
+**conf**: `observer.regression.enabled`(既定 **false** = **L2 に列が 1 つも生えない**)。
+実装 `src/society/observer/regression.py` + 判定 `scripts/detect_regression.py` +
+プロファイル `conf/smoke_tall.yaml` / `conf/smoke_wide.yaml` +
+判定基準 **`docs/research/regression-signals.md`**(新規)。
+
+原文書 §3「25万人ランで最も怖いのは落ちることではなく、**終了後に全員が同じ行動へ
+収束していたと判明すること**」に対する計器一式。day_plan/engaged レーンの最終バッチ。
+
+### 9.1 L2 監視列(§3 の 4 群 → 14 列)
+
+| 群 | 列 | 定義の要点 |
+|---|---|---|
+| ① 行動分散 | `reg_act_between_var` / `reg_act_entropy_mean` / `reg_act_agents` | `ACT_KINDS`(26 種の**固定**ホワイトリスト)上の個体別確率ベクトルを作り、**次元ごとの個体間分散を次元平均**。分散は**不偏(n−1)**= iid なら期待値が N 非依存 ← §9.3 の診断の前提。移動の内訳(move_segment/route_start)は 1 行動が step 数ぶん増殖するので入れない |
+| ② 訪問 | `reg_visit_entropy` / `reg_visit_nodes` | `arrive` の訪問先分布の Shannon エントロピー[bit] |
+| ③ 語彙 | `reg_vocab_entropy` / `reg_ngram_repeat_rate` / `reg_vocab_tokens` / `reg_vocab_excluded` | 文字 2-gram(analyze_specialization と同流儀)。**第87 の申し送り対応**=下記 |
+| ④ 発火率 | `reg_fire_rate_p10/p50/p90` / `reg_fire_zero_frac` / `reg_fire_sat_frac` | **`cognition.fire` ON のときだけ 5 列生える**(材料の `cog_fire` が出ないランで 0 を並べて「張り付いている」と誤読させない) |
+
+**方向表 `REGRESSION_DIRECTION` が単一の源**で、判定スクリプトは「どちらへ動いたら退行か」を
+1 行も持たない(列を足して方向を書き忘れる経路が構造上存在しない)。
+
+**★第87 申し送りの解消**: engaged の定型応答 `TEMPLATE`(単一の固定文)を語彙タリーから
+除外し、**除外件数を列と summary に残す**(黙って落とさない)。除外しないと engaged ON の
+ランだけ機構が撃った本数に比例して語彙エントロピーが下がる = **機構が退行シグナルを捏造する**。
+検収で `summary.regression.excluded_total == summary.engaged.template_replies` を固定
+(mini 縦煙 46=46 / 6 日縦煙 325=325)。
+
+**観測が世界を読む量を増やしていない**: 見るのは `sim.logger.events` **だけ**で、
+`sim.agents` も `agent.*` も 1 つも触らない。その代償として母集団は
+「窓内に L1 イベントを出した個体」で定義してある(= L1 だけから完全に再計算できる)。
+
+### 9.2 判定スクリプト(`scripts/detect_regression.py`)
+
+- **Mann-Kendall**(同順位補正つき正規近似)+ **Theil-Sen** 勾配。閾値は
+  `--alpha` / `--min-rel-slope` の**引数必須**(既定値をコードに埋めない)。
+- ★**自己相関の処理**: rolling 窓の L2 列は隣接行が窓の 99% 以上を共有するので、
+  素で検定すると**どんな微小な傾きでも p<0.001** になる。既定で**窓幅ぶん間引き**
+  (非重複標本)+ **先頭 1 窓を棄却**(窓が満ちる過程を単調増加として拾わない)。
+  結果、判定には最低 `warmup + 4×stride` = 720 step が要り、それ未満は `INSUFFICIENT`。
+- 判定は **3 条件の連言**(p < α / 符号が方向表と一致 / |相対傾き| ≥ 閾値)。
+- **`--quick`**(watchdog 用): 1 行 JSON のみ・ファイルを書かない・**必ず exit 0**
+  (監視がランを殺してはならない)。実行中は**完結した part だけ**を読み、
+  ★**第77 の `_open_shared` を流用**(Windows の素の `open()` は `FILE_SHARE_DELETE` を
+  立てないので、読んでいる最中の part をランが unlink できず**シム本体が finalize で落ちる**)。
+- **`--variance-collapse`**: §9.3。図は matplotlib 非依存の素の SVG
+  (`make_endo_report.py` と同流儀)。
+
+### 9.3 分散崩壊診断 — 統計的平滑化と均質化の切り分け(§3 の要求)
+
+不偏分散(n−1)は iid 標本なら**期待値が N に依存しない**(N とともに縮むのは
+推定量の**ばらつき**であって期待値ではない)。そこで 2 本の曲線を重ねる:
+
+- **帰無帯** = 最大 N のランの個体集合から m 体を無作為抽出した分散の 5–95%
+  (母集団が同じなので**期待値は平坦**・幅だけが縮む。`default_rng(0)` 固定)
+- **実測** = N の違うランそれぞれの全個体の分散
+
+★**帯の向きの読み方**(ここを間違えると診断が逆になる。実装で一度間違えて直した):
+
+| 実測の位置 | 意味 | verdict |
+|---|---|---|
+| 帯の**上**(小 N のほうが多様) | 大きい集団が抽出ノイズで説明できないほど均質 = **モデル由来の均質化** | `MODEL_HOMOGENIZATION_SUSPECTED` |
+| 帯の**中** | 「V は N に依存しない」と整合 | `NO_COLLAPSE` |
+| 帯の**下** | 崩壊の向きではない。**N ごとに母集団構成が違う**疑い | `POPULATION_MISMATCH_SUSPECTED` |
+
+**実測(mock・N=50/100/200・288 step)で最初に出た答えは `POPULATION_MISMATCH_SUSPECTED`**
+(V = 1.21e-3 / 1.36e-3 / 1.77e-3、log-log 傾き **b=+0.27** = 分散は N とともに**増える**)。
+原因は判っている: 平坦名簿 300 件を `roster[agent_id % len(roster)]` で巡回複製しているため
+**N=50 のランはペルソナ空間の 50 件しか使っていない**。装置が交絡を正しく指差した形で、
+本気で使うときは人口構成を揃える前処理(`gen_personas.py --pool 8000 --sample 2500`)が要る、
+と `regression-signals.md` §4.3 に明記した。
+
+### 9.4 縦煙 `conf/smoke_tall.yaml` — 縮小版で実走(200 体 × 2 日 / 6 日・mock)
+
+| ラン | 期間 | L1 件数 | LLM 呼 | エピソード | /人/日 | §8 目安 |
+|---|---|---|---|---|---|---|
+| smoke_tall_mini | 288 step(2 日) | 185,843 | 9,360 | 3,166 | **7.92** | 4〜8 |
+| smoke_tall_6d | 864 step(6 日) | 581,584 | 28,573 | 9,429 | **7.86** | 4〜8 |
+
+6 日ランの日次サンプル(step 143 / 287 / 431 / 575 / 719 / 863):
+
+| step | act_var | act_ent | visit_ent | nodes | vocab_ent | ngram_rep | tokens | excl | fire_p50 | zero | sat |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 143 | 0.001600 | 2.9867 | 9.4489 | 1027 | 8.8385 | 0.9599 | 66,818 | 15 | 0.632 | 0.000 | 0.000 |
+| 287 | 0.001767 | 2.9241 | 9.2182 | 970 | 8.8603 | 0.9584 | 64,807 | 31 | 0.618 | 0.000 | 0.000 |
+| 431 | 0.001628 | 2.9146 | 9.1470 | 957 | 8.9068 | 0.9613 | 71,625 | 51 | 0.618 | 0.000 | 0.000 |
+| 575 | 0.001487 | 2.9891 | 9.0153 | 917 | 8.8756 | 0.9612 | 69,109 | 42 | 0.611 | 0.000 | 0.000 |
+| 719 | 0.001708 | 2.8654 | 9.0615 | 930 | 8.8865 | 0.9583 | 65,335 | 49 | 0.618 | 0.000 | 0.000 |
+| 863 | 0.001611 | 2.8368 | 9.1588 | 1042 | 8.8877 | 0.9598 | 73,800 | 137 | 0.646 | 0.000 | 0.000 |
+
+`detect_regression` の判定(α=0.05・min-rel-slope=0.02・stride=warmup=144 → n=5 標本):
+**verdict OK**(退行なし)。最大の相対傾きは `reg_visit_entropy` の **−1.06%/日**
+(p=0.086)で、閾値 2%/日 に届かない。`reg_fire_zero_frac` / `reg_fire_sat_frac` は
+全期間 0.000 = 発火率は**どちらの端にも張り付いていない**。
+
+> **読み方の限界**: これは **mock** の 200 体 6 日である。mock の応答本文は固定なので
+> ③(語彙)の値そのものに意味は薄い(`ngram_repeat_rate` が 0.96 と高いのは mock の
+> 語彙が小さいためで、実 LLM の水準ではない)。ここで実証したのは
+> **「列 → 間引き → 検定 → レポート」が端から端まで動くこと**と、
+> ①②④ が現実的な範囲の値を返すことである。
+
+★**縦煙プロファイルの正直な前提**: 平坦名簿の最大は 500 件なので N=2,500 では
+既存名簿が巡回複製される(= 個体間分散を人工的に押し下げる)。相異なる 2,500 件が要るなら
+`gen_personas.py`(LLM 不使用・完全決定論)で 1 行前処理する、と conf のヘッダに書いた。
+P5 プール(100 万件)を使う選択肢も併記したが、`present_cap=2500` は presence の層優先で
+**resident 層が日替わりで 2,500 人ずつ入れ替わる**構成になり「同じ顔ぶれが全期間続く」という
+縦煙の主目的に合わないので既定にしていない。
+
+### 9.5 横煙 `conf/smoke_wide.yaml` — **実走していない**(前提条件の宣言まで)
+
+| 事項 | 調査結果 |
+|---|---|
+| ペルソナ | **足りている**。`data/persona_pool` は実測 **1,000,000 件**(L1 30,000 / L2 253,702 / L3 36,690 / L4 678,588 / L5 1,020・737MB)。25万 ≪ 100万なので**複製の実装は不要** |
+| ★人口構成 | **在場 25万は「日常が回る構成」にならない**。presence の層優先は cap で溢れた層を切って break するので、**平日**= resident 30,034 + duty 986 + workday_shift で cap 到達 → **cadence/stochastic が 1 人も入らない(来街者ゼロの街)**、**週末**= 概算 6 万人で 25万に届かない。横煙は「平日 1 日ぶんの OOM/スループット試験」として読む |
+| メモリ | bench_scaling(mock・144step)の N=1,000 → **1,454.1 MB** から傾き **1.2645 MB/agent** → **25万 ≈ 316〜363 GB**。加えて PoolStore の索引が **0.7〜1.2 GB** 常駐(pool 総件数に比例・`present_cap` では減らない)。**単ノード不成立** |
+| ★訂正 | **「rehearsal_pool10k の RSS 実測」は存在しない**。当該ラン(2026-07-21)の summary.json は `peak_rss_mb` / `elapsed_sec` を持たない(両キーは P0 = 2026-07-29 追加)。25万の見積は **N=1,000 からの外挿一本**で 1万体の裏取りが無い → **横煙の前にまず 1万体 RSS を取る** |
+| 必須スイッチ | `observer.flush_every_steps>0`(既定 0 は L1 バッファで即 OOM)/ `pool.dormant_cap>0`(既定 0 は無制限)/ `observer.regression.enabled=false`(窓合計が在場数に比例)/ `echo` `lens` も OFF |
+
+### 9.6 検収(mock のみ・実 LLM ランなし)
+
+- **既定 OFF**: 純粋既定と **L1 完全一致**(48 step)・L2 に `reg_*` 列ゼロ・
+  `_regression_state` 不在・manifest / summary に `regression` キーなし・
+  `scalars`/`provenance` が None・golden(`test_scenario`)緑。
+- **★観測が世界を変えない**: regression ON/OFF で **L1 バイト一致・LLM 呼数一致**
+  (48 step。第70 echo と同じ性質を明示テストで固定)。
+- **ON(mock)**: 同 seed 2 ラン L2 一致 / **resume==straight**(l1/l2/l3 parquet 一致 +
+  `_regression_state` の round-trip)/ fire OFF では base 9 列のみ・fire ON で 14 列 /
+  manifest の `columns` が実列と一致。
+- **★列の独立検算**: L2 最終行の 7 列を、テスト内の**別実装**(素の Python ループ)で
+  L1 から数え直して**完全一致**(`reg_act_between_var` / `reg_act_agents` /
+  `reg_visit_nodes` / `reg_vocab_tokens` / `reg_vocab_excluded` / `reg_ngram_repeat_rate` /
+  `reg_fire_zero_frac`)。加えて `detect_regression.act_counts_from_l1` が実ランの L1 から
+  L2 と同じ `reg_act_agents` / `reg_act_between_var` / `reg_act_entropy_mean` を出すことも固定。
+- **定型応答の除外**: `excluded_total == engaged.template_replies` / `exclude_template=false`
+  にすると定型文の 2-gram が語彙タリーに増える(除外が実際に効いている)。
+- **窓**: 窓幅を超えた step のイベントがタリーから落ちる(有界メモリ)。
+- **`ACT_KINDS` の綴りが L1 の登録済みイベント種と一致**(typo で永久に 0 になる事故の防止)。
+- **判定式**: 単調増/減/平坦の手計算一致・n<4 は skip・間引きと warmup・log-log 傾き・
+  部分抽出帯が交換可能母集団で平坦・帯の**上/下**で verdict が別物になること・
+  効果量ゲートが「有意だが微小」を弾くこと・方向違いを弾くこと・
+  CLI が閾値なしで落ちること・`--quick` が 1 行 JSON で exit 0 かつファイルを書かないこと。
+- **実行中のランを覗く経路**: 完結 part だけを index 順に連結し、書きかけ part は
+  スキップする(合成 part 3 枚で固定)。manifest が無いランは config.yaml の
+  `regression.window_steps` へ後退する。
+- **テスト**: `tests/test_regression_signals.py` 新規 **40 本**。
+  フルゲート `pytest tests -q -n auto` 緑(2,928 → **2,968 本**)。
+  **宣言台帳を 2 か所更新**した(機能変更ではなく宣言の追加):
+  ① `registry.ALLOWLIST` に `observer.regression.exclude_template`
+  (機能トグルではなく観測列の定義。理由つき)。
+  ② `timeconv.TABLE` に `observer.regression.window_steps`(STEPS = 実時間を保つ)と
+  `observer.regression.fire_sat_per_step`(RATE = 1 日あたりの総量を保つ。
+  `lod.max_llm_per_step` と同型)。**既存の CI ガード
+  (`test_timeconv.test_every_inventory_hit_is_classified`)が未分類を検出して落ちた**ので、
+  Δt≠10 の世界での意味を決めて登録した(Δt=10 では恒等なので golden は無風)。
+
+### 9.7 やっていないこと
+
+- **25万の実走**(§9.5 の前提条件が未達。とくに 1万体 RSS の実測)・**実 LLM ラン**・
+  **N=2,500 の全期間実走**(縮小版 200 体で配線を実証したところまで)。
+- **バッチ推論由来の非決定性の測定**(本選 GPU 事項)。手順だけ
+  `regression-signals.md` §7.1 に残した(state_hash チェーンで分岐点を特定 →
+  分岐点以降のマクロ指標差を「精度の上限」として記録 → その幅より小さい条件間差は主張しない)。
+- **閾値の凍結**。`--min-rel-slope 0.02` は mock 1 系列から置いたドラフトで、
+  実 LLM の縦煙で分布を見てから凍結する(手続きは同 §5)。
+- **watchdog 本体への配線**。`watchdog.py` に汎用の外部コマンドフックが無い
+  (`--cmd` はテスト用の基底コマンド差し替えのみ)ので、監視ループの改造は避け、
+  `--quick` を別プロセスで定期実行するレシピを文書化するに留めた。
