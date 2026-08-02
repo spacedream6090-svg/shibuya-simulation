@@ -1,0 +1,134 @@
+# PENDING — 未実装・実装中・ユーザー判断待ち
+
+> 本ファイルは **まだ終わっていないもの**だけを持つ。完了済みは → **[IMPLEMENTED.md](IMPLEMENTED.md)**。
+> 索引と最終更新は → **[STATUS.md](STATUS.md)**。
+> 最終更新: **2026-08-03**。
+> 正典: [dual-mode-observe-verify-plan.md](docs/plans/dual-mode-observe-verify-plan.md) §2(第70〜78=完了)・
+> [cognition-physics-plan.md](docs/plans/cognition-physics-plan.md)(第79〜85=完了)・
+> [dayplan-engaged-plan.md](docs/plans/dayplan-engaged-plan.md)(第86〜91=現行レーン)・
+> [highfidelity-3d-physics-plan.md](docs/plans/highfidelity-3d-physics-plan.md)・
+> [hackathon1-ideas-implementation-plan.md](docs/plans/hackathon1-ideas-implementation-plan.md)・
+> [dt-integration-plan.md](docs/plans/dt-integration-plan.md)。
+
+---
+
+## 1. 実装中・次バッチ
+
+| バッチ | 内容 | 状態 |
+|---|---|---|
+| **第86** | **day_plan v1**: 構造化スキーマ(メタ+ブロック4〜8+contingency≤3・列挙型中心・reason=生成時説明)+スキーマ/物理検証→決定的修復→フォールバック3段+**ルール実行系**(場所解決はルール側・priority×flex 割り込み=could/droppable は無料で削り must 危機のみ再計画発火・空き時間=習慣ポリシー) | **実装中**(2026-08-03 着手) |
+| **並行** | 保守バッチ: **LLM 呼び出しハードデッドライン**(本選前必須バグ)・serial マーカー・dunbar×pool 幅拡張・竹-4 持ち越し①②・exit_building 調査 | **実装中** |
+| **P4 較正** | 物理の高密度条件での較正+ゾーンのビューワー表示(竹-4 の残り) | 未着手・**8/12-14 フリーズ前に完了**が目標 |
+
+> 根拠: ユーザー指示(2026-08-03)「僕の判断が必要ない実装は進めてもらって構わない」+
+> 原文書 [source/design-discussion-20260802.md](docs/plans/source/design-discussion-20260802.md)(2026-08-02 受領・
+> **概念決定済み・実装詳細は Claude Code 委任**と明記)。
+
+## 2. 計画済み
+
+### 2.1 第87〜91(day_plan / engaged レーン・全て既定 OFF=golden 無風・R1 準拠)
+
+| バッチ | 内容 |
+|---|---|
+| 第87 | **engaged モード**: AUTOPILOT/ENGAGED 状態機械・突入5条件(S>θ_in/社会的直接性バイパス/実行不能例外/欲求臨界/予定思考)・脱出4条件(解消/減衰=ヒステリシス/ターン上限12/プリエンプト→兆しメモリ1行)・不応期30分・両者 ENGAGED 会話成立・エピソードログ(トリガー/滞在/ターン/脱出理由/model_id) |
+| 第88 | **心モデル固定+三層知能**: agent→model_id 誕生時固定(専用 stream・manifest/ログ必須=交絡の記録)+基底/思考/高解像度層の conf 配置(高解像度 1〜5%) |
+| 第89 | **プラセボ L1 3種**(context_shuffle / persona_swap / context_sever): 呼数・フォーマット・乱数消費同一の中身破壊(第78 ablate 枠に追加・fingerprint_risk 正直宣言) |
+| 第90 | **バッテリーハーネス**(scripts 系): 共通ハーネス(同一プロンプト/シード/温度)+A層(社会生活基本調査比較)/B層(摂動応答)/C層(会話統計・名大コーパス)/D層(**分散比=生命線**)/E層(長期退行)+プラセボ対照 |
+| 第91 | **退行シグナル監視+縦横煙プロファイル**: L2 監視列(分散・エントロピー・n-gram・発火率)+縦煙(2,500全期間)/横煙(25万数時間)conf+判定基準 |
+
+### 2.2 提案書提示済み(承認待ち)
+
+| 項目 | 状態 |
+|---|---|
+| 観察ラン ON 構成 | **提案書提示済み**([observe-run-config-proposal.md](docs/plans/observe-run-config-proposal.md))→ OBS-U1〜U3 判断待ち・最終確定は 8/12-14(実 LLM 再較正後)。**25万人転換を受けて要改訂**(DP-U3) |
+| DT スナップショット再提案 | **提案書提示済み**([dt-snapshot-integration-proposal.md](docs/plans/dt-snapshot-integration-proposal.md))→ DT-S1 ほか判断待ち |
+| S-quick(S0/S1/S2/S5/S9) | 計 ≈1.8日。承認待ち(S-quick 行を参照) |
+
+### 2.3 本選後(レーン3)
+
+場所二層知覚(IDEA⑥)・誤情報構造化フル版(IDEA⑦=ID-U2)・SUMO 反実仮想(P5)・USD/3D Tiles(DT-U4)・UE5(DT-U2 保留)。
+DT 側の詳細順位は [dt-integration-plan.md](docs/plans/dt-integration-plan.md) §3(P5 → P4' USD → P7 較正限定人流同化 → P1 Cesium/3D Tiles → P2 UE5 リプレイ)。
+S 系列の本選後分は [dt-snapshot-integration-proposal.md](docs/plans/dt-snapshot-integration-proposal.md) §3(S6 実営業時間・S7 忠実度レポート・S8=旧P7 jinryu 接続・S10 お盆モデル)。
+松(テクスチャ写実 LOD2.2)の残り作業は本選中の観察レイヤ作業として [highfidelity-3d-physics-plan.md](docs/plans/highfidelity-3d-physics-plan.md) §2 第3段。
+
+## 3. ユーザー判断待ち
+
+> 以下は現況台帳 §3 の**一字一句保持**(取り消し線の決定済み項目も履歴として残す)。
+
+| # | 事項 | 状態 |
+|---|---|---|
+| U-10 | 事前登録の閾値承認+10日ラン解釈方針 | タイミング委任済み(2026-07-31)→**第74 完了後〜第78 で承認依頼**(10日ラン 8/16 開始前) |
+| PUB-U1 | 公開ミラーの .md 除外範囲+「実装を適宜 public にコミット」の運用 | **要相談**(ユーザー発意 2026-07-31)。推奨: docs/**・STATUS.md を除外し README/ETHICS/LICENSE は残す・以後は各バッチ後に publish_public_mirror.ps1 を同期実行。**注意: DT 調査でライセンス地雷2件確認**(商業施設/区サイト情報=転載不可・OSM 由来テーブル=ODbL share-alike が配布時発動)=提案書 §4 |
+| NEW-5 | F/N/P 初期値条件の本選配分 | パイロット後に提案 |
+| ~~P2選定~~ | 物理エンジンの選定 | **決定済み**(2026-08-02: ユーザー委任「ベンチをまわして君が決定して」→ベンチ再実行=前回と全指標ビット一致→**ゾーン別ハイブリッド**確定。[選定文書](docs/research/physics-engine-selection.md) P2 決定節) |
+| OBS-U1〜U3 | 観察ラン ON 構成の承認([提案書](docs/plans/observe-run-config-proposal.md))・Δt_move 1分の扱い・認知 ON の 8/14 留保 | **新規**。推奨=§1 の ON セット+Δt=10 維持(1分は並行小ラン)+8/14 最終判断 |
+| S-quick | S0/S1/S2/S5/S9(計≈1.8日・S0 は第71 相乗り)を本選前に入れるか | **新規・承認求む**(提案書 §3。入力来歴・observe.yaml 是正・バス表・実イベント表・ODD 文書) |
+| 3D-U0 | **sim 側 floor クランプ**(scheduler.py で建物階数超の floor がそのまま通る=L1 が変わる修正。表示側は 2026-08-02 修正済み) | **新規**。推奨=conf トグル既定 OFF で実装し観察ランで ON |
+| ~~3D-U1/U2~~ | 高精細 3D の採否 | **承認済み**(2026-08-02: **松案で実装**指示・不要になれば竹へ縮退可の方針。U3=都区部点群は調査不要のまま) |
+| RW-U1 | **現実フィードバック動線**([research](docs/research/real-world-feedback.md)): ライブカメラ自動取得=不採用(YouTube 規約)・目視転記のみ可・較正3層(L0 初期条件/L1 パラメータ較正/L2 事後検証・状態同化なし)・本選中取得計画(アメダス/WBGT/JARTIC/ODPT 自動+ダッシュボード目視) | **新規・承認求む**(事前準備の登録作業は 8/5〜の期限あり=提案 §4-1) |
+| SV-U1 | **サーベイ反映 18 項目**([research](docs/research/llm-social-sim-survey.md) §3)の採否。◎印=S-01 報告書 micro/macro/system 3節固定・S-02 stylized facts の事前登録追記・S-03 分散/分位列(k* 主張に直結)・S-04 主張境界の宣言・S-16 prompt_paraphrase ablate(S-quick への追加候補) | **新規**。実装コスト小の宣言系(S-01/S-02/S-04)だけでも本選前推奨 |
+| DT-U2 | UE5 デモ動画 | 保留のまま(本選中判断) |
+| **DP-U1** | **CEJC(日本語日常会話コーパス)の有償契約**の可否と時期 | **新規**(2026-08-03)。間に合わなければ名大会話コーパス無償統計で C 層を回す(実装はその前提で先行) |
+| **DP-U2** | **心モデル候補の最終ショートリスト**(3B〜14B×5〜6本+プラセボ1本) | **新規**(2026-08-03)。バッテリーハーネス完成後に候補リスト+実測を添えて提案する |
+| **DP-U3** | **観察ラン構成の 25万転換への改訂**(OBS-U1 の人数前提・fleet 構成・engaged/day_plan を本選 ON にするか) | **新規**(2026-08-03)。8/15-16 診断ラン前に改訂版提案書を出す |
+
+### 決定済み(2026-07-31・履歴)
+NEW-2=本選 **8/15–8/30 で確定**(指示書の 8/8 は誤り)/GPU 申請・ODPT 規約確認=ユーザー側完了/
+NEW-1・NEW-3=承認(検証→計画→実装。R1 柔軟化は repro_tier 方式を採用)/ID-U1=**第72(ダンバー=現第75)まで本選前**/
+DT-U1=P0+P6 を本選前に実施/DT-U3=用語問題はユーザーの「スナップショット型 DT」定義の提示により**再提案タスクに置換**
+(観察ランは再現性を厳密に求めない方針も同時に確定)/DT-U4=本選後先頭/ID-U2=フル版は本選後(設計文書は先行可)/
+ID-U3=エコー除外は新列並記(既存列不変)/指示書ファイルの処遇=Fable 委任→docs/plans/source/ へ保存・重複1本削除。
+**2026-07-31 追加決定**: NEW-4=認知プログラム大枠承認(修正3点: ①天候=同期不要・サンプリング/生成型で可
+=DT-S1 はこの形で決着 ②物理=できれば本選前・直前数日は検証/調整に確保 ③発火源に内省・会話を追加・
+予測誤差大は「世界モデルの書き換え」を駆動)+実装前 web リサーチ必須+体制=Fable5 計画/Opus5 実行を継続。
+
+## 4. 持ち越し小粒(未着手)
+
+- `analyze_sweep` への **llm_health 3列接続**
+- **SFM 推奨 param の昇格**
+- **D16 屋内 ON**
+- **D17 実験**
+- **4系統レーン2**(B-L1 以降)
+- **`exit_building` の node 張り替えと `_apply_free_action`/`_route_to` の整合調査**(第73実行役が発見した潜在バグ疑い・スコープ外として未着手)
+- **pool dehydrate の関係台帳20件切りと dunbar 休眠の相互作用**(pool ON では休眠が再会前に消えやすい=本選で dunbar ON にするなら要検討・第75実行役の実測)
+- **3D エクスポータ側のメモリ**(`reconstruct_tracks` が全展開=10日ラン規模で GB 級。「ブラウザに載るか」は第76で解決済みだが「一括で組めるか」は別課題)
+- ~~**WallCrowd.forces() が揺らぎ項 ξ を落としている**~~(壁ありで noise 完全無効を P2 比較で実測発見)→ **竹-3 で修正済み**(構造的に再発不能・ξ 実測=レーン形成改善なしと訂正)
+- **サブプロセス系テストの xdist 並列フレーク2件**(test_watchdog 実 run.py スモーク・test_taxi_live SUMO ブリッジ。いずれも単体緑=serial マーカー群の付与候補・フリーズ期間に対処)
+- **LLM バックエンドの呼び出し全体ハードデッドライン欠落**(2026-08-02 夜間ラン実測: トークンが細々と流れ続ける病的生成では read timeout 120s が発火せず 1 呼び出しに 1 時間47分張り付いた。Ollama/vLLM 両バックエンド該当=**本選前に「呼び出し開始からの絶対時限」を追加すべき**。運用の暫定緩和= watchdog --stall-min 30 + flush_every_steps=12)
+- **竹-4 持ち越し群**(2026-08-02): ①ゾーン所有中は move_segment 不発=**L1 位置再構成がゾーン通過区間で欠落**(viz/tracks)②所有中 `agent.node` が入場ゲート値のまま=ノード基準同席(`channels._place_key`/`ext.crowd_local`)が通過中古い ③pool dehydrate が `_phys_*` を運ばない(現行 rotation 条件では非発火・条件変更時要対応)④span_m グラフ長 vs 物理直線の実効速度差 ⑤**P4 較正は高密度条件が必要** ⑥サブステップ軌跡の記録 ⑦10日ラン ON 時は滞在分布から総サブステップ数を事前見積・`planning.py` 契約化は残置第一候補のまま
+
+## 5. 設計制約と受領文書
+
+### 5.1 設計制約(R1 ドクトリン)の現況と柔軟化
+
+現行の恒常制約: ①新機能は既定 OFF ②既定 OFF で golden L1 バイト一致 ③k 非依存 ④no-fingerprint
+⑤用途別乱数 stream ⑥観測がシムを変えない。
+**2026-07-31 の方針確定**: 観察ラン(本選 10 日)は再現性を厳密に求めず、repro_tier=journal/none の機能も投入可。
+検証ラン(verify)は strict のみ。この二重化は**第72で構造化済み**(registry.py+run.mode。verify モードは
+planning/tools/rules=LLM 自由文が世界状態になる3機能も落とす=正直な宣言)。
+既定値は現行動作のまま=golden 資産は verify 側の検収装置として恒久維持。
+
+### 5.2 受領文書の処遇(2026-07-31 確定)
+
+二重化指示書は [docs/plans/source/](docs/plans/source/) に原文保存(dual-mode-instructions / dual-mode-instruments /
+dual-mode-requirements)。リポ直下の原本3本は移動・バイト同一重複1本(instruments 1)は削除。
+検証済みの統合計画は [dual-mode-observe-verify-plan.md](docs/plans/dual-mode-observe-verify-plan.md) が正典。
+
+**2026-07-31 受領の3本**(認知・物理・DT定義)も同所へ原文保存: physics-instructions / cognition-design-record
+(=設計決定の正典)/ dt-alignment-record。統合計画は [cognition-physics-plan.md](docs/plans/cognition-physics-plan.md)。
+dt-alignment の方針 1-7 は大半実装済み(可視性=C0・観測層=P0/P6・差分管理=world.mod)で、新規採用は
+「系譜的同一性」の自己記述語彙のみ。
+
+**2026-08-02 受領**: リポ直下 `3800683.pdf`(Mou et al., *From Individual to Society*, ACM Computing Surveys 58(11),
+2026 = LLM 社会シム・サーベイ)。**原本はユーザー管理のまま未コミット**(PDF 原本リポ外維持の掟)。
+読解と反映点 18 項目は [docs/research/llm-social-sim-survey.md](docs/research/llm-social-sim-survey.md)(SV-U1)。
+
+**2026-08-02 受領(設計議論)**: [docs/plans/source/design-discussion-20260802.md](docs/plans/source/design-discussion-20260802.md)
+(目標再定位=25万人・day_plan v1・engaged モード・プラセボ梯子・バッテリー・縦横煙。**概念決定済み・実装詳細は委任**と原文明記)。
+統合計画は [dayplan-engaged-plan.md](docs/plans/dayplan-engaged-plan.md)。
+**訂正**: 原文書 §9 の「GPU 申請 8/9 前」は申請提出済みのため消滅。スループット実測(prefix caching 込み)は 8/15-16 診断ランに統合。
+
+### 5.3 日程
+
+**本選 8/15–8/30**(提出 8/30)・**10日ラン 8/16–8/26**・**8/12-14 フリーズ**(新機能追加禁止=検証と微調整のみ)・
+**8/15-16 診断ラン**(σ 再実測 → θ 再較正 → U-10 確定判定 → 人数最終確定)。GPU=A5000 級 ×7枚(単一ノード)。

@@ -1,0 +1,374 @@
+# IMPLEMENTED — シミュレーションの概要と完了済み実装の全リスト
+
+> 本ファイルは **実装済みのもの**だけを持つ。未実装・計画のみ・ユーザー判断待ちは → **[PENDING.md](PENDING.md)**。
+> 索引と最終更新は → **[STATUS.md](STATUS.md)**。
+> 最終更新: **2026-08-03** / テスト **2687 緑**(xdist フルゲート)。
+> バッチ履歴の全文は [docs/log/devlog.md](docs/log/devlog.md)(圧縮版 [devlog-compressed.md](docs/log/devlog-compressed.md) Block #0〜#15)。
+
+---
+
+# 第1部 — シミュレーションの概要(全体を見て大事なことだけ)
+
+## 1. これは何か
+
+渋谷を舞台にした**大規模 LLM 人工社会シミュレーション**。無数の AI 住民が自律的に生活・会話・関係形成を行い、
+文化が進化する「生命のように変化する人工社会」を作る研究基盤([README.md](README.md))。
+
+**第一目標(2026-08-02 に再定位)**: 「現実を再現するほどの**約25万人規模**でシミュレーションを回すこと」自体。
+**日常が返ってくるだけで成功**であり、その中に面白い関係性を持つエージェントが発生することを期待する。
+出典: [docs/plans/source/design-discussion-20260802.md](docs/plans/source/design-discussion-20260802.md) §2。
+
+- **創発は「おまけ」**: 語彙専門化・関係変化・社会構造創発・world-changer(k*)・組織の自然形成・自然造語は
+  「必ず見たいもの」ではなく、**複数ランの比較から確かめられればよい**位置づけ。創発は事後的に拾う。
+- **検証対象は「日常の統計の再現」**: 生活時間統計・移動・遭遇パターン。
+- **規模だけでは実績にならない**(OASIS が既に100万体を達成済み)。独自性は
+  「**連続した生活・空間・関係の持続・驚き駆動発火・兆しメモリを持った25万人が数日間壊れずに続くこと**」にある。
+- **制約はリアルタイム同期ではなく総予算**: 総発火数 = N(人数) × f(1人1シミュ日あたり発火数) × D(シミュ日数)
+  が GPU 7枚 × 10日間に収まる必要がある。知能(モデルサイズ・思考頻度・文脈長)は発火単価に入る。
+  **規模・知能・期間は同時には最大化できない**。
+
+## 2. 研究の柱
+
+| 柱 | 内容 |
+|---|---|
+| **R²(k) と k\*** | Y = 4層(空間/資源/象徴/social network)への連続的な**書き換え量**(客観カウント)。k = 経験→内部状態の結合強度(主軸=ソロ内省での**信念の書き戻し自由度** `free/degraded/sham/off`)。Y を初期 traits で回帰した **R²(k)** を k で掃引し、init-determined → path-dominated の**相転移点 k\*** を、R² 低下・seed 発散・早期警戒シグナル(EWS)の**三角測量**で探す。交絡を切るため sham/null/compute_matched 対照を必須で回す。→ [README.md](README.md) 研究課題節 |
+| **環境軸 H** | 環境由来の指標に k の名は使わず **H(到達異質性)** と命名し、**k×H の2軸**に分離。→ [twin-physics-vision-affordance-plan.md](docs/plans/twin-physics-vision-affordance-plan.md) §0-8 |
+| **驚き駆動発火** | S = Σ g_c·\|o−ô\|/σ_c + trigger > θ。**予測誤差が大きいときに起きるのは「単に考える」ではなく「世界モデルの書き換え」**(model-revision)。発火源4種 = periodic / salience / internal(内省)/ social(会話)。→ [cognition-physics-plan.md](docs/plans/cognition-physics-plan.md) §6-3 |
+| **F/N/P 分散分解** | g の初期値条件(persona/flat/noise)を CRN で振り、「生まれつき(traits 由来)vs 創発(経験由来)」を**分散分解**する(analyze_g.py)。 |
+| **検証の作法** | 「合った指標と合わなかった指標」の**両方を提示**する。**較正と検証を分離**し、パラメータ凍結後に検証期へ移る。事前登録 = [stationarity-preregistration.md](docs/plans/stationarity-preregistration.md)(U-10)。 |
+
+## 3. アーキテクチャの本質
+
+- **R1 ドクトリン(恒常制約6項)**: ①新機能はすべて**既定 OFF** ②既定 OFF で **golden L1 バイト一致**
+  ③**k 非依存**(LLM 呼数が k で変わらない)④**no-fingerprint**(engine は因子を名指ししない)
+  ⑤**用途別乱数 stream** ⑥**観測がシムを変えない**。
+- **観測がシムを変えない構造**: シム本体は「起きたこと」を L1 に記録するだけ。測定・集計・指標定義はすべて
+  事後に L1 から([src/society/observer/](src/society/observer/))。研究者 frame とエージェント frame の分離。
+- **observe / verify の二重化**: 本選の**観察ランは再現性を厳密に求めない**(repro_tier=journal/none の機能も投入可)。
+  **検証ラン(verify)は strict のみ**。registry.py + run.mode で構造化済み(第72)。既定値は現行動作のまま
+  = golden 資産は verify 側の検収装置として恒久維持。
+- **認知 = 予測誤差 + 慣れ/感作**: 観測チャンネル14本の予測誤差を σ_c で precision weighting して S を作り、
+  θ を超えたら発火。感受性 g は**慣れ/感作/引き戻し**(Groves & Thompson 1970・適格性トレース)で可塑化し、
+  θ 恒常性は日境界のみ。
+- **物理 = ゾーン別ハイブリッド**: 既定 **SFM**(自前・Helbing 2000 完全形)+ **交差流は ORCA**。
+  ゾーンは**排他所有**で、移籍はゲート経由のみ(TransiTUM 原子的移管に整合)。
+  → [physics-engine-selection.md](docs/research/physics-engine-selection.md) P2 決定節。
+- **天候 = 較正済み生成器**: 気象庁東京8月930日(1996-2025)に較正した WGEN 系生成器。
+  年効果項が**連続猛暑の鍵**(猛暑連長 KS p=0.97 vs 現行合成 p=2e-5)。専用 stream で **strict 等級**。
+- **DT = スナップショット型**: 「**ある時点の現実の切り取りが舞台・同期不要**・現実は解像度を高めるデータ収集ツール」
+  というユーザー定義。Kritzinger 2018 分類で **事前凍結=Digital Model / 日次自動取り込み=Digital Shadow** と正確に自己記述する。
+  **状態同化(シム状態の書き換え)は不採用**(決定論の都合ではなく内生性研究が壊れるため)。
+- **決定と実行の分離**: 朝に LLM が1日の計画(実行可能なスクリプト)を生成し、日中はルールエンジンが無料で実行する。
+  驚き・社会的接触が閾値を超えたときだけ LLM が再考する。**すべての行動が LLM の決定に由来し、ルールは実行者にすぎない**
+  (day_plan v1 / engaged モードとして第86〜で実装中 → [PENDING.md](PENDING.md))。
+
+## 4. 体制と運用
+
+- **役割分担**: **Fable 5 = 計画・検収・コミット** / **Opus 5 = 実行役**(バックグラウンド並列・ファイル互いに素で 3〜5体)。
+- **検収の型**(全バッチ共通): 既定 OFF = **golden L1 バイト一致**・**draw 数同一**・**k=free/off の LLM 呼数一致**・
+  **resume == straight**・**no-fingerprint 静的検査**・**registry 宣言**・**xdist フルゲート緑(2回走)**。
+  加えて**ディスク実在確認+検収側の自前 pytest**(実行役の偽完了対策として標準化)。
+- **実 LLM フルランはローカル禁止**(mock または ≤24step スモークのみ)。
+- **devlog プロトコル**: ユーザーとの1往復ごとに1エントリ → 10 で圧縮して devlog-compressed.md へ。
+- **台帳更新**: 実装バッチのコミットごとに本ファイル / [PENDING.md](PENDING.md) / [STATUS.md](STATUS.md) を更新(検収の一部)。
+
+## 5. 本選
+
+- **会期 8/15 – 8/30**(提出 8/30)。**10日ラン 8/16 – 8/26**。**GPU は A5000 級 × 7枚**(単一ノード=ops トポロジA)。
+- **8/12-14 = フリーズ期間**(新機能追加禁止・検証と微調整のみ・観察ラン ON 構成の確定)。
+- **8/15-16 = 診断ラン**(GPU 開放初日): σ_c 再実測 → θ 再較正(watch ON の27倍差の解消)→
+  U-10 の確定判定ラン → **発火数・呼数の実測から本選の人数を最終確定**(呼数/人/日は人数不変ではない=外挿でなく実測)。
+- 本選中は毎日 checkpoint(いつ打ち切っても成果)・live_viewer 併走・watchdog 併走。
+
+---
+
+# 第2部 — 完了済み実装の全リスト(システム別)
+
+> 新機能はすべて **既定 OFF**(R1)。以下は**システム別**の網羅リスト。括弧内はバッチ番号とコミット参照
+> (git 化は 2026-07-13 の初回コミット `2727e91` からなので、第1〜24バッチ相当は初回コミットに同梱)。
+
+## A. 世界基盤・地図・空間
+
+| 項目 | 内容 |
+|---|---|
+| 実地図(OSM) | Overpass 実取得の渋谷広域地図 v7。**全建物1,181(住宅633)・実名POI 1,098・1,208交差点・1,677道路折れ線・渋谷ちかみち地下141本・デッキ148本・車ゲートウェイ158**。`build_map.py --osm-date` で基準日凍結(現行 osm_date=2025-04-01)。3,499ノードでも40体2日35秒 |
+| PLATEAU 実形状 | CityGML 4タイル抽出 **6,311棟**(DEM ground0=15.18m・最高230.4m=スクランブルスクエアで実世界一致)→ wide_v7 照合 **3,531棟**(IoU 中央値0.633)。第36 (`2335870`)。巻き向き事故=ear clipping が表裏破壊 → Newell 法線照合+DoubleSide (`0096adc`) |
+| 実高さ配線 | `building_heights`(3,531棟)を sim 側へ配線(既定 OFF)。第67 (`29c0984`) |
+| 可視行列 | `build_visibility`(2.5D LOS 行列)= シム外 CLI で事前計算。第68 (`c894267`) |
+| DEM 地形 | DEM 2m 地形(交差点=谷底0m)・地下街 z−14.3m・歩道橋39基。第37 (`c466e3b`)。z列=3D Phase0(`world/elevation.py` DEM 双一次 O(1)) (`0fa95e1`) |
+| 建物階層・知覚 | 同建物同階のみ知覚。知覚半径40m・4チャネル。範囲外は計算しない |
+| 反実仮想の器 | **world.mod** = `edges_closed` / `edge_speed_scale` / `open_hours`(+`gate_capacity` 予約枠)。ラン開始時固定・profile 指定。第67 (`29c0984`) |
+| EnvPack(基盤抽出) | 環境分類3層(共通基盤/共有参照/EnvPack)。`env/shibuya/env.yaml`+`institutions_jp.yaml`・**基盤4ディレクトリから地名リテラル全数除去**+契約ガード。`--env env/shibuya` が従来ランと **L1 完全一致**。第35 (`18c9210`/`bfa6cc2`) |
+| 環境自動生成 | `make_env` CLI(7-stage v0-v2)。**下北沢390m角で2つ目の街を実証**(`0b09130`) |
+| シナリオイベント | `world.events_file`(day/time/title/word → coin_media+ニュース配信)。ダッシュボードにフォーム |
+
+## B. 交通・移動
+
+| 項目 | 内容 |
+|---|---|
+| 経路移動 | A* + OD キャッシュ + **道なり連続補間**(テレポート禁止をテスト固定)。移動手段別サブグラフ(walk 800 / bicycle 2000 / car 3500)。RDP 形状保存間引き(`geom.py`)。実測歩行速度 中央値 1.14 m/s(渋谷実測 1.0-1.5 と整合) |
+| 実ダイヤ(ODPT) | ODPT 実ダイヤ **6路線**+近似3路線(チャレンジ2026キーでメトロ3+東急2+京王1解放)。キーは環境変数+winreg フォールバック(チャット/コード/ログに残さない原則)。限定データは `data/odpt_challenge/` を .gitignore。JR東 GTFS は未投入を悉皆プローブで確定・受け皿 `fetch_gtfs_odpt.py` 実装済み(投入後2コマンドで全9路線化)。終電後は帰れない=定刻ダイヤ制約 |
+| 背景交通 | Poisson 発生・3万台/日(設定値と明記)。車 OD 個体化(信号=期待遅延近似・車線容量渋滞)。ambient 既定=バイト一致 |
+| SUMO 連成 | 公式版 1.27.1 で v0 全段完走(net 5,575 エッジ → OD 6,460台 → 24h fcd → 144step parquet)(`7674877`)。**タクシー配車 v1**=ハイブリッド連成(TraCI ブリッジ・配車純関数・wait-hold 量子化・実 SUMO 同 seed バイト一致・k=free/off 67=67)(`6da6cfd`) |
+| バス | 簡易バス + **実バスダイヤ静的表**(`bus_table.py` + `build_bus_table.py` = GTFS→待ち時間表)。第48 (`2d13d83`) |
+| 相乗り | v-Ride 相乗り。第46-48 |
+| 歩行者信号 | SFM 一斉横断(サイドカー 192/80/スクランブル7・赤縁石滞留→青一斉横断を目視検収)。OSM crossing=traffic_signals |
+| 通勤 | `commute_to_poi`(職場・学校 POI へ実通勤)。流入通勤者 74%(朝二峰流入) |
+
+## C. 経済・制度・組織
+
+| 項目 | 内容 |
+|---|---|
+| 経済基盤 | 賃金/消費/バイト/逼迫→grievance。口座(月給・家賃・ATM)。家計調査較正消費・銀行与信・VC の3段。不足点融資→貸倒→既存破産サイクルへ接続。第37 (`2434d5a`) |
+| 制度 DSL | 4型(fee / bonus / curfew / weekly_event)= 成立提案が実効ルール化。ホワイトリスト・降格安全 |
+| 制度深化 | 勾留・解雇規制(退職金/不当解雇)・営業許可(却下+許可待ち)/**最低賃金の床**(東京都1,226円/時・2025-10発効・既定0=床なし・自営は対象外=現実の穴を保存)/**代表制議会**(FJ 意見の最近傍投票=決定論選挙)/**立退き**(滞納30日→路上就寝・完済で再入居)/**破産**(滞納60日→免責+自由財産1万+出店制限30日)= 滞納→立退き→破産→再入居のサイクルが決定論で閉じる |
+| 選挙の現実化 | 自発立候補・SNTV・供託金。議員は**名簿制**(実定数34)。適正手続(審議・パブコメ段階=立場表明・否決可能)・declare 型=権利創設。第37/38 |
+| 行政 | 区/都/国・源泉徴収・消費税78:22・公務員給与 |
+| 組織台帳 | 架空42社10校 → **11,010組織**(経済センサス分布・従業者±2%)。実在企業・学校名なし=手続き生成の合成データ (`b62ceac`) |
+| 物流 | 店舗在庫((s,S)方策・O(1)/POI)+日次補充トリップ+商品実体。**封鎖で欠品波及**=災害物流断絶の土台。乱数ゼロ (`9ff8abe`) |
+| サービス実体 | 6種データ駆動(滞在+課金+効用)。宅配/フードデリバリー(注文→在庫減→最寄り配達)。L2 業務実体(serve/org_output・オフィス51.5%/接客48.5%)。第46-47 (`fdf8c82`/`bf1b9c9`) |
+| 商業 | 営業時間・動的価格・在庫。街頭広告 OOH+群衆視覚(新 stream "ads")。**広告転換 94.1%→ target 照合+非接触対照で 5.9% に修正**(第18) |
+| キャリア | 転換・雇用の較正(layoff 2e-4 / switch 4e-4 / rehire 0.02) |
+| 職場束ね直し | pool L2 の work_node 穴を台帳直束ね(org_id→workplace_poi.node)。第49 (`166a697`) |
+
+## D. 関係性・社会ネットワーク
+
+| 項目 | 内容 |
+|---|---|
+| 世帯・家族 | 世帯の現実化(渋谷64.5%・続柄・夕食共食0.69)+共同行動。第44 (`dcb6e37`) |
+| 友人グラフ | homophily+所属+Dunbar層(hashlib 純関数・run.seed 非依存)。関係風化。第45 (`1043bbb`) |
+| 関係の質 | 関係 tier・断絶・評判。負の評判 gossip(内生の悪評タグ)。第61 (`0baabba`) |
+| **関係性の内生化** | フェーズ1=承諾/拒否の内生(`relations_endo.py`=構造化決定論抽出)第62 (`d6731e5`) / フェーズ2=**treatment 実験一式**(`endogenous_accept`・比較実験プロトコル=CRN+sign-flip permutation)第63 (`385c4ca`) / フェーズ3=誘い相手の内生(`endogenous_invite`+弱い紐帯探索枠)第64 (`6ad4b12`) / フェーズ4=関係の質の内生化(`endogenous_quality`)第65 (`e1938c6`) |
+| **ダンバー認知枠** | `relations.dunbar`(既定 OFF・strict・乱数/LLM ゼロ)。**最外層上限51**(素値5/15/50/150×scale 0.34・最外層のみ拘束・Lindenfors 2021 の150懐疑を明記し感度分析軸として conf 化)。**休眠 = closeness 退避の単一作用点**で可逆(下流消費者を1箇所も改変せず)。上限適用は日境界1回(接触時適用は振動5739件を実測して棄却)。再会は**弱い紐帯探索枠でのみ**(Levin, Walter & Murnighan 2011)・明示的意向は休眠でも通す。`relation_dormant`/`rekindle` 2kind+L2 3列。実測: 288step40体で dormant 1378 / rekindle 252 / active_mean 8.0。第75 (`387b0b4`) |
+| 内部可動性 | 転居/同棲/求職=内生の構造変化トリガー。第60 (`9cf9fe6`) |
+| コミュニティ検出 | min_weight 2.0 + louvain 正準・7-13コミュ/窓・ライフサイクル66件・**組織 NMI 0.35 = 自然コミュは会社の線から乖離**。第18 |
+| 意見力学 | FJ(Friedkin-Johnsen)`opinion.py` = 検査外・プロンプト非注入・接点は face/dm/sns のみ |
+| 地位・階層 | `status.py` = 合成地位スコア百分位。イベント参加/購買/フィード露出の閾値を機械変調(優先的選択)。乱数 draw 追加ゼロ・プロンプト非注入。L2 に status_gini 等。第11 |
+| 群のオントロジー | 文化圏×経験の安定ハッシュ純関数(run.seed 非依存)・composition 割合ノブ・**多軸機構**(seed_offset 独立ハッシュ=軸間無相関 χ²=7.19)・情報行動軸・防災訓練経験・**第3軸=同行者構成**(party_size データ駆動・日替わり決定論)(`7d54147`/`b7f8019`/`97267b1`) |
+| ペルソナ | IPF×LLM+Verbalized Sampling。**100万プール決定論生成**(L1住民3万/L2…の層構造・議員34=実定数・実体736MB は gitignore)(`b5e0edc`)。`build_personas.py` / `build_icebreak.py`(全 k 条件で同一ファイル=交絡排除) |
+| プールとローテーション | **日次 presence 名簿制**(P3=presence 純関数・PoolStore 遅延読み・密 intID(観測同一性)・**DormantStore dehydrate/hydrate**(記憶を持った再来街)・resume 跨ぎ L1 一致)(`79fc293`)。プール=同時滞在の数倍(realism-first: 人数>時間) |
+
+## E. 認知プログラム(第79〜85)
+
+| バッチ | 項目 | 内容 |
+|---|---|---|
+| **第79** (`4cab5f6`) | **Δt 不変化** | 定数の毎分レート化。`run.dt_min`(既定10=構造分岐で**1バイト不変**・1440の約数強制)。`timeconv.py`=分類テーブル **130キー**(rate 13 / prob 26 / **steps 31=逆比例の第4分類を発見** / invariant 60)・棚卸し全載 CI。Δt=5/1 スモーク済み。load_config 一点変換 |
+| **第80** (`f49d2a5`) | **観測チャンネル+σ** | `cognition.channels`(既定 OFF・ON でも **L1 不変=サイドカーのみ**)= **14チャンネル**(外界5/身体8/予測不成立1=第81枠)。`measure_sigma.py` → `data/calib/sigma_c.json` 凍結(**σ=0 は床でなく除外**)・較正テーブル外部化(provisional 宣言をテスト固定)。precision weighting+イベント分節理論の文献根拠(誤差大→世界モデル書き換えの直接根拠) |
+| **第81** (`d45b2b2`) | **閾値発火+同期バリア** | `cognition.fire`(既定 OFF)= 認知イベントキュー((発火時刻, agent_id) の**2要素厳密全順序**)。発火源4種 = periodic / salience / internal / social(**会話・内省の第一級化**)。**単一作用点 = `_phase_drive` の requesters 決定を差し替え** → 後方互換は**厳密バイト一致**。T1 完了順序不変(workers=4 実並行含む)・T2 発火オラクル・S 寄与内訳を `cog_fire` に記録 |
+| **第82** (`39d5b26`) | **watch spec + 可塑性** | `cognition.watch` / `g_update` / `experiment.g_init`(F/N/P)。LLM が期待値 ô + DSL トリガを出力(**チャンネル id は不透明記号 c01…= 因子名をプロンプトに出さない no-fingerprint 解**・不正は前回仕様維持)。g 更新 = 慣れ/感作/引き戻し(Groves & Thompson 1970。単一窓上書きで**感作死の退行を自己発見** → 適格性トレースで修正)。θ 恒常性 = 日境界のみ。model-revision 行(中立文言)。`analyze_g.py` = 分散分解(生まれつき vs 創発) |
+| **第83** (`f2355c2`) | **θ較正+発火観測** | `calibrate_theta.py` = θ 全体スケールのみ掃引(**theta_scale=0.03125 で f=7.90/日・誤差1.2%**・凍結+dotlist 適用=**src 差分ゼロ**)。★**watch ON は27倍差 = 実 LLM 再較正が最重要**。`analyze_firing.py` = 間隔分布/原因内訳/Kleinberg バースト/**発火連鎖グラフ**(A→B 因果候補・確度3段)/的中率。推論量見積(salience/人/日は人数不変だが**総呼数は不変でない**=GPU 外挿注意) |
+| **第84** (`616de2c`) | **環境フィードバック** | `env.feedback`(既定 OFF・strict・LLM/乱数ゼロ)= ①ホーム密度+乗降→停車延長→遅延(駅は乗降人数が主説明変数・回復運転 γ=0.7・**不動点 dwell_cap/(1−γ) = 10分に収束を実測**=T5)②改札飽和→入場規制(有限解除+クールダウン・`gate_capacity` を初消費)③POI 占有→待ち→filter_open 除外。**環の閉じを L1 実例で実証**(待たされた本人が密度に還る)。step 末一括・congestion 既存語彙のみ |
+| **第85** (`de64571`) | **Perception/Intent 契約** | `cognition.contract`(既定 OFF・strict)= 世界→Perception→prompt / LLM→Intent→実行 の2型に結合面を限定。**ON/OFF で全プロンプト文字列まで完全一致**(`prompt_kwargs()` 再構成による無損失性の証明・sim を識別子として不参照)。build_prompt 49引数と契約の集合一致をテスト固定。直接参照の残置リスト明示(`planning.py` = 残置第一候補)。body/salience はプロンプトに出ない構造 = P3 no-fingerprint の前倒し |
+
+## F. 認知・記憶・自己(基盤)
+
+| 項目 | 内容 |
+|---|---|
+| LOD 発火 | 驚き/予測誤差ゲート。**発火率 4.1-11.4% ≒ LLM 呼数 1/12**。予算 N 比例化(`lod.n_proportional`) |
+| 欲求駆動 | ゲージ→個人閾値申請→重み抽選→不発30%減衰。needs 5次元 |
+| 記憶 v2 | 3層(統合は内省同居・書き戻しゲート=beliefs のみ=k 境界)。**ACT-R 記憶**(d=0.5, τ=−2・専用 stream・memory_fail)。100日実証で劣化なし・belief 線形蓄積 |
+| 内省 | ソロ内省=k の operational 実装部位。個別就寝(22:00-25:50)→ LLM が自然分散。**深い内省 = 出来事誘発**(日内衝撃ゲージ ネガ2:ポジ1 加重+個人閾値(NFC/LOC 写像)+incubation 1-2晩+cooldown 3日)。R1 呼数完全不変。第12 |
+| 自己モデル | `self_model_days`(N夜の内省を深い内省に格上げ→self/ties→プロンプト注入=自己認識の再帰)+**無意識層 implicit_self**(行動カウント EMA 逸脱→「最近の自分」1行を日次決定論合成=揮発的作動自己。核自己とフィールド分離・双方向結合)。第11-12 |
+| 主観的世界モデル | `worldview.py` = C1 場所×時間帯の期待 EMA+誤差 / C2 可制御性(0.5起点・世界の応答のみで分岐=純経験の経路依存・日次キャップ)/ C6 開拓的行動の記述規範。第20 (`ec18648` 以前) |
+| 朝の一日計画 | 起床1回 LLM・全 k 同数 → routine の行き先の土台。`planning.py` |
+| 日課計画 FW | S1 = 型スキーマ(自由文 intent 先頭+アンカー先置きコンパイラ+失敗の階段)(`89f275b`) |
+| 確率的実行 | S4 = motif 15% / ±30分ジッター / 寄り道0.153 / Gumbel 温度3分類 (`70a9628`) |
+| 退屈ドライブ | S5 = 長居蓄積→閾値で未訪問 POI 探索(LLM なし発火・0.57〜3.6回/人日で較正可)(`2c0fb33`) |
+| ナラティブ補間 | S2 = 有界リングバッファ30→機械ダイジェストを全 LLM 注入・夜内省の物語化 (`7e7fcb8`) |
+| 会話3層 | S3 = C2 構造化会話 **30.9/人日**(Dialogue Act 決定論遷移→関係/FJ意見/語彙接触へ機械効果・**LLM ゼロ**)・C1 昇格は drive 経由・C3 すれ違いカウンタ (`713af7a`) |
+| 方針キャッシュ | S7 = k 非依存物理キー・near-match(既定 OFF 運用=ユーザー決定)(`c7b09aa`) |
+| LLM 一括発行 | S6b = `generate_many` 共有状態逐次・recall 2ラウンド+BufferSink 遅延放出で **ON=OFF バイト一致** (`61b4cad`) |
+| 入力解像度 LOD | `cognition/lod.py` = 軸専用 stream 割当機構・5ノブ・OFF バイト一致・水準 narrow/mid/wide。Rational Inattention 接地。**R_input × D_output の2因子直交**(「多く見る vs 深く考える」を初分離)・取り下げ条件 K1-K4 事前登録。第30 (`70c78be`) |
+| 心理プラグイン | 4種(SDT / 集団効力感 / Lynch / Searle)= 全て既定 OFF・因果構造のみ文献接地 |
+| 価値 | `values.py` = 4軸(実用/感情/社会/認識)。辞書+自己申告・充足の限界効用逓減+日次中立回帰。価値3分類 / 3M 欲望ネットワーク |
+| affect ハブ | arousal+salience 統一(感情・興味・注意は1回路という脳科学リサーチ由来)。飽和を破る第2駆動軸 |
+| スケジュール帳 | 会話から決定論パーサで未来予定抽出→双方の帳簿→プロンプト注入(**追加 LLM ゼロ**) |
+| 自由度 | **開放行動 "do"**(`freedom.open_actions` = LLM 自身が自由記述で行動決定・物理/所持金/拘束の客観ゲートのみ)第17。**自由度 P2**(move_home / buy / study / partnership / deviance・既定 OFF・検査外隔離)第34 (`5452710`) |
+| 自助・運 | 自助努力 affordance(`self_dev` = 経験由来ストック・累積 gain/(1+x))第52 (`727031a`)。運・実力分解(関係 = 運 ΔR² 0.19 > 実力 0.17・収入 = 運 0.001)第51 (`5248109`) |
+| 不確実性モード | `chance.py` = 偶発層 windfall 等。再現性実験 vs 純観察の選択制。第54 (`27095dd`) |
+| spark treatment | `spark.py` = trait-blind 純関数選抜(traits 改変 / run.seed 変更で不変)。第53 (`54595c0`) |
+| 健康・生活 | 健康疲労病気/世帯家族恋愛/災害・運休・停電/観光・多言語・犯罪/離散感情・長期目標・趣味(第8バッチ H1-H6) |
+| 相対的剥奪ほか | G1-G6 = 相対的剥奪(飽和を破る)/関係の質 tier・断絶・評判/制度3ルート(労働争議・決定論投票・警察執行)/年中行事・ハロウィン群集/キャリア転換/情報環境(推薦・バイラル・炎上) |
+| 宿泊 | Wave L = ホテル泊・連泊・reflect_step(k 処置同格)。POI パッチ12件 |
+| 暦・行事 | `start_date` 設定可・weekday_work・年中行事 |
+
+## G. 言語・ラベリング・伝播・真偽
+
+| 項目 | 内容 |
+|---|---|
+| ラベル伝播 | 採用閾値2 = complex contagion。全員記録しない・drift する。vocab_coin / transmission(伝播系譜) |
+| 伝播チャネル | face / sns / news / search / dm を transmission に記録 |
+| 創発検出 | `detect_emergence` = 後付けテキスト検出(**架空イベント「ボードライブ」を12人が105回共有**・規範発話・語形ドリフト「パーラー→パーリー」伝播・coined 分離)。第22 |
+| SNS 架橋 | `sns_geo`(既定 OFF)= SNS/DM 伝播に dist_m。**SNS 伝播の27%が500m超の遠距離架橋**。第22 |
+| **場所の意味づけ** | `labeling.place_binding`(造語の場所束縛→知覚1行)。第69 (`df0c446`) |
+| **エコー/自己反復計測** | `observer.echo`(L2 常設5列・`enabled:false` で退避可)= 同一話者の言い換え反復を Jaccard 系で検出し L1 マーキング。**伝播 KPI のエコー除外は新列並記**(既存列不変=ID-U3)。adopt_novel=相異なる2人=complex contagion 本来の趣旨。第70 (`2524da9`) |
+| **未定義行動レジスタ+沈黙** | `freedom.undefined_register` / `explicit_nothing`(既定 OFF)= enum 外の行動出力を fallback 破棄せず `undefined_action` として記録(**行動空間の外へ出ようとする個体**の操作的定義候補)。fallback から排他振り分け・保存則。「関わらない」を受理動詞に明示。第70 (`2524da9`) |
+| **真偽台帳ミニマル** | `beliefs.enabled` / `verify_actions`(既定 OFF・journal 等級)= **fact 8種**(conf 駆動・エージェント絶対不可視)・信念状態/伝播木・**検証行動3種**(現場確認・当事者に聞く・ネットで裏取り)・**漏洩3点ガード**(静的検査+CachedLLM 関門 canary+全プロンプト検査)・真値は `beliefs_ledger.json` へ分離・`analyze_beliefs.py`。第73 (`4257310`) |
+| **規範化ステージ** | `labeling.norm_stage` = 4段検出(初出→他者引用→**S3 指示詞化**「例の」→**S4 合意参照**「さっき決めた」・markers=conf 単一源・観測のみ=プロンプト1バイト不変)。**coiner / definitizer / institutionalizer の分離**。下方因果解析 `analyze_norms.py`(閾値は引数必須)。第74 (`008d0db`) |
+| コホート+ゼロ対照 | `observer.initial_frame`(初 presence は L1 導出=シム変更ゼロ)+`experiment.flat_traits`(traits 定数化ゼロ対照・**CRN 不変条件は「乱数消費本数一致」**=呼数不変は処置の性質上不成立と訂正)+`zero_traits.yaml` 4セル。第74 (`008d0db`) |
+| インターネット層 | `net/internet.py` = SNS(投稿=LLM・タイムライン・フォロー)/ニュース/**検索=シミュ内DB**(語彙来歴+ニュース+実在POI+SNS索引。実 API は D13 再現性+架空世界の閉性で不採用)/DM |
+| 再帰性 | norm_line / digest_line / repeal / impact_news = 監視→知覚→改変の閉ループ |
+| 世界改変ツール | 5種 = 4軸(モノ/制度/人/虚構)。中立提示・R4 客観カウント。**初の行使を第31-32 夜間ランで観測**(ablit_free_s42 の flyer_post 2件・過去2,654提示で0件) |
+| 造語の自然観察 | coin 文脈のみ記録(促進しない=`natural-coinage-observation` 方針) |
+
+## H. 物理エンジン(P2 選定 / P3 縫合・竹系)
+
+> 正典: [highfidelity-3d-physics-plan.md](docs/plans/highfidelity-3d-physics-plan.md)(**高精細渋谷 3D モデル × 物理シミュレーター接合**・
+> 2026-08-02 に**松案で承認**=竹への縮退退路つき)+[cognition-physics-plan.md](docs/plans/cognition-physics-plan.md) §4。
+
+| 項目 | 内容 |
+|---|---|
+| 自前 SFM | `sfm_core.py`(Helbing 式・文献値・希望速度=メゾ所要時間を厳密保存・スクランブル交差点を実データから自動導出)。オフライン合成(`84d034b`)→ 第58 で移設+壁斥力 |
+| **P2 選定** | **ゾーン別ハイブリッド決定**(2026-08-02。ユーザー委任「ベンチをまわして君が決定して」→ ベンチ再実行=前回と**全指標ビット一致**)。既定 SFM(基本図 Weidmann 整合)/ 交差流は **ORCA**(0.924 vs 0.530)・条件6項。比較プロト (`fe802cc`)・決定文書 [physics-engine-selection.md](docs/research/physics-engine-selection.md) P2 決定節 (`da64b69`) |
+| レーンA データ3本 | 松A-1 + 竹-1(tran LOD3 の歩道実ポリゴン+被覆マップ)+ 竹-2(ubld LOD4.1 → **壁2,834本/4層/188ゲート**)。Draco 148タイル1.1s・座標ミリ一致・GEOID 36.79 実測・影落とし15.7%発見・歩道被覆22.1%。新54テスト (`5ff56c4`) |
+| **竹-3 f_iW** | `sfm_core.Crowd` に**対壁斥力 f_iW を追加**(既定 OFF)。壁最近点は空間ハッシュで **91倍速**・WallCrowd 薄型化。★**揺らぎ項 ξ 欠落バグを修正**(構造的に再発不能へ)。ξ 実測 = レーン形成改善なし → P2 文書の推測を実測訂正。新21テスト (`086dabe`) |
+| **竹-4 P3 境界縫合** | `physics.zones` = conf 宣言(ポリゴン+engine sfm\|orca+dt_sub+壁/歩行面ソース・重複は構築時例外)。**単一作用点 = `_phase_move` 直前の `physics.phase()` 1行**。**排他所有**=`_phys_zone` 単一値がゲート経由のみの移籍を構造保証。`orca_core` 昇格(reference 不変)+半径マージン+決定論的分離パス(min_gap+0.100m・分離発火0回)。**guarded ゲート**=id 昇順・流入は現在座標(**瞬間移動が原理的に不可**)・信号ゾーンは SignalGate 青のみ入場。実測由来の設計変更2件 = ①出口直進で**跳び 41.4m → 通過点追跡で 2.25m** ②step 途中退場に10分予算を丸ごと与える**二重移動バグを発見**→ budget_scale 控除(回帰固定)。境界連続性 = gate accel p99 4.6 / interior 4.4 / 反転 0.000。**物理→知覚**=第85契約の body 欄(blocked/contact/local_density)注入・prompt_kwargs 非露出=**プロンプト文字列不変**。L1 `zone_gate`+L2 5列(OFF 時列なし)+checkpoint 中央管理(phys_state)+新 stream physics(stateless)。交差点スモーク(mock60体・実測信号 cycle 140)= 通過95件・縁石待ち p50 20s(赤93s と整合)・強制解放0。**目標 8/11 を9日前倒しで完了**。新36テスト (`f1024fc`) |
+| 屋内 SFM | `_phase_indoor` = 2層タイムライン(認知10分+物理0.2s 遷移駆動)。第58 (`bcbc1b9`) |
+
+## I. 天候・環境
+
+| 項目 | 内容 |
+|---|---|
+| 天候(合成) | `weather.py`・stream "weather"・雨→grievance。第7 |
+| **天候 W1** | 気象庁**東京8月930日(1996-2025・欠測0)を凍結**(公共データ利用規約=同梱可を確認)+WGEN 系生成器の較正。**年効果項が連続猛暑の鍵**(文献+実証)。猛暑連長 KS **p=0.97**(現行合成は p=2e-5)。**P(≥35℃) が 2015-25 で3倍**の発見 (`bd7b142`) |
+| **天候 W2** | `weather.mode`: **synthetic(既定=不変)/ generated(較正生成器・"weather_gen" stream 一括生成=strict・resume 一致)/ table(実日付表引き)**。10日窓でも10連猛暑到達可。来歴 sha256 を summary/manifest へ。★**cal_day の checkpoint 欠落バグ(resume で weather 二重記録)を発見・修正** (`ba8ac2d`) |
+| 環境フィードバック | → E 節 第84 を参照 |
+
+## J. 屋内・ミクロ(第58 バッチ B0-B9)
+
+| 項目 | 内容 |
+|---|---|
+| B0 間取り | Web 実データ間取り **21棟197階**(`floor_layouts.json`・店名不記載)(`bd53078`) |
+| B1-B2 基盤 | マクロ⇄ミクロ観察基盤・**単一の真実**原則(マルチレゾリューション文献)・vision 休眠資産の正典化・SFM 移設+壁斥力 |
+| B3 屋内エンジン | `_phase_indoor` = 区画割当 / フロア内 Markov / 階間実軌跡 (`bcbc1b9`) |
+| B3b 接続 | ミクロ→マクロ動力学接続(遭遇観測→**返答相手優先**(1-step ラグ))・壁 LOS 知覚 (`32971a0`) |
+| B4-B8 | 会社観察データ層(serve に org_id/floor 付与)・会社 UI タブ・在館観測列 (`119adf2`) |
+| B5-B6 | **2D/3D セマンティックズーム**(旧ランバイト同一証明・JS パリティ)(`32971a0`) |
+| B9 統合検収 | **観察不変性3点テスト化**(tracks トグル L1 バイト一致 ほか)・30日外挿+65min (`380413e`)。ゲート 1306 → **1626** |
+| フロアガイド | 実フロアガイド10施設(`floorguide_shibuya.json`・カテゴリ事実のみ) |
+
+## K. LLM 基盤
+
+| 項目 | 内容 |
+|---|---|
+| バックエンド | Mock / Ollama / openai_compat / anthropic(temp/seed 送らない)。**RouterLLM** purpose 別 dispatch(子を各自 CachedLLM で包む = D13 維持・キャッシュは子 name 別ファイル・API キーは環境変数名のみ)。第23 (`89a3dd9` 以前) |
+| 応答キャッシュ | `llm/cache.py` **CachedLLM**(D13)= `llm_cache.jsonl` = **応答の内容アドレスキャッシュ**(key=sha256(model+params+think+prompt))・永続化・run 間共有可 |
+| vLLM / FleetLLM | sticky routing・キャッシュは URL 非依存 |
+| 制約デコード | `model.format` none\|json(既定 json = 完全互換)・think 併用ガード・キャッシュキー互換。第33 (`105275a`) |
+| トークン予算 | `plan_max_tokens 448` / `reflect_max_tokens 768`(2048 から右サイズ化)。実プロンプト実測 **1,014 入 / 41.5 出 tok** |
+| **LLM 健全性 KPI** | fallback 率など L2 KPI・`watchdog_llm`・`observer.llm_health` 3列(既定 OFF)。第66/P0 (`5101b8a`) |
+| **LLM 全文ジャーナル** | `model.journal`(既定 ON・**gz 11.5x = 1万体10日 ≈ 0.6-1.1GB**)。multi-member gzip・checkpoint mark/truncate で **resume 二重記録なし**・シム本体に読み経路ゼロを静的固定。第71 (`c75025b`) |
+| **REPLAY fail-fast** | `model.cache_mode: free / replay`(miss 時に step/agent/key を明示して即例外・**フォールバック絶対禁止**)。T2 = FREE→REPLAY で L1 全行一致・T5 = 1行削除で即 fail。第71 (`c75025b`) |
+| **run_manifest.json** | git SHA / config hash / run_seed / モデルID / 全トグル / history。第71 (`c75025b`) |
+| watchdog | 自動再開・巻き戻し。`--stall-min` 運用 |
+
+## L. 観測層(L1 / L2 / L3・registry・ablate・state_hash)
+
+| 項目 | 内容 |
+|---|---|
+| 観測4層 | **L1 イベント**(append-only・part parquet + zstd・flush_segment)/ **L1b LLM** / **L2 metrics** / **L3 snapshot**。イベントレジストリ式。`vocab_coin`・`transmission`(伝播系譜) |
+| ストリーミング | P4 = `stream_events` 逐次(合成2,000万件・ピーク 786MB < 2GB)(`64c9013`) |
+| move_segment | 移動の経路ポリライン記録(「直線移動の正体」= ログが最終座標のみだった観測側の情報不足) |
+| **機能レジストリ** | `registry.py` **175件**(strict 146 / journal 27 / none 2)に repro_tier / affects_k / fingerprint_risk を宣言。**未宣言は CI fail**(全 bool リーフ走査で宣言忘れが構造的に不可能)。第72 (`84450d8`) |
+| **ランモード** | `run.mode`: **none(既定=同一オブジェクト返却で1バイト不変)/ observe / journal / verify**。モード超過機能の自動 OFF+manifest 記録+目立つ警告。**verify は planning/tools/rules を落とす**(= LLM 自由文が世界状態になる3機能の正直な宣言)。28件強制 ON でも完走。比較ガード3スクリプト。第72 (`84450d8`) |
+| **ablate 4種** | `ablate.llm_off`(LLM 0本・ルール層のみ)/ **`propagation_off`**(発話生成するが他者文脈に不注入・**捏造プレースホルダ拒否**・`fingerprint_risk=known` を正直宣言・呼数差 **+1.61%** は間接ドライブ経路のみ)/ `cognitive_tier`(fleet 強制下位)/ `shuffle_partners`(always-draw = RngHub stateless で既存 draw 順不乱)。第78 (`e2e4a5f`) |
+| **状態ハッシュチェーン** | `observer.state_hash`(既定 OFF)= 正準シリアライズ sha256 チェーン。T1 同 seed 一致・T6 workers 1 vs 4 一致・改竄3種検知・**3.5µs/agent/step**・片側検定と明記(厳密判定は L1 バイト比較のまま)。第78 (`e2e4a5f`) |
+| **metrics_spec_hash** | 指標定義14ファイルの正規化ハッシュ → manifest(T7)。第78 (`e2e4a5f`) |
+| 観測レンズ | `lens.py` = データ駆動 kind→軸・2段マッチ。資産分布/弱い紐帯/模倣連鎖(`assets.py` = L2 全体5列 gini 等)。第50/59 (`fd32dca`/`55d0e0e`) |
+| 逸脱率・内生変動 | `deviation.py`(ペルソナ逸脱率=**裁量 0.333 vs 全時間 0.119** = 義務が従順度を3倍水増し)第55 (`2785c9f`) / `structure.py`(edge churn 4列・**順位 τ 0.54→0.88** = 7日で固着未確定 → 30日必要の直接裏づけ)第56 (`8ccde6b`) |
+| 顕著イベント | ビューア顕著イベントパネル(抽出決定論・バイト同一ゲート)(`e882004`) |
+
+## M. 検証装置・決定論基盤
+
+| 項目 | 内容 |
+|---|---|
+| RngHub | PCG64・**named streams 68+**・順序非依存・用途別 stream(R1-⑤)。約60本の全数列挙監査済み |
+| golden | 既定 OFF で **L1 バイト一致**。全バッチ共通の受入基準 |
+| checkpoint / resume | 中央管理・**resume == straight で L1 全層バイト一致**。`--start-tod` 等の跨ぎも検証済み |
+| CRN | 共通乱数。treatment 比較(sign-flip permutation)・compare_runs の CRN 健全性チェック |
+| k 呼数一致 | `controls.mode=compute_matched`(off でも内省実行・全破棄=4条件で計算量一致)/ `null_series` / FSS 掃引(N×α 擬似連続 k 軸) |
+| no-fingerprint | 静的チェック(engine が因子を名指ししない)。R9 |
+| PIMMUR 準拠 | 6原則の準拠表(5 PASS / Unawareness PARTIAL)。C3 尋問テスト 126呼 = in-domain Unawareness ほぼ完全(S4 ツール提示対でも0%)・S5 第三者のみ ablit/8b が看破 = 条件付き不合格 (`6599604`) |
+| judge | `judge.py` = LLM-judge ハーネス(**補助**指標)・Fleiss κ ≥ 0.7 でのみ採用・本体へ逆流しない(R4) |
+| 並列ゲート | pytest-xdist 採用。直列 53:32 → 並列 5:33(**9.6倍**)・本数一致検証。第43 (`deb0d4e`)。第70 で 70分 → **4.5分**へ是正 |
+| バックアップ | `ops/backup-daily.ps1` + タスクスケジューラ 23:30 = git + 日次 mirror + 日付 zip 14日保持の三重保全 (`4cc7fa5`) |
+| 公開ミラー | `publish_public_mirror.ps1` で `shibuya-simulation-public` へ同期(git filter-repo で GPL 参照+主催メモを全履歴除去・noreply 書換・Secret scanning+branch protection・**決定論=fast-forward 1コマンド**)(`8092625`/`22fbbc7`) |
+
+## N. 3D・可視化
+
+| 項目 | 内容 |
+|---|---|
+| 2D ビューア | `viz/make_viewer.py` → `viewer.html`(地図)+`dashboard.html`(X 風 SNS・LINE 風 DM・SERP 風検索ログ・論文風グラフ5種・関係グラフ)。OSM タイル背景・レイヤーパネル・密度ヒートマップ・不透明度スライダー。軽量化 255MB→5.5MB / `--no-traffic` で 439MB→8.4MB |
+| 3D ビューア | `export_3d`(手書き glb + Blender bpy)+ three.js 同梱 `viewer3d`。**≤80MB ゲート**運用。`--low-mem` = バイト同一 19/19 |
+| PLATEAU 注入 | ハイブリッド glb 32.6MB + ビューア注入(既定はバイト同一)。ACES ライティング |
+| UE5 | `export_ue.py`・PLATEAU 渋谷 2025年度 import script + README(mode="sequence" = BP 不要) |
+| 語彙伝播の可視化 | transmission 辺をビューワーへ(語クリック=採用曲線+チャネル)(`aba9ec0`) |
+| **DT P0 軌跡バイナリ化** | `--tracks-binary`(既定 OFF = 既存出力バイト同一 **31/31**)= GLB 同型(magic+JSONヘッダ+payload)・**int16×0.05m 量子化**+**状態は出現値パレット+uint16索引**(素 int16 は屋内 max 720,802 で不可と実測し設計変更=完全可逆)+base64 JSONP の chunk sidecar 遅延ロード+LRU4。**viewer3d 86.1MiB → 24.7MiB(ラン長非依存)**・sim_ue 10日 **0.23GB**。量子化往復誤差 厳密0。第76 (`cb7b5cd`) |
+| **P6 追いかけ再生** | `scripts/live_viewer.py`(**読み取り専用の別プロセス・src ゼロタッチ**)= part parquet 増分読み(**parquet フッタ主判定**・payload 列は見せ場イベントのみ読み **311,218行/秒**)→ **ライブ風 HTML**(`_live/`・静的 HTML 1回書き+`live_data.js` JSONP 差し替え)。★**Windows 共有フラグ事故を発見・修正**(`open()` が FILE_SHARE_DELETE を立てず、読み中 part の unlink が PermissionError = 「読むだけ」でランが finalize 異常終了する経路が実在)→ `_open_shared`(CreateFileW SHARE_READ\|WRITE\|DELETE)。第77 (`957e9a5`) |
+| **3D 品質修正** | 原因 = OSM ドレープ解像度が **240 セグメント頭打ち**(実効 14.5m vs 地形 2m 格子 = **解像度 1/7**)で **面積33%が地形下**・地下街メッシュ露出・IDW スパイク(max 4.2m)・線路/道路の非接地(67%埋没)・**sim floor 未クランプ**(2階建てに floor=42 → +138m)・カプセル中心配置。修正 = OSM を**地形メッシュ直貼り**(交差が構造的に不可能)・**TIN 重心座標補間**・表示側 w クランプ・建物参照 upOf/footY 足元アンカー+サイズスライダー。数値検証 = **屋根超え 531→0・線路埋没 310→0・足元Δ 3.9m→0.000m**。新19テスト・2555緑 (`da64b69`) |
+| **レーンB テクスチャ統合** | 松テクスチャ表示(shadowed 除外 = gml_id 重複ゼロ)+梅の地下街塗り分け(z 問題 47%→2.85%)+縮退策で **105.61 → 79.39MiB = 80MB ゲート内**(余裕0.61MiB)。src/conf ゼロタッチ・既定バイト同一。新21テスト (`d996240`/`de2f684`) |
+
+## O. 解析スクリプト群
+
+`analyze.py`(単一 run: agent 特徴量/カスケード/network/EWS/R²/図・`report.md`)/ `analyze_sweep.py`(条件横断: R²(k) の seed 階層ブートストラップ CI・EWS・seed 発散・**計算量交絡監査**)/ `run_sweep.py`(k 掃引・FSS)/ `bench.py`・`bench_scaling.py`(N=10..10000)/ `estimate_runtime.py` / `judge.py` / `observe.py`(訪問・関心)/ `observe_flows.py`(金流+注意ネットワーク・被注意 gini)/ `calibrate_report.py`(**現実バンド表**=NHK 生活時間調査等の出典付き近似と照合)/ `flows_grid.py`(25m×1h ビン・Fruin の LOS)/ `panel_stats.py`(効果量主・BH-FDR)/ `analyze_od.py` / `compare_runs.py`(CRN 健全性)/ `network_ts.py` / `summarize_run.py`(数値照合ガード)/ `analyze_groups.py` / `analyze_luck.py` / `analyze_founders.py` / `analyze_resolution.py` / `diagnose_stationarity.py`(D0 診断)/ `detect_emergence.py` / `analyze_beliefs.py`(第73)/ `analyze_norms.py`(第74・閾値は引数必須)/ `analyze_specialization.py`(第78・**propagation_off 対照差分でのみ主張**・実装健全性と現象由来を別セクション化)/ `measure_sigma.py`(第80)/ `analyze_g.py`(第82・分散分解)/ `calibrate_theta.py`・`analyze_firing.py`(第83)/ `live_viewer.py`(第77)。
+
+## P. データ資産
+
+| 資産 | 内容・ライセンス |
+|---|---|
+| OSM 地図 | `data/shibuya_osm*.json` / `env/shimokita/*` — © OpenStreetMap contributors・**ODbL 1.0**(派生 DB は ODbL 継承) |
+| 人流 | `data/jinryu/` — 国交省(Agoop 提供データより作成)・政府標準利用規約2.0。**平日昼ピーク 37.2万・24h 平均 23.5万**(「最大=週末夜」を「平日昼」に訂正)。144step 目標曲線 CSV |
+| ODPT | `data/odpt/` — ODPT 利用規約。出典表示は各ファイル `_meta` に付与。限定データは `data/odpt_challenge/`(.gitignore) |
+| PLATEAU | CityGML 4タイル・3D Tiles zip(テクスチャ付き LOD2.2 148タイル / 道路 LOD3 / 地下街 LOD4.1) |
+| フロアガイド | `data/floorguide_shibuya.json` / `data/floor_layouts.json` — **カテゴリ事実のみ**(店名・ブランド名不記載) |
+| 組織台帳 | `data/organizations_shibuya_wide11k.json` — 手続き生成の**合成データ**(実在企業・学校名なし)・11,010組織 |
+| ペルソナ | `data/personas_*.json`・100万プール(実体 736MB は gitignore) |
+| 天候 | 気象庁 東京8月 930日(1996-2025)凍結・来歴 sha256 |
+| 較正値 | `data/calib/sigma_c.json`(σ_c 凍結・provisional 宣言)・theta_scale=0.03125 |
+| three.js | `viz/vendor/` — MIT |
+| 実人口統計 | 夜間 2.96万 / 同時滞在 20-30万 / 日次ユニーク 70-120万 / 従業者 25.7万 |
+
+## Q. 実 LLM ラン実績(完了済み)
+
+| ラン | 結果 |
+|---|---|
+| day80(80体×1日 qwen3:8b) | **LLM 1,327回・fallback 0**・発話849・投稿255・DM151・検索79。**シブヤレンズ伝播1,540回 → 79/80人採用**(sns 1172主導) |
+| mem100(実 LLM 5体×100日) | 記憶劣化なし・belief 線形蓄積・3,805呼212分。変革モチベ分析 = efficacy 天井 / grievance 床に飽和し個体差消滅(最大の詰まり) |
+| 現実較正(第13a) | 乖離3系統を較正(窃盗×554 → crime_prob 2.0e-6 / タクシー×13-20 → prob 0.02 / 雇用×80-100)。100日で全✅。**機械系=mock・行動系=実 LLM** の分担確立。不満 0.101→0.034 = k* 信号が外生ノイズから浄化 |
+| R²(k) パイロット(第13b) | R²ext free 0.508/0.800 vs off 0.387/0.621(Δ+0.12/+0.18・両シード符号一致)。※**第20 で内省全滅バグ(reflect think=true で belief 書き戻し0件)が判明したため、この値は要再検証** |
+| daily_llm_20a7d(20体7日) | 全項目 現実バンド内 |
+| daily300_100d(mock 300体100日) | 較正が再調整なしでスケール。D0 診断 = **TRANSIENT_ONLY・burn-in 約18日後に定常化**(本選10日ランは丸ごと burn-in 内という要判断事項を検出) |
+| 統合リハーサル 1万体 | 完走。熟慮 16.8/人日 ✓・RSS 14.5GB |
+| 講演デモラン(200体×3日) | 238,993イベント・fallback 1件(0.008%)・viral_cascade 230・交際11組 |
+| model×k 4セル×2-3シード | **初の世界改変ツール行使**(ablit_free_s42 の flyer_post 2件)。k 対照(free−off)は inst/ablit **同方向** = k* 信号のモデル横断保存の暫定示唆 |
+| **夜間実 LLM 検証ラン**(night_llm_100a3d) | **完走**(2026-08-02。計画=100体×3 sim日 / 実績=**100体×288step = sim 2日**)・production+Ollama qwen3:4b・**checkpoint 毎日**・watchdog + live_viewer 併走・**3,759呼・fallback 0・plan retry 0・cache 27.6%・reflect 176 正常**(旧内省空バグの実 LLM 正常動作確認)・purpose 8種健全。**「LLM シミュレーションが回る」検証を達成**。`runs/night_llm_100a3d` に 2D/3D(テクスチャ74.45MB=ゲート内)ビューワー生成済み。★事故2種の発見と復旧 = watchdog stall 20分 < 初回 flush 間隔(設定ミス)で健全ラン2回殺害/**1呼び出しに 1時間47分張り付き = LLM 呼び出し全体ハードデッドライン欠落バグを発見**(→ [PENDING.md](PENDING.md) の保守バッチへ) |
+
+## R. バッチ完了年表(検収済みの記録)
+
+| バッチ | 内容 | 完了日 | 新テスト / 累計 |
+|---|---|---|---|
+| 第70 | IDEA①エコー計測+②未定義行動レジスタ+沈黙 | 2026-07-31 | +30 / 1876 |
+| 第71 | LLM 入出力ジャーナル(プロンプト全文)+REPLAY fail-fast+run_manifest | 2026-07-31 | +26 / 1902(S0=入力来歴はユーザー承認後に manifest へ追補) |
+| 第72 | 機能レジストリ(repro_tier)+ランモード observe/journal/verify | 2026-07-31 | +30 / 1932 |
+| 第73 | 真偽台帳ミニマル(fact+信念+伝播木+検証行動+漏洩検査) | 2026-07-31 | +32 / 1964 |
+| 第74 | 規範化ステージ+coiner/institutionalizer+コホートタグ+ゼロ対照(IDEA③④+Part E1) | 2026-07-31 | +38 / 2002 = **「記録しないと失われる」観測点はこれで全て投入済み** |
+| 第75 | ダンバー維持コスト(IDEA⑤) | 2026-07-31 | +21 / 2023 |
+| 第76 | DT P0 軌跡バイナリ化 | 2026-07-31 | +27 / 2050(ブラウザ実機の目視は未=成果物パスあり) |
+| 第77 | DT P6 追いかけ再生 | 2026-07-31 | +37 / 2087 |
+| 第78 | ablate 4種+状態ハッシュチェーン+metrics_spec_hash+指標凍結 | 2026-07-31 | +63 / 2150 = **統合実装順 9/9 完結(T1〜T8 全達成)**。見積 13.5-15日を1日で完走 |
+| 天候 W1-W2 | 気象庁930日凍結+較正生成器+weather.py 統合 | 2026-08-01 | — / 2231 系 |
+| 第79 | Δt 不変化(毎分レート化) | 2026-08-01 | — / 2231 |
+| 第80 | 観測チャンネル14本+σ_c 実測凍結 | 2026-08-01 | — / 2302 |
+| 第81 | 閾値発火+同期バリア+認知イベントキュー | 2026-08-01 | — / 2348 |
+| 第82 | watch spec+g/θ 更新則+F/N/P | 2026-08-01 | — / 2430 |
+| 第83 | θ較正パイロット+発火観測装置 | 2026-08-01 | — / 2458 |
+| 第84 | 環境フィードバック3規則 | 2026-08-01 | — / 2479 |
+| 第85 | Perception/Intent 契約 | 2026-08-01 | — / **2536** = cognition-physics-plan 第79-85 + 天候 W1/W2 **全完結** |
+| 3D 品質修正 | ビューワー品質(観察レイヤのみ・src ゼロタッチ) | 2026-08-02 | +19 / 2555(sim 側クランプは判断待ち 3D-U0) |
+| レーンA | 3D データパイプライン3本(松A-1+竹-1+竹-2) | 2026-08-02 | +54 |
+| 竹-3 | SFM 対壁斥力 f_iW + ξ 欠落バグ修正 | 2026-08-02 | +21 |
+| レーンB | テクスチャ統合+梅塗り分け+80MB ゲート内化 | 2026-08-02 | +21 |
+| 竹-4 | **P3 境界縫合**(physics.zones+ORCA 昇格+guarded ゲート+知覚翻訳) | 2026-08-02 | +36 / **2687** = 高精細3D×物理(松案)**全レーン完結**・P3 目標 8/11 を9日前倒し |
+
+> ※ 第1〜69バッチの詳細は [devlog-compressed.md](docs/log/devlog-compressed.md) Block #0〜#13 が正典。
+> 主要な内容は本ファイル A〜Q 節にシステム別で収録済み。
