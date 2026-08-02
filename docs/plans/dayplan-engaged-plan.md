@@ -26,7 +26,7 @@
 |---|---|---|
 | 第86 | **day_plan v1**: 構造化スキーマ(メタ+ブロック4〜8+contingency≤3・列挙型中心・reason=生成時説明)+スキーマ/物理検証→決定的修復→フォールバック3段+**ルール実行系**(場所解決はルール側・priority×flex 割り込み=could/droppable は無料で削り must 危機のみ再計画発火・空き時間=習慣ポリシー) | **完了**(2026-08-03。§4 参照) |
 | 第87 | **engaged モード**: AUTOPILOT/ENGAGED 状態機械・突入5条件(S>θ_in/社会的直接性バイパス/実行不能例外/欲求臨界/予定思考)・脱出4条件(解消/減衰=ヒステリシス/ターン上限12/プリエンプト→兆しメモリ1行)・不応期30分・両者 ENGAGED 会話成立・エピソードログ(トリガー/滞在/ターン/脱出理由/model_id) | **完了**(2026-08-03。§5 参照) |
-| 第88 | **心モデル固定+三層知能**: agent→model_id 誕生時固定(専用 stream・manifest/ログ必須=交絡の記録)+基底/思考/高解像度層の conf 配置(高解像度 1〜5%) | 計画済み |
+| 第88 | **心モデル固定+三層知能**: agent→model_id 誕生時固定(専用 stream・manifest/ログ必須=交絡の記録)+基底/思考/高解像度層の conf 配置(高解像度 1〜5%) | **完了**(2026-08-03。§6 参照) |
 | 第89 | **プラセボ L1 3種**(context_shuffle/persona_swap/context_sever): 呼数・フォーマット・乱数消費同一の中身破壊(第78 ablate 枠に追加・fingerprint_risk 正直宣言) | 計画済み |
 | 第90 | **バッテリーハーネス**(scripts 系): 共通ハーネス(同一プロンプト/シード/温度)+A層(社会生活基本調査比較)/B層(摂動応答)/C層(会話統計・名大コーパス)/D層(分散比=生命線)/E層(長期退行)+プラセボ対照 | 計画済み |
 | 第91 | **退行シグナル監視+縦横煙プロファイル**: L2 監視列(分散・エントロピー・n-gram・発火率)+縦煙(2,500全期間)/横煙(25万数時間)conf+判定基準 | 計画済み |
@@ -261,3 +261,137 @@ P2 の `move_home` / `explicit_nothing` と同じ流儀)で、消費するのは
 エピソード**間**の長期記憶統合は未着手(兆しメモリは既存 `remember` に 1 行書くだけで、
 その再燃は既存の retrieve/query に任せてある)。相手特異的な馴化(同じ相手への再突入抑制)
 は g 更新側の拡張として持ち越し。
+
+> **第88 での解消**: `model` 欄は固定割当へ整合済み(§6.5)。高解像度層の権威も
+> `model.mind.tiers.high` へ移った(`reflect_frac` は接続 OFF 時の後退先として残存)。
+
+## 6. 第88バッチ 実装記録(2026-08-03 完了)
+
+**conf**: `model.mind.enabled`(既定 **false**)。実装 `src/society/mind.py` +
+解決層 `src/society/llm/mind_router.py`。
+
+原文書 §5 の「心は 1 体 1 モデルを誕生時に固定/機械的判断はモデル不問/
+モデルと人格の交絡は必ずログに残す/知能は均質に配置しない(三層)」をそのまま実装した。
+
+### 6.1 割当機構(誕生時固定)
+
+| 何 | どう決まるか |
+|---|---|
+| モデル | 専用 stream `mind_model`(agent_id キー)の一様値を pool の重みで累積分割。**name 昇順**の分割なので conf の並び順に依らない |
+| 層 | 専用 stream `mind_tier` の一様値 < `tiers.high.frac`。**traits を 1 つも読まない**(k* と直交) |
+| 作用点 | `Simulation.__init__` の名簿ループ 1 行 + `build_pool_agent` 1 行(`_apply_ontology` の直後=同じ「誕生時属性」の位置) |
+
+RngHub の stream は stateless(キーから独立に派生)なので、**新 stream 2 本を足しても
+既存 stream の draw 順は 1 つも動かない**(第75 dunbar / 第78 shuffle_partners と同じ根拠)。
+割当は `(master_seed, agent_id)` の純関数なので **checkpoint に割当表を積む必要がない**
+(resume でも pool 再入場でも同じモデルに戻る)。中央管理するのは「L1 に記録済みの id」
+(`mind_logged`)だけで、これが無いと resume 直後に `mind_assign` を二重記録する。
+
+★**高解像度層の選抜は traits 非依存の一様抽選を既定**にした。「あらかじめ賢い個体を
+選んでおく」と『誰が世界を変えるか』(k*)という問い自体が自壊するため(サーベイ S-08)。
+traits 依存選抜は `tiers.high.select: traits` として**アブレーション専用に分離宣言**し、
+ON にすると manifest に「意図的な交絡・k* の主張には使えない」警告が残る。
+
+### 6.2 解決層(agent_id → モデル)
+
+`MindRouter` は **RouterLLM と同じ dispatcher** であって新しいバックエンドではない。
+
+    sim.llm = MindRouter(
+        default  = ここまでに組み上がった CachedLLM / RouterLLM(= 共有の既定=機械的判断・対照系列)
+        children = {model_id: CachedLLM(子バックエンド)}   ← 子は **各自 CachedLLM に包む**
+    )
+
+dispatch 規則は 2 つだけ: ①`rng_key` の purpose が心の呼び(`deliberate`/`plan`/
+`reflect`/`recall`)でなければ default ②agent_id が取れなければ default。
+`null`(D7 対照系列)は内容非結合なので default 行き。
+
+**キャッシュの分離**: キーは `sha256(backend.name + params + prompt)` なので、子の name が
+違えば同一プロンプトでも別キーになる(D13 の既存構造をそのまま使う)。ファイルも
+`llm_cache.<name>.jsonl` / `llm_journal.<name>.jsonl.gz` にモデル別で分かれる。
+MindRouter 自身は `name="mind"`(モデル非依存)なので**絶対に CachedLLM で包まない**
+(包むと全モデルが同一キーに潰れる。router.py と同じ罠)。
+
+mock は `MockBackend(hub, name=...)` でサブモデル(`mock:a` / `mock:b` …)を立てられる
+ようにした。**応答本文は名前に依存しない**ので、決定論を保ったまま「経路とキャッシュの
+分離」だけを検証できる(name 無指定は従来どおり `"mock"`= 既存ランとバイト一致)。
+
+### 6.3 三層知能
+
+| 層 | 実体 | 本バッチがしたこと |
+|---|---|---|
+| 基底層 | 習慣・スケジュール・**経路選択・定型購買** | **1 バイトも触っていない**。既存の mobility / commerce / goods / routine は LLM を 1 本も呼ばない層で、これは実装ではなく**確認**(テストが静的に固定) |
+| 思考層 | 発火時のみ LLM・混成 fleet | `model.mind.pool` の重み付き割当 |
+| 高解像度層 | 1〜5% | ①`tiers.high.name` の大型モデル ②**夜内省の対象**(第87 `high_res` の権威を `reflect_frac` から引き継ぐ)③思考頻度の上限緩和(`cap_mult` を `turn_cap_of` にかける) |
+
+`tiers.high.reflect: false` にすると②の接続だけを切って第87 の `reflect_frac` に戻せる
+(対照条件)。
+
+### 6.4 ログ = 交絡の記録(§5 の明示要求)
+
+| 場所 | 何が残るか |
+|---|---|
+| L1 `mind_assign` | `{model, tier}` を個体ごと 1 件(誕生時=step0 / pool 途中入場はその step) |
+| `agents.json` | `mind_model` / `mind_tier`(OFF ではキー自体が生えない) |
+| `run_manifest.json` `mind` | pool 構成・三層の頭数・選抜方式・`by_model`・**交絡の注記** |
+| `summary.json` `mind` | 上記 + モデル別の**呼数 / キャッシュ命中 / エピソード数 / 計画数 / 修復率**(第86 day_plan・第87 engaged の `by_model` を統合) |
+| L2 | `mind_models_present` / `mind_high_agents` の 2 列(**列名にモデル名を出さない**= 列構成がランごとに変わらない。内訳は summary 側) |
+
+第86 `day_plan.model_id` / 第87 `engaged.model_id` は **固定割当を返すよう整合**した
+(`mind.log_model_id(sim, agent)` へ委譲。mind OFF のときだけ従来の backend 名へ後退)。
+
+### 6.5 検収(mock のみ・実 LLM ランなし)
+
+- **既定 OFF**: 純粋既定と L1 完全一致(48 step)・`agent.mind` 不在・L2 に 2 列なし・
+  manifest / summary に `mind` キーなし・agents.json に欄なし・`sim.llm` が CachedLLM のまま
+  (解決層が被さらない)・LLM 呼数一致・**新 stream(`mind_model` / `mind_tier`)を 1 本も
+  引かない**・golden(`test_scenario`)緑。
+- **ON(mock 3+1 サブモデル)**: 同 seed 2 ラン L1 バイト一致 / resume==straight
+  (l1/l2/l3 parquet 一致 + `mind_logged`・割当・`_mind_binding` の round-trip)/
+  `compute_matched` 下で k=free と k=off の**呼数・モデル別呼数・割当が完全一致** /
+  呼び出しサイト(purpose)の集合が増えない / no-fingerprint(モデル名・層名・機構語が
+  プロンプト全文に 1 文字も出ない)。
+- **同一個体の全「心」呼が同一モデル**: 288 step ランの `llm_journal` **全走査**で、
+  `(purpose ∈ 心) × agent_id` → backend が常に 1 つ、かつ誕生時属性と一致(逸脱 0 件)。
+- **キャッシュ分離**: 同一プロンプトでもモデルが違えば別キー(2 回とも miss)・
+  同一モデルの再訪は hit・`llm_cache.<name>.jsonl` がモデル別に生成される。
+- **割当の統計**: `derive` の直接掃引 n=20,000 で重み 1:3 → 実測 0.2458(誤差 <0.01)、
+  `high.frac=0.05` → 実測 0.0506(誤差 <0.005)。
+- **実測**(mock・seed42・40 体・288 step = 2 シミュ日。pool 3 本 weight 1:2:1 +
+  高解像度 `frac=0.05` の `mock:hi`。fire / engaged / day_plan も同時 ON):
+
+  | モデル | 人数 | 呼数 | 内訳(deliberate/reflect/plan) | エピソード | エピソードターン | 滞在[分] | 計画 |
+  |---|---|---|---|---|---|---|---|
+  | mock:a | 10 | 331 | 303 / 16 / 12 | 138 | 234 | 5,290 | 12 |
+  | mock:b | 23 | 847 | 775 / 44 / 28 | 336 | 620 | 15,430 | 28 |
+  | mock:c | 4 | 123 | 109 / 8 / 6 | 57 | 89 | 1,980 | 6 |
+  | **mock:hi**(高解像度) | 3 | 80 | 71 / 6 / 3 | 36 | 61 | 1,490 | 3 |
+  | 合計 | 40 | **1,381** | — | **567** | 1,004 | 24,190 | 49 |
+
+  **読み方と正直な限界**:
+  - 人数 10:23:4 は重み 1:2:1(期待 10:20:10)に対し n=40 の統計誤差の内側
+    (`mock:c` が 4 は −1.9σ)。高解像度 3/40 = 7.5% は frac=5%(期待 2)に対し +0.7σ。
+    n=20,000 の直接掃引では比率が理論値に収束することを別途固定した。
+  - **mind ON/OFF で LLM 呼数が完全一致(1,381 = 1,381)**。この条件では高解像度層の
+    夜内省フックが**一度も発火しなかった**ため(`by_kind` は talk 350 / replan 217 で
+    `reflect` エピソードは 0 件。第87 の実測でも同様)。したがって呼数一致は
+    「機構が呼数を動かさない」ことの証明ではなく、**この条件で発火しなかった**だけである。
+    registry の `affects_k=True` は取り下げない(明示的な作用点なので、
+    `reflect_frac=1.0` の対照では選抜集合が実際に置き換わることを単体で固定した)。
+  - 修復率が全モデル 1.0 なのは第86 と同じ理由(時刻グリッドへの丸めがほぼ毎回起きる)。
+    後退率は全モデル 0(mock が常に妥当 JSON を返すため)。**モデル別の差が出るのは
+    実 LLM(3B〜14B)を積んでから**で、mock 3 本は応答本文が同一なので現時点の
+    モデル間差は「割当人数の差」しか映していない。ここが第90 バッテリーの出番。
+  - モデル別のエピソード数・呼数は「そのモデルに割り当てられた個体の集計」であって
+    **モデルの因果効果ではない**。割当が traits 非依存の決定論なので交絡は無いが、
+    因果を主張するには同一個体を別モデルで走らせる対照(第89 / 第90)が要る。
+    この注記は `summary.mind.confound_note` としてラン成果物にも残る。
+- **テスト**: `tests/test_mind.py` 新規 **38 本**。フルゲート `pytest tests -q -n auto` 緑
+  (2,835 → **2,873 本**)。
+
+### 6.6 やっていないこと(第89 以降)
+
+実モデルのショートリスト選定(**DP-U2 = ユーザー判断**)・バッテリー本走(第90)・
+プラセボ L1 3 種(第89)は本バッチの範囲外。`model.mind.pool` は器だけで、
+どのモデルを何本積むかは決めていない。`RouterLLM`(purpose 別 dispatch)を default に
+据えたときの `generate_many` 未実装は**第88 以前からの既存ギャップ**でそのまま
+(`engine.batch_llm` + `backend: router` の組は元から通らない)。

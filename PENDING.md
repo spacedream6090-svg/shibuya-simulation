@@ -31,7 +31,7 @@
 | バッチ | 内容 |
 |---|---|
 | ~~第87~~ | engaged モード=**完了**(2026-08-03・新47テスト・実測エピソード 7.38/人/日=目標帯内・[実装記録](docs/plans/dayplan-engaged-plan.md) §5 → [IMPLEMENTED.md](IMPLEMENTED.md)) |
-| 第88 | **心モデル固定+三層知能**: agent→model_id 誕生時固定(専用 stream・manifest/ログ必須=交絡の記録)+基底/思考/高解像度層の conf 配置(高解像度 1〜5%) |
+| ~~第88~~ | 心モデル固定+三層知能=**完了**(2026-08-03・新38テスト・純関数割当=checkpoint不要・[実装記録](docs/plans/dayplan-engaged-plan.md) §6 → [IMPLEMENTED.md](IMPLEMENTED.md)) |
 | 第89 | **プラセボ L1 3種**(context_shuffle / persona_swap / context_sever): 呼数・フォーマット・乱数消費同一の中身破壊(第78 ablate 枠に追加・fingerprint_risk 正直宣言) |
 | 第91 | **退行シグナル監視+縦横煙プロファイル**: L2 監視列(分散・エントロピー・n-gram・発火率)+縦煙(2,500全期間)/横煙(25万数時間)conf+判定基準 |
 
