@@ -1,0 +1,58 @@
+{
+  "schema": "model_battery.reference/1",
+  "id": "jp_conversation_corpus_descriptive",
+  "title": "名大会話コーパス(NUCC) 記述統計 — C層(会話統計)の対照",
+  "status": "取得済",
+  "layer": "C",
+  "attribution": "出典: 藤村逸子・大曽美恵子・大島ディヴィッド義和(2011)「会話コーパスの構築によるコミュニケーション研究」藤村逸子・滝沢直宏編『言語研究の技法: データの収集と分析』pp.43-72, ひつじ書房 /『名大会話コーパス』(国立国語研究所) の公表記述統計を転記。柏野和佳子・西川賢哉・小磯花絵(2017)および山崎誠・大村舞(2019)より。",
+  "source": {
+    "publisher": "国立国語研究所(NINJAL) / 科研費 基盤研究(B)(2) 研究代表者 大曽美惠子",
+    "title": "名大会話コーパス(Nagoya University Conversation Corpus, NUCC)",
+    "url": "https://mmsrv.ninjal.ac.jp/nucc/",
+    "accessed": "2026-08-03",
+    "stat_sources": [
+      "柏野和佳子・西川賢哉・小磯花絵(2017)「『名大会話コーパス』中納言版・ひまわり版公開データの作成」言語資源活用ワークショップ2016発表論文集 pp.324-335, DOI:10.15084/00001488, https://repository.ninjal.ac.jp/records/1504",
+      "山崎誠・大村舞(2019)「『日本語日常会話コーパス』モニター公開版の語彙」言語処理学会第25回年次大会 pp.1285-1288 表1, https://www.anlp.jp/proceedings/annual_meeting/2019/pdf_dir/P7-11.pdf"
+    ],
+    "caveats": [
+      "話者198名のうち女性161名・男性37名、約半数が20代という強い偏りがある(小磯ほか2022 3.1節)。日本語日常会話一般の代表標本ではない。",
+      "収録は2001-10-16〜2003-02-17。四半世紀前の会話であり、現在の話し方との差は交絡になりうる。",
+      "文字化規則が『相づちと思われる発話は( )の中に入れる』と定める一方、公式に『あいづちの認定が難しい』ことを問題点として自認している(https://mmsrv.ninjal.ac.jp/nucc/nucc_abst.html)。あいづち率を自前算出する場合はこの留保を必ず併記すること。"
+    ]
+  },
+  "license": {
+    "name": "CC BY-NC-ND 4.0(表示-非営利-改変禁止)",
+    "url": "https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja",
+    "redistribution": "derived_stats_only",
+    "notes": "★生データ(文字化テキスト)は本リポジトリに同梱しない。ND により加工版の再配布が禁じられ、NC により商用利用が禁じられるため、リポジトリへの取り込みは行わず取得手順とライセンス表記のみを残す。事実データである記述統計の公表は著作権の対象外であり可。利用時は上記2文献のいずれかの明記が義務。",
+    "verified": "2026-08-03"
+  },
+  "series": {
+    "conversations": {"unit": "会話数", "values": 129},
+    "total_hours": {"unit": "時間", "values": 100, "note": "約100時間"},
+    "mean_conversation_minutes": {"unit": "分", "values": 47},
+    "speakers": {"unit": "名", "values": 198, "note": "女性161・男性37。F012 は欠番"},
+    "tokens_total": {"unit": "延べ語数(短単位)", "values": 1129271},
+    "types_total": {"unit": "異なり語数(短単位)", "values": 18186},
+    "mean_utterance_chars": {
+      "values": null,
+      "status": "未確認",
+      "note": "★公表値が見当たらない。生データを取り込めない(ND/NC)ため自前算出もしていない。したがって C 層の発話長は**モデル間の相対比較のみ**で扱い、絶対評価しない。埋めるなら NUCC を規約どおり個別取得して自前集計し、算出手順ごとここに記録すること。"
+    },
+    "backchannel_rate": {
+      "values": null,
+      "status": "未確認",
+      "note": "★NUCC・CEJC いずれもあいづち率の公表値なし。CEJC の感動詞率10.6%(山崎・大村2019)は代理になりうるが、感動詞にはフィラー・感嘆が含まれるため『あいづち率』と呼んではいけない。"
+    },
+    "disagreement_rate": {
+      "values": null,
+      "status": "未確認",
+      "note": "★不同意率の公表値なし。日本語会話の不同意標識は表現が多様で、正規表現による自前算出は粗い代理指標にしかならない。"
+    },
+    "human_choice_entropy": {
+      "values": null,
+      "status": "未取得",
+      "note": "★D層(分散と裾)の人間側参照。既存コーパスからは得られず、同一刺激に対する人間の選択分布を取る小規模調査が別途必要。無い間、D層の分散比は『モデル間相対(最良モデル=1.0)』でしか出せない — レポートは mode を必ず明示する。"
+    }
+  }
+}

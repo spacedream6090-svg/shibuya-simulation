@@ -1,0 +1,34 @@
+{
+  "schema": "model_battery.reference/1",
+  "id": "cejc_descriptive_out_of_scope",
+  "title": "日本語日常会話コーパス CEJC 記述統計(★契約待ちのため本バッテリーではスコープ外)",
+  "status": "未取得",
+  "layer": "C",
+  "scope": "out_of_scope",
+  "scope_reason": "有償の利用許諾契約が必要で、契約可否は DP-U1(CEJC契約の可否と時期)として未決。したがって本バッテリーのスコアリングには一切使わない。ここに置くのは『何が使えるようになるか』を来歴つきで記録するためだけである。",
+  "attribution": "出典: 小磯花絵ほか(2022)「『日本語日常会話コーパス』の設計と特徴」言語処理学会第28回年次大会発表論文集 pp.2008-2011(論文自体が CC BY 4.0)/ 山崎誠・大村舞(2019)言語処理学会第25回年次大会 pp.1285-1288 表1・表2",
+  "source": {
+    "publisher": "国立国語研究所(NINJAL)",
+    "title": "日本語日常会話コーパス(CEJC)本公開版(2022年3月公開)",
+    "url": "https://www2.ninjal.ac.jp/conversation/cejc/contract.html",
+    "accessed": "2026-08-03",
+    "stat_sources": [
+      "小磯花絵ほか(2022) https://www.anlp.jp/proceedings/annual_meeting/2022/pdf_dir/E8-1.pdf (CC BY 4.0)",
+      "山崎誠・大村舞(2019) https://www.anlp.jp/proceedings/annual_meeting/2019/pdf_dir/P7-11.pdf"
+    ]
+  },
+  "license": {
+    "name": "利用許諾契約(有償)",
+    "url": "https://www2.ninjal.ac.jp/conversation/cejc/contract.html",
+    "redistribution": "prohibited",
+    "notes": "無償で使えるのはオンライン検索『中納言』のみ(検索箇所の音声再生は可、映像・ダウンロードは不可)。有償版(音声映像・転記テキスト・アノテーション)は利用許諾契約が必要で、アカデミック教育(学生)2万5千円/(学生以外)5万円/一般25万円/商業50万〜1000万円(いずれも税別)。申込→契約書郵送→審査→前払い。★生データは本リポジトリに置かない。以下の series は公表論文由来の記述統計のみで、値本体を持たせていない。",
+    "verified": "2026-08-03"
+  },
+  "series": {
+    "published_stats_note": {
+      "values": null,
+      "status": "参照のみ",
+      "note": "本公開版: 総時間200時間 / 会話数577 / 延べ話者1,675名 / 異なり話者862名 / 短単位 約240万語。コア(20時間): 52会話・延べ169名・異なり135名・約25万語。収録法内訳は個人密着法185時間+特定場面法15時間。モニター公開版(50時間126会話)の語彙は延べ609,327語・異なり14,417語で、感動詞が延べ64,297語(10.6%)。★これらは論文の公表値であり、本ファイルは values を持たない(契約前にデータを持ち込まない方針の明示)。"
+    }
+  }
+}

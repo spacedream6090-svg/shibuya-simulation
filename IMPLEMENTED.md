@@ -312,6 +312,14 @@
 
 `analyze.py`(単一 run: agent 特徴量/カスケード/network/EWS/R²/図・`report.md`)/ `analyze_sweep.py`(条件横断: R²(k) の seed 階層ブートストラップ CI・EWS・seed 発散・**計算量交絡監査**)/ `run_sweep.py`(k 掃引・FSS)/ `bench.py`・`bench_scaling.py`(N=10..10000)/ `estimate_runtime.py` / `judge.py` / `observe.py`(訪問・関心)/ `observe_flows.py`(金流+注意ネットワーク・被注意 gini)/ `calibrate_report.py`(**現実バンド表**=NHK 生活時間調査等の出典付き近似と照合)/ `flows_grid.py`(25m×1h ビン・Fruin の LOS)/ `panel_stats.py`(効果量主・BH-FDR)/ `analyze_od.py` / `compare_runs.py`(CRN 健全性)/ `network_ts.py` / `summarize_run.py`(数値照合ガード)/ `analyze_groups.py` / `analyze_luck.py` / `analyze_founders.py` / `analyze_resolution.py` / `diagnose_stationarity.py`(D0 診断)/ `detect_emergence.py` / `analyze_beliefs.py`(第73)/ `analyze_norms.py`(第74・閾値は引数必須)/ `analyze_specialization.py`(第78・**propagation_off 対照差分でのみ主張**・実装健全性と現象由来を別セクション化)/ `measure_sigma.py`(第80)/ `analyze_g.py`(第82・分散分解)/ `calibrate_theta.py`・`analyze_firing.py`(第83)/ `live_viewer.py`(第77)。
 
+**モデル人間らしさバッテリー**(第90・2026-08-03): `scripts/model_battery/`(ハーネス/刺激/指標/対照統計/レポート・2,517行・21テスト)。
+A層=社会生活基本調査(e-Stat・数値収載可を規約確認)/B層=摂動4種/C層=会話統計(NUCC は CC BY-NC-ND=記述統計のみ・
+絶対評価は公表値なしで不可と正直登録)/D層=分散と裾(**生命線**・判定線は引数必須=ハードコード禁止)/E層=長期退行+プラセボ対照。
+縮小版実測(qwen3:4b/8b/プラセボ・117呼・エラー0): ★**8b は A/B/C で勝つが D層分散が完全に潰れる**(6サンプル全同一)=
+混成 fleet を「性能でなく多様性のため」に組む方針の実測裏づけ・4b は計画スキーマ遵守に難(day_plan 配置への警告)・
+ollama seed 非再現(ハーネス層のみ決定論と宣言)・モデル切替時 VRAM 未解放で3.3倍遅延の運用事故を発見し unload 既定 ON。
+→ [model-battery-design.md](docs/research/model-battery-design.md)
+
 ## P. データ資産
 
 | 資産 | 内容・ライセンス |

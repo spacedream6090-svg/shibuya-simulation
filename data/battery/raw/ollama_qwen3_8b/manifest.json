@@ -1,0 +1,111 @@
+{
+  "calls": 39,
+  "config": {
+    "n_d_samples": 6,
+    "n_dialog_turns": 4,
+    "n_e_days": 3,
+    "n_e_turns": 10,
+    "n_personas": 2,
+    "n_topics": 2,
+    "scale": 0.2,
+    "seed": 20260803,
+    "temperature": 0.8
+  },
+  "determinism_note": "prompt_chain/record_chain はハーネス層の決定論、response_chain と determinism_probe はモデル層の再現性を表す。C/E 層のプロンプトは前ターンの応答に依存するため、モデルが揺れると prompt_chain も揺れる(構造上の帰結であってバグではない)。",
+  "determinism_probe": {
+    "details": [
+      {
+        "case_id": "office_worker/平日",
+        "identical": false,
+        "test": "A_day_schedule",
+        "turn": 0
+      },
+      {
+        "case_id": "office_worker/休日",
+        "identical": false,
+        "test": "A_day_schedule",
+        "turn": 0
+      },
+      {
+        "case_id": "student/平日",
+        "identical": true,
+        "test": "A_day_schedule",
+        "turn": 0
+      },
+      {
+        "case_id": "student/休日",
+        "identical": false,
+        "test": "A_day_schedule",
+        "turn": 0
+      }
+    ],
+    "identical": 1,
+    "n": 4,
+    "rate": 0.25
+  },
+  "digests": {
+    "prompt_chain": "bd2ee7db697b3b861c0ca40a8a508b5171f7fa0a550f1ea0b929e0e4c187614b",
+    "record_chain": "95779f2cb24d56c1bccfeb075a4ee846c8a7cfb2ffcd17569fc15021b6f32e17",
+    "response_chain": "eba9a0a8b289a434e30f7e07be643185af1282966108b001f7c85eff5db6e94c"
+  },
+  "elapsed_s": 395.94,
+  "errors": 0,
+  "files": {
+    "A_day_schedule": {
+      "errors": 0,
+      "n": 4,
+      "path": "A_day_schedule.jsonl",
+      "prompt_chain": "b53222981e3c442e1b62dbcf256e45b670a1162c91ce78aa0c6350c50d93ffea",
+      "record_chain": "46229c0252da2944413f43d098ed110edb24df8714bf804fccd40cb103f25950",
+      "response_chain": "d04d59513c54b562580e70fad22340a8a1b420da058d37583bcca97b219dabc1"
+    },
+    "B_perturbation": {
+      "errors": 0,
+      "n": 8,
+      "path": "B_perturbation.jsonl",
+      "prompt_chain": "dd828a9b9b8b5cb1e326422c4a10be36685a06c046d1a9bf596da6aa55fc7fc8",
+      "record_chain": "b8ad41174aeb22ff9e19bd5bae1a9ee7ec9258e7d802289c49aa961c9809214b",
+      "response_chain": "7c2257ec02aa424c835eedb333c73701f5749856e9d1c8efbda58aaf633dc7e2"
+    },
+    "C_dialogue": {
+      "errors": 0,
+      "n": 8,
+      "path": "C_dialogue.jsonl",
+      "prompt_chain": "fc914a017790b81e23fd3bcc049bbb17f23167a4926f15e849652a2bf4477048",
+      "record_chain": "b31ce7f3464f8cef421205d42937b3e25cbe1d0a9073187c8d8857b433895bc4",
+      "response_chain": "5f8f52ef4175e5f1dadb582bee4f8ddd673094abaa0b1739ce251149c5af4eba"
+    },
+    "D_variance": {
+      "errors": 0,
+      "n": 6,
+      "path": "D_variance.jsonl",
+      "prompt_chain": "6d0d23f9df366417685c2a4f560a08711825a2ccaec6ddc42634445dc8f659be",
+      "record_chain": "b44d1dfb840eaffa4a84cb694ceaf3a41ce9a181ee0f512d725261d56472866e",
+      "response_chain": "542f11408e0d32babe6417127fcba7f93e4560156d9ddccf565ae4f7a21dc87a"
+    },
+    "E_monologue": {
+      "errors": 0,
+      "n": 10,
+      "path": "E_monologue.jsonl",
+      "prompt_chain": "af88727dade7a8e1b024a9f6f4050ca87fd5c5e2bc51700bbfaf5ddba3ca8c9e",
+      "record_chain": "f2125bdbe78c2187844581a32f7a996f265336f7dd73ecac26b6460148fe8130",
+      "response_chain": "0b9b0a91fa83d1924869bf879809b1f45e5a6f9c646dfbdae9f923be86718f2b"
+    },
+    "E_repeat_plan": {
+      "errors": 0,
+      "n": 3,
+      "path": "E_repeat_plan.jsonl",
+      "prompt_chain": "eff2a73c98d355f9663ac372a08714348d569e10b139903a925cf3d808b8897b",
+      "record_chain": "7e9e59664cf7671be308c086a65fe8958313e7fae462bb3469ee06e4d5fb9eeb",
+      "response_chain": "781bd87b61a8d0429bca987025b9ff70bec6124550537c0e44cb8b581998ba91"
+    }
+  },
+  "harness_version": "1",
+  "model": {
+    "backend": "ollama",
+    "host": "http://localhost:11434",
+    "model": "qwen3:8b",
+    "name": "ollama/qwen3:8b"
+  },
+  "schema": "model_battery.manifest/1"
+}

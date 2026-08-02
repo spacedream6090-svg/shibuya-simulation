@@ -1,0 +1,663 @@
+{
+  "schema": "model_battery.report/1",
+  "profiles": {
+    "ollama_qwen3_4b": {
+      "model": {
+        "backend": "ollama",
+        "host": "http://localhost:11434",
+        "model": "qwen3:4b",
+        "name": "ollama/qwen3:4b"
+      },
+      "config": {
+        "n_d_samples": 6,
+        "n_dialog_turns": 4,
+        "n_e_days": 3,
+        "n_e_turns": 10,
+        "n_personas": 2,
+        "n_topics": 2,
+        "scale": 0.2,
+        "seed": 20260803,
+        "temperature": 0.8
+      },
+      "calls": 39,
+      "errors": 0,
+      "elapsed_s": 252.94,
+      "determinism_probe": {
+        "details": [
+          {
+            "case_id": "office_worker/平日",
+            "identical": false,
+            "test": "A_day_schedule",
+            "turn": 0
+          },
+          {
+            "case_id": "office_worker/休日",
+            "identical": false,
+            "test": "A_day_schedule",
+            "turn": 0
+          },
+          {
+            "case_id": "student/平日",
+            "identical": false,
+            "test": "A_day_schedule",
+            "turn": 0
+          },
+          {
+            "case_id": "student/休日",
+            "identical": false,
+            "test": "A_day_schedule",
+            "turn": 0
+          }
+        ],
+        "identical": 0,
+        "n": 4,
+        "rate": 0.0
+      },
+      "digests": {
+        "prompt_chain": "9896e427feb6a17cef99902476de6a703108b6a95260ec8122a5e3a0c2eb1c32",
+        "record_chain": "c5fd8e802470d64d6b67bc48c832cdd03e2ed3780bd3cb1257c5870bbe94056b",
+        "response_chain": "041c37f6d9bc407dfe074b1e19dd4454682e19273fd2b77879cc7a37e30c7b59"
+      },
+      "layers": {
+        "A": {
+          "n": 4,
+          "errors": 0,
+          "schema_ok": 0.25,
+          "activity_labeled": 0.28888888888888886,
+          "coverage": 1.0,
+          "conflict_free": 1.0,
+          "persona_sensitivity": 0.0,
+          "daytype_sensitivity": 0.0,
+          "ref_used": true,
+          "hourly_jsd_weekday": 0.35830730974628144,
+          "budget_jsd_week": 0.1337958673774664,
+          "wake_gap_平日": {
+            "q25": -8.0,
+            "q50": -8.0,
+            "q75": -8.0,
+            "mean_abs": 8.0
+          },
+          "sleep_gap_平日": {
+            "q25": 56.0,
+            "q50": 56.0,
+            "q75": 56.0,
+            "mean_abs": 56.0
+          },
+          "timing_fit": 0.7333333333333334,
+          "score": 0.531124338344275
+        },
+        "B": {
+          "n": 8,
+          "errors": 0,
+          "schema_ok": 1.0,
+          "direction_ok": 0.8333333333333334,
+          "direction_n": 6,
+          "by_perturbation": {
+            "closure": {
+              "n": 2,
+              "change_rate": 1.0,
+              "distinct_responses": 1,
+              "direction_ok": 1.0
+            },
+            "delay": {
+              "n": 2,
+              "change_rate": 1.0,
+              "distinct_responses": 1,
+              "direction_ok": 0.5
+            },
+            "invite": {
+              "n": 2,
+              "change_rate": 1.0,
+              "distinct_responses": 1,
+              "direction_ok": null
+            },
+            "rain": {
+              "n": 2,
+              "change_rate": 1.0,
+              "distinct_responses": 2,
+              "direction_ok": 1.0
+            }
+          },
+          "persona_spread": 0.25,
+          "invite_change_rate": 1.0,
+          "score": 0.6944444444444445
+        },
+        "C": {
+          "n": 8,
+          "errors": 0,
+          "schema_ok": 1.0,
+          "utterances": 8,
+          "len_mean": 56.375,
+          "len_median": 50.0,
+          "len_p10": 41.900000000000006,
+          "len_p90": 76.5,
+          "len_cv": 0.3042707113385014,
+          "backchannel_rate": 0.0,
+          "disagreement_rate": 0.125,
+          "topic_persistence": 0.11855447764354576,
+          "vocab_entropy": 7.833139562637146,
+          "vocab_richness": 0.6162528216704289,
+          "non_repetition": 0.8524590163934426,
+          "len_dispersion": 0.3042707113385014,
+          "latin_ratio": 0.0,
+          "japanese_ratio": 1.0,
+          "ref_used": false,
+          "note": "会話コーパスの参照統計なし: 絶対比較は未算出=相対比較のみ",
+          "score_before_gate": 0.6932456373505932,
+          "score": 0.6932456373505932
+        },
+        "D": {
+          "n": 6,
+          "errors": 0,
+          "parsed": 6,
+          "schema_ok": 1.0,
+          "choice_counts": {
+            "公園のベンチで座る": 4,
+            "散歩する": 2
+          },
+          "distinct_choices": 2,
+          "choice_entropy": 0.3060986113514965,
+          "choice_gini": 0.4444444444444444,
+          "choice_gini_norm": 0.5079365079365079,
+          "lexical_diversity": 0.6703296953855458,
+          "score": 0.49478827155785005,
+          "variance_ratio_mode": "relative_to_best_model",
+          "variance_ratio": 1.0
+        },
+        "E": {
+          "n_mono": 10,
+          "n_plan": 3,
+          "schema_ok": 1.0,
+          "mono_used": 10,
+          "novelty": 0.5927342256214149,
+          "late_novelty": 0.6708074534161491,
+          "vocab_entropy_first": 6.856783016787755,
+          "vocab_entropy_last": 6.215571560589032,
+          "vocab_retention": 0.9064850886153437,
+          "repetition_by_window": [
+            0.16814159292035402,
+            0.32352941176470584,
+            0.3291925465838509
+          ],
+          "repetition_slope": 0.08052547683174843,
+          "contradictions": 0,
+          "integrity": 1.0,
+          "plan_diversity": 0.33460816856689274,
+          "latin_ratio": 0.0,
+          "japanese_ratio": 1.0,
+          "score_before_gate": 0.7507724893699668,
+          "score": 0.7507724893699668
+        }
+      }
+    },
+    "ollama_qwen3_8b": {
+      "model": {
+        "backend": "ollama",
+        "host": "http://localhost:11434",
+        "model": "qwen3:8b",
+        "name": "ollama/qwen3:8b"
+      },
+      "config": {
+        "n_d_samples": 6,
+        "n_dialog_turns": 4,
+        "n_e_days": 3,
+        "n_e_turns": 10,
+        "n_personas": 2,
+        "n_topics": 2,
+        "scale": 0.2,
+        "seed": 20260803,
+        "temperature": 0.8
+      },
+      "calls": 39,
+      "errors": 0,
+      "elapsed_s": 395.94,
+      "determinism_probe": {
+        "details": [
+          {
+            "case_id": "office_worker/平日",
+            "identical": false,
+            "test": "A_day_schedule",
+            "turn": 0
+          },
+          {
+            "case_id": "office_worker/休日",
+            "identical": false,
+            "test": "A_day_schedule",
+            "turn": 0
+          },
+          {
+            "case_id": "student/平日",
+            "identical": true,
+            "test": "A_day_schedule",
+            "turn": 0
+          },
+          {
+            "case_id": "student/休日",
+            "identical": false,
+            "test": "A_day_schedule",
+            "turn": 0
+          }
+        ],
+        "identical": 1,
+        "n": 4,
+        "rate": 0.25
+      },
+      "digests": {
+        "prompt_chain": "bd2ee7db697b3b861c0ca40a8a508b5171f7fa0a550f1ea0b929e0e4c187614b",
+        "record_chain": "95779f2cb24d56c1bccfeb075a4ee846c8a7cfb2ffcd17569fc15021b6f32e17",
+        "response_chain": "eba9a0a8b289a434e30f7e07be643185af1282966108b001f7c85eff5db6e94c"
+      },
+      "layers": {
+        "A": {
+          "n": 4,
+          "errors": 0,
+          "schema_ok": 1.0,
+          "activity_labeled": 1.0,
+          "coverage": 1.0,
+          "conflict_free": 1.0,
+          "persona_sensitivity": 0.6145833333333333,
+          "daytype_sensitivity": 0.44791666666666663,
+          "ref_used": true,
+          "hourly_jsd_weekday": 0.20185527823479502,
+          "budget_jsd_week": 0.0760142883728246,
+          "wake_gap_平日": {
+            "q25": -8.0,
+            "q50": -8.0,
+            "q75": -8.0,
+            "mean_abs": 8.0
+          },
+          "wake_gap_休日": {
+            "q25": -50.0,
+            "q50": -50.0,
+            "q75": -50.0,
+            "mean_abs": 50.0
+          },
+          "sleep_gap_平日": {
+            "q25": 11.0,
+            "q50": 26.0,
+            "q75": 41.0,
+            "mean_abs": 26.0
+          },
+          "sleep_gap_休日": {
+            "q25": 34.0,
+            "q50": 34.0,
+            "q75": 34.0,
+            "mean_abs": 34.0
+          },
+          "commute_gap_平日": {
+            "q25": -80.0,
+            "q50": -80.0,
+            "q75": -80.0,
+            "mean_abs": 80.0
+          },
+          "timing_fit": 0.6699999999999999,
+          "score": 0.8282922703769312
+        },
+        "B": {
+          "n": 8,
+          "errors": 0,
+          "schema_ok": 1.0,
+          "direction_ok": 1.0,
+          "direction_n": 6,
+          "by_perturbation": {
+            "closure": {
+              "n": 2,
+              "change_rate": 1.0,
+              "distinct_responses": 1,
+              "direction_ok": 1.0
+            },
+            "delay": {
+              "n": 2,
+              "change_rate": 1.0,
+              "distinct_responses": 1,
+              "direction_ok": 1.0
+            },
+            "invite": {
+              "n": 2,
+              "change_rate": 1.0,
+              "distinct_responses": 1,
+              "direction_ok": null
+            },
+            "rain": {
+              "n": 2,
+              "change_rate": 1.0,
+              "distinct_responses": 2,
+              "direction_ok": 1.0
+            }
+          },
+          "persona_spread": 0.25,
+          "invite_change_rate": 1.0,
+          "score": 0.75
+        },
+        "C": {
+          "n": 8,
+          "errors": 0,
+          "schema_ok": 1.0,
+          "utterances": 8,
+          "len_mean": 44.25,
+          "len_median": 43.0,
+          "len_p10": 24.7,
+          "len_p90": 63.099999999999994,
+          "len_cv": 0.36627428449108995,
+          "backchannel_rate": 0.0,
+          "disagreement_rate": 0.375,
+          "topic_persistence": 0.10239206793828644,
+          "vocab_entropy": 7.706005930467651,
+          "vocab_richness": 0.7109826589595376,
+          "non_repetition": 0.9363636363636364,
+          "len_dispersion": 0.36627428449108995,
+          "latin_ratio": 0.0,
+          "japanese_ratio": 1.0,
+          "ref_used": false,
+          "note": "会話コーパスの参照統計なし: 絶対比較は未算出=相対比較のみ",
+          "score_before_gate": 0.753405144953566,
+          "score": 0.753405144953566
+        },
+        "D": {
+          "n": 6,
+          "errors": 0,
+          "parsed": 6,
+          "schema_ok": 1.0,
+          "choice_counts": {
+            "散歩する": 6
+          },
+          "distinct_choices": 1,
+          "choice_entropy": 0.0,
+          "choice_gini": 0.0,
+          "choice_gini_norm": 0.0,
+          "lexical_diversity": 0.733015168189406,
+          "score": 0.24433838939646868,
+          "variance_ratio_mode": "relative_to_best_model",
+          "variance_ratio": 0.4938241333553941
+        },
+        "E": {
+          "n_mono": 10,
+          "n_plan": 3,
+          "schema_ok": 1.0,
+          "mono_used": 10,
+          "novelty": 0.36874051593323215,
+          "late_novelty": 0.4794007490636704,
+          "vocab_entropy_first": 6.668841989952609,
+          "vocab_entropy_last": 6.376200661365137,
+          "vocab_retention": 0.9561181193034156,
+          "repetition_by_window": [
+            0.326530612244898,
+            0.22448979591836737,
+            0.5205992509363295
+          ],
+          "repetition_slope": 0.09703431934571577,
+          "contradictions": 0,
+          "integrity": 1.0,
+          "plan_diversity": 0.058252427184465994,
+          "latin_ratio": 0.0,
+          "japanese_ratio": 1.0,
+          "score_before_gate": 0.6437519685807974,
+          "score": 0.6437519685807974
+        }
+      }
+    },
+    "placebo_template": {
+      "model": {
+        "backend": "placebo",
+        "model": "template",
+        "name": "placebo/template"
+      },
+      "config": {
+        "n_d_samples": 6,
+        "n_dialog_turns": 4,
+        "n_e_days": 3,
+        "n_e_turns": 10,
+        "n_personas": 2,
+        "n_topics": 2,
+        "scale": 0.2,
+        "seed": 20260803,
+        "temperature": 0.8
+      },
+      "calls": 39,
+      "errors": 0,
+      "elapsed_s": 0.01,
+      "determinism_probe": {
+        "details": [
+          {
+            "case_id": "office_worker/平日",
+            "identical": true,
+            "test": "A_day_schedule",
+            "turn": 0
+          },
+          {
+            "case_id": "office_worker/休日",
+            "identical": true,
+            "test": "A_day_schedule",
+            "turn": 0
+          },
+          {
+            "case_id": "student/平日",
+            "identical": true,
+            "test": "A_day_schedule",
+            "turn": 0
+          },
+          {
+            "case_id": "student/休日",
+            "identical": true,
+            "test": "A_day_schedule",
+            "turn": 0
+          }
+        ],
+        "identical": 4,
+        "n": 4,
+        "rate": 1.0
+      },
+      "digests": {
+        "prompt_chain": "41b88a14e3dd1bb00f18dcbc7136c098cba35c4fd0529d95a2a2e8746d0f4a5e",
+        "record_chain": "46856a64fa7470ddb548fd9be31f1274c5b96c1f080a34c104cbe8dbbc47d362",
+        "response_chain": "92e371ac3c30c1ddeab95fe1f20df304964fed34879b3dba111f9929a1eed930"
+      },
+      "layers": {
+        "A": {
+          "n": 4,
+          "errors": 0,
+          "schema_ok": 1.0,
+          "activity_labeled": 1.0,
+          "coverage": 1.0,
+          "conflict_free": 1.0,
+          "persona_sensitivity": 0.0,
+          "daytype_sensitivity": 0.0,
+          "ref_used": true,
+          "hourly_jsd_weekday": 0.343753718084789,
+          "budget_jsd_week": 0.1976832322143892,
+          "wake_gap_平日": {
+            "q25": 22.0,
+            "q50": 22.0,
+            "q75": 22.0,
+            "mean_abs": 22.0
+          },
+          "wake_gap_休日": {
+            "q25": -20.0,
+            "q50": -20.0,
+            "q75": -20.0,
+            "mean_abs": 20.0
+          },
+          "sleep_gap_平日": {
+            "q25": -4.0,
+            "q50": -4.0,
+            "q75": -4.0,
+            "mean_abs": 4.0
+          },
+          "sleep_gap_休日": {
+            "q25": 4.0,
+            "q50": 4.0,
+            "q75": 4.0,
+            "mean_abs": 4.0
+          },
+          "commute_gap_平日": {
+            "q25": -20.0,
+            "q50": -20.0,
+            "q75": -20.0,
+            "mean_abs": 20.0
+          },
+          "timing_fit": 0.8833333333333333,
+          "score": 0.7046551536704616
+        },
+        "B": {
+          "n": 8,
+          "errors": 0,
+          "schema_ok": 1.0,
+          "direction_ok": 0.0,
+          "direction_n": 6,
+          "by_perturbation": {
+            "closure": {
+              "n": 2,
+              "change_rate": 0.0,
+              "distinct_responses": 1,
+              "direction_ok": 0.0
+            },
+            "delay": {
+              "n": 2,
+              "change_rate": 0.0,
+              "distinct_responses": 1,
+              "direction_ok": 0.0
+            },
+            "invite": {
+              "n": 2,
+              "change_rate": 0.0,
+              "distinct_responses": 1,
+              "direction_ok": null
+            },
+            "rain": {
+              "n": 2,
+              "change_rate": 0.0,
+              "distinct_responses": 1,
+              "direction_ok": 0.0
+            }
+          },
+          "persona_spread": 0.0,
+          "invite_change_rate": 0.0,
+          "score": 0.3333333333333333
+        },
+        "C": {
+          "n": 8,
+          "errors": 0,
+          "schema_ok": 1.0,
+          "utterances": 8,
+          "len_mean": 15.625,
+          "len_median": 15.5,
+          "len_p10": 14.0,
+          "len_p90": 17.299999999999997,
+          "len_cv": 0.10583005244258362,
+          "backchannel_rate": 0.0,
+          "disagreement_rate": 0.0,
+          "topic_persistence": 0.20722135007849293,
+          "vocab_entropy": 4.941385365124333,
+          "vocab_richness": 0.3076923076923077,
+          "non_repetition": 0.36633663366336633,
+          "len_dispersion": 0.10583005244258362,
+          "latin_ratio": 0.0,
+          "japanese_ratio": 1.0,
+          "ref_used": false,
+          "note": "会話コーパスの参照統計なし: 絶対比較は未算出=相対比較のみ",
+          "score_before_gate": 0.4449647484495644,
+          "score": 0.4449647484495644
+        },
+        "D": {
+          "n": 6,
+          "errors": 0,
+          "parsed": 6,
+          "schema_ok": 1.0,
+          "choice_counts": {
+            "カフェに入る": 6
+          },
+          "distinct_choices": 1,
+          "choice_entropy": 0.0,
+          "choice_gini": 0.0,
+          "choice_gini_norm": 0.0,
+          "lexical_diversity": 0.0,
+          "score": 0.0,
+          "variance_ratio_mode": "relative_to_best_model",
+          "variance_ratio": 0.0
+        },
+        "E": {
+          "n_mono": 10,
+          "n_plan": 3,
+          "schema_ok": 1.0,
+          "mono_used": 10,
+          "novelty": 0.2803030303030303,
+          "late_novelty": 0.4642857142857143,
+          "vocab_entropy_first": 4.4690166709026045,
+          "vocab_entropy_last": 4.635573241680438,
+          "vocab_retention": 1.0,
+          "repetition_by_window": [
+            0.39534883720930236,
+            0.6666666666666667,
+            0.5357142857142857
+          ],
+          "repetition_slope": 0.07018272425249167,
+          "contradictions": 0,
+          "integrity": 1.0,
+          "plan_diversity": 0.0,
+          "latin_ratio": 0.0,
+          "japanese_ratio": 1.0,
+          "score_before_gate": 0.6240981240981242,
+          "score": 0.6240981240981242
+        }
+      }
+    }
+  },
+  "placebo_sanity": {
+    "verdict": "FAIL",
+    "by_layer": {
+      "A": {
+        "status": "FAIL",
+        "placebo_max": 0.7046551536704616,
+        "others_min": 0.531124338344275,
+        "margin": -0.17353081532618664
+      },
+      "B": {
+        "status": "PASS",
+        "placebo_max": 0.3333333333333333,
+        "others_min": 0.6944444444444445,
+        "margin": 0.3611111111111112
+      },
+      "C": {
+        "status": "PASS",
+        "placebo_max": 0.4449647484495644,
+        "others_min": 0.6932456373505932,
+        "margin": 0.24828088890102878
+      },
+      "D": {
+        "status": "PASS",
+        "placebo_max": 0.0,
+        "others_min": 0.24433838939646868,
+        "margin": 0.24433838939646868
+      },
+      "E": {
+        "status": "PASS",
+        "placebo_max": 0.6240981240981242,
+        "others_min": 0.6437519685807974,
+        "margin": 0.019653844482673266
+      }
+    },
+    "placebos": [
+      "placebo_template"
+    ],
+    "others": [
+      "ollama_qwen3_4b",
+      "ollama_qwen3_8b"
+    ]
+  },
+  "shortlist": {
+    "verdict": "NO_GO",
+    "floor": 0.6,
+    "passed": [],
+    "rule": "全層でプラセボ超え かつ D 層分散比 >= floor のモデルが2本以上"
+  },
+  "references": [
+    "- 出典: 小磯花絵ほか(2022)「『日本語日常会話コーパス』の設計と特徴」言語処理学会第28回年次大会発表論文集 pp.2008-2011(論文自体が CC BY 4.0)/ 山崎誠・大村舞(2019)言語処理学会第25回年次大会 pp.1285-1288 表1・表2",
+    "- 出典:「令和3年社会生活基本調査」(総務省統計局)第17-1表・第2-1表・第23-1表・第18-1表・第19-1表および結果の要約 表1 を加工して作成",
+    "- 出典: 藤村逸子・大曽美恵子・大島ディヴィッド義和(2011)「会話コーパスの構築によるコミュニケーション研究」藤村逸子・滝沢直宏編『言語研究の技法: データの収集と分析』pp.43-72, ひつじ書房 /『名大会話コーパス』(国立国語研究所) の公表記述統計を転記。柏野和佳子・西川賢哉・小磯花絵(2017)および山崎誠・大村舞(2019)より。"
+  ],
+  "reference_ids": [
+    "cejc_descriptive_out_of_scope",
+    "estat_shakai_seikatsu_time_use",
+    "jp_conversation_corpus_descriptive"
+  ]
+}
