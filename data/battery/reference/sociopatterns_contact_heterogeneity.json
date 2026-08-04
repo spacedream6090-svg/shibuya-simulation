@@ -1,0 +1,51 @@
+{
+  "schema": "model_battery.reference/1",
+  "id": "sociopatterns_contact_heterogeneity",
+  "title": "対面接触の個体間異質性(接触相手数・総接触時間の CV / Gini / 上位10%シェア)",
+  "status": "未取得",
+  "layer": "A",
+  "source": {
+    "publisher": "SocioPatterns collaboration",
+    "title": "SocioPatterns datasets(RFID 近接センサによる対面接触データ。学校・病院・会議・職場ほか)",
+    "url": "https://www.sociopatterns.org/datasets.html",
+    "accessed": "2026-08-05",
+    "primary_paper": "Cattuto, C., Van den Broeck, W., Barrat, A., Colizza, V., Pinton, J.-F. & Vespignani, A. (2010). Dynamics of Person-to-Person Interactions from Distributed RFID Sensor Networks. PLOS ONE 5(7):e11596. https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0011596",
+    "why_this_source": "『個体間分散』を直接与える公的統計は極めて少ない(docs/research/sv-items-research.md §2.2)。社会生活基本調査は個体間 SD を公表しないため CV の下界しか復元できない。SocioPatterns は個体別の総接触時間・接触相手数・接触継続時間の**生分布**を公開している唯一の実用的な源で、S-02 の F6/F7(接触時間・次数の重い裾)の判定とも共用できる。",
+    "caveats": [
+      "母集団は学校・病院・会議・職場などの閉じた場であり、都市(渋谷)の一般人口ではない。水準の一致は主張できず、使えるのは**分布の形と集中度**のみ。",
+      "接触の定義がセンサ由来(1〜2m・20秒解像度)であり、シムの『speak の hearers』とは定義が異なる。突き合わせは順位・裾の形に限る。"
+    ]
+  },
+  "license": {
+    "name": "未確認(データセットごとに条件が異なる)",
+    "url": "https://www.sociopatterns.org/datasets.html",
+    "redistribution": "unknown",
+    "notes": "2026-08-05 時点で本リポジトリはライセンス条文を一次確認していない。redistribution=unknown は prohibited と同じ扱い(数値本体を置かない)。値を取り込むときは各データセットのページで条件を確認し、attribution を必ず添えること。",
+    "verified": null
+  },
+  "method": {
+    "planned": "公開データセットから個体別に (a) 総接触時間 (b) 相異なる接触相手数 (c) 接触継続時間 を集計し、CV / Gini / 上位10%シェアを算出して現実バンドとする。",
+    "not_done_why": "本バッチ(SV-U1 B3)は calibrate_report.py の分散列を通すところまでが範囲であり、外部データの取り込み・ライセンス確認・前処理は含まない。**推測値では埋めない**(model_battery.reference の掟4)。",
+    "consequence": "したがって『発話数/日』『接触人数/日』の**現実バンドは現時点で存在しない**。calibrate_report は sim 側の CV / Gini / 上位10%シェアだけを出し、分散比の列は『―』(比較不能)と表示する。これは欠測であって『合格』ではない。"
+  },
+  "series": {
+    "contact_partners_per_day": {
+      "unit": "人/日",
+      "note": "個体別・1日あたりの相異なる接触相手数の分布から CV / Gini / 上位10%シェア。",
+      "status": "未取得",
+      "values": null
+    },
+    "contact_duration_total_per_person": {
+      "unit": "秒/人",
+      "note": "個体別の総接触時間の分布から CV / Gini / 上位10%シェア。",
+      "status": "未取得",
+      "values": null
+    },
+    "utterances_per_day": {
+      "unit": "回/人日",
+      "note": "★該当する一次統計が見つかっていない。日常会話の発話ターン数の**個体間分布**を公表する統計は本調査時点で特定できなかった(既存の calibrate_report の speak_pp バンド 3〜40 回/人日 も水準の粗い近似であって分散ではない)。日本語日常会話コーパス(CEJC)は録音者の選定が偏るため個体間分散の母集団としては使えない(data/battery/reference/cejc_descriptive_out_of_scope.json 参照)。",
+      "status": "未取得",
+      "values": null
+    }
+  }
+}

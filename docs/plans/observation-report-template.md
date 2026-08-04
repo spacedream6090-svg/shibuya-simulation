@@ -1,0 +1,270 @@
+# 観察ラン報告書テンプレート(S-01・2026-08-05 新設)
+
+> **ステータス: 雛形。空欄(`____`)はラン後に埋める。埋まっていない欄を消して提出しない
+> (= 「測っていない」ことも報告の一部)。**
+>
+> 作成: 2026-08-05 / 対象: 本選 10 日観察ラン(および同型の対照ラン)
+> 正典: `docs/research/sv-items-research.md` §4(S-01)/ `docs/research/llm-social-sim-survey.md` §3 S-01
+> 接続: 事前登録 `docs/plans/stationarity-preregistration.md`(前文 = 主張の境界 / §3-F = stylized facts)
+>
+> **なぜ ODD を骨格にするか**: LLM 社会シム専用の確立した報告チェックリストは 2026 年 8 月
+> 時点で存在しない(Larooij & Törnberg 2025 も Bück-Kaeffer et al. 2025 も報告様式は定めて
+> いない)。したがって ABM の標準である **ODD 2020(Grimm et al., JASSS 23(2):7,
+> DOI 10.18564/jasss.4259)を骨格に据え、micro / macro / system をその上の読み替え層として
+> 置く**。「ODD を満たしたうえで、LLM 特有の 3 レベル評価を追加した」という構図になる。
+
+---
+
+## 0. ODD summary(冒頭 1 ページ要約・**ODD 2020 の追加要素**)
+
+> ODD 2020 が新設した要素。要件は「全モデルの物語的記述を与える」「**完全な ODD に頼らずとも
+> 主要結果が理解できる程度に具体的である**」こと。以下は枠であり、1 ページ(≈ 600–800 字)に
+> 収めること。長い記述は §7 Submodels(装置編)へ送る。
+
+- **目的(Purpose)**: ____
+- **再現できたら成功と見なすパターン(Patterns)**: ____
+  (→ 事前登録 §3-F の**主判定**枠をそのまま転記する。事後に足さない)
+- **実体と尺度(Entities / scales)**: ____
+- **過程と進行(Process / scheduling)**: ____
+- **主要結果(1 段落)**: ____
+- **境界(何を主張し、何を主張しないか)**: → 事前登録の前文「主張の境界」を参照。要約 1 行: ____
+
+---
+
+## 1. ODD 2020 対応表(査読者向けの索引)
+
+| ODD 要素 | 本報告書の対応先 | 備考 |
+|---|---|---|
+| ① **Purpose and patterns** | **前文「主張の境界」(S-04)+ §macro 冒頭の stylized facts リスト(S-02)** | ★**最重要の接続**。ODD の "patterns" は「モデルが再現できたら成功と見なすパターン」の**事前宣言欄**そのもの。S-02 は独自発明ではなく **ODD 要素①の充足**である |
+| ② Entities, state variables and scales | 前置き「装置編」/ `run_manifest.json` | 既存資産で充足 |
+| ③ Process overview and scheduling | 装置編 / `docs/spec.md` | 既存資産で充足 |
+| ④ Design concepts — **Emergence** | **§macro** | k* ・規範創発・組織形成 |
+| ④ — **Sensing / Objectives / Adaptation / Learning / Prediction** | **§micro** | `cognition.contract` の Perception 型がそのまま Sensing の記述になる |
+| ④ — **Interaction / Collectives** | **§macro** | S-09(mode × structure × role)、S-12(offline / online 二層) |
+| ④ — **Stochasticity** | **§system(計算資源)** + §頑健性 | RngHub named streams・seed 間分散分解(S-05) |
+| ④ — **Basic principles** | 前置き(理論的立場) | EPR・Dunbar・7 ニーズ等の依拠理論 |
+| ④ — **Observation** | **§system(計算資源)** | ★分野に稀な強み。no-fingerprint テスト・observer の読み取り専用性・`live_viewer.py` の別プロセス読み取り |
+| ⑤ Initialization | **§system(計算資源)** | IPF 合成人口の周辺分布再現誤差(S-14) |
+| ⑥ Input data | **§system(計算資源)** | PLATEAU / ODPT / 天候生成器(来歴 sha256) |
+| ⑦ Submodels | 装置編(付録) | |
+| **ODD summary**(2020 追加) | **§0(本書冒頭 1 ページ)** | 3 節の前に置く |
+| シミュレーション実験の記述(Supplement S7) | **事前登録 + `docs/research/ablation-ladder.md` §3.1** | ODD 本体には**入れない**のが 2020 版の方針。既に相当物を持っている |
+
+---
+
+## 2. §micro — 個体挙動の人間らしさ
+
+### 2.1 **何と比較したか / 比較できないなら、なぜできないかと代替**(必須欄)
+
+> **実個人の行動ログとの照合は行わない(構造上持てない)。** 代替は次の 3 本:
+> (i) `scripts/calibrate_report.py` の行動頻度バンド(現実の一次統計との水準照合)
+> (ii) `scripts/judge.py` の κ(別ファミリ LLM 判定との一致度。採用条件 κ ≥ 0.7)
+> (iii) **分布の分散**(S-03: 個体間 CV / Gini / 上位 10% シェアと、現実 CV 下界との**分散比**)
+>
+> **宣言することが妥当性主張になる。**「micro-validity を確立しても macro-level veridicality は
+> 保証されない」(Larooij & Törnberg 2025 §4.1)という逆向きの限界も併記すること。
+
+- 実際に比較した対象: ____
+- 比較できなかった対象と、その理由: ____
+- 採用した代替と、その限界: ____
+
+### 2.2 行動頻度バンド(`calibrate_report`)
+
+- 判定 ✅ の指標 / バンド外の指標: ____
+
+### 2.3 判定一致(`judge.py` の κ)
+
+- κ = ____(採用条件 κ ≥ 0.7 / 使用モデルファミリ: ____ / 同ファミリなら R4 警告の有無: ____)
+
+### 2.4 **分散(S-03)** — 平均が合っても分散が痩せていないか
+
+| 指標 | sim 平均 | 現実バンド | 判定 | sim CV | 現実 CV(下界) | **分散比** | sim Gini | 現実 Gini | sim top10% | 現実 top10% |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 行動時間(活動別) | ____ | ____ | ____ | ____ | ____ | ____ | ____ | ____ | ____ | ____ |
+| 発話数/日 | ____ | ____ | ____ | ____ | ____ | ____ | ____ | ____ | ____ | ____ |
+| 接触人数/日 | ____ | ____ | ____ | ____ | ____ | ____ | ____ | ____ | ____ | ____ |
+
+> **片側バンドの非対称性(必ず書く)**: 現実側の CV は行動者率 p から復元した下界
+> √((1−p)/p) であり、**行動者内のばらつきを 0 と仮定した最も保守的な値**である。
+> したがって **sim の CV が下界を下回れば「分散が痩せている」と確実に言えるが、
+> 上回っても「十分」とは言えない**。
+>
+> **分散比が事前登録の閾値を下回った指標については、主張を集団レベルの定性的パターンに
+> 限定する**(Wu et al. 2025 基準③ → 事前登録 前文 ③(d))。
+
+---
+
+## 3. §macro — 集合結果と現実の整合
+
+### 3.1 **何と比較したか / 比較できないなら、なぜできないかと代替**(必須欄)
+
+- 実際に比較した対象: ____
+- 比較できなかった対象と、その理由: ____
+- 採用した代替と、その限界: ____
+
+### 3.2 stylized facts の合否(S-02)
+
+> **事前登録 §3-F の表をそのまま転記し、合否だけを埋める。ラン後に法則を足さない/外さない。**
+
+| # | 法則 | 判定枠 | 検定結果 | 合否 | 備考(循環性・条件) |
+|---|---|---|---|---|---|
+| F4 | 滞在時間分布の非指数性 | 主判定(弱形) | ____ | ____ | ____ |
+| F5 | 行動のバースト性 | 主判定 | ____ | ____ | ____ |
+| F6 | 対面接触時間の重い裾 | 主判定 | ____ | ____ | ____ |
+| F7 | 社会ネットワーク次数分布の重い裾 | 主判定(条件付き・dunbar OFF) | ____ | ____ | ____ |
+| F1 / F2 / F3 / F8 / F9 / F12 | (参考) | 参考 | ____ | ____ | 再現できなくても主張に影響しない |
+| F10 / F11 | (不採用) | 検定不能 | — | — | N と期間が 4–5 桁足りない。**検定できないと書くこと自体が境界宣言** |
+
+### 3.3 創発(ODD ④ Emergence)
+
+- k*: ____ / 規範の成立(事前登録 §3-E の判定): ____ / 組織の自然形成: ____
+
+### 3.4 相互作用と集合(ODD ④ Interaction / Collectives)
+
+- offline(対面 speak)/ online(SNS・DM)の分離結果(S-12): ____
+
+---
+
+## 4. §system(**計算資源**)— 実行時間・資源・トークン消費と費用
+
+> ★**用語衝突に注意**(§6 の表を参照)。本節の "system" は**サーベイ §5.3 の意味**
+> = 実行時間・資源・スケーラビリティ・トークン消費と費用。TRAILS の "system" とは別物。
+
+### 4.1 **何と比較したか / 比較できないなら、なぜできないかと代替**(必須欄)
+
+- 実際に比較した対象(自ランの過去バッチ / 他研究の公表値 / 比較なし): ____
+- 比較できなかった対象と、その理由: ____
+- 採用した代替と、その限界: ____
+
+### 4.2 計算資源
+
+- 実時間 / step 数 / エージェント数: ____
+- GPU 構成・稼働率: ____
+- LLM 呼数 k・トークン消費・キャッシュ命中率(`llm_health` 3 列): ____
+- 費用見積: ____
+
+### 4.3 Observation(ODD ④)— **分野に稀な強み**
+
+- no-fingerprint テストの結果: ____
+- observer の読み取り専用性(シム本体へ逆流しないことの根拠): ____
+- `live_viewer.py` の別プロセス読み取り(観察が世界を変えないことの実証): ____
+- `observer.state_hash` チェーン / `metrics_spec_hash`: ____
+
+### 4.4 Initialization(ODD ⑤)
+
+- IPF 合成人口の**周辺分布再現誤差**(S-14。年齢・性別・職業などの目標分布との差): ____
+
+### 4.5 Input data(ODD ⑥)
+
+- PLATEAU / ODPT / 天候生成器の来歴と sha256: ____
+
+---
+
+## 5. §頑健性 — TRAILS(Ye, Cao, Chen & Ferrara 2026, arXiv:2605.18890)の 3 層監査
+
+> **claim ごと・model ごとに測る**(仮定してはならない)。同一の摂動が frontier model 間で
+> 1pp〜76pp と桁違いに効くことが示されている。
+
+### 5.1 §頑健性.agent(micro 層 = persona 書式・記憶表現の摂動)
+
+- `ablate.prompt_paraphrase`(S-16)の結果:
+  - 主要結論 d_j の**符号保存**(第一判定・必須): ____
+  - **spread** = max_p d_j − min_p d_j と **seed 間レンジ**の比較(第二判定): ____
+  - 報告形式は単一値でなく **d_j = 中央値 [min, max]**(FormatSpread の提言): ____
+  - 使用セット(v1 語彙 / v2 文体 / v3 語彙+文体 / v4 語彙+文体+統語限定)と凍結表 sha256: ____
+  - **限界**: CachedLLM は内容アドレスキャッシュなのでセット数だけ実 LLM 呼が増える。
+    したがって paraphrase ランは短ラン(≤24 step または 1 日)に限る。
+    短ランで測れない claim については「測っていない」と書く: ____
+- `ablate.persona_swap` / `context_shuffle` / `context_sever`(プラセボ L1)の結果: ____
+
+### 5.2 §頑健性.interaction(meso 層 = 相互作用プロトコルの摂動)
+
+- `ablate.shuffle_partners`(相手選択を一様乱択へ): ____
+- `ablate.propagation_off`(発話内容が他者文脈へ入らない): ____
+
+### 5.3 §頑健性.system(TRAILS の意味 = **集合結果・環境設計**の摂動)
+
+> ★この "system" は §4 の §system(計算資源)とは**別物**。TRAILS の macro 相当。
+
+- `ablate.llm_off`(L0: ルール層のみ)と本番の差分: ____
+- `ablate.cognitive_tier`(L2/L3: 下位ティア強制。fleet 非使用ランでは縮退することを明記): ____
+- L0 → L1 → L4 の**単調性**(`docs/research/ablation-ladder.md`): ____
+
+---
+
+## 6. ★用語衝突の注記(**査読者が確実に混乱する箇所なので必ず残す**)
+
+**TRAILS(Ye et al. 2026)は agent(micro)/ interaction(meso)/ system(macro)の 3 層を使う。
+サーベイ §5.3 の micro / macro / system とは、"system" の語が指すものが違う。**
+
+| 語 | サーベイ §5.3 の意味(本書 §2–§4 の用法) | TRAILS の意味(本書 §5 の用法) |
+|---|---|---|
+| micro | 個体挙動の人間らしさ | agent 設計(persona 書式・記憶表現) |
+| macro | 集合結果と現実の整合 | — |
+| meso | — | 相互作用プロトコル |
+| **system** | **実行時間・資源・スケーラビリティ・トークン消費と費用** | **集合結果・環境設計(= サーベイの macro 相当)** |
+
+→ **対策(本テンプレの規約)**: 本文では **§system(計算資源)** と括弧付きで明記し、
+TRAILS の 3 層は **§頑健性**の下位見出し(§頑健性.agent / .interaction / .system)として
+別立てにする。
+
+---
+
+## 7. 宣言欄(S-05 / S-08 / S-15 / S-17)
+
+> **空枠のまま提出しない。** 各欄は「実装で満たしている / 満たしていない / 該当しない」の
+> いずれかを必ず埋め、満たしていない場合は理由を書く。
+
+### 7.1 S-05 — 再現性の二本立て(決定論的複製 + 変動を織り込む統計枠組み)
+
+- **決定論資産(= 装置が正しいことの証明)**: golden L1 バイト一致 / RngHub named streams /
+  CachedLLM / journal-replay fail-fast / `observer.state_hash` チェーン。結果: ____
+- **統計枠組み(= 結論が偶然でないことの証明)**: 主要結論指標の **seed 間分散 vs 条件間差**の
+  分散分解。結果: ____
+- **規則**: 「条件差が seed 差より大きい」ことを示せなければ、その結論は出さない。
+  この規則で出さないことにした結論: ____
+
+### 7.2 S-08 — アウトライアを「厚くしない」ことの設計主張
+
+- 分野標準は影響力の大きい個体を厚くモデル化するが、本研究は k* の内生的出現を問うため
+  **全個体に一様な認知予算**を与える。その代償として大規模時の効率を捨てている。
+- `ablate.cognitive_tier` による**片側検査**(一様性が結論を作っていないか)の結果: ____
+
+### 7.3 S-15 — sycophancy / 調和への収束(片側解釈の宣言)
+
+- **LLM 社会シムは対立・不満を系統的に過小表現する(既知のバイアス)。本ランで観測された
+  協調水準は上限側の推定値であり、対立の実在水準はこれを下回らない。**
+- `observer.echo` 5 列の実測: ____
+- `echo_max == 1.000` の**崩壊ラン**の件数と、除外した母集団: ____
+- 是正機構は**入れていない**(機構を足すと「不満を人工的に作った」と読まれ k* の内生性の
+  主張が弱るため。本選後の検討事項): 確認 ____
+
+### 7.4 S-17 — 境界アーティファクト検査(LLM+ABM ハイブリッド固有)
+
+- `ablate.llm_off` と本番の差分を「LLM 由来の寄与」ではなく **「境界で生まれた構造の有無」**
+  として読む: ____
+- **`llm_off` にも本番にも無い構造が、両者の中間条件(例 `propagation_off`)で現れたか**
+  = 境界アーティファクトの候補: ____
+- `cognition.contract` の型定義(世界→Perception→prompt / LLM→Intent→実行)により、
+  どの結合面が疑わしいかを特定できる。特定した結合面: ____
+
+---
+
+## 8. 参考文献(本テンプレが依拠するもの)
+
+- Grimm, V. et al. (2020). *The ODD Protocol for Describing Agent-Based and Other Simulation
+  Models: A Second Update to Improve Clarity, Replication, and Structural Realism*.
+  JASSS 23(2):7. DOI 10.18564/jasss.4259 — https://www.jasss.org/23/2/7.html
+- Wu, Z., Peng, R., Ito, T. & Xiao, C. (2025). *LLM-Based Social Simulations Require a Boundary*.
+  arXiv:2506.19806 — https://arxiv.org/abs/2506.19806
+- Ye, J., Cao, L., Chen, D. & Ferrara, E. (2026). *Stop Drawing Scientific Claims from LLM Social
+  Simulations Without Robustness Audits*(**TRAILS**). arXiv:2605.18890 —
+  https://arxiv.org/abs/2605.18890
+- Sclar, M., Choi, Y., Tsvetkov, Y. & Suhr, A. (2024). *Quantifying Language Models' Sensitivity to
+  Spurious Features in Prompt Design*(**FormatSpread**). ICLR 2024. arXiv:2310.11324
+- Larooij, M. & Törnberg, P. (2025). *Validation is the central challenge for generative social
+  simulation*. Artificial Intelligence Review. DOI 10.1007/s10462-025-11412-6
+- Bück-Kaeffer, A. et al. (2025). *The Silicon Society Cookbook: Design Space of LLM-based Social
+  Simulations*. arXiv:2605.00197
+
+(アクセス日 2026-08-05。詳細な一次リンク集は `docs/research/sv-items-research.md` §7。)
