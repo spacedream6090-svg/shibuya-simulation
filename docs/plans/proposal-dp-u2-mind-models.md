@@ -40,21 +40,31 @@
 
 | # | 候補 | 規模 | (a) バッテリー実測(第90) | (b) ライセンス | (c) VRAM(A5000 配置) | (d) 日本語の公開評価 | (e) スキーマ遵守見込み |
 |---|---|---|---|---|---|---|---|
-| **1** | **`qwen3:4b`** | 4B dense | **実測あり**: A 0.531 / B 0.694 / C 0.693 / **D 0.495(分散比 1.000=最良)** / E 0.751。再現率 0.00 | **Apache-2.0** | BF16 8GB(1枚に余裕・KV 大) | ○(Qwen3 は多言語 119。JA 個別スコアはカード非掲載) | **✕ A層 `schema_ok` 0.250**(4件中3件で `activity` キー欠落)= **day_plan(8フィールド)に置けない** |
-| **2** | **`qwen3:8b`** | 8B dense | **実測あり**: A 0.828 / B 0.750 / C 0.753 / **D 0.244(分散比 0.494)** / E 0.644。再現率 0.25 | **Apache-2.0** | BF16 16GB(1枚・KV 約5GB) | ○(同上。本シムの実運用実績あり) | **◎ 全層 `schema_ok` 1.000**・本体ランで **fallback 0%**(eco80_3day 5,194呼) |
-| **3** | **`qwen3:14b`** | 14B dense | **未測定** | **Apache-2.0** | INT4 ≈8GB / BF16 28GB=✕ → **AWQ 必須** | ○〜◎(未確認) | ◎ 見込み(8B で 1.000・規模は単調に有利) |
-| **4** | **Gemma 3 4B / 12B** | 4B / 12B | **未測定** | **Gemma 利用規約**(Apache ではない・要一次確認) | 4B BF16 8GB / 12B INT4 ≈7GB | ○〜◎(140言語超) | ○ 見込み。★**専用 thinking モードなし** = `reflect_think` seam が効かない |
-| **5** | **Llama-3.1-ELYZA-JP-8B** | 8B dense | **未測定** | **Llama Community License**(月間7億MAU 制限等・要一次確認) | BF16 16GB(1枚) | ◎(日本語継続学習の代表格) | ○ 見込み(Llama 3.1 instruct 由来)。thinking モードなし |
-| **6** | **Llama-3.1-Swallow-8B**(東工大系) | 8B dense | **未測定** | **Llama Community License** 追随 | BF16 16GB | ◎([Swallow LLM Leaderboard](https://swallow-llm.github.io/leaderboard/about.en.html) 公式評価あり) | ○ 見込み。thinking モードなし |
-| **7** | **NVIDIA Nemotron Nano 9B JP** | 9B dense | **未測定** | **NVIDIA Open Model License**(再利用条件は要一次確認) | BF16 18GB(**tight**)/ INT4 ≈5.5GB | **◎ Nejumi 4 の sub-10B で 1 位(0.7111)** | ○ 見込み(未確認) |
-| **8** | **llm-jp-3 / llm-jp-4**(NII) | 各種(3.7B/13B 等) | **未測定** | **Apache-2.0**(最もクリーン) | 13B は INT4 ≈7GB | ◎(日本語コミュニティの公開モデル) | △(素の能力はフロンティア Qwen より一段下との評) |
-| **9** | **Phi-4** | 14B dense | **未測定** | **MIT** | INT4 ≈8GB | **△(英語中心)** | ○ 見込み。**対照(非日本語特化)としての価値** |
+| **1** | **`qwen3:4b`** | 4B dense | **実測あり**: A 0.531 / B 0.694 / C 0.693 / **D 0.495(分散比 1.000=最良)** / E 0.751。再現率 0.00 | **Apache-2.0**(確定・HF `Qwen/Qwen3-4B` 2026-08-07 確認)。★**2507 で系列分裂**: `Qwen3-4B-Instruct-2507`(非thinking専用・「`enable_thinking=False` is no longer required」)/ `Qwen3-4B-Thinking-2507`(thinking専用)。**ハイブリッドの無印 `Qwen3-4B` は現存**=本シムの seam を保つならこちらを使う | BF16 8GB(1枚に余裕・KV 大) | **未確認**(公式カードに JA 個別スコア非掲載。多言語 119 の記載のみ。2026-08-07 確認)。参考=NII 公表の日本語 MT-Bench に 4B 級の掲載なし | **✕ A層 `schema_ok` 0.250**(4件中3件で `activity` キー欠落)= **day_plan(8フィールド)に置けない** |
+| **2** | **`qwen3:8b`** | 8B dense | **実測あり**: A 0.828 / B 0.750 / C 0.753 / **D 0.244(分散比 0.494)** / E 0.644。再現率 0.25 | **Apache-2.0**(確定・HF [`Qwen/Qwen3-8B`](https://huggingface.co/Qwen/Qwen3-8B) 2026-08-07 確認)。★**2507 版なし=ハイブリッド thinking を維持**(`enable_thinking` / `/think`・`/no_think` の記載を原文で確認)→ 本シムの seam はそのまま効く | BF16 16GB(1枚・KV 約5GB) | **他社一次資料の掲載値**: Nejumi 4 TOTAL_AVG **0.690**(NVIDIA モデルカード掲載の比較値)/ 日本語 MT-Bench **7.14**(NII プレスリリース掲載の比較値)。Qwen 公式カードには JA 個別スコアなし(2026-08-07 確認) | **◎ 全層 `schema_ok` 1.000**・本体ランで **fallback 0%**(eco80_3day 5,194呼) |
+| **3** | **`qwen3:14b`** | 14B dense | **未測定** | **Apache-2.0**(確定・2026-08-07 確認)。★**2507 版なし**=8B と同じくハイブリッド thinking | INT4 ≈8GB / BF16 28GB=✕ → **AWQ 必須**。**公式 [`Qwen/Qwen3-14B-AWQ`](https://huggingface.co/Qwen/Qwen3-14B-AWQ) が存在**(Qwen org 直・2026-08-07 確認)=第三者量子化に頼らずに済む | **未確認**(公式カードに JA 個別スコアなし・2026-08-07 確認) | ◎ 見込み(8B で 1.000・規模は単調に有利) |
+| **4** | **Gemma 4 12B**(★Gemma 3 から更新) | 12B | **未測定** | **★重要更新: Apache-2.0**。[Gemma 4 モデルカード](https://ai.google.dev/gemma/docs/core/model_card_4)原文「**License: Apache 2.0**」(2026-04-02 公開・カード最終更新 2026-07-30・2026-08-07 確認)。HF `google/gemma-4-12B-it` ほか全変種が `license:apache-2.0`。**Gemma 3 以前のみが [Gemma 利用規約](https://ai.google.dev/gemma/terms)(独自規約・最終更新 2026-04-01・再頒布時は規約同梱+Prohibited Use Policy 遵守+改変ファイルへの明示)** | 12B INT4 ≈7GB。**Google 公式 QAT 量子化 `google/gemma-4-12B-it-qat-w4a16-ct`(compressed-tensors=vLLM ネイティブ)と `-qat-q4_0-gguf` が存在**(2026-08-07 確認) | **未確認**(カードに JA 個別スコア非掲載)。公表は「140+ 言語で事前学習・35+ 言語を out-of-the-box サポート」まで(2026-08-07 確認) | **★訂正: 専用 thinking モードは「ある」**。カード原文「**Thinking** – Built-in reasoning mode that lets the model think step-by-step before answering」・制御トークン `<|think|>`(2026-08-07 確認)。ただし本シムの `enable_thinking` / `/no_think` seam とは**別方式**=アダプタが要る |
+| **5** | **Llama-3-ELYZA-JP-8B**(★名称訂正) | 8B dense | **未測定** | **Meta Llama 3 Community License**(HF メタデータ `license: llama3`・研究/商用可・Acceptable Use Policy 遵守・2026-08-07 確認)。★**「Llama-3.1-ELYZA-JP-8B」は HF 上に存在しない**(elyza org の全モデルを API 列挙して確認)= 本提案書の旧記載は誤り。参考: ELYZA は別途 `ELYZA-Shortcut-1.0-Qwen-7B` / `ELYZA-Thinking-1.0-Qwen-32B` を **Apache-2.0** で公開している | BF16 16GB(1枚)。**ELYZA 公式 AWQ `elyza/Llama-3-ELYZA-JP-8B-AWQ` あり**。★**Llama 3 系につき context 8K**(3.1 の 128K ではない)= 本シムの長プロンプトに対する余裕は要検証 | **未確認**(HF カードに数値表なし)。ELYZA 公式ブログ(2024-06-26)は「ELYZA-tasks-100 と日本語 MT-Bench で GPT-3.5 Turbo 相当」と主張するが**具体値はカード非掲載**(2026-08-07 確認) | ○ 見込み(Llama 3 instruct 由来)。thinking モードなし |
+| **6** | **Llama-3.1-Swallow-8B-Instruct-v0.5**(東工大系) | 8B dense | **未測定** | **★二重ライセンス**: HF メタデータは `license: llama3.3` **かつ** `license: gemma`・カード本文「**META LLAMA 3.1 COMMUNITY LICENSE and Gemma Terms of Use**」(合成データ由来・2026-08-07 確認)。非 gated。**= Llama 単独ではなく Gemma 利用規約も継承する**(公開ミラー運用では両方の再頒布条項を読む必要あり) | BF16 16GB。**公式 AWQ/GPTQ は無し**(BF16 で足りるため実害なし・2026-08-07 確認) | **◎ 確定値**(モデルカード掲載・2025-06-25 公開・2026-08-07 確認): **日本語平均 0.533** / **日本語 MT-Bench JMTAvg 0.719**(v0.3 の 0.705 から +1.5pt)。内訳 JCom 0.937 / JSQuAD 0.900 / NIILC 0.606 / MGSM 0.604 / JMMLU 0.581 / JHumanEval 0.496 / JEMHopQA 0.511 / XL-Sum 0.174 / WMT20 en-ja 0.293・ja-en 0.230 | ○ 見込み。thinking モードなし |
+| **7** | **NVIDIA-Nemotron-Nano-9B-v2-Japanese**(★正式名) | 9B(**Mamba2-Transformer hybrid**) | **未測定** | **NVIDIA Open Model License Agreement(2025-10-24 版)**(2026-08-07 確認): **商用可・研究可**(両者を区別しない包括許諾)・**Derivative Model の作成/頒布可**・出力に NVIDIA は所有権を主張しない。**義務**=再頒布時に本契約の写しを同梱+NOTICE に「Licensed by NVIDIA Corporation under the NVIDIA Open Model License」。**失効条件**=安全機構の迂回/無効化で自動終了・NVIDIA への特許訴訟で終了・Trustworthy AI 条項への適合が必要。→ **本研究の配備・論文公開とは両立する** | BF16 18GB(**tight**)。★**公式量子化は FP8 のみ**(`nvidia/NVIDIA-Nemotron-Nano-9B-v2-FP8`)= **A5000(sm_86)ではハード加速なし**。**AWQ/GPTQ INT4 版は未確認**(公式・第三者とも発見できず)→ **A5000 では BF16 18GB 一択= KV が細い**。★**vLLM 0.11.2 以上が必須**(hybrid Mamba・`--mamba_ssm_cache_dtype float32` 推奨・`--max-num-seqs 64`) | **◎ 確定値**(モデルカード掲載・2026-02-17 公開・2026-08-07 確認): **Nejumi Leaderboard 4 TOTAL_AVG 0.711**(sub-10B で 1 位・Qwen3-8B 0.690 を上回る)。内訳 MT-Bench 0.892 / JBBQ 0.890 / Toxicity 0.814 / BFCL v3 0.649 / JTruthfulQA 0.498 | ○ 見込み(未確認) |
+| **8** | **llm-jp-4 8B**(NII・★世代更新) | 8.59B dense | **未測定** | **Apache-2.0**(確定・HF `llm-jp/llm-jp-4-8b-instruct` / `llm-jp-4-8b-thinking` とも `license:apache-2.0`・非 gated・2026-08-07 確認)。**候補中で最もクリーン**(Llama/Gemma/NVIDIA いずれの追加条項もなし) | 8B は **BF16 16GB で 1 枚**(旧記載の 13B/INT4 は llm-jp-3 世代の話)。vLLM 対応をカードが明記(`vllm serve`) | **★大幅更新・確定値**([NII プレスリリース](https://www.nii.ac.jp/en/news/release/2026/0403.html) 2026-04-03・約 12 兆トークン学習・2026-08-07 確認): **日本語 MT-Bench 7.54**(GPT-4o **7.29** / Qwen3-8B **7.14** を上回る)・英語 MT-Bench 7.79。32B-A3B は日本語 7.82。→ **旧記載「素の能力は一段下」は llm-jp-3 時点の評であり、llm-jp-4 では覆っている** | ★**thinking 版(`-8b-thinking`)が別リポジトリで存在**=思考の ON/OFF はモデル切替になる(`enable_thinking` seam ではない)。スキーマ遵守は**未測定** |
+| **9** | **Phi-4** | 14B dense | **未測定** | **MIT**(確定・HF `microsoft/phi-4` の `license: mit`・2024-12-12 公開・2026-08-07 確認) | INT4 ≈8GB。context **16K** | **✕ 日本語評価は公表なし(確定)**。カード原文「The model is trained primarily on English text. Languages other than English will experience worse performance.」「**phi-4 is not intended to support multilingual use.**」多言語データは学習の約 8%・言語別スコアの開示なし(2026-08-07 確認) | ○ 見込み。**対照(非日本語特化)としての価値**。★ただし公式に「多言語用途を意図しない」と明記されている点は報告書に書く必要がある |
 | **P** | **`placebo:template`** | — | **実測あり**: A 0.705 / B 0.333 / C 0.445 / **D 0.000** / E 0.624。再現率 **1.00** | 自作(本リポジトリ内) | 0 | — | ◎(JSON を壊さない=定型は常に形式を守る) |
-| — | Sarashina2 / PLaMo 2.2 Prime | — | — | 🔶 **Non-Commercial**(要一次確認) | — | ◎(JA 特化・高品質) | — | **配備の壁 → 候補外を推奨** |
-| — | Rakuten AI 3.0 | ~700B MoE | — | Apache-2.0 | **✕ 規模外**(A5000×7 に載らない) | ◎ | — | 候補外 |
+| — | Sarashina2 / PLaMo 2.2 Prime | — | — | **★訂正: Sarashina は Non-Commercial ではない**。HF `sbintuitions/sarashina2-7b`・`-13b`・`-70b`・`sarashina2.2-{0.5b,1b,3b}(-instruct)` すべて **`license:mit`**・非 gated(`sarashina2-8x70b` と `sarashina2.1-1b` のみ `license:other`)。**PLaMo 2.2 Prime は HF にオープンウェイトが存在しない**(pfnet の 2.x 系で Apache-2.0 は `plamo-2-1b` のみ・他は `license:other`)= PLaMo Prime は API 商用製品。すべて 2026-08-07 確認 | — | ◎(JA 特化・高品質) | — | ★**候補外の理由をライセンスから「未測定・規模帯不一致(Sarashina2.2 は最大 3B)・PLaMo はウェイト非公開」に差し替える必要がある** |
+| — | Rakuten AI 3.0 | 671B MoE(active 37B) | — | **Apache-2.0**(確定・HF `Rakuten/RakutenAI-3.0`・2026-03-17 公開・GENIAC・2026-08-07 確認) | **✕ 規模外**(A5000×7 に載らない) | ◎ | — | 候補外 |
 
-> **★ ライセンス上の判断**: 公開ミラー(`shibuya-simulation-public`)と論文公開を持つ以上、**Apache-2.0 / MIT を第一に、Llama / Gemma / NVIDIA 各規約は「配備は可だが条件を読む必要がある」二段**、**Non-Commercial(Sarashina/PLaMo)は候補外**とするのが安全。
-> **★ 未確認の明示**: 表の (b)(d) のうち、Qwen3 系と vLLM 量子化以外は **2026-07-07 時点の調査値**であり、Gemma / ELYZA / Swallow / Nemotron / llm-jp のライセンス条文と最新版数は **8/12 までに一次資料(公式 HF カード)で再確認する**(§4 の残論点 M-1)。
+> **★ ライセンス上の判断(2026-08-07 の一次確認後・更新版)**: 公開ミラー(`shibuya-simulation-public`)と論文公開を持つ以上、次の三段で見る。
+> - **第一段(追加条項なし)= Apache-2.0 / MIT**: `qwen3-4b/8b/14b`(Apache-2.0)・**Gemma 4 12B(Apache-2.0 に変更済み)**・**llm-jp-4 8B(Apache-2.0)**・Phi-4(MIT)。**ライセンス起因の作業はゼロ。**
+> - **第二段(配備は可・条項の同梱義務あり)**: **Llama-3-ELYZA-JP-8B**(Meta Llama 3 CL)・**Llama-3.1-Swallow-8B-Instruct-v0.5**(Llama 3.1 CL **+ Gemma 利用規約の二重**)・**Nemotron Nano 9B v2 Japanese**(NVIDIA Open Model License・NOTICE 同梱義務+安全機構の迂回で自動失効)。**いずれも研究/商用ともに配備可**=**ライセンスを理由に脱落する候補は 1 本もない。**
+> - **第三段(候補外)**: Rakuten AI 3.0(規模外)・PLaMo Prime(ウェイト非公開)。**Sarashina は MIT であり Non-Commercial ではなかった**(旧記載は誤り)。
+>
+> **★ 一次確認の結果(2026-08-07・§4 残論点 M-1 の消し込み)**: 表の (b)(d) 列は上記の日付に**公式モデルカード / 公式規約 / 公式プレスリリース**で再取得した。**確認できなかった項目は「未確認」のまま残してある**(推測で埋めていない)。未確認は次の 4 件 — ①Qwen3 系の日本語個別スコア(公式カードに掲載がない。他社カード掲載の比較値のみ記載)②Gemma 4 の日本語個別スコア ③Llama-3-ELYZA-JP-8B の具体的評価値(公式ブログの主張のみでカードに数値表がない)④**Nemotron Nano 9B v2 Japanese の AWQ/GPTQ INT4 版の公開有無**(公式は FP8 のみ=A5000 sm_86 では非加速)。
+>
+> **★ 一次確認で判明した「配備を動かす」事実 4 件**(§2 の構成に影響しうる):
+> 1. **`Llama-3.1-ELYZA-JP-8B` は存在しない**。実在は `elyza/Llama-3-ELYZA-JP-8B`(Llama 3 世代・**context 8K**)。→ **M-2(ELYZA か Swallow か)は context 長で Swallow が有利**。
+> 2. **Gemma は 4 世代で Apache-2.0 になり、かつ専用 thinking モードを獲得した**(制御トークン `<|think|>`)。旧表の「Apache ではない」「thinking モードなし」は**両方とも Gemma 4 では成立しない**。
+> 3. **llm-jp-4 8B(Apache-2.0)が日本語 MT-Bench 7.54 で Qwen3-8B 7.14 を上回る**(NII 公表)。→ **ライセンス最クリーン × 日本語で優位**という組み合わせは他候補にない。日本語特化枠の第 3 の選択肢として M-2 に加える価値がある。
+> 4. **Nemotron は Mamba2 ハイブリッドで vLLM 0.11.2+ が必須・INT4 が無い**。A5000 では BF16 18GB(実効 21.6GB のうち)= **KV が 3.6GB しか残らない**。→ 案 A の GPU4 に置く場合、同時実行数の実測が 8/15 に要る。
 
 ### 1.3 第90 実測から確定していること(ここだけは推測でない)
 
@@ -263,15 +273,15 @@ python scripts/model_battery/report.py --raw data/battery/raw_finals \
 2. ★**ショートリスト(測る対象)は 6 本 + プラセボ**: `qwen3-8b` / `qwen3-14b` / `qwen3-4b` / 日本語特化 8B(**ELYZA と Swallow のどちらか = M-2**)/ Nemotron Nano 9B JP / Gemma 3 12B、+ `placebo:template`。
    **測ってから 3 本に絞る**(§3.2 の 8/15 午後)。案 A に切り替える退路も conf 1 箇所で残る。
 3. ★**weight は §2.5 の二段規則で機械的に決める**(A層足切り → D層分散比 → 単一 50% 上限)。**人が「賢そうだから」で決めない。**
-4. ★**Non-Commercial ライセンス(Sarashina / PLaMo)は候補外**。公開ミラーと論文公開があるため。
+4. ★**候補外の根拠を訂正(M-1 の一次確認による)**: Sarashina は **MIT** であり Non-Commercial ではなかった(候補外の理由は「規模帯不一致=Sarashina2.2 は最大 3B」に差し替え)。PLaMo Prime は **HF にオープンウェイトが存在しない**(API 商用製品)ため候補外。**ライセンスを理由に候補外となるモデルは、現時点で 1 本もない。**
 5. ★**fleet 構成をフリーズ対象に含める**(8/12-14)。weight を 1 文字変えると全エージェントの心が入れ替わる。
 
 ### 4.2 ユーザーに聞くべき残論点
 
 | # | 論点 | 選択肢 | 推奨 |
 |---|---|---|---|
-| **M-1** | **ライセンス一次確認をいつやるか**(Gemma / Llama(ELYZA・Swallow) / NVIDIA Open Model / llm-jp の条文と最新版数。表 §1.2 の (b)(d) は 2026-07-07 調査値) | (a) 8/12 までに再確認してから候補確定 / (b) Apache-2.0 の Qwen 系 + llm-jp だけで組んで確認を省く | **★(a)**。(b) は日本語特化を丸ごと失う |
-| **M-2** | **日本語特化 8B は ELYZA か Swallow か**(どちらも Llama ライセンス・どちらも未測定) | (a) 両方測って D層で選ぶ(呼数 +40) / (b) ELYZA(実績報道)/ (c) Swallow(公式リーダーボードあり) | **★(a)**。40 呼は 8/15 の診断ランで無視できるコスト |
+| ~~**M-1**~~ | ~~**ライセンス一次確認をいつやるか**~~ → **✅ 解消(2026-08-07 実施済み・ユーザー判断不要)**。表 §1.2 の (b)(d) を公式モデルカード/公式規約/公式プレスリリースで再取得し、確定値+確認日を記入。**ライセンスを理由に脱落する候補はゼロ**。副産物として 4 件の事実訂正(ELYZA 3.1 は非実在 / Gemma 4 は Apache-2.0 かつ thinking あり / llm-jp-4 は Qwen3-8B 超え / Nemotron は INT4 なし・vLLM 0.11.2+ 必須)。未確認のまま残した 4 件は §1.2 の注記に明示 | — | — |
+| **M-2** | **日本語特化 8B は ELYZA か Swallow か llm-jp-4 か**(★M-1 の確認で選択肢が 3 に増えた。ELYZA=Llama 3 CL・context 8K / Swallow=Llama 3.1 CL **+ Gemma 利用規約**・JMTAvg 0.719 / **llm-jp-4 8B=Apache-2.0・日本語 MT-Bench 7.54**。3 本とも本リポジトリでは未測定) | (a) 3 本とも測って D層で選ぶ(呼数 +40/本)/ (b) ELYZA / (c) Swallow / (d) llm-jp-4 8B | **★(a)**。40 呼は 8/15 の診断ランで無視できるコスト。**ライセンスの清潔さだけで選ぶなら (d)**、公開評価の厚みなら (c)、context 8K が効くので (b) は最下位 |
 | **M-3** | **多様性(案 A・6本)と冗長性(案 B・3本×2)のどちらを取るか** | (a) 案 B / (b) 案 A / (c) 案 C(同居・未検証) | **★(a)**。ただし **8/15 に「vLLM の再起動が watchdog で自動復帰する」ことを実測できたら (b) に切り替えてよい** |
 | **M-4** | **高解像度層の割合と大きさ** | (a) frac 0.03 × 14B-AWQ / (b) frac 0.05 × 14B / (c) 層なし(frac 0) | **★(a)**。DP-U3 §2.2 の通り、内省を 3% に絞ることが **25万の最大の呼数節約レバー**でもある(予算外 2.78 → 1.05 呼/人/日) |
 | **M-5** | **`qwen3-4b` を思考層に入れるか**(D層は最良だが A層 `schema_ok` 0.250=day_plan を書けない) | (a) 入れる(weight 30%・day_plan の修復/後退が増えることを承知) / (b) 正規版 A層で 0.90 を超えたときだけ入れる / (c) 入れない | **★(b)**。第86 が**修復/後退のモデル別集計**を既に持つので、実測で判断できる |
@@ -282,7 +292,7 @@ python scripts/model_battery/report.py --raw data/battery/raw_finals \
 
 1. **候補 9 本のうち実測があるのは 2 本 + プラセボだけ**(第90・縮小版 scale=0.2)。残り 7 本は**すべて未測定**であり、表の (a) 列は空である。§3 の正規版測定が前提。
 2. **VRAM は params からの見積り**であり、KV キャッシュ・ランタイム余裕を含む実測ではない。**8/15 に `nvidia-smi` で実測する**まで配置は確定しない。
-3. **Nejumi / Swallow リーダーボードの数値は 2026-07-07 の調査値**。最新版で順位が動いている可能性がある(M-1)。
+3. **Nejumi / Swallow / NII の公表値は 2026-08-07 に一次資料で再取得済み**(M-1 消し込み)。ただし**これらは公表値であって本リポジトリの実測ではない**(§3 の正規版測定が別途要る)。また **Qwen3 系・Gemma 4・ELYZA の日本語個別スコアは公式カードに掲載がなく、未確認のまま**である(§1.2 注記の 4 件)。**Swallow リーダーボードの一覧ページは JS 描画で本文取得できず、数値はモデルカード掲載値を採用した。**
 4. **vLLM 上の再現率(`determinism_probe`)は未測定**。ollama では 0/4・1/4 だったが、vLLM で同じとは限らない。
 5. **D層の分散比は相対値**(§3.4)。人間参照が無い限り「人間より分散が小さい」という**絶対的主張はできない**。
 6. **案 C(1 GPU に 2 モデル同居)の性能は未検証**。第90 の 3.3 倍劣化は ollama 由来で、vLLM に外挿してはいけない。
