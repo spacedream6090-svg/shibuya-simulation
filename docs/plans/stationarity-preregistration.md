@@ -196,6 +196,92 @@ lag 2..14 で平均 TVD が最小になる **lag_min** は周期構造の指紋(
 取り直したペア。主判定が PASS でこちらが FAIL なら、非定常性の正体は**蓄積の過渡**であって
 日常の非反復性ではない。
 
+### 1.5 指標定義補遺: 伝播チャネルの**三層**宣言(S-12・2026-08-06 追記=**承認対象**)
+
+> **この節が解く問題**: §1.2 は接触グラフを「`speak` と `dm` を同一チャネルとして 1 つのグラフに
+> 合成」と定義している。これはノイズ床 F の算出には十分だが、**「規範はどの層で成立するか」**を
+> 問うには層を分けねばならない(Centola & Macy 2007 の複雑伝染 / Szell et al. 2010 の multiplex)。
+> 本節は §1.2 の定義を**置き換えない**(§1.2 は診断用の合成グラフとしてそのまま凍結)。
+> 層別グラフは `scripts/analyze_layers.py` の別指標として新設し、その定義をここで事前に固定する。
+
+**実査結果**: `transmission` イベントの payload には既に `channel` 欄がある
+(`src/society/observer/schema.py` の `transmission` 登録行)。
+`scripts/analyze_layers.py` は次の**三層**に写像する。**二層(offline / online)では尽くせない**。
+
+> **★ 2026-08-06 訂正(実測による)**: リサーチ文書 `docs/research/sv-remaining-items-research.md`
+> §1.4 は `channel` の実値を **5 種**(`face` / `dm` / `sns` / `search` / `news`)としていたが、
+> **既存 95 ランの `transmission` を全走査した結果、6 種目 `event` が実在した**
+> (実測 `face` 257,043 / `sns` 421,637 / `search` 162,339 / `event` 43,500 / `news` 7,876 /
+> `dm` 256)。出所は `src/society/tools.py` L1085–1087 で、**催しのホストが参加者へ語を教える**
+> 経路である(`_hear_words(..., host.id, "event", ...)` = 送り手は**実在の人**)。
+> リサーチ文書の 5 種表は `scheduler.py` の `_hear_words` 呼び出しのみを数えており、
+> `tools.py` 側の 1 か所を落としていた。**`event` を落とすと offline 層の伝播量を
+> 実測で約 14%(43,500 / 300,543)過小評価する**ため、本表で層を確定する。
+> なお **`dm` チャネルは実測で 256 件(全体の 0.03%)しかない**。「online 層 = DM 主体」と
+> いう直感は**実データでは成立しない**(online の実体はほぼ SNS である)。この非対称も報告する。
+
+| channel | 送り手 | 本事前登録での層 | 理由 |
+|---|---|---|---|
+| `face` | 人 | **offline**(対面) | 同席が要る。クラスタが密で補強が起きやすい |
+| **`event`** | **人(催しのホスト)** | **offline**(対面) | ★**追加**。催しへの同席が要る = `face` と同じ物理条件 |
+| `dm` | 人 | **online**(対人) | 1 対 1・遠隔 |
+| `sns` | 人 | **online**(対人) | 1 対多だが送り手は人 |
+| `search` | **−1(人でない)** | **broadcast**(媒体) | 対人ネットワークの辺にならない |
+| `news` | **−1(人でない)** | **broadcast**(媒体) | 同上 |
+
+**この三層目(broadcast)の存在自体が報告に書く価値のある観測である**
+(サーベイ §5.1.2 は offline / online の二分しか提示していない)。
+
+**★ 層の帰属は `from` 欄の実測で検算する(宣言だけで済ませない)**: `analyze_layers.py` は
+チャネルごとに「`from == -1` の割合」を出力し、**offline / online に分類した channel で
+`from == -1` が出たら警告を立てる**(= 本表の前提が壊れたことの機械検知)。
+**未知の channel が現れた場合は `unmapped` として別掲し、勝手にどれかの層へ入れない。**
+
+**層別グラフの辺の定義(事前固定・ラン後に変えない)**
+
+**★ グラフは 2 系統を別々に作り、混ぜない**(混ぜると「何を測ったか」が言えなくなる):
+
+**(A) 相互作用グラフ**(誰と誰が接触したか。`transmission` の有無に依存しない)
+
+- **offline 層**: `speak`(speaker → hearers の各人)。無向・重み = 共起回数。
+- **online 層**: `dm`(sender → to)+ `sns_read`(reader → payload.authors の各人)
+  + `sns_like` / `sns_reshare`(反応者 → author)。
+  ★**`sns_read` 由来の辺を online 層に入れる**ことをここで宣言する。理由: 入れないと
+  online 層が DM のみになり、SNS の到達が 1 本も辺として数えられない(= online 層の
+  過小評価)。**実測で `dm` チャネルが全伝播の 0.03% しかないことが判明した以上、
+  この判断は「あった方が良い」ではなく「入れなければ online 層が実質空になる」**。
+  `scripts/analyze_weak_ties.py` の合成グラフ(= §1.2)は **DM のみ**のままであり、
+  **本節は §1.2 を変更しない**。両者は別の量である旨を報告に明記する。
+- **broadcast 層**: 辺を張らない。**到達件数(何人が何回受け取ったか)としてのみ数える**。
+  `sns_read` / `sns_like` / `sns_reshare` の相手が **`-1`(媒体の投稿)** の分と、
+  `news_read` はここへ計上する。送り手 id が `-1` である以上、対人グラフの辺として
+  数えるのは誤りである。
+
+**(B) 伝播グラフ**(何が実際に伝わったか。`transmission` の `channel` で層を決める)
+
+- 辺は `(payload.from → agent_id)`。層は上表の写像。**`from == -1` の行は辺にせず
+  broadcast の到達件数へ**。`event` は offline、`sns` / `dm` は online。
+- (A) と (B) は**別の量**である。(A) は「話しかけた」、(B) は「語が乗った」。
+  両者の辺集合の重なり(edge overlap)を出力し、**冗長なら冗長と報告する**。
+
+**共通規約**
+
+- コミュニティ検出を層別に行う場合は `society.observer.measure.communities()`(決定論 LPA)を
+  **層別の合成イベント列に対して呼ぶ**(`scripts/analyze_communities.py` の
+  `_synthetic_events` と同じ流儀)。**凍結ファイルは 1 バイトも変更しない**。
+- **層間 edge overlap**(層 α に辺があるとき層 α' にも辺がある条件付き確率)を
+  multiplex の標準量として併記する(Szell et al. 2010)。
+
+**この宣言が §3-F の F7 に及ぼす影響**: F7(次数分布の重い裾)を**層別**に判定する。
+判定枠は F7 のまま(主判定・条件付き = `relations.dunbar` OFF の条件に限る)とし、
+**offline / online の 2 層それぞれで裾を推定する**(broadcast は辺を持たないので F7 の対象外)。
+**両層とも裾が出た場合にのみ F7 を「再現できた」と数える**のではなく、**層ごとに合否を出して
+併記する**(層で結果が割れること自体が multiplex の知見であるため)。
+
+**事前の予測(ラン前に書く = 事後解釈を封じる)**: Centola & Macy 2007 に従えば、
+**offline 層は密で補強が起きやすいので規範(複雑伝染)が成立しやすく、online 層は到達が広いので
+語(単純伝染)が速く広がる**。この予測が外れた場合も、外れたと報告する。
+
 ---
 
 ## 2. タスク2の実測値(mock・2026-07-29 実施)
@@ -369,6 +455,41 @@ C は**ゲートではなく報告**。合否は N・日数・conf(relations/lab
 
 **データ品質除外(§1.1 記載)**: L2 `echo_max == 1.000` のランは崩壊ランとして k*/規範推定の母集団から除外・別掲。
 
+### E'. 規範 4 ステージと先行研究のライフサイクルの対応(S-13・2026-08-06 追記=**承認対象**)
+
+> **この節が解く問題**: 本シムは規範の成立を 4 段(`none` / `coin` / `quote` / `definite` /
+> `institution`)で観測するが、**この 4 段が先行研究のどの段に対応するのかを事前に宣言していない**。
+> 宣言しないまま結果を出すと、事後に都合の良い段へ読み替えられる。
+>
+> **★実装は 1 バイトも触らない。** 4 段の定義は `src/society/observer/norms.py` の
+> `STAGE_NAMES` にあり、同ファイルと `scripts/analyze_norms.py` は `metrics_spec_hash` の
+> 凍結対象(`SPEC_FILES`)である。**コメント 1 文字・docstring 1 文字でもハッシュが動く**ため、
+> 対応表は**本事前登録に置く**(サーベイが提案した「docstring に 1 表」は採らない)。
+
+| 本シム | 定義(実装) | Ren et al. 2024(**CRSEC**) | Finnemore & Sikkink 1998(norm life cycle) | **測っていないもの(正直な注記)** |
+|---|---|---|---|---|
+| **S1 `coin`** | `label_coin` イベント。同語の**最初の coin だけ** | **C**reation(規範の創出) | **Emergence**(norm entrepreneur による創出) | coiner が「規範を作ろうとしたか」の**意図は測らない**(行動からの検出のみ) |
+| **S2 `quote`** | coiner **以外**による最初の使用(`transmission` 経由 or 発話テキスト初出の早い方) | **S**preading(伝播) | **Emergence → Cascade の境界**。F&S は**約 1/3 の採用**を tipping point とする | 本シムの S2 は**1 人目**で成立する = tipping point **ではない**。採用率の閾値は §3-E の **E2(使用者 3 名)**が別途担う |
+| **S3 `definite`** | 発話中に「〈定冠詞相当マーカー〉+ 語」(「例の◯◯」)が現れた初出 | **R**epresentation(形式的表象) | **Cascade**(共有指示対象の成立) | 表層文字列一致のみ = **過小検出**。マーカーは `conf` が唯一の源で、未設定なら永久に 0 件 |
+| **S4 `institution`** | 発話中に〈合意参照マーカー〉と語が**同一発話内に共起**した初出 | **E**valuation + **C**ompliance(健全性検査と遵守) | **Internalization**(遵守が自動化された状態) | ★**最重要の限界**(下記) |
+
+**★ S4 についての限界宣言(この 1 行を書かないと過大主張になる)**:
+> F&S の internalization は**行動の自動化**であり、CRSEC の Compliance は**計画・行動への
+> 組み込み**である。しかし**本シムの S4 が見ているのは「言及」だけ**である。
+> **「規範に従って行動した」ことは測っていない。** したがって S4 到達を
+> 「規範が内面化された」と読んではならず、「**合意への言及が発話中に現れた**」までしか言えない。
+
+**位置づけの 1 行(Hollander & Wu 2011)**: 規範的 MAS は規範を **rigid**(全体制約として強制)と
+**flexible**(遵守/違反をエージェントの決定に委ねる)に分けられる。**本シムは flexible 側**である
+(規範に反する行動を機構で禁じていない)。この位置づけを報告に明記する。
+
+- Ren, S., Cui, Z., Song, R., Wang, Z. & Hu, S. (2024). *Emergence of Social Norms in Generative
+  Agent Societies: Principles and Architecture.* IJCAI 2024 / arXiv:2403.08251.
+- Finnemore, M. & Sikkink, K. (1998). *International Norm Dynamics and Political Change.*
+  International Organization 52(4):887–917.
+- Hollander, C. D. & Wu, A. S. (2011). *The Current State of Normative Agent-Based Systems.*
+  JASSS 14(2):6. DOI 10.18564/jasss.1750.
+
 ### F. 渋谷の stylized facts(S-02・2026-08-05 追記=**承認対象**)
 
 正典: `docs/research/sv-items-research.md` §1 / サーベイ `docs/research/llm-social-sim-survey.md` §3 S-02。
@@ -445,6 +566,113 @@ C は**ゲートではなく報告**。合否は N・日数・conf(relations/lab
   引くときは書誌を確定してから引く。
 - **データ品質除外は F 節にも適用する**: L2 `echo_max == 1.000` の崩壊ランは、F5(発話の
   バースト性)と F6(接触時間)の母集団から除外し別掲する(§1.1 と同じ規則)。
+
+### G. seed 間分散の分散分解(S-05・2026-08-06 追記=**承認対象**)
+
+> **この節が解く問題**: 前文 ④ 反証条件 **(a)「条件間差が seed 間差を上回らない」**は既に
+> 承認対象として書かれているが、**その判定を実際に下す装置と規則が定義されていない**。
+> 装置が無ければ反証条件そのものが判定不能であり、事後にどうとでも読める。
+> **本節は「あると良い装置」ではなく、既に約束済みの判定の実体である。**
+>
+> 実装: `scripts/analyze_seed_variance.py`(新規・読み取り専用・`src/` ゼロタッチ)。
+> 既存資産の再利用のみ(`scripts/panel_stats.py` の `_parse_cond_seed` / `t_ci` /
+> `perm_test_paired` / `bh_fdr` を **import**。`scripts/analyze_sweep.py` の seed 階層
+> ブートストラップと同型)。**`scripts/analyze_g.py` の分解とは別物**である
+> (あちらは単一ラン内の**個体**横断分散を g0 と Δg に分けるもので、seed でも条件でもない)。
+
+#### G.1 分解の定義
+
+ラン名の末尾 `_s<数字>` を seed、残りを条件とする(`panel_stats._parse_cond_seed` と同一規則)。
+各主要指標 Y について、条件 c ∈ C・seed s ∈ S_c の観測値 y_{c,s} から:
+
+```
+mean_c      = (1/|S_c|) Σ_s y_{c,s}                     # 条件 c の seed 平均
+V_condition = Var_c( mean_c )            (ddof=1)       # 条件平均の分散 = 決定論的分散 V_d
+V_seed      = mean_c[ Var_s( y_{c,s} ) ] (ddof=1)       # 条件内 seed 分散の平均 = 確率的分散 E_s
+V_total     = V_condition + V_seed
+ratio       = V_condition / V_seed                       ← ★判定に使う量
+share_condition = V_condition / V_total,  share_seed = V_seed / V_total
+```
+
+- 根拠: **Carmona-Cabrero, Muñoz-Carpena, Oh & Muneepeerakul (2024). *Decomposing Variance
+  Decomposition for Stochastic Models.* JASSS 27(1):16. DOI 10.18564/jasss.5174** の
+  "Approach IV"。同論文は **乱数 seed をモデル入力として扱ってはならない**とし、総分散を
+  決定論的分散 \(V_d\) と確率的分散 \(E_s\) に分けて**両者の寄与率を報告する**ことを推奨する。
+  上式の `V_condition` が \(V_d\)、`V_seed` が \(E_s\) に対応する。
+- 反復数の決め方: **Lorscheid, Heine & Meyer (2012)** に従い、出力の変動係数(CV)が
+  安定する点を目安とする。ラン計画で seed 本数を決める根拠にこれを用いる。
+
+#### G.2 判定規則(**ラン前に固定する。ラン後に変えない**)
+
+| # | 条件 | 閾値 | 意味 |
+|---|---|---|---|
+| G1 | **ratio > 1.0** | 1.0 | 「条件間差が seed 間差を上回る」の**最小定義**。前文 ④(a) の反証条件そのもの |
+| G2 | ratio の **seed 階層ブートストラップ 95%CI 下限 > 1.0** | B = 2000・`default_rng(0)` | seed を条件内で復元抽出して ratio を再計算。**G1 だけでは seed が少ないときに偶然で超える**ため、CI 下限を要求する |
+| G3 | 条件内の seed 本数 **|S_c| ≥ 3**(全条件で) | 3 | 2 本では条件内分散の推定が 1 自由度しかなく、ratio が発散しうる |
+
+- **主張してよいのは G1 ∧ G2 ∧ G3 を満たした指標に限る**(前文 ① の「主張は**条件間差が
+  seed 間差を上回った指標に限る**(S-05)」の実体)。
+- G3 を満たさない指標は **`INSUFFICIENT_SEEDS`** と report し、**有意でも主張しない**
+  (§3-E の E4 と同じ作法)。
+- `V_seed = 0`(条件内で seed 差がゼロ = 決定論退化)の場合は ratio を `inf` とせず
+  **`DEGENERATE_ZERO_SEED_VARIANCE`** と report する。mock ランや LLM キャッシュ完全命中で
+  起こりうる状態であり、これを「条件差が圧倒的」と読んではならない。
+
+#### G.3 報告形式
+
+- 条件間差は **d_j = 中央値 [min, max]**(S-16 FormatSpread と同形式)で書く。単一値で書かない。
+- **必ず併記する**: `V_condition` / `V_seed` / `ratio` / `share_condition` / `share_seed` /
+  ブートストラップ CI / 条件数 / 条件別 seed 本数 / 判定ラベル。
+- **この規則で「出さないことにした結論」を報告書 §7.1 に列挙する**(出さなかったことも報告の一部)。
+
+### H. アウトライアを厚くしない設計の宣言(S-08・2026-08-06 追記=**承認対象**)
+
+> 前文 ③(e) に 1 行で書いた設計選択の、**検査可能な形での宣言**。受け皿は
+> `docs/plans/observation-report-template.md` §7.2。
+
+1. **設計の主張**: 分野標準(影響力の大きい個体を厚くモデル化し、周辺個体を軽量化・簡略化する)
+   と**逆に、本研究は全個体へ一様な認知予算を与える**。理由は研究課題が **k\*(世界改変志向の
+   個体)の内生的出現**であり、**「誰が厚くなるか」を設計者が事前に決めた時点で問い自体が
+   消える**からである。
+2. **代償の明示**: 一様予算は**大規模時の計算効率を捨てている**。この代償は隠さない。
+3. **例外の扱い(第 88 バッチ `model.mind`)**: 高解像度層(全体の 1〜5%)は
+   **traits に依存しない一様抽選**で割り当てる。**特性が高い個体を優先的に厚くしない**という
+   規約であり、本節の設計主張と整合する(`IMPLEMENTED.md` に「S-08 整合」として記録済み)。
+4. **片側検査**: `ablate.cognitive_tier`(下位ティア強制)を**片側検査**として用いる。
+   - **読み方(必ずこの向きで読む)**: 「一様性が結論を作っていないこと」を**示せる方向にのみ
+     効く**。すなわち **ティアを落としても結論が変わらなければ「一様予算が結論を作っていない」
+     と言える**が、**変わった場合に「だから厚くすべきだ」とは言えない**(厚さと結論の因果は
+     この検査では同定できない)。この非対称性は S-03 の CV 片側バンドと同型である。
+   - fleet 非使用ランでは本 ablate は縮退する(効かない)。**縮退したことを縮退したと書く**。
+5. **やらないこと**: 影響力の大きい個体を厚くする実装を**本選前に入れない**。入れると
+   k\* の内生性の主張が「設計で作った」と読まれる。
+
+### I. 組織形態の観測指標の事前固定(S-09・2026-08-06 追記=**承認対象**)
+
+> **この節が解く問題**: 「どの中心性を使うか」を**後から選ぶのは査読で最も突かれる**。
+> Freeman 1979 自身が degree / closeness / betweenness / eigenvector を**別々の理論的主張**として
+> 分けており、どれを採るかで「中心的」の意味が変わる。**採る指標と採らない指標を、その理由ごと
+> ラン前に固定する。** 実装: `scripts/analyze_org_form.py`(新規・読み取り専用)。
+
+| 軸(サーベイ §4.1.2–4.1.3) | 採る指標 | 一次文献 |
+|---|---|---|
+| **structure: centralized ↔ decentralized** | **Freeman の群レベル次数中心化指数 \(C_D\)**(スター型 = 1・完全グラフ = 0)。**`degree_gini` と併記**する(Gini は分布の不平等、\(C_D\) はスター型からの距離であって**別の量**である) | Freeman, L. C. (1979). *Centrality in Social Networks.* Social Networks 1:215–239 |
+| **structure: layered(層の有無)** | **Global Reaching Centrality (GRC)**(フラット網 ≈ 0・木に近いほど 1)。**有向グラフ**に当てる | Mones, E., Vicsek, L. & Vicsek, T. (2012). PLOS ONE 7(3):e33799 |
+| **role: communicator / worker / director** | **Guimerà–Amaral の (z, P) 役割カルトグラフィ**(z = コミュニティ内次数の z スコア / P = 参加係数)。読み替え: 高 P = communicator(橋)/ 高 z = director(内ハブ)/ 低 z 低 P = worker | Guimerà, R. & Amaral, L. A. N. (2005). Nature 433:895–900 |
+| **mode: static ↔ dynamic** | **窓間メンバーシップの Jaccard 安定度 + Palla のライフサイクル語彙**(既に `scripts/analyze_communities.py` が実装済み) | Palla, G., Barabási, A.-L. & Vicsek, T. (2007). Nature 446:664–667 |
+| 仲介 | **betweenness**(既存の純 Python 実装 `analyze_founders.betweenness_bfs` を再利用。再実装しない) | Freeman 1979 |
+
+**★採らないもの(採らない理由を書くのが S-04 の境界宣言の作法である)**:
+- **eigenvector 中心性は採らない**。理由 3 点 — (a) repo 内に実装が無く、新規に書く唯一の中心性に
+  なる、(b) `nx.eigenvector_centrality` は冪乗法で**収束しないグラフがある**(決定論性の主張と
+  相性が悪い)、(c) 「誰が影響力を持つか」は S-11(**本選後**)の主題であって、S-09(組織の**形**)の
+  主題ではない。
+- **Gini の 6 個目・中心性の 3 個目の実装を書かない**(既存実装を import する)。
+
+**★Guimerà–Amaral の閾値について(事前の宣言)**: 原典の閾値 **z = 2.5 / P = 0.62 は代謝
+ネットワークで較正された値**であり、社会ネットワークにそのまま使える保証は無い。したがって
+**既定は閾値を使わず、(z, P) 平面上の分布そのもの(分位点)を報告する**。閾値による
+4 分類の件数は **参考値**としてのみ併記し、**主判定には用いない**。
 
 ---
 
