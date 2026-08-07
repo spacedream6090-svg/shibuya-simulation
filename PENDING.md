@@ -2,7 +2,7 @@
 
 > 本ファイルは **まだ終わっていないもの**だけを持つ。完了済みは → **[IMPLEMENTED.md](IMPLEMENTED.md)**(決定の履歴も同所の年表と git log が正典)。
 > 索引と最終更新は → **[STATUS.md](STATUS.md)**。
-> 最終更新: **2026-08-07**(第98小粒バッチ7レーン完結+ユーザー決定6件を記帳)。
+> 最終更新: **2026-08-08**(第101=wave4 6レーン完結: 持ち越し小粒の「今できる分」を掃討・§4 は各見出しに ※解消済み注記)。
 
 ---
 
@@ -46,17 +46,16 @@
 ## 4. 持ち越し小粒(未解決のみ)
 
 - **σ_c の Δt 再測**(Δt=1 では salience が系統的に過小・8/15-16 に統合)
-- **IF-E2 残**: ①**窃盗の加害者への入金**(SNA では被害者−/加害者+の再分配だが本シムは受け取り側を K5 に置いたまま=挙動変化を伴うので独立トグルが要る・将来判断)②屋台の内税/床クリップギャップ(RoW が埋める=改名して隠さない)③K5 の日次 L1 未出力(`finance.parquet` の `k5_other` 列のみ。要るなら `_emit` 1キー)④b2b 買い手特定=`(node,POI種別)` 一意率 4.5%=本番規模では大半が「域外資本の店」(RoW)扱い(正直開示済み)
-- **resume 整合の残り**(小粒A 2026-08-07・日カウンタ15件+付随5族は修復済み): ①`spark_roster` が resume で二重記録(記録のみ・状態は正しい)②observer 状態の非対称(echo/norm 等は保存済み・lens/silence/structure/deviation 未保存=動力学非影響だが mid-day resume の当該 L2 列が食い違いうる)③worldview の C2 応答走査が「直前の日境界〜checkpoint」区間を取りこぼす(イベント本体の保存が要る・checkpoint.py にコメント明記済み)※policy_cache は §3 判断待ち
-- **IF-C 残課題**: ①噂誕生は step 末走査=1 step 遅れ(→§1 wave2)②Item.transmissions 上限なし(25万ではホット噂 O(N)=正典を L1 に置く再設計は別バッチ)※混線切り分け(オーバーレイ新設)と pool dehydrate は 2026-08-07 解消
+- **IF-E2 残**: ①**窃盗の加害者への入金**(SNA では被害者−/加害者+の再分配だが本シムは受け取り側を K5 に置いたまま=挙動変化を伴うので独立トグルが要る・将来判断)②屋台の内税/床クリップギャップ(RoW が埋める=改名して隠さない)③b2b 買い手特定=`(node,POI種別)` 一意率 4.5%=本番規模では大半が「域外資本の店」(RoW)扱い(正直開示済み)※K5 の日次 L1 は第101で解消(`row_flow` に累積 `k5_total`)
+- **resume 整合の残り(最終)**(第101で spark 二重記録・レンズ4本・worldview 走査+★flush 欠陥まで解消済み): ①`undefined_action_total/rate` はプロセス内カウンタ族(llm_health 3列と同族)=watermark 族の再設計なしに一貫不能・resume 後は 0 から数え直す旨を checkpoint.py に明記 ②凍結 `silence.py` の docstring 6行が旧記述のまま(state は保存されるようになった)=**次に承認されるハッシュ変更があれば2行同梱**(それだけのためにハッシュは動かさない)③`lens.assets` の `asset_rank_tau` は conf 明記どおり非搭載
+- **IF-C 残課題**: ①Item.transmissions 上限なし(25万ではホット噂 O(N)=正典を L1 に置く再設計は別バッチ)②語り選択順(`max_per_talk=1`+「古い順」が同 step 伝播の律速=ポートフォリオ選択順は別課題)※誕生遅れ・混線切り分け・pool dehydrate は解消済み
 - **P4 残課題**: ①D=J/w 水準不足の未解明(残候補=接触項不在/τ/v0分布/定常部)②高密度 ρ≥2 の壁貫通脱出(接触項 or v_max クリップ再設計・FD 高密度点は汚染込みでしか測れない)③6変数同時最適化未実施 ④ρ_meas 1.5 頭打ち=判定B合格は弱い証拠
-- **物理見積の残り**(小粒E 2026-08-07): ①`max_sub_steps: 12000` は Δt=10分の直書きで Δt に追随しない(Δt=20分では不足=テストで明示固定)②理論モードの既定2つ(`traversals-per-agent-day 2.0`/`zone-share 0.5`)に根拠なし=OD 表・実測通行量で埋める ③物理 ON の較正ラン(mock 可)を runs/ に1本作れば実測外挿モードが本番投入可(現状 runs/ 163本に `zone_gate` 含むランは 0)④混雑で dwell が伸びる効果は未計上=見積は下限側
+- **物理見積の残り**: ①理論モードの既定2つ(`traversals-per-agent-day 2.0`/`zone-share 0.5`)に根拠なし=OD 表で埋める(ただし第101で較正ラン `runs/zone_smoke_p99` が誕生し**実測外挿モードで迂回可能**に)②混雑で dwell が伸びる効果は未計上=見積は下限側 ※max_sub_steps の Δt 追随は第101で解消(Δt=10=厳密12000)
 - **3D 残り**: tracks.json の O(n_steps×n_agents) は出力そのもの(真の解=既存 `--tracks-binary --no-tracks-json`)・10日ラン規模の実 RSS 絶対値は未測(構造上は O(row group+1 step) 化済み)
 - **層別クォータの照合**(小粒G): 提案書 §1.2 の割当は計算値=8/12 の縦煙で `present_for_day` を1回実走して照合(±1人ずれは最大剰余法が正・提案書 §6-5 訂正済み)
-- **解析25万の残り**(第99・W2-2/W2-6 実測済み): ①`analyze_accounting` の events/flows は O(金額イベント数) 残存(`flows_for` の `id(payload)` 呼び出し規約の変更が要る=検査式に触れる別バッチ)②`live_viewer` の 1 part 丸ごと Python 化は要見積 ③研究解析十数本の `l1_stream` 移行は型が揃い機械的に可能(必要時)④finalize streaming のサイドカー横展開(indoor_tracks/org_ledger/finance 等=同型)⑤`row_group_rows` 既定 2^20 は本番前に実 L1 の行バイトで再調整(conf 1行)。※src logger の finalize 42.7GB 懸念は W2-6 で解消済み=**観察ランは `observer.finalize.streaming: true` 推奨**
-- **Δt の残り**(第99・31本移行済み): ①`viz/make_viewer.py` の STEP_MINUTES=10 ×15箇所(最後の1本・export_3d と同型の importlib 移行)②`run_manifest` に dt_min が無い(manifest.py 1行=src)③σ_c の dt 来歴照合(設計文書 B3・src)④L1 からの Δt 推定=第3の源(pyarrow 依存で見送り)⑤旧ラン 173/178 本が dt_min 無し=assumed 経路で stderr 1行(仕様=黙って仮定しない)
-- **W2-4 観測強化の src 候補3点**(1語〜1列の追加で突合が厳密化): `agents.json` に work_node 列・`plan_block_start` payload に node 1語・`plan_block_*` にブロック添字(台帳再生の多義性が構造的に消える)
-- **噂の語り選択順**(W2-5): 同 step 伝播の実効量は `max_per_talk=1`+「古い順に語る」が律速=ポートフォリオ選択順は別課題
+- **解析25万の残り(最終)**(第101で live_viewer 有界化・研究解析 19/19 移行・サイドカー finalize 横展開まで完了): ①`analyze_accounting` の events/flows は O(金額イベント数) 残存(`flows_for` の `id(payload)` 呼び出し規約の変更が要る=検査式に触れる別バッチ)②自前 loader の残り5本(`analyze_layers`/`analyze_mas_failures`/`analyze_org_form`/`analyze_persona_consistency`/`analyze_plan_execution`)+`analyze_firing.load_g`(cognition_g 全読み)=同じ型で機械的に続行可 ③`row_group_rows` 既定 2^20 は本番前に実 L1 の行バイトで再調整(全ファイル共有・個別チューニングは新キー要=意図的見送り)④W4-E の申告2点=ON は part 間スキーマずれを permissive 統一(OFF は例外・較正固定が前提)・indoor_tracks ON はディスク +19GB を容量計画へ(OFF 経路の concat ピークは**約124GB=L1超え**なので大きい3本の ON 実効性は L1 と同格)
+- **Δt の残り(最終)**(第101で make_viewer(JS21式含む)・manifest dt_min・σ_c 来歴照合まで完了=**C級は全て完了**): ①L1 からの Δt 推定=第3の源(pyarrow 依存で見送り)②旧ラン 173/178 本が dt_min 無し=assumed 経路で stderr 1行(仕様=黙って仮定しない)③src 観測定数(measure.py `ECHO_WINDOW_STEPS=144` 等=凍結・8/15 以降の判断)
+- **W4-F の設計上の残**: `street` ブロックは habit 委譲のため帰属不能が仕様(解くには「street の実体」の別判断)・`work_node` はスナップショット(B4 OFF+orgs ON のランは初期値のまま=受理集合を本業∪バイトの和にして緩和済み)※観測強化3点自体は第101で解消
 - **D16 屋内 ON**・**D17 実験**・**4系統レーン2**(B-L1 以降)
 - **竹-4 残**: ④span_m グラフ長 vs 物理直線の実効速度差 ⑥サブステップ軌跡の記録・`planning.py` 契約化は残置第一候補(※③ `_phys_body` 搬送と⑦事前見積は 2026-08-07 解消・ゾーン所有は「その旅に固有の状態」として意図的非搬送=根拠コード内明記)
 

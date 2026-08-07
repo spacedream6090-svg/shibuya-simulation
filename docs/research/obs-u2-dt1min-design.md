@@ -53,12 +53,13 @@
 | B2 | CI 走査の範囲 | `tests/test_timeconv.py:206` が読むのは `conf/config.yaml` のみ。`conf/production.yaml` / `daily.yaml` / `observe.yaml` / `profiles/*.yaml` は**走査対象外** = プロファイル固有の step 単位キーは宣言漏れが検出されない |
 | B3 | `src/society/agents/agent.py:99` | `fire_weight: float = 0.5`(per-step Bernoulli。`scheduler.py:2354` で消費)。**persona 派生属性なので conf キーではなく TABLE に載らない** → Δt 未変換。生成は `src/society/factors/registry.py:53` |
 | B4 | `src/society/world/traffic.py:55-57` | `steps_per_hour` / `steps_per_day` / `step_seconds` を Clock ではなく自前で再導出。**追随はするが Δt 由来量の第2の源**(`clock.py:26` の「単一源」設計に反する) |
-| B5 | `src/society/world/zones.py:113` | `max_sub_steps: 12000`(= 600s/0.05s の直書き)。Δt=1 では過大で無害だが、**Δt>10 では `physics.py:331` の `n_sub = min(max_sub_steps, step_seconds/dt)` が積分を打ち切る** |
+| B5 | `src/society/world/zones.py:113` | ~~`max_sub_steps: 12000`(= 600s/0.05s の直書き)。Δt=1 では過大で無害だが、**Δt>10 では `physics.py:331` の `n_sub = min(max_sub_steps, step_seconds/dt)` が積分を打ち切る**~~ → **★第99バッチで是正済み**(§5 R7 参照)。未宣言時は `derive_max_sub_steps` が `step_seconds/dt_sub` から導く |
 | B6 | `src/society/engine/scheduler.py:3895` | 記憶テキスト `f"取り締まりで{det * 10}分間…"`。**プロンプト入力なので、Δt=1 では実際の 10 倍の分数をエージェントが信じる**(認知汚染) |
 
 ### 1.3 C 級 — 解析・観測側(世界は壊れないが、Δt=10 ランとの比較で結論が歪む)
 
 `STEPS_PER_DAY = 144` / `MIN_PER_STEP = 10` / `STEP_MINUTES = 10` / `SIM_MIN_PER_DAY = 1440` をモジュール定数として持つファイルが **30 本**(`scripts/` 29 + `viz/make_viewer.py` 1)。並行小ランの目的が「Δt=10 ランとの比較」である以上、ここは**必ず通る**。
+★**是正完了(2026-08-07〜08)**: scripts/ 31本は W2-3(`run_dt.py`=単一の源・HEAD版と出力sha256全一致検収)、`viz/make_viewer.py` は W4-C(JS 21式含む・実ラン5本×3出力=15/15 sha256一致)で全て Δt 対応済み=**C級は完了**。凍結側も beliefs/norms/specialization を W3-1(ユーザー承認・判定式ゼロタッチのAST証明つき)で是正済み。残るΔt直書きは src 側の観測定数(measure.py ECHO_WINDOW_STEPS 等=凍結・8/15以降の判断)のみ。
 
 主なもの: `scripts/observe.py:36-37` / `scripts/build_panel.py:43-45` / `scripts/calibrate_report.py:49-51` / `scripts/summarize_run.py:66` / `scripts/measure_sigma.py:88` / `scripts/detect_emergence.py:43` / `scripts/analyze_structure.py:57` / `scripts/analyze_flows_grid.py:54-55` / `scripts/commercial_report.py:46-47` / `scripts/diagnose_stationarity.py:92` / `scripts/live_viewer.py:92` / `scripts/export_3d.py:86` ほか。
 
@@ -121,7 +122,8 @@
 
 - `cognition.fire.*`(周期・θ 倍率)は全て**分・無次元**なので INVARIANT(`timeconv.py:280-294`)= 形式上は Δt 非依存。
 - **しかし σ_c は違う**。観測チャンネルの一部は「**この step の件数**」というカウント量(`src/society/cognition/channels.py:106-113` の `ext.heard` / `ext.signage`)であり、`data/calib/sigma_c.json` は Δt=10 で測った母集団の分散。Δt=1 では 1 step あたりの件数が減るので σ_c が過大になり、S = Σ g|o−ô|/σ が系統的に小さくなる → **salience 発火が減る方向にバイアス**する。
-- **照合機構が無い**。`sigma_c.json` の meta は `n_agents / n_steps / seed` のみで `dt_min` を持たず、`src/society/cognition/calib.py` に Δt 検査はゼロ。`data/calib/theta_scale.json:77` は `dt_min: 10` を記録するが**助言的で実行時チェックが無い**。
+- ~~**照合機構が無い**~~。`sigma_c.json` の meta は `n_agents / n_steps / seed` のみで `dt_min` を持たず、`src/society/cognition/calib.py` に Δt 検査はゼロ。`data/calib/theta_scale.json:77` は `dt_min: 10` を記録するが**助言的で実行時チェックが無い**。
+  → **★第99バッチで照合だけ入れた**(`calib.sigma_calib_dt_min` / `sigma_dt_provenance` / `check_sigma_dt`)。凍結ファイルは **1 バイトも触らない**(`payload_sha256` で凍結されており meta に `dt_min` を足すとハッシュが既存ランの来歴と切れる)ので、`meta.run.dt_min` が無いファイルは**正準 Δt=10 で測った**とみなす。Δt が食い違う run では `logging.WARNING` を**1 回だけ**出し、`run_manifest.json` の `cognition.sigma_c.{calib_dt_min, run_dt_min, dt_match}` に残す。**σ の値は補正しない**(補正は較正のやり直し = `scripts/measure_sigma.py` の再実行であって読み手の仕事ではない)= 上記 R1「値そのものは測り直すしかない」は依然として有効。
 - θ 較正(`scripts/calibrate_theta.py:548`)は `MINUTES_PER_DAY // base.run.dt_min` で steps_per_day を導いており **Δt 対応済み**。σ_c を測り直せば θ もそのまま再較正できる。
 
 ### (e) checkpoint / resume — **★確定ブロッカー(本調査で新規発見)**
@@ -274,7 +276,7 @@ run.py run.dt_min=10 … 同一手順          → rc=0、--resume → rc=0   �
 | R4 | 案1 を完遂しても **ゾーン外の移動は 1 分刻みの直線補間**であって SFM ではない | 中 | P4 の較正値を街路スケールへそのまま外挿できない。並行小ランの主張範囲を「遭遇・思考の時間解像度」に限定するのが安全 |
 | R5 | **L1 が ×3〜4**。10 日 × 本線規模ではなく小ランなので絶対量は小さいが、`flush_every_steps` を上げ忘れると part 数が 10 倍になる | 中 | B5 のプロファイルで固定する。`state_hash` は観察ランで OFF 推奨(提案書 §2)なので影響外 |
 | R6 | `traffic.py:55-57` が Clock を経由しない**第2の Δt 源**。今は追随するが、将来 Clock 側だけ直すと不整合になる | 低 | B2 の範囲外。TODO コメントで固定するのが妥当 |
-| R7 | `zones.py:113` の `max_sub_steps: 12000` は **Δt>10 で物理積分を打ち切る** | 低(Δt=1 では無害) | Δt 掃引を上方向にもやるなら要修正 |
+| R7 | ~~`zones.py:113` の `max_sub_steps: 12000` は **Δt>10 で物理積分を打ち切る**~~ | ~~低(Δt=1 では無害)~~ | **★第99バッチで是正済み**。宣言が `max_sub_steps` を書いていなければ `zones.derive_max_sub_steps(dt_sub, clock.step_seconds)` = `round(step_seconds/dt_sub)` から導出する。Δt=10 かつ dt_sub=0.05 では厳密に 12000 = 従来値(テストで固定)。明示宣言は従来どおり尊重(上限を意図的に絞る使い方は健在) |
 | R8 | 観測間引きキーが INVARIANT なのは**設計判断**であり、Δt を変えるたびに実験者が手で調整する運用が前提 | 低 | B5 で明文化。忘れると「ログが 10 倍で気づかない」形で出る |
 | R9 | `scripts/run.py:109` 以外に保存済み config を読み直す経路が将来増えると B1 の修正が漏れる | 低 | `load_config(path=...)` の docstring に「保存済み config を読むときは `apply_dt=False`」と明記 + grep テストで固定 |
 
