@@ -9,7 +9,8 @@
 > ビューア Δt(**C級完了**・15/15 sha256)・live_viewer 有界化(RSS 1230→242MB)・研究解析 **19/19** l1_stream 移行(★build_panel の静かな破損を未然検出)・サイドカー finalize 横展開・計画観測強化(work_unknown 8→0)・
 > 直修2(detect_emergence 決定論バグ・manifest dt_min)。テスト **4011 緑**(3357→+654)。
 > ユーザー決定8件(8/7): DP-U2=暫定案C(8/15 同居実測)・**DP-U3=本線25万**・SV-05=③・DP-U4=呼数・B3=換算しない・RW-U1=承認・**凍結3本修正=承認実施**・**RW運用=スケジューラ**。
-> 判断待ちの要点: policy_cache・U-10・OBS-U1/U3・beliefs `--bin-steps`(小・任意)・PUB-U1=Allow force pushes 一時 ON 待ち。残実装は予定日待ち(8/12 縦煙・8/15-16 診断)と判断待ち・設計変更級のみ=**「今できる小粒」は掃討完了**。
+> **PUB-U1=公開ミラー同期完了**(8/8・forced update `260f2fa`・除外セット/noreply を公開側実物で検証・以後は fast-forward 運用)。
+> 判断待ちの要点: policy_cache・U-10・OBS-U1/U3・beliefs `--bin-steps`(小・任意)。残実装は予定日待ち(8/12 縦煙・8/15-16 診断)と判断待ち・設計変更級のみ=**「今できる小粒」は掃討完了**。
 
 | 探しているもの | 行き先 |
 |---|---|

@@ -182,3 +182,13 @@ AskUserQuestionへの回答=①凍結3本まとめて修正(推奨採用)②RW�
 - 検収=決定版フルゲート**4011緑**(523s・3804→+207。1回目のゲートは編集と重なったため参考値扱い=静止木で回し直し)+
   スキャンCLEAN。§4の残=予定日待ち(σ_c再測・クォータ照合・RSS実測)/判断待ち(窃盗入金・policy_cache・street実体)/
   設計変更級(flows規約・transmissions上限・P4壁貫通)のみ=**「今できる小粒」は掃討完了**。
+
+---
+### Entry 99 — 2026-08-08 — PUB-U1 公開ミラー同期完了(唯一のユーザー操作待ちが解消)
+ユーザーが公開リポの Allow force pushes を一時 ON →即実行。`publish_public_mirror.ps1 -ForcePush` で
+新除外セット(docs/**・data/**・env/**・台帳3md・reference/2d-fire-sim)適用の履歴を forced update(`954ee76→260f2fa`)。
+- 検証2段: ①スクリプト内機械チェック(除外パス残存ゼロ・旧メール残存ゼロ=throw で push 前に止まる設計)
+  ②公開側実物確認(gh api: ルートに docs/data/env/台帳3md/h.txt 不在・最新コミット sha=260f2fa 一致・
+  作者/コミッタとも noreply=個人メール流出なし・`ref/` は既公開の institutions_jp.yaml 1本のみ)。
+- 以後の運用: 除外セット不変なら git-filter-repo の決定論性で fast-forward push に戻る=force 不要。
+  ユーザーに **Allow force pushes の OFF 復元**を依頼(non-fast-forward 拒否が「private 履歴書換の検知器」として復活する)。
