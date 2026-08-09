@@ -22,6 +22,7 @@
 | 観察ラン ON 構成(旧提案) | [observe-run-config-proposal.md](docs/plans/observe-run-config-proposal.md) 提示済み → **DP-U3 改訂版で置換予定**。OBS-U1〜U3 の判断は改訂版で |
 | DT スナップショット再提案 | [dt-snapshot-integration-proposal.md](docs/plans/dt-snapshot-integration-proposal.md) 提示済み → DT-S1 ほか判断待ち |
 | S-quick(S0/S1/S2/S5/S9) | 計 ≈1.8日。承認待ち(入力来歴・observe.yaml 是正・バス表・実イベント表・ODD 文書) |
+| **アクターモデル移行計画** | [actor-model-migration-plan.md](docs/plans/actor-model-migration-plan.md) **提示済み(2026-08-09・リサーチ6本統合)**。P0(ゼロタッチ因果分類器=本選前候補)→P1台帳→P2デバイス→P3スタッフ→P4境界→P5 SoA→P6ティア→P7渋滞+PoA。**実装未着手=承認待ち**(OPEN 6件: P0投入/本選中ブランチ/実装順/PoA/chance再分類/§4.5保留) |
 
 ## 3. ユーザー判断待ち(残りのみ)
 
