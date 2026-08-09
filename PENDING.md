@@ -22,7 +22,7 @@
 | 観察ラン ON 構成(旧提案) | [observe-run-config-proposal.md](docs/plans/observe-run-config-proposal.md) 提示済み → **DP-U3 改訂版で置換予定**。OBS-U1〜U3 の判断は改訂版で |
 | DT スナップショット再提案 | [dt-snapshot-integration-proposal.md](docs/plans/dt-snapshot-integration-proposal.md) 提示済み → DT-S1 ほか判断待ち |
 | S-quick(S0/S1/S2/S5/S9) | 計 ≈1.8日。承認待ち(入力来歴・observe.yaml 是正・バス表・実イベント表・ODD 文書) |
-| **アクターモデル移行** | [actor-model-migration-plan.md](docs/plans/actor-model-migration-plan.md)(2026-08-09 承認・並列実装開始)。**Wave 1 完了(第102)**: P0+P1 因果台帳・P2 デバイス土台(改札+SignalGate identity)・P5 前工程(−11%/step)・P3b 前提(work_node 被覆)。**Wave 2 候補**: P4 境界スキーマ(day_plan 圏外セグメント+パルス流入)・P3a 駅員車掌(ダイヤ結合)・P1×デバイス統合(transit_delay 再分類・車両/歩行者信号の統一)・P5 本体(SoA)設計。残 OPEN: chance_event 再分類/PoA 位置づけ/§4.5 保留 |
+| **アクターモデル移行** | [actor-model-migration-plan.md](docs/plans/actor-model-migration-plan.md)(2026-08-09 承認・並列実装中)。**Wave 1 完了(第102)**: P0+P1 因果台帳・P2 デバイス土台・P5 前工程(−11%/step)・P3b 前提。**Wave 2 完了(第103)**: P4 境界計画(despawn/respawn=計画駆動)・P3a 駅員車掌(遅延内生化・等価性証明)・因果×デバイス統合(device_id 第3列・運休の事業者化・信号統一)・P5 SoA 基盤(未配線・c 実測=目標の1/500)。**Wave 3 候補**: 鉄道流入のパルス化(ODPT 時刻表→列車到着小隊)・serve/org_output/traffic_flow の device_id 接続・price_change の店主行為化(P3b 本体)・SoA 配線第一歩(id vs ハンドルの乱数キー判断が前提)・境界較正データ取得(大都市交通センサス)。残 OPEN: chance_event 再分類/PoA 位置づけ/§4.5 保留 |
 
 ## 3. ユーザー判断待ち(残りのみ)
 
