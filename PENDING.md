@@ -23,7 +23,7 @@
 | DT スナップショット再提案 | [dt-snapshot-integration-proposal.md](docs/plans/dt-snapshot-integration-proposal.md) 提示済み → DT-S1 ほか判断待ち |
 | S-quick(S0/S1/S2/S5/S9) | 計 ≈1.8日。承認待ち(入力来歴・observe.yaml 是正・バス表・実イベント表・ODD 文書) |
 | **アクターモデル移行** | [actor-model-migration-plan.md](docs/plans/actor-model-migration-plan.md)(2026-08-09 承認)。**Wave 1〜3 完了(第102〜104)**: 因果台帳・デバイス・性能−11%・境界計画・駅員車掌・device_id(-1 行の 94.5% 回収)・SoA 基盤・パルス流入・境界較正データ。**工学系の残(本選後)**: SoA 配線(乱数キー判断が前提)・店主行為化(serve org_id 判断が前提)・GTFS 実発車時刻・PoA 観測。残 OPEN: chance_event 再分類/PoA/§4.5 |
-| **Wave 4=現実被覆計画** | [wave4-reality-coverage-plan.md](docs/plans/wave4-reality-coverage-plan.md) **提示済み(2026-08-10・リサーチ4本統合)**。四本柱11レーン: I 空間連続化(λ増幅・ゾーン実戦投入)/II 車内空間(T1+T2・familiar strangers)/III 末端職業と夜(夜間解禁・地図v8・街路の顔・都市運営・動物)/IV 較正。3日構成・全て既定OFF。**実装未着手=承認待ち**(OPEN 4件: 地図v8 investment/本選ONセット範囲/客引き表現/ホームレス表現=保留推奨) |
+| **Wave 4=現実被覆** | [wave4-reality-coverage-plan.md](docs/plans/wave4-reality-coverage-plan.md)(2026-08-10 ユーザー決定: v8本番前提・全ON予定・客引き実装・ホームレス実装(尊厳規約)・動物保留・★ストレッチゴール=25万完全連続物理(SoA+GPU・本選後)・3D表示=屋内/車内非描画)。**α(Day 1)完了(第105)**: 夜間解禁・車内空間・ゾーン実戦投入・街路の顔=新168テスト。**β(Day 2)候補**: 都市運営パック(ゴミ収集・夜間清掃・納品・警備・交番・救急)・地図v8(subcat保存=コンビニ/ネカフェ/病院等の回収)・λ増幅・3D可視性規約・IV較正。**運用必須**: 本選前に台帳+プールのリビルド(--night-shifts・車掌40・街路149人)+ONセット合成の縦煙 |
 
 ## 3. ユーザー判断待ち(残りのみ)
 
