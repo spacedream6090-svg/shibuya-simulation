@@ -22,7 +22,7 @@
 | 観察ラン ON 構成(旧提案) | [observe-run-config-proposal.md](docs/plans/observe-run-config-proposal.md) 提示済み → **DP-U3 改訂版で置換予定**。OBS-U1〜U3 の判断は改訂版で |
 | DT スナップショット再提案 | [dt-snapshot-integration-proposal.md](docs/plans/dt-snapshot-integration-proposal.md) 提示済み → DT-S1 ほか判断待ち |
 | S-quick(S0/S1/S2/S5/S9) | 計 ≈1.8日。承認待ち(入力来歴・observe.yaml 是正・バス表・実イベント表・ODD 文書) |
-| **アクターモデル移行計画** | [actor-model-migration-plan.md](docs/plans/actor-model-migration-plan.md) **提示済み(2026-08-09・リサーチ6本統合)**。P0(ゼロタッチ因果分類器=本選前候補)→P1台帳→P2デバイス→P3スタッフ→P4境界→P5 SoA→P6ティア→P7渋滞+PoA。**実装未着手=承認待ち**(OPEN 6件: P0投入/本選中ブランチ/実装順/PoA/chance再分類/§4.5保留) |
+| **アクターモデル移行** | [actor-model-migration-plan.md](docs/plans/actor-model-migration-plan.md)(2026-08-09 承認・並列実装開始)。**Wave 1 完了(第102)**: P0+P1 因果台帳・P2 デバイス土台(改札+SignalGate identity)・P5 前工程(−11%/step)・P3b 前提(work_node 被覆)。**Wave 2 候補**: P4 境界スキーマ(day_plan 圏外セグメント+パルス流入)・P3a 駅員車掌(ダイヤ結合)・P1×デバイス統合(transit_delay 再分類・車両/歩行者信号の統一)・P5 本体(SoA)設計。残 OPEN: chance_event 再分類/PoA 位置づけ/§4.5 保留 |
 
 ## 3. ユーザー判断待ち(残りのみ)
 
@@ -33,6 +33,9 @@
 | **policy_cache 保存判断** | 小粒A(2026-08-07)発見: LLM 決定のウォームキャッシュ(`cognition/policy_cache.py`)が checkpoint 未保存=resume で空になり**同じ骨格でも呼数と行動が変わりうる**。保存自体は容易だが「キャッシュは再構築可能」という設計思想との整合と L1 一致検証の設計が要る | 新規・本選前(推奨=8/15-16 診断で resume 前後の呼数差を実測してから) |
 | beliefs の `--bin-steps` 既定24 | 唯一残った Δt 直書き(Δt=1 では 4時間窓が24分になる。CLI 上書きで回避可)。W3-1 の承認範囲(I/O のみ)外だったため意図的未着手。直すなら**8/15 のハッシュ凍結前**(もう1回だけハッシュが動く) | 小・任意(推奨=Δt=1 で beliefs を使う予定が立った時点で) |
 | NEW-5 | F/N/P 初期値条件の本選配分 | パイロット後に提案 |
+| **bind_workplace を観察ランで ON にするか** | 第102実測: 現実的占有(1,482人)で非スタッフ serve 84%→66%。ON なら `rebind_bound: true` 同伴が正(org 帰属の意味論)。**副作用=spend/economy 統計が激変**(通勤者が増え serve 1259→301)=ON/OFF 跨ぎの比較は不可。nightlife/cafe は org 台帳に職場カテゴリが無く構造的に無人(build_orgs.py 側の課題) | 新規(第102)・OBS-U1/U3 とセットで判断 |
+| **pool 経路の `agent.org_id` 付与** | `build_pool_agent` が台帳 entry の org_id を読まない=pool ランでは serve.org_id が永久 null(**IF-E2 org 帰属の真のブロッカー**)。ただし org_id は career 解雇/転職・org_output・org 台帳にも波及=影響半径が広く独立判断が要る | 新規(第102)・P3b 本体前に要決定 |
+| **chance_event の因果再分類** | 指示書§5.1 では exogenous=自然のみ。windfall/loss=境界フロー(RoW)・encounter=出会いへの再分類が素直だが挙動変更を伴う。現行は分類表で暫定 boundary+注記 | アクター移行計画 OPEN#5 |
 | DT-U2 | UE5 デモ動画 | 保留のまま(本選中判断) |
 
 ### 決定済み(履歴の要点のみ・詳細は git log と IMPLEMENTED 年表)

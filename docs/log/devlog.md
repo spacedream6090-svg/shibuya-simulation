@@ -210,3 +210,33 @@ AskUserQuestionへの回答=①凍結3本まとめて修正(推奨採用)②RW�
   →P3スタッフ(駅員・車掌→店員→運転手→誘導員=指示書§9順)→P4境界→P5 SoA(million-scale.md W2-A/G吸収)→P6ティア
   →P7渋滞ループ+PoA。総規模6-10週。§10禁止事項の機械的担保表・R1整合・OPEN判断6件(P0投入可否/本選中ブランチ/
   実装順/PoA位置づけ/chance再分類/§4.5保留)。**実装未着手=ユーザー承認待ち**。
+
+---
+### Entry 101 — 2026-08-09 — 第102=アクターモデル Wave 1: 4レーン並行(P0+P1因果台帳/P2デバイス/P5前工程/P3b前提)
+ユーザー「並列で実装を始めて」→凍結14本の実リスト確認で **schema.py/logger.py は凍結対象外**と判明=P1も本選前に
+main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイト一致。
+- **①因果台帳(P0+P1統合)**: observer/causality.py=197 kind全分類(device80/agent75/physics20/boundary18/schedule2/
+  natural2)+患者索引上書き+4分類射影。scripts/analyze_causality.py=ゼロタッチ事後分類器(l1_stream経由・既存ランに適用可)。
+  Event+2列/logger set_causeスコープ(provlink構造=OFF分岐到達不能)。★充填優先を精緻化=行為スコープは「表もagentと
+  言う場合の確認」に限定(素朴なスコープ優先だと行為内の制度イベントまでagent帰属=帰属率が水増しされるのを実測で発見)。
+  相互検証の不一致0件。仕様の誤り訂正=deliverのagent_idは配達員(注文者でない)・gossip_spreadのsourcesはID列でなく人数。
+- **②デバイス層(P2土台)**: devices.py=DEVS契約(δ_ext/δ_int外の遷移を__setattr__監査で検出)+FaregateArray
+  (60人/分/通路・決定論FIFO・乱数ゼロ=AST固定)+SignalGateにdevice_id(タイミング計算不変=既存16テスト無改変緑)。
+  envfeedback規則2との優先順位を両方向テスト(装置ONで規則2は構造的到達不能)。★車両信号(traffic.py hash赤比率0.35-0.55
+  /90s)と歩行者SignalGate(実測140s/赤0.664)の3点矛盾を定量化=後続レーンで統一(device_id基盤は敷設済み)。
+- **③性能回収(P5前工程)**: 実測**−11%/step**(c 0.000311→0.000276)。networkxディスパッチ回避が実は壊れていたのを発見
+  (2層ラップに__wrapped__1段)・真のホットスポットはA*ヒューリスティックのnode_xy 75万回→直接辞書読み(float完全一致証明)・
+  _lynch_destination事前計算・confホイスト。★指示の誤読2件を訂正(sentimentメモ化は実装済み/5.58sはcumtime誤読)。
+  純リファクタ=conf鍵ゼロ・乱数ゼロ・golden一致。
+- **④店員被覆(P3b前提)**: ★台帳記録の真因(_WORK_CAT)は半分だけ=**本当の真因は企業台帳ノードがPOI非一致**(業種別
+  24-76%のみ自カテゴリPOI上=バインド済みスタッフの76%が「客が金を使えない場所」に立っていた)。POI保持ノードのみ受理+
+  day_plan既存対応表再利用で修正(乱数ゼロ・既存confキーのみ)。正直な実測=少人数では密度問題(184人で94→93%)・現実的
+  占有1,482人で**非スタッフ率84%→66%**。副作用の開示=バインドONでspend統計激変(serve 1259→301)・nightlife/cafeは
+  台帳に職場カテゴリ不在で構造的無人・**pool経路はorg_id永久null(IF-E2帰属の真のブロッカー=判断待ち登録)**。
+- **Fable直修2**: timeconv棚卸しにmax_hold_steps分類1行(レーン②追随漏れ)+★**viewerテスト2本の潜在欠陥**=
+  「HEAD版make_viewerをtempコピーして実行」ハーネス(test_viewer_indoor+test_org_uiの同名テスト2箇所)がW4-C
+  (HEADがrun_dt.pyを__file__相対読み)を7b7072dコミットした瞬間から壊れていた(wave4ゲートはコミット前HEADで
+  走ったため未発火・コミット後初のフルゲートで発火)→リポ同形のviz/+scripts/レイアウトに同型修正
+  (run_dt.pyもHEAD版=主張の純度維持)。
+- 検収=シーム実物確認(因果スコープ/デバイス3シーム/優先順位条件)+スキャンCLEAN(19ファイル)+決定版フルゲート。
+  新規92テスト(39+30+16+7)・4011→**4103**。
