@@ -411,3 +411,29 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
   chance.enabled:false=運用退役。コード削除はgolden再生成を伴うため本選後。
 - 検収: フルゲート回し直し(静止木)=4980緑・シークレット/キリルスキャンCLEAN(新規11本全文+
   変更19本diff行)・凍結14本/chance.py/h.txt不触確認。台帳3md更新。
+
+### Entry 109 — 2026-08-12 — 第108=Day 3運用(リビルド+ONセット候補+縦煙)+計画2本(犯罪×LLM検証・所有権レイヤー)
+
+- ユーザー3件: ①Day3残の実装 ②「検閲済みモデルは犯罪判断をしないのでは」→リサーチ+検証計画
+  ③所有権(実物+権利・個人+組織・タグ案どう?)→リサーチ+設計案。②③は計画まで(実装しない)。
+- Day3(実行役Opus): 台帳v8リビルド(9,872社=センサス一致・夜勤3,370社34.1%・v7比で84%が別POIへ=配置だけ動く)・
+  プール100万(11.9s・L2夜勤11.21%・org_id 100%・L5+227=street_life/車掌/city_ops・councilorsバイト同一)・
+  build_persona_poolに--orgs追加(最小修正・無指定=従来同一)・ONセット候補 conf/finals_observe.yaml
+  (231機能ON・chance.enabled:false=退役・weather=generated→★wbgt 36.4実働=H1熱中症チャネル解消・
+  入れない14群を理由付き列挙=bind_workplace/認知8/14留保/SoA/ablate等)・縦煙mock 48step×2窓(例外0・
+  新機能L1発火=devices/zones/traces/rumors/reject/boundary/night/street/medical等・期待値ゼロ族は結線生存を確認)。
+- ★層別クォータ照合=PENDING解消: 5層すべて計算値と差ゼロ(cap 250,000ちょうど・週末全員在場・OFF=第91再現)。
+- ★縦煙の発見(判断待ちへ): ①pool ランで organizations.attach 0件=org_id付与0・n_orgs=3
+  +客引き構造的沈黙(work_node手続き生成=夜の持ち場に居ない)→bind_workplace/org_id判断が本選ブロッカーへ昇格
+  ②resume全ON構成でL1不一致 +106行/+0.89%(joint_activity +97=起動時発火体のstep0二重発火・
+  relations+friend_graph+joint+party+pool同時ONが初=第98/101監査の網外)→修正推奨(フリーズのバグ修正枠)
+  ③消防士0(FIRE_OCCS=srcハードコード)・設備対応者は新語彙(設備巡回/常駐警備)をconf提案
+  ④救急隊員6人=第107の全件unstaffedはEMSについて解消。
+- 犯罪×LLM(リサーチ→計画書 crime-llm-verification-plan.md): 本シムの犯罪はLLM不通過=前提自体が不成立・
+  構造派設計は犯罪学ABM主流と一致・向社会バイアス実証あり(ただし「絶対しない」は誤り=ペルソナ枠で拒否率半減等)・
+  **検閲なしモデルは本選前非推奨**(不要・較正汚染・再現性・倫理)。検証3本=V0 mockハーネス/V1選択率・拒否率・
+  フレーミング(決定論発火をground-truthに乖離=バイアス実測)/V2被害者・目撃者反応の自然さ→8/15-16 GPU同居実測。
+- 所有権(リサーチ→計画書 ownership-layer-plan.md): タグ案の核心=正・推奨=タグ付きレコードを登記簿に置く
+  ハイブリッド(lost_propertyが既にこの形=一般化)+権利行RRR(own/lease/permit/lien/custody・own先行)+
+  資産保存則(RoWからのみ生まれK5でのみ消える=IF-Eの双対)+階層LoD(不動産全個体数万行/家財世帯集計+
+  遅延実体化/消耗品フロー)。スライスO1登記簿→O3相続(死=第107と接続)→O2家財→O4権利→O5流通。本選後が本線。

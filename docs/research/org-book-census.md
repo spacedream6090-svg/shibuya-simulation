@@ -1,6 +1,6 @@
 # 組織台帳 ~1.1万 生成レポート(P6・分布駆動)
 
-- 生成器: `scripts/build_orgs.py --dist --census` / seed=42 / map=`data/shibuya_osm_wide_v7.json`
+- 生成器: `scripts/build_orgs.py --dist --census` / seed=42 / map=`data/shibuya_osm_wide_v8.json`
 - 会社 9872 社 + 学校 10 校
 - 従業者総和: **222,849** (目標~222,849・平均 22.57 人/社)
 - POI(建物)割付率: **100.0%**

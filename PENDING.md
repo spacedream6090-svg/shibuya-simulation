@@ -2,7 +2,7 @@
 
 > 本ファイルは **まだ終わっていないもの**だけを持つ。完了済みは → **[IMPLEMENTED.md](IMPLEMENTED.md)**(決定の履歴も同所の年表と git log が正典)。
 > 索引と最終更新は → **[STATUS.md](STATUS.md)**。
-> 最終更新: **2026-08-11**(第107=身体と事件レイヤー H1〜H5+H2 全6レーン完了・chance_event 再分類懸案=決着(運用退役)・§4 に「身体と事件の残」を追加)。
+> 最終更新: **2026-08-12**(第108=Day 3 リビルド+ONセット候補+縦煙・クォータ照合=差ゼロ解消・★縦煙発見=org_id/bind_workplace が本選ブロッカーへ昇格+resume 全ON構成の+106行。計画2本提示=犯罪×LLM検証・所有権レイヤー)。
 
 ---
 
@@ -23,7 +23,9 @@
 | DT スナップショット再提案 | [dt-snapshot-integration-proposal.md](docs/plans/dt-snapshot-integration-proposal.md) 提示済み → DT-S1 ほか判断待ち |
 | S-quick(S0/S1/S2/S5/S9) | 計 ≈1.8日。承認待ち(入力来歴・observe.yaml 是正・バス表・実イベント表・ODD 文書) |
 | **アクターモデル移行** | [actor-model-migration-plan.md](docs/plans/actor-model-migration-plan.md)(2026-08-09 承認)。**Wave 1〜3 完了(第102〜104)**: 因果台帳・デバイス・性能−11%・境界計画・駅員車掌・device_id(-1 行の 94.5% 回収)・SoA 基盤・パルス流入・境界較正データ。**工学系の残(本選後)**: SoA 配線(乱数キー判断が前提)・店主行為化(serve org_id 判断が前提)・GTFS 実発車時刻・PoA 観測。残 OPEN: chance_event 再分類/PoA/§4.5 |
-| **Wave 4=現実被覆** | [wave4-reality-coverage-plan.md](docs/plans/wave4-reality-coverage-plan.md)。**α+β完了(第105+第106)**: 夜間解禁・車内空間・ゾーン実戦投入・街路の顔・都市運営(救急=エージェント駆動)・地図v8(POI 2,337・コンビニ93)・ビューアλ+屋内車内非描画・センサス較正(±0.1pp)。**次=Day 3**: ①リビルド一式(--census --night-shifts 台帳→プール→v8 conf 切替)②ONセット合成の縦煙(8/12 と合流)。判断待ち: familiar strangers の日次ジッター・L2 zone_occupancy 列の意味論 |
+| **Wave 4=現実被覆** | [wave4-reality-coverage-plan.md](docs/plans/wave4-reality-coverage-plan.md)。**α+β+Day 3完了(第105〜108)**: Day 3=台帳v8リビルド(9,872社・夜勤34.1%)+プール100万(L2夜勤11.21%・org_id 100%)+**ONセット候補 `conf/finals_observe.yaml`**(231機能ON・chance退役・weather=generated=WBGT実働)+縦煙(mock 48step×2窓・例外0・新機能L1発火確認)+**層別クォータ照合=差ゼロで完了**。残判断=縦煙発見4件(§3) |
+| **犯罪×LLM検証** | [crime-llm-verification-plan.md](docs/plans/crime-llm-verification-plan.md) **提示済み(2026-08-12・リサーチ=crime-llm-cognition.md)**。結論=本シムの犯罪はLLM不通過(構造派=犯罪学ABM主流と一致)・向社会バイアスは実証あり・**検閲なしモデルは本選前非推奨**。V0(mockハーネス)=いつでも可・V1選択率/V2被害者反応=8/15-16診断日にGPU同居実測。**実装未着手=承認待ち** |
+| **所有権レイヤー** | [ownership-layer-plan.md](docs/plans/ownership-layer-plan.md) **提示済み(2026-08-12・リサーチ=ownership-asset-models.md)**。タグ案の核心は正・推奨=**タグ付きレコードを登記簿に置くハイブリッド**(lost_propertyの一般化)+権利行RRR(own先行)+**資産保存則**(貨幣保存の双対)+階層LoD(不動産全個体/家財世帯集計/消耗品フロー)。スライスO1〜O5・**実装=本選後が本線・承認待ち**(OPEN3: 住戸初期所有者=RoW推奨/相続=O1同時推奨/スライス順) |
 | **身体と事件レイヤー** | [body-incident-layer-plan.md](docs/plans/body-incident-layer-plan.md)。**2026-08-11 ユーザー4決定(計画書§6に原文)→ H1〜H5+H2 全6レーン実装完了(第107)**=全て既定OFF。残: ①**chance の運用退役**=本選 ON セット conf で `chance.enabled: false`(機能代替=H3拾得+H4盗難が完備。コード削除は golden 再生成を伴うため本選後)②残課題は §4「身体と事件の残」 |
 
 ## 3. ユーザー判断待ち(残りのみ)
@@ -35,8 +37,8 @@
 | **policy_cache 保存判断** | 小粒A(2026-08-07)発見: LLM 決定のウォームキャッシュ(`cognition/policy_cache.py`)が checkpoint 未保存=resume で空になり**同じ骨格でも呼数と行動が変わりうる**。保存自体は容易だが「キャッシュは再構築可能」という設計思想との整合と L1 一致検証の設計が要る | 新規・本選前(推奨=8/15-16 診断で resume 前後の呼数差を実測してから) |
 | beliefs の `--bin-steps` 既定24 | 唯一残った Δt 直書き(Δt=1 では 4時間窓が24分になる。CLI 上書きで回避可)。W3-1 の承認範囲(I/O のみ)外だったため意図的未着手。直すなら**8/15 のハッシュ凍結前**(もう1回だけハッシュが動く) | 小・任意(推奨=Δt=1 で beliefs を使う予定が立った時点で) |
 | NEW-5 | F/N/P 初期値条件の本選配分 | パイロット後に提案 |
-| **bind_workplace を観察ランで ON にするか** | 第102実測: 現実的占有(1,482人)で非スタッフ serve 84%→66%。ON なら `rebind_bound: true` 同伴が正(org 帰属の意味論)。**副作用=spend/economy 統計が激変**(通勤者が増え serve 1259→301)=ON/OFF 跨ぎの比較は不可。nightlife/cafe は org 台帳に職場カテゴリが無く構造的に無人(build_orgs.py 側の課題) | 新規(第102)・OBS-U1/U3 とセットで判断 |
-| **pool 経路の `agent.org_id` 付与** | `build_pool_agent` が台帳 entry の org_id を読まない=pool ランでは serve.org_id が永久 null(**IF-E2 org 帰属の真のブロッカー**)。ただし org_id は career 解雇/転職・org_output・org 台帳にも波及=影響半径が広く独立判断が要る | 新規(第102)・P3b 本体前に要決定 |
+| **★bind_workplace+pool org_id(縦煙で昇格=本選ランのブロッカー)** | 第108縦煙の実測: pool ランでは `organizations.attach` が**0件**(personas_file 前提)→ 870体中 org_id 付与 0・org_accounting n_orgs=3。さらに**客引き(ユーザー明示要件)が構造的に沈黙**(`_is_tout` は nightlife POI 勤務者を選ぶが pool の work_node は手続き生成=客引き帯に持ち場に居ない)。第102からの判断待ち2件(bind_workplace=serve 84%→66%・spend統計激変 / pool org_id=career・org_output波及)が「あれば良い」から「**本選ランで org 系観測と客引きが実効化するかを決める前提**」へ昇格。8/15 前に要決定 | **昇格(第108)** |
+| **resume の +106行(全ON構成・第108縦煙発見)** | `finals_observe` 相当の全ONで straight(48) と resume(24+24) の L1 が不一致(11,945 vs 12,051行=+0.89%)。主因= `joint_activity +97`・`friend_graph_built +1` が**起動時1回の発火体の再実行で step0 イベントを同一 payload で二重発火**(+viral_cascade 3/misinfo 2/row_flow 1/signal_summary 1/state_update 1)。relations+friend_graph+joint+party+pool の同時ONが初構成のため第98/101の resume 全数監査の網外。観察ランは厳密再現性を要求しない(DT定義)が、10日ランは resume 前提=**修正推奨(フリーズのバグ修正枠・chance 二重発火=第98 と同族の直し方)** | 新規(第108)・修正承認待ち |
 | ~~chance_event の因果再分類~~ | **決着(2026-08-11・第107)**: ユーザー原理「運は世界のアルゴリズムでなく人の行動から」→ windfall=H3拾得・loss=H3遺失+H4盗難被害・encounter=既存共在で機能代替完備。運用退役=本選 ON セットで `chance.enabled: false`・**コード削除は本選後**(golden 保護) | 決着 |
 | DT-U2 | UE5 デモ動画 | 保留のまま(本選中判断) |
 
@@ -57,7 +59,8 @@
 - **P4 残課題**: ①D=J/w 水準不足の未解明(残候補=接触項不在/τ/v0分布/定常部)②高密度 ρ≥2 の壁貫通脱出(接触項 or v_max クリップ再設計・FD 高密度点は汚染込みでしか測れない)③6変数同時最適化未実施 ④ρ_meas 1.5 頭打ち=判定B合格は弱い証拠
 - **物理見積の残り**: ①理論モードの既定2つ(`traversals-per-agent-day 2.0`/`zone-share 0.5`)に根拠なし=OD 表で埋める(ただし第101で較正ラン `runs/zone_smoke_p99` が誕生し**実測外挿モードで迂回可能**に)②混雑で dwell が伸びる効果は未計上=見積は下限側 ※max_sub_steps の Δt 追随は第101で解消(Δt=10=厳密12000)
 - **3D 残り**: tracks.json の O(n_steps×n_agents) は出力そのもの(真の解=既存 `--tracks-binary --no-tracks-json`)・10日ラン規模の実 RSS 絶対値は未測(構造上は O(row group+1 step) 化済み)
-- **層別クォータの照合**(小粒G): 提案書 §1.2 の割当は計算値=8/12 の縦煙で `present_for_day` を1回実走して照合(±1人ずれは最大剰余法が正・提案書 §6-5 訂正済み)
+- ~~層別クォータの照合~~ **解消(第108)**: 本番プール100万に present_for_day 実走=5層すべて計算値と**差ゼロ**(平日 day0・cap 250,000 ちょうど・週末は資格者<cap で全員在場・OFF では第91の来街者ゼロを再現)
+- **第108縦煙の小粒**: ①`build_persona_pool` が出力ディレクトリを掃除しない(L2 縮小で stale shard 残留=meta.shards 経由の実行は無害・glob 消費者には罠。今回は手動削除)②`incidents_env.FIRE_OCCS=("消防士",)`・`GUARD_OCCS` が src ハードコード=消防士は名簿に0(pool ランで恒久 unstaffed)→ conf 化 or 名簿追加の判断 ③設備対応者: 「設備保守員」「警備員」とも名簿0・新台帳は「設備巡回3,944/常駐警備3,875」(L2夜勤ロール)を生やした→ ONセット conf に `world.facilities.responder_occupations` 4語彙の行を提案済み(night_cleaning と同型・承認は ONセット承認に同梱)④`work.serve_by_cat` に service が無い(conf 1行で 1,972社が接客対象化=挙動変更なので未投入・census doc §7.1 の seam)⑤新5モジュール+street_life/city_ops/transit_* の summary provenance 未配線=縦煙の判定コストを上げる(L1 kind 経由でしか見えない)
 - **解析25万の残り(最終)**(第101で live_viewer 有界化・研究解析 19/19 移行・サイドカー finalize 横展開まで完了): ①`analyze_accounting` の events/flows は O(金額イベント数) 残存(`flows_for` の `id(payload)` 呼び出し規約の変更が要る=検査式に触れる別バッチ)②自前 loader の残り5本(`analyze_layers`/`analyze_mas_failures`/`analyze_org_form`/`analyze_persona_consistency`/`analyze_plan_execution`)+`analyze_firing.load_g`(cognition_g 全読み)=同じ型で機械的に続行可 ③`row_group_rows` 既定 2^20 は本番前に実 L1 の行バイトで再調整(全ファイル共有・個別チューニングは新キー要=意図的見送り)④W4-E の申告2点=ON は part 間スキーマずれを permissive 統一(OFF は例外・較正固定が前提)・indoor_tracks ON はディスク +19GB を容量計画へ(OFF 経路の concat ピークは**約124GB=L1超え**なので大きい3本の ON 実効性は L1 と同格)
 - **Δt の残り(最終)**(第101で make_viewer(JS21式含む)・manifest dt_min・σ_c 来歴照合まで完了=**C級は全て完了**): ①L1 からの Δt 推定=第3の源(pyarrow 依存で見送り)②旧ラン 173/178 本が dt_min 無し=assumed 経路で stderr 1行(仕様=黙って仮定しない)③src 観測定数(measure.py `ECHO_WINDOW_STEPS=144` 等=凍結・8/15 以降の判断)
 - **W4-F の設計上の残**: `street` ブロックは habit 委譲のため帰属不能が仕様(解くには「street の実体」の別判断)・`work_node` はスナップショット(B4 OFF+orgs ON のランは初期値のまま=受理集合を本業∪バイトの和にして緩和済み)※観測強化3点自体は第101で解消
