@@ -23,7 +23,7 @@
 | DT スナップショット再提案 | [dt-snapshot-integration-proposal.md](docs/plans/dt-snapshot-integration-proposal.md) 提示済み → DT-S1 ほか判断待ち |
 | S-quick(S0/S1/S2/S5/S9) | 計 ≈1.8日。承認待ち(入力来歴・observe.yaml 是正・バス表・実イベント表・ODD 文書) |
 | **アクターモデル移行** | [actor-model-migration-plan.md](docs/plans/actor-model-migration-plan.md)(2026-08-09 承認)。**Wave 1〜3 完了(第102〜104)**: 因果台帳・デバイス・性能−11%・境界計画・駅員車掌・device_id(-1 行の 94.5% 回収)・SoA 基盤・パルス流入・境界較正データ。**工学系の残(本選後)**: SoA 配線(乱数キー判断が前提)・店主行為化(serve org_id 判断が前提)・GTFS 実発車時刻・PoA 観測。残 OPEN: chance_event 再分類/PoA/§4.5 |
-| **Wave 4=現実被覆** | [wave4-reality-coverage-plan.md](docs/plans/wave4-reality-coverage-plan.md)(2026-08-10 ユーザー決定: v8本番前提・全ON予定・客引き実装・ホームレス実装(尊厳規約)・動物保留・★ストレッチゴール=25万完全連続物理(SoA+GPU・本選後)・3D表示=屋内/車内非描画)。**α(Day 1)完了(第105)**: 夜間解禁・車内空間・ゾーン実戦投入・街路の顔=新168テスト。**β(Day 2)候補**: 都市運営パック(ゴミ収集・夜間清掃・納品・警備・交番・救急)・地図v8(subcat保存=コンビニ/ネカフェ/病院等の回収)・λ増幅・3D可視性規約・IV較正。**運用必須**: 本選前に台帳+プールのリビルド(--night-shifts・車掌40・街路149人)+ONセット合成の縦煙 |
+| **Wave 4=現実被覆** | [wave4-reality-coverage-plan.md](docs/plans/wave4-reality-coverage-plan.md)。**α+β完了(第105+第106)**: 夜間解禁・車内空間・ゾーン実戦投入・街路の顔・都市運営(救急=エージェント駆動)・地図v8(POI 2,337・コンビニ93)・ビューアλ+屋内車内非描画・センサス較正(±0.1pp)。**次=Day 3**: ①**事件・病気の設計**(ユーザー指示=リサーチ→計画。既存 sick は boolean のみ→重症度階層+搬送先(v8 hospital×7)が要る=city_ops が要件を実測済み)②リビルド一式(--census --night-shifts 台帳→プール→v8 conf 切替)③ONセット合成の縦煙(8/12 と合流)。判断待ち: familiar strangers の日次ジッター(較正値なし=発明拒否で保留)・L2 zone_occupancy 列の意味論(所有中 vs ポリゴン内) |
 
 ## 3. ユーザー判断待ち(残りのみ)
 

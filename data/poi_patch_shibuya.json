@@ -16,6 +16,7 @@
     {"name": "Spotify O-EAST",       "cat": "nightlife", "x": 622,  "y": -442, "note": "ライブハウス大箱(v3 に hall カテゴリが無いため nightlife)"},
     {"name": "SOUND MUSEUM VISION",  "cat": "nightlife", "x": -400, "y": -342, "note": "道玄坂のクラブ"},
     {"name": "渋谷消防署",           "cat": "service",   "x": 270,  "y": 122,  "note": "防災シナリオ(H4)の拠点"},
-    {"name": "実践女子学園",         "cat": "education", "x": 758,  "y": -453, "note": "東2丁目(v3 の学校カテゴリは education)"}
+    {"name": "実践女子学園",         "cat": "education", "x": 758,  "y": -453, "note": "東2丁目(v3 の学校カテゴリは education)"},
+    {"name": "ネットカフェ",         "cat": "nightlife", "subcat": "net_cafe", "x": -216, "y": 198,  "note": "センター街の複合カフェ(第101 Wave4 III-2)。OSM に amenity=internet_cafe の実要素が1件あるが name タグを持たない(name:en のみ)ため POI にならず、地図 v8 の net_cafe が 0 件になっていた。座標は当該要素の実座標。ETHICS: 店名(ブランド)は書かず一般名で採録。終電後の受け皿(night_economy の refuge/24h)"}
   ]
 }
