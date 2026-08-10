@@ -2,7 +2,7 @@
 
 > 本ファイルは **まだ終わっていないもの**だけを持つ。完了済みは → **[IMPLEMENTED.md](IMPLEMENTED.md)**(決定の履歴も同所の年表と git log が正典)。
 > 索引と最終更新は → **[STATUS.md](STATUS.md)**。
-> 最終更新: **2026-08-08**(第101=wave4 6レーン完結: 持ち越し小粒の「今できる分」を掃討・§4 は各見出しに ※解消済み注記。**PUB-U1=公開ミラー同期完了**=実装中レーンから除去)。
+> 最終更新: **2026-08-11**(第107=身体と事件レイヤー H1〜H5+H2 全6レーン完了・chance_event 再分類懸案=決着(運用退役)・§4 に「身体と事件の残」を追加)。
 
 ---
 
@@ -24,7 +24,7 @@
 | S-quick(S0/S1/S2/S5/S9) | 計 ≈1.8日。承認待ち(入力来歴・observe.yaml 是正・バス表・実イベント表・ODD 文書) |
 | **アクターモデル移行** | [actor-model-migration-plan.md](docs/plans/actor-model-migration-plan.md)(2026-08-09 承認)。**Wave 1〜3 完了(第102〜104)**: 因果台帳・デバイス・性能−11%・境界計画・駅員車掌・device_id(-1 行の 94.5% 回収)・SoA 基盤・パルス流入・境界較正データ。**工学系の残(本選後)**: SoA 配線(乱数キー判断が前提)・店主行為化(serve org_id 判断が前提)・GTFS 実発車時刻・PoA 観測。残 OPEN: chance_event 再分類/PoA/§4.5 |
 | **Wave 4=現実被覆** | [wave4-reality-coverage-plan.md](docs/plans/wave4-reality-coverage-plan.md)。**α+β完了(第105+第106)**: 夜間解禁・車内空間・ゾーン実戦投入・街路の顔・都市運営(救急=エージェント駆動)・地図v8(POI 2,337・コンビニ93)・ビューアλ+屋内車内非描画・センサス較正(±0.1pp)。**次=Day 3**: ①リビルド一式(--census --night-shifts 台帳→プール→v8 conf 切替)②ONセット合成の縦煙(8/12 と合流)。判断待ち: familiar strangers の日次ジッター・L2 zone_occupancy 列の意味論 |
-| **身体と事件レイヤー** | [body-incident-layer-plan.md](docs/plans/body-incident-layer-plan.md) **提示済み(2026-08-11・リサーチ3本統合)**。H1 重症度5階層(S0〜S4・sick bool 世代交代・熱中症=WBGT閾値・急アル・frailty=年齢×通院者率)→H2 搬送と医療(v8 hospital×7・入院=lodging テンプレ・金の三本足)→H3 遺失物ループ(完全内生の本命)→H4 対人の収束化(RAT・酒×密度×閉店)→H5 残族(火災・設備DEVS・群集=状態が事件)。**chance_event 溶解=懸案 OPEN#5 の原理的回答**(windfall→拾得・loss→遺失/盗難被害・★現行 loss は theft の26倍で未較正と判明)。**実装未着手=承認待ち**(OPEN4: ★死の表現=推奨既定OFF/chance 廃止承認/フェーズ配置=推奨 H1+H3 先行/保険=命名 RoW チャネル) |
+| **身体と事件レイヤー** | [body-incident-layer-plan.md](docs/plans/body-incident-layer-plan.md)。**2026-08-11 ユーザー4決定(計画書§6に原文)→ H1〜H5+H2 全6レーン実装完了(第107)**=全て既定OFF。残: ①**chance の運用退役**=本選 ON セット conf で `chance.enabled: false`(機能代替=H3拾得+H4盗難が完備。コード削除は golden 再生成を伴うため本選後)②残課題は §4「身体と事件の残」 |
 
 ## 3. ユーザー判断待ち(残りのみ)
 
@@ -37,7 +37,7 @@
 | NEW-5 | F/N/P 初期値条件の本選配分 | パイロット後に提案 |
 | **bind_workplace を観察ランで ON にするか** | 第102実測: 現実的占有(1,482人)で非スタッフ serve 84%→66%。ON なら `rebind_bound: true` 同伴が正(org 帰属の意味論)。**副作用=spend/economy 統計が激変**(通勤者が増え serve 1259→301)=ON/OFF 跨ぎの比較は不可。nightlife/cafe は org 台帳に職場カテゴリが無く構造的に無人(build_orgs.py 側の課題) | 新規(第102)・OBS-U1/U3 とセットで判断 |
 | **pool 経路の `agent.org_id` 付与** | `build_pool_agent` が台帳 entry の org_id を読まない=pool ランでは serve.org_id が永久 null(**IF-E2 org 帰属の真のブロッカー**)。ただし org_id は career 解雇/転職・org_output・org 台帳にも波及=影響半径が広く独立判断が要る | 新規(第102)・P3b 本体前に要決定 |
-| **chance_event の因果再分類** | 指示書§5.1 では exogenous=自然のみ。windfall/loss=境界フロー(RoW)・encounter=出会いへの再分類が素直だが挙動変更を伴う。現行は分類表で暫定 boundary+注記 | アクター移行計画 OPEN#5 |
+| ~~chance_event の因果再分類~~ | **決着(2026-08-11・第107)**: ユーザー原理「運は世界のアルゴリズムでなく人の行動から」→ windfall=H3拾得・loss=H3遺失+H4盗難被害・encounter=既存共在で機能代替完備。運用退役=本選 ON セットで `chance.enabled: false`・**コード削除は本選後**(golden 保護) | 決着 |
 | DT-U2 | UE5 デモ動画 | 保留のまま(本選中判断) |
 
 ### 決定済み(履歴の要点のみ・詳細は git log と IMPLEMENTED 年表)
@@ -61,6 +61,7 @@
 - **解析25万の残り(最終)**(第101で live_viewer 有界化・研究解析 19/19 移行・サイドカー finalize 横展開まで完了): ①`analyze_accounting` の events/flows は O(金額イベント数) 残存(`flows_for` の `id(payload)` 呼び出し規約の変更が要る=検査式に触れる別バッチ)②自前 loader の残り5本(`analyze_layers`/`analyze_mas_failures`/`analyze_org_form`/`analyze_persona_consistency`/`analyze_plan_execution`)+`analyze_firing.load_g`(cognition_g 全読み)=同じ型で機械的に続行可 ③`row_group_rows` 既定 2^20 は本番前に実 L1 の行バイトで再調整(全ファイル共有・個別チューニングは新キー要=意図的見送り)④W4-E の申告2点=ON は part 間スキーマずれを permissive 統一(OFF は例外・較正固定が前提)・indoor_tracks ON はディスク +19GB を容量計画へ(OFF 経路の concat ピークは**約124GB=L1超え**なので大きい3本の ON 実効性は L1 と同格)
 - **Δt の残り(最終)**(第101で make_viewer(JS21式含む)・manifest dt_min・σ_c 来歴照合まで完了=**C級は全て完了**): ①L1 からの Δt 推定=第3の源(pyarrow 依存で見送り)②旧ラン 173/178 本が dt_min 無し=assumed 経路で stderr 1行(仕様=黙って仮定しない)③src 観測定数(measure.py `ECHO_WINDOW_STEPS=144` 等=凍結・8/15 以降の判断)
 - **W4-F の設計上の残**: `street` ブロックは habit 委譲のため帰属不能が仕様(解くには「street の実体」の別判断)・`work_node` はスナップショット(B4 OFF+orgs ON のランは初期値のまま=受理集合を本業∪バイトの和にして緩和済み)※観測強化3点自体は第101で解消
+- **身体と事件の残(第107・全て既定OFFのため本選前は無風)**: 【H1】①熱中症チャネルは `weather.mode: generated|table` が前提(既定 synthetic は wbgt 欠測=不活性・conf 明記済み)②通報遅延分布(46/29/25%)は Δt=10 で同一 tick に丸まる=payload 観測のみ③死亡は発症時決定=治療→転帰の条件付けは未実装(H1 の設計判断・再開封は別バッチ)④city_ops OFF では S3/S4 に物理的「倒れる」表現なし(sick 在宅と同型・明記済み)【H2】①プール回転 dehydrate に `med_*`(在院の印)非搭載②医療機関 org 特定率=小ラン 0%・本番台帳で再測要③高額療養費・年齢別負担割合(未就学2割/75+1割)・病床数制約は未実装④H5 の負傷者は搬送しない(搬送=collapse 経路限定)⑤S2 自力受診は移動を作らない(会計帰属のみ)【H3】①analyze_accounting の部門フロー分類に lost_return/keep/expire 未追加=監視装置が設計どおり列挙する状態(家計内移転+主体なしバケツの会計設計判断が要る)②落下ハザードは1人1step 1draw=25万 ON 時は stride 化検討③resolve 順序による1step遅れ(IF-C 第98 と同型)④落し物は知覚に出ない(拾得=決定論判定)【H4】①ペア確率の合成は和近似(較正値では誤差無視可・大きな上書きで飽和=weight_sum で観測)②プール退場で酩酊マーカー喪失(rumors と同じ制約)③警察官を現場へ動かさない(response_min=モデル値)④detain_steps 既定0=勾留 seam 不踏(発火権が動くため)【H5】①traffic.hazard_per_exposure の本番規模再較正(背景交通は step 末在庫を持たない設計=係数が標本規模を吸収)②延焼なし(重度分布較正と二重になるため)③群集 incident は physics.zones ON のランのみ④「設備保守員」は L5 名簿に不在=名簿再生成まで警備員が担う【共通】新5モジュールの provenance() は summary 未配線(city_ops と同status)
 - **D16 屋内 ON**・**D17 実験**・**4系統レーン2**(B-L1 以降)
 - **竹-4 残**: ④span_m グラフ長 vs 物理直線の実効速度差 ⑥サブステップ軌跡の記録・`planning.py` 契約化は残置第一候補(※③ `_phys_body` 搬送と⑦事前見積は 2026-08-07 解消・ゾーン所有は「その旅に固有の状態」として意図的非搬送=根拠コード内明記)
 

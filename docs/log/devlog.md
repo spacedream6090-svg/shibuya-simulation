@@ -380,3 +380,34 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
   (percept_indexに集約すべき)。
 - OPEN4: **死の表現**(現行シムに死は不在・推奨=既定OFFで長期入院打ち止め)・chance廃止承認・フェーズ配置
   (推奨=H1身体+H3遺失物を8/12前に先行)・保険=命名RoWチャネル。**実装未着手=承認待ち**。
+
+### Entry 108 — 2026-08-11 — 身体と事件レイヤー: ユーザー4決定→H1〜H5全レーン起動
+
+- ユーザー回答(4件・計画書§6に原文反映): ①死=実装OK・ただし「現実的な量」のみ(較正で担保・H1トグル配下・
+  despawn同型退場) ②chance廃止=承認(「運は世界のアルゴリズムではなく人の行動から生まれる」=三層因果の追認)
+  ③全部実装(案A先行2本に絞らず)・H4はエージェントドリブン=レート抽選の残滓を残さない ④保険=命名RoWチャネルOK。
+- レーン起動: H1身体(health.py世代交代・city_ops専有)/H3遺失物(lost_property.py新設)/H4対人RAT収束/
+  H5残族(火災・設備DEVS・群集state・交通)を並行。H2搬送医療はH1完了後。全て既定OFF・golden不変・実行役=Opus。
+- 実装完了(6レーン=H1/H3/H4/H5並行+H2続発・Opus実行役・全て既定OFF=golden不変):
+  - H1: severity S0-S4(onset 5ch=1人日12本固定長uniformの新stream 1本・分岐が消費列を動かさない)・
+    frailty純関数・presenteeism 0.45・EMSトリガ=_collapse_gateハッシュ→S3/S4遷移へ世代交代・
+    死=despawn同型+L1 1行(搬送1.3%・OHCA生存10%)・★sick_untilプール回転バグ修正同梱。58テスト。
+  - H3: lost_property=確率事象は「落とす」1回だけ・以降は乱数ゼロ純関数。★返還率が実測band着地
+    (傘1.15%/財布70.2%/携帯87.5%)・貨幣保存holdバケツ誤差<1e-6。36テスト。
+  - H4: theftのRAT収束化(stream "crime"消費列1バイト不変で枝だけ差替)・★「共在なければ事件なし」
+    を4重機械固定(AST2+知覚半径0で確率1でも0件+監視者=制御フロー遮断)・ホットスポットHHI 4.8倍・
+    反復被害77.5%が創発・通報層=乱数ゼロ内生(非緊急39%)。49テスト。
+  - H5: 火災(全焼重み0既定)・EV DEVS摩耗・群集=生成しない(密度閾値跨ぎ=事件)・交通=曝露積・
+    停電漏水skip宣言。既定較正60体1日=0件=「今日は何も起きない」が正しい。62テスト。
+  - H2: 病院搬送+入院(lodgingテンプレ)+金の三本足(①公費→RoW ems_operation ②3割=★payee
+    RoW黙秘漏れの是正 ③保険=命名RoW insurance_reimbursement)・drift 0/200step・統合結線2
+    (health.on_injury公開API+city_ops.request_ems公開シーム)。50テスト。
+- ★フルゲート1回目=4977緑・3赤(全てクロスレーン相互作用=レーン単体では検出不能の型):
+  ①floor契約(medical入退院+_Probe番兵)②kind "death"×analyze_communitiesの共同体語彙衝突
+  (第64以来の内部語彙birth/merge/split/death=_NOT_A_KINDが設計済み受け皿)③★viewer HEADコピー
+  ハーネスの自己矛盾化(street-only機能をコミットした後の初ゲートで発火=第102 repo-shapeと同族・
+  epoch検出(inspect.signatureでHEADの引数を見る)で恒久修正)。Fable直修3+timeconv 3キー(H4)。
+- chance懸案=決着: 機能代替完備(windfall→H3拾得・loss→H3遺失+H4盗難)→本選ONセットで
+  chance.enabled:false=運用退役。コード削除はgolden再生成を伴うため本選後。
+- 検収: フルゲート回し直し(静止木)=4980緑・シークレット/キリルスキャンCLEAN(新規11本全文+
+  変更19本diff行)・凍結14本/chance.py/h.txt不触確認。台帳3md更新。
