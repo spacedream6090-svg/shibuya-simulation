@@ -23,7 +23,8 @@
 | DT スナップショット再提案 | [dt-snapshot-integration-proposal.md](docs/plans/dt-snapshot-integration-proposal.md) 提示済み → DT-S1 ほか判断待ち |
 | S-quick(S0/S1/S2/S5/S9) | 計 ≈1.8日。承認待ち(入力来歴・observe.yaml 是正・バス表・実イベント表・ODD 文書) |
 | **アクターモデル移行** | [actor-model-migration-plan.md](docs/plans/actor-model-migration-plan.md)(2026-08-09 承認)。**Wave 1〜3 完了(第102〜104)**: 因果台帳・デバイス・性能−11%・境界計画・駅員車掌・device_id(-1 行の 94.5% 回収)・SoA 基盤・パルス流入・境界較正データ。**工学系の残(本選後)**: SoA 配線(乱数キー判断が前提)・店主行為化(serve org_id 判断が前提)・GTFS 実発車時刻・PoA 観測。残 OPEN: chance_event 再分類/PoA/§4.5 |
-| **Wave 4=現実被覆** | [wave4-reality-coverage-plan.md](docs/plans/wave4-reality-coverage-plan.md)。**α+β完了(第105+第106)**: 夜間解禁・車内空間・ゾーン実戦投入・街路の顔・都市運営(救急=エージェント駆動)・地図v8(POI 2,337・コンビニ93)・ビューアλ+屋内車内非描画・センサス較正(±0.1pp)。**次=Day 3**: ①**事件・病気の設計**(ユーザー指示=リサーチ→計画。既存 sick は boolean のみ→重症度階層+搬送先(v8 hospital×7)が要る=city_ops が要件を実測済み)②リビルド一式(--census --night-shifts 台帳→プール→v8 conf 切替)③ONセット合成の縦煙(8/12 と合流)。判断待ち: familiar strangers の日次ジッター(較正値なし=発明拒否で保留)・L2 zone_occupancy 列の意味論(所有中 vs ポリゴン内) |
+| **Wave 4=現実被覆** | [wave4-reality-coverage-plan.md](docs/plans/wave4-reality-coverage-plan.md)。**α+β完了(第105+第106)**: 夜間解禁・車内空間・ゾーン実戦投入・街路の顔・都市運営(救急=エージェント駆動)・地図v8(POI 2,337・コンビニ93)・ビューアλ+屋内車内非描画・センサス較正(±0.1pp)。**次=Day 3**: ①リビルド一式(--census --night-shifts 台帳→プール→v8 conf 切替)②ONセット合成の縦煙(8/12 と合流)。判断待ち: familiar strangers の日次ジッター・L2 zone_occupancy 列の意味論 |
+| **身体と事件レイヤー** | [body-incident-layer-plan.md](docs/plans/body-incident-layer-plan.md) **提示済み(2026-08-11・リサーチ3本統合)**。H1 重症度5階層(S0〜S4・sick bool 世代交代・熱中症=WBGT閾値・急アル・frailty=年齢×通院者率)→H2 搬送と医療(v8 hospital×7・入院=lodging テンプレ・金の三本足)→H3 遺失物ループ(完全内生の本命)→H4 対人の収束化(RAT・酒×密度×閉店)→H5 残族(火災・設備DEVS・群集=状態が事件)。**chance_event 溶解=懸案 OPEN#5 の原理的回答**(windfall→拾得・loss→遺失/盗難被害・★現行 loss は theft の26倍で未較正と判明)。**実装未着手=承認待ち**(OPEN4: ★死の表現=推奨既定OFF/chance 廃止承認/フェーズ配置=推奨 H1+H3 先行/保険=命名 RoW チャネル) |
 
 ## 3. ユーザー判断待ち(残りのみ)
 
