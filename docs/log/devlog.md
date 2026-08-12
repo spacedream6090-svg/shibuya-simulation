@@ -437,3 +437,33 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
   ハイブリッド(lost_propertyが既にこの形=一般化)+権利行RRR(own/lease/permit/lien/custody・own先行)+
   資産保存則(RoWからのみ生まれK5でのみ消える=IF-Eの双対)+階層LoD(不動産全個体数万行/家財世帯集計+
   遅延実体化/消耗品フロー)。スライスO1登記簿→O3相続(死=第107と接続)→O2家財→O4権利→O5流通。本選後が本線。
+
+### Entry 110 — 2026-08-12 — 第109=8レーン実行デー(所有権O1+O3・犯罪V0・小粒掃討D1-D3・ORG+FIX)+README+PENDING掃除
+
+- ユーザー指示: Day3残の実装・犯罪×LLM=案採用・所有権=3決定(域内不動産org追加/相続承認/本線前実装)・
+  判断不要の小粒を分解して掃討・本選バックアップ計画(実装なし)・README編集+公開ミラー同期・
+  PENDING掃除(実装済み消去・作業完了時にも台帳更新)。★「フリーズは仮の決定=直前まで修正可能」(メモリ化)。
+  AskUserQuestion回答: org_id+bind_workplace=両方実装してON・退避先=ローカルPC/外付けHDD。
+- OWN: assets.py=AssetLedger(own権利行・a:/o:/row)・住戸11,948(持ち家32%・★域内不動産orgは台帳の
+  industry_key=RE実在996社から家主適格487社=仮定ゼロ)・相続=世帯等分/国庫RoW(民法959条)・
+  ★Gini 0.277(現金)→0.926(現金+資産)=この層が解く問題の実測。47テスト。
+- V0: probe 2本+82テスト・mock 270+144ケース・「監視飽和=乱数消費0」をハーネス側からも確認・
+  実LLMは--allow-real-llmなしで構築不能・8/15実測手順同梱。
+- D1: resume+106行根治=init_events一括投棄(種を名指ししない)+watermark族4件
+  (infoenv_watermarkは★amplify_reshare二重加算=世界状態が壊れる実バグだった)・straight完全不変・
+  回転搭載8族(med_*/酩酊/悪評/fact信念/評判/所持品/可制御性/H1残4欄)・stale shard --clean。19テスト。
+- D2: provenance 6層配線+AST検知装置(24棚卸し)・FIRE_OCCS/GUARD_OCCS conf化(既定同値証明)・
+  lost金流分類=holdバケツを家計擬似メンバーid=-1で2検査両立(diff 0.0)。40テスト。
+- D3: loader5本+load_g=l1_stream移行・32ファイルsha256完全一致・メモリ最大6.3倍。+18ケース。
+- ORG+FIX(セッション上限中断→続投完遂): ★party×プール回転のKeyError死=day1で10日ラン即死
+  (第108縦煙48stepの網外)を_fold_tripで根治・golden緑。org_id=attach_record新設(在場70.7%・
+  n_orgs 3→407)・bind_workplace ON(★既定bookは台帳idが4,383/9,882しか重ならない罠→census明示)・
+  消防士45人(渋谷消防署実規模・councilorsバイト同一)・★客引き復活=touting 12件・fire staffed 9件・
+  resume再確証=差1行(devices.py明記済み限界)のみ=D1残課題②解消。
+- リサーチ3(finals-backup-reliability=Young/Daly・3-2-1・restore drill含む)+計画3
+  (crime-llm-verification/ownership-layer/finals-reliability=リハーサル7本・環境確認5点)。
+- Fable: README改稿(身体と事件/街の運営と夜/所有+因果台帳の一文+5,000本超)・PENDING全面掃除・
+  メモリ2件(freeze-provisional・台帳更新タイミング)・timeconv 3キー直修(第108中)。
+- ★新発見(判断待ちへ): street_life/city_ops bindは起動時1回=10日ランで担い手が痩せる(日次再バインド推奨)・
+  finals専用未宣言トグル8件・--resumeは落ちたラン専用(正常終了ランに重ねると日次締め二重=運用手順書へ)。
+- 検収: フルゲート5190緑(静止木・4980→+210)・スキャンCLEAN・凍結14本不触(正ハッシュ不変)・golden緑。
