@@ -19,7 +19,8 @@
 |---|---|
 | **犯罪×LLM検証** | [crime-llm-verification-plan.md](docs/plans/crime-llm-verification-plan.md)。**V0=mockハーネス実装完了(第109・82テスト)**。残=**V1選択率/V2被害者反応の実LLM実測(8/15-16 GPU同居・コマンドはスクリプトdocstring)**。判定分類器は日英語彙のみ=皮肉/婉曲は拾えない(md明記) |
 | **所有権レイヤー** | [ownership-layer-plan.md](docs/plans/ownership-layer-plan.md)。**O1登記簿+O3相続=実装完了(第109・47テスト・ユーザー3決定=域内不動産org/相続承認/本線前)**。残=**O2家財L-agg・O4権利行(lease/permit)・O5流通内生=本選後**。既知の限界: 家賃/敷金の受け手は今もRoW(O4で家主へ)・売買代金は動かない(O5)・inheritance は analyze_accounting 未分類(監視装置に正直に列挙される)・プール退場中の世帯員は相続人になれない(heirs_absent で可視化) |
-| **本選信頼性** | [finals-reliability-plan.md](docs/plans/finals-reliability-plan.md)(実装なし=計画のみ)。残=**8/15の環境確認5点**(帯域・ディスク・クラウド可否・OS/tmux・運営側バックアップ)→**リハーサル7本**(C実測→checkpoint間隔確定・resume/restore drill・障害注入・転送・無人運用・vLLM再起動)。承認あれば小物2本(watchdogディスク残量・backup_run.py)。★運用注意: `--resume` は落ちたラン専用(正常終了ランに重ねると日次締めが二重に出る=第109実測) |
+| **本選信頼性** | [finals-reliability-plan.md](docs/plans/finals-reliability-plan.md)。**小物2本=実装済み(第110)**: watchdogディスク残量ガード+`backup_run.py`(restore drill前段=実測成立)。残=**8/15の環境確認5点**→**リハーサル7本**+閾値/世代数の本選値化(既定20/5GBは小規模想定)。未実装(意図的)=ローカルpull側スクリプト・checkpoint剪定(人間判断)・クラウド系統。★運用注意: `--resume` は落ちたラン専用/走行中run-dirへのrobocopy直がけ禁止(backup_run.py経由=共有フラグ読み) |
+| **★在場内生化PRES** | [presence-endogenization-plan.md](docs/plans/presence-endogenization-plan.md) **提示済み(2026-08-12・リサーチ=presence-endogenization.md)**。ユーザー原理「世界のアルゴリズムがエージェント量を決めない」→現状違反4点実測(cap切り18.5%日替わりくじ・stochastic単純抽選・★mon-satバグ=44,486人が土曜資格喪失・★職業5種問題)。レーン=A1習慣内生化+A2 cap撤去(8/15実測ゲート)+B職業多様性+C日次再バインド。**A1/B/C=本線前推奨・承認待ち** |
 | **アクターモデル移行** | 工学系の残(本選後): SoA配線(乱数キー判断が前提)・店主行為化・GTFS実発車時刻・PoA観測。OPEN: PoA/§4.5 |
 | **身体と事件レイヤー** | chance.py の**コード削除**=本選後(運用退役は finals conf で済み)。設計上の残は §4「身体と事件の残」 |
 | DP-U2/DP-U3/S-quick/DTスナップショット | 8/15-16 診断ランでの実測待ち(vLLM同居・R_eff/RSS・σ再実測)・S-quick は承認待ちのまま |
@@ -30,7 +31,7 @@
 |---|---|---|
 | **U-10** | 事前登録の閾値承認+10日ラン解釈方針(前文「主張の境界」+§3-F stylized facts 含む) | 8/15-16 診断前に承認依頼(タイミング委任済み) |
 | **OBS-U1/U3** | 観察ラン ON セットの承認(候補= `conf/finals_observe.yaml`・chance退役/assets/bind_workplace/responder・guard語彙/serve_by_cat service 行を同梱)・認知 ON の 8/14 留保。★認知 ON 判断が出たら回転棚卸し(D1の型)を認知スタックにも再実行 | 8/14 |
-| **street_life/city_ops の日次再バインド** | 第109発見: bind は起動時1回=pool 日次ローテーションで途中入場した個体は客引き・交番配置に束ねられない→**10日ランでは担い手が日を追って痩せる**。推奨=日境界の再バインド(ON時のみ挙動変化・小) | 新規(第109)・推奨=8/15前に実装 |
+| **★PRES承認(A1/B/C=本線前・A2=8/15実測後)** | §2 の在場内生化計画。日次再バインド(第109発見)は PRES-C として吸収 | **承認待ち(2026-08-12提示)** |
 | **policy_cache 保存判断** | checkpoint 未保存=resume で呼数と行動が変わりうる。推奨=8/15-16 診断で resume 前後の呼数差を実測してから | 本選前 |
 | **回転搭載の判断待ち2件** | `wv_expect`(場所×時間帯の期待表=キーがタプル・上限なし=cap 設計が要る)・`implicit_self`+`behav_ema`(EMA の窓が回転を跨ぐべきかの意味論) | 新規(第109)・小 |
 | beliefs の `--bin-steps` 既定24 | 唯一残った Δt 直書き(CLI 上書きで回避可)。直すなら 8/15 ハッシュ凍結前 | 小・任意 |

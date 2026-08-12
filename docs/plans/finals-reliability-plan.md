@@ -50,8 +50,7 @@
 
 GPU機の①外向き帯域 ②空きディスクと別ディスク有無 ③クラウド到達可否(egress制限) ④OS/tmux/systemd利用可否 ⑤運営側のバックアップ/スナップショット有無。
 
-## 6. 実装が必要になりうる小物(承認あれば・いずれも小)
+## 6. 小物の実装状況(2026-08-12ユーザー承認→同日実装)
 
-- watchdogへのディスク残量1行ログ+閾値警告
-- 日次tar+マニフェスト生成の1スクリプト(scripts/backup_run.py)+ローカル側pullの1スクリプト(PowerShell)
-- いずれも観測層外・ラン挙動に不干渉。**本計画時点では未実装**(指示どおり)。
+- **実装済み(第110)**: ①watchdogディスク残量ガード(5分毎1行ログ+warn/crit閾値・警告のみ=止めない・status.jsonにdisk節)②`scripts/backup_run.py`(確定分のみ=footer検証+checkpoint mtime条件・増分tar+BagIt式sha256マニフェスト・冪等=差分ゼロなら1バイトも書かない・削除非伝播・`--verify`・★checkpoint対のdormantサイドカー同梱・★Windows走行中ランはFILE_SHARE_DELETEで安全読み)。**restore drill前段が実測成立**(バックアップコピー単体でwatchdog_llm完走・tar展開→解析OK)。使い方=スクリプトdocstringと完了報告のコマンド例。
+- **未実装(意図的)**: ローカル側pull(PowerShell)=転送はユーザー側・checkpoint世代の剪定=何を消すかは人間判断・クラウド系統=可否判明後。閾値既定20/5GBは小規模想定=**8/15実測後に本選値へ**(推奨warn=日次増分×3〜200GB/crit=50GB)。
