@@ -2,7 +2,7 @@
 
 > 本ファイルは **まだ終わっていないもの**だけを持つ。完了済みは → **[IMPLEMENTED.md](IMPLEMENTED.md)**(決定の履歴も同所の年表と git log が正典)。
 > 索引と最終更新は → **[STATUS.md](STATUS.md)**。
-> 最終更新: **2026-08-12**(第109=8レーン実行デー後の掃除パス: 解消済みを削除・org_id/bind_workplace/resume+106行/回転族/provenance/解析移行/縦煙小粒=全て消化。所有権O1+O3・犯罪V0・party修正・消防士45人が着地)。
+> 最終更新: **2026-08-14**(第112後の掃除パス: L2日給0の穴=WAGE実装で消化・同型痩せ5件+全数検査約40件=甲/乙/丙で消化・wv_expect搬送=乙B8で消化。新規判断待ち=GTロガーG1-G7・b2b構造的供給)。
 
 ---
 
@@ -20,7 +20,8 @@
 | **犯罪×LLM検証** | [crime-llm-verification-plan.md](docs/plans/crime-llm-verification-plan.md)。**V0=mockハーネス実装完了(第109・82テスト)**。残=**V1選択率/V2被害者反応の実LLM実測(8/15-16 GPU同居・コマンドはスクリプトdocstring)**。判定分類器は日英語彙のみ=皮肉/婉曲は拾えない(md明記) |
 | **所有権レイヤー** | [ownership-layer-plan.md](docs/plans/ownership-layer-plan.md)。**O1登記簿+O3相続=実装完了(第109・47テスト・ユーザー3決定=域内不動産org/相続承認/本線前)**。残=**O2家財L-agg・O4権利行(lease/permit)・O5流通内生=本選後**。既知の限界: 家賃/敷金の受け手は今もRoW(O4で家主へ)・売買代金は動かない(O5)・inheritance は analyze_accounting 未分類(監視装置に正直に列挙される)・プール退場中の世帯員は相続人になれない(heirs_absent で可視化) |
 | **本選信頼性** | [finals-reliability-plan.md](docs/plans/finals-reliability-plan.md)。**小物2本=実装済み(第110)**: watchdogディスク残量ガード+`backup_run.py`(restore drill前段=実測成立)。残=**8/15の環境確認5点**→**リハーサル7本**+閾値/世代数の本選値化(既定20/5GBは小規模想定)。未実装(意図的)=ローカルpull側スクリプト・checkpoint剪定(人間判断)・クラウド系統。★運用注意: `--resume` は落ちたラン専用/走行中run-dirへのrobocopy直がけ禁止(backup_run.py経由=共有フラグ読み) |
-| **★在場内生化PRES** | [presence-endogenization-plan.md](docs/plans/presence-endogenization-plan.md) **提示済み(2026-08-12・リサーチ=presence-endogenization.md)**。ユーザー原理「世界のアルゴリズムがエージェント量を決めない」→現状違反4点実測(cap切り18.5%日替わりくじ・stochastic単純抽選・★mon-satバグ=44,486人が土曜資格喪失・★職業5種問題)。レーン=A1習慣内生化+A2 cap撤去(8/15実測ゲート)+B職業多様性+C日次再バインド。**A1/B/C=本線前推奨・承認待ち** |
+| **在場内生化PRES** | **A1+A2+B+C=実装完了(第111)**。残=**A2 emergent のON判断のみ**(8/15 RSS/R_eff実測後・finals confの1行) |
+| **メタバース射影** | [metaverse-projection-plan.md](docs/plans/metaverse-projection-plan.md)+[リサーチ](docs/research/metaverse-observable-data.md)(第112・計画のみ)。残=**§4 GTロガーG1-G7の承認**(下記§3)→承認分のみ8/15までに実装。射影フィルタF0-F4・復元実験3案は**本選後** |
 | **アクターモデル移行** | 工学系の残(本選後): SoA配線(乱数キー判断が前提)・店主行為化・GTFS実発車時刻・PoA観測。OPEN: PoA/§4.5 |
 | **身体と事件レイヤー** | chance.py の**コード削除**=本選後(運用退役は finals conf で済み)。設計上の残は §4「身体と事件の残」 |
 | DP-U2/DP-U3/S-quick/DTスナップショット | 8/15-16 診断ランでの実測待ち(vLLM同居・R_eff/RSS・σ再実測)・S-quick は承認待ちのまま |
@@ -33,16 +34,18 @@
 | **OBS-U1/U3** | 観察ラン ON セットの承認(候補= `conf/finals_observe.yaml`・chance退役/assets/bind_workplace/responder・guard語彙/serve_by_cat service 行を同梱)・認知 ON の 8/14 留保。★認知 ON 判断が出たら回転棚卸し(D1の型)を認知スタックにも再実行 | 8/14 |
 | **Δt梯子の承認** | [dt-reduction-plan.md](docs/plans/dt-reduction-plan.md) 提示済み(2026-08-12): 本線25万×Δt=10+**並行1〜2万体×Δt=1**(驚き発火の解放=科学的動機・30秒は見送り推奨)。承認でDT-1〜3(呼数不変の機械固定・Δt=1プロファイル・運用)を実装。+並行ラン規模(1万or2万)と開始時期 | 承認待ち |
 | **存在内生化POP** | [population-endogenization-plan.md](docs/plans/population-endogenization-plan.md) 提示済み(2026-08-12): 転入=案A(L4定着昇格)推奨/案B・実装=**本選後推奨**(10日ランでは0.03%)・出生=POP-3で含める推奨 | 承認待ち(3点) |
-| **★L2の本業日給0の穴** | PRES-B発見(既存の穴): L2 224,240人の wage_amount が0(台帳wage_tierが個体日給へ未接続)。今回3職業1,991人だけ日給を持つ非対称が発生。筋=wage_tier接続だが**経済統計が大きく動く**ため要承認 | 新規(第111) |
-| **同型の痩せ5件** | PRES-C棚卸しで発見(起動時1回初期化がpool回転で痩せる同族): ①inner_life長期目標 ②inflow復帰情報 ③世帯(途中入場者に世帯なし)④tourist/language ⑤**議席=議員が再着席しない(10日ランで議会が空く)**。⑤と③は本選観測価値が高い=**8/15前の追随実装を推奨** | 新規(第111)・推奨=実装 |
+| **★GTロガーG1-G7** | [metaverse-projection-plan.md](docs/plans/metaverse-projection-plan.md)§4: G1入力3ファイルsha256→manifest(極小・推奨必須)/G2 checkpoint/dormant全世代保持の運用固定(実装ゼロ・推奨必須)/G3日次名簿(**A13としてroster.parquet実装済み=承認はfinals ONの追認のみ**)/G4 memory.parquet(記憶本文・+1.8GB)/G5 relations.parquet(closeness軌跡・+0.4GB)/G6 channelsにsat4列(+0.6GB)/G7小物束(計画のmood/carry/with・self/ties・感情句・needsプロファイル・期待上位k・C3集計)。**8/15までに承認分のみ実装**(本選ランで記録されないものは二度と取れない) | **新規(第112)・8/15期限** |
+| **b2bの構造的供給不足** | 乙D2調査: 卸に勤務者は居る(中央値7名)が「最寄り1社指名の集中+all-or-nothing仕入れ」で100%在場でも生産42,408 vs 需要44,604/日・cap25%で生産1/4。初期在庫3日分(実装済み)は立ち上がりを渡すだけ。恒常解=(a)production_units引き上げ (b)複数卸への分散調達 (c)部分納品 の設計3択 | 新規(第112)・設計判断 |
+| 賃金の残り2点 | ①最低賃金の床に27,740人(12.4%)が完全同一額で張り付く(現実にも最賃集積はあるが単一値スパイク)②家賃は実引落日(27日/末日)が10日窓に入らないため引落ゼロ=**savings_rate 0.555の帯超過は窓アーティファクトと記録済み**(機構は触らない判断=Fable)。異論あれば再検討 | 新規(第112)・小 |
 | visit_purpose構成比のPT較正・曜日/雨弾性の水準較正 | PRES-A1の設計値を実測(PT調査・jinryu曲線)へ較正し直す別レバー(1レバーずつの規律) | 小・任意 |
 | **policy_cache 保存判断** | checkpoint 未保存=resume で呼数と行動が変わりうる。推奨=8/15-16 診断で resume 前後の呼数差を実測してから | 本選前 |
-| **回転搭載の判断待ち2件** | `wv_expect`(場所×時間帯の期待表=キーがタプル・上限なし=cap 設計が要る)・`implicit_self`+`behav_ema`(EMA の窓が回転を跨ぐべきかの意味論) | 新規(第109)・小 |
+| **回転搭載の判断待ち・残1件** | `implicit_self`+`behav_ema`(EMA の窓が回転を跨ぐべきかの意味論)。※`wv_expect` は第112乙B8で搬送済み=消化 | 第109・小 |
 | beliefs の `--bin-steps` 既定24 | 唯一残った Δt 直書き(CLI 上書きで回避可)。直すなら 8/15 ハッシュ凍結前 | 小・任意 |
 | NEW-5 | F/N/P 初期値条件の本選配分 | パイロット後に提案 |
 | DT-U2 | UE5 デモ動画 | 保留(本選中判断) |
 
 ### 決定済み(履歴の要点のみ・詳細は git log と IMPLEMENTED 年表)
+2026-08-13/14: **痩せ=「くまなく検査して漏れがないよう修正」承認**(→第112甲/乙/丙で約40件根治)/**賃金多様性=実装承認**(月給/日給・振込タイミング・ボーナス・職種適合額→WAGE実装)/**メタバース観測データ検証=リサーチ+計画まで**(実装しない)。
 2026-08-12: **org_id+bind_workplace=両方実装してON**(第109で実装完了)/**所有権3決定**(域内不動産org追加・相続承認・本線前実装)/**犯罪×LLM=Fable案採用**(検閲なし不使用・V0実装/V1V2は8/15)/**フリーズ=仮決定**(直前まで修正可能の認識)/**退避先=ローカルPC・外付けHDD**(クラウド/GPU機詳細は8/15)。
 2026-08-11: 身体と事件4決定(死=現実量で実装・chance廃止・全部実装・保険RoW)。
 2026-08-07: DP-U2=暫定案C/DP-U3=本線25万/SV-05=③/DP-U4=呼数/B3=換算しない/RW-U1=承認/凍結3本修正=承認(**8/15凍結の正ハッシュ `79a2e549486fe6ab5eea350334cbe37b4c712c12dbf75e41afea617939010d0f`**)/RW運用=スケジューラ。
@@ -50,6 +53,7 @@
 
 ## 4. 持ち越し小粒(未解決のみ)
 
+- **第112の正直な限界5点**: ①truth_ledger.py:497,518 の幽霊解決は**凍結14本のため不触**(`_present()`が物理述語のため脱水個体を通す=`_fact_beliefs`が幽霊に書かれる・次のハッシュ変更に同梱)②途中入場者への友人グラフ適用は O(N²)で不可(dehydrate切り捨て問題のみ修復)③unbond は相手不在時保留(入場時整合で清算)④車両に rot_out 無し(退場者の車は「所有継続」と読む=O2耐久財寿命で再検討)⑤pool ONスモークの家計残差 rel 1.359e-06 は既存の丸め事象(旧挙動でも同値・|r|>0.5円の窓ゼロ)
 - **σ_c の Δt 再測**(8/15-16 に統合)
 - **finals プロファイル限定の未宣言トグル8件**(第109発見・既存の穴): `economy.bank.enabled`/`consumption`/`payment`/`vc`・`institution_routes.assembly.from_roster`/`.realism.enabled`・`memory.actr.enabled`・`prompts.dialog_history`=基底 conf に無いキーは registry 網羅テストが拾わない。機械的な宣言追加で塞がる
 - **attach_record の本番コスト未実測**(第109): 台帳読み+25万回の dict 参照=8/15 の RSS/R_eff 実測に同梱
