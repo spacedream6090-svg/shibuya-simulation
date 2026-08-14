@@ -21,7 +21,8 @@
 | **所有権レイヤー** | [ownership-layer-plan.md](docs/plans/ownership-layer-plan.md)。**O1登記簿+O3相続=実装完了(第109・47テスト・ユーザー3決定=域内不動産org/相続承認/本線前)**。残=**O2家財L-agg・O4権利行(lease/permit)・O5流通内生=本選後**。既知の限界: 家賃/敷金の受け手は今もRoW(O4で家主へ)・売買代金は動かない(O5)・inheritance は analyze_accounting 未分類(監視装置に正直に列挙される)・プール退場中の世帯員は相続人になれない(heirs_absent で可視化) |
 | **本選信頼性** | [finals-reliability-plan.md](docs/plans/finals-reliability-plan.md)。**小物2本=実装済み(第110)**: watchdogディスク残量ガード+`backup_run.py`(restore drill前段=実測成立)。残=**8/15の環境確認5点**→**リハーサル7本**+閾値/世代数の本選値化(既定20/5GBは小規模想定)。未実装(意図的)=ローカルpull側スクリプト・checkpoint剪定(人間判断)・クラウド系統。★運用注意: `--resume` は落ちたラン専用/走行中run-dirへのrobocopy直がけ禁止(backup_run.py経由=共有フラグ読み) |
 | **在場内生化PRES** | **A1+A2+B+C=実装完了(第111)**。残=**A2 emergent のON判断のみ**(8/15 RSS/R_eff実測後・finals confの1行) |
-| **メタバース射影** | [metaverse-projection-plan.md](docs/plans/metaverse-projection-plan.md)+[リサーチ](docs/research/metaverse-observable-data.md)(第112・計画のみ)。残=**§4 GTロガーG1-G7の承認**(下記§3)→承認分のみ8/15までに実装。射影フィルタF0-F4・復元実験3案は**本選後** |
+| **メタバース射影** | [metaverse-projection-plan.md](docs/plans/metaverse-projection-plan.md)。**GTロガーG1-G7=全部実装済み(第113・承認済み)**。残=射影フィルタF0-F4・復元実験3案=**本選後**。運用の掟=**checkpoint/dormant剪定禁止(G2)**・backup_run は `--ckpt-generations 999` で回す(既定2のままだと18世代が手元に残らない) |
+| **新計画4本(第113提示・承認待ち)** | [Δt5案](docs/plans/dt-reduction-plan.md)§5(推奨=Δt10維持)・[年齢AGE-A〜F](docs/plans/age-diversity-plan.md)(最小対=A人口実在化+C思考量)・[日課DPH-O/C/B/A](docs/plans/dayplan-horizon-plan.md)(推奨=O観測+Cを本選前)・[ユニークデータ15候補](docs/research/unique-data-candidates.md)(13件は実装ゼロ) |
 | **アクターモデル移行** | 工学系の残(本選後): SoA配線(乱数キー判断が前提)・店主行為化・GTFS実発車時刻・PoA観測。OPEN: PoA/§4.5 |
 | **身体と事件レイヤー** | chance.py の**コード削除**=本選後(運用退役は finals conf で済み)。設計上の残は §4「身体と事件の残」 |
 | DP-U2/DP-U3/S-quick/DTスナップショット | 8/15-16 診断ランでの実測待ち(vLLM同居・R_eff/RSS・σ再実測)・S-quick は承認待ちのまま |
@@ -31,11 +32,12 @@
 | # | 事項 | 状態 |
 |---|---|---|
 | **U-10** | 事前登録の閾値承認+10日ラン解釈方針([stationarity-preregistration.md](docs/plans/stationarity-preregistration.md)) | **本番直前に決定**(2026-08-12 ユーザー指定=10日ラン開始 8/16 の直前に承認依頼) |
-| **OBS-U1/U3** | 観察ラン ON セットの承認(候補= `conf/finals_observe.yaml`・chance退役/assets/bind_workplace/responder・guard語彙/serve_by_cat service 行を同梱)・認知 ON の 8/14 留保。★認知 ON 判断が出たら回転棚卸し(D1の型)を認知スタックにも再実行 | 8/14 |
+| ~~OBS-U1/U3~~ | **決着(2026-08-14承認)**: finals ONセット承認・g_update ON・認知棚卸し再実行済み(第113=搬送漏れ4族追加)。残る fire 判断は上の独立行 | 済 |
 | **Δt梯子の承認** | [dt-reduction-plan.md](docs/plans/dt-reduction-plan.md) 提示済み(2026-08-12): 本線25万×Δt=10+**並行1〜2万体×Δt=1**(驚き発火の解放=科学的動機・30秒は見送り推奨)。承認でDT-1〜3(呼数不変の機械固定・Δt=1プロファイル・運用)を実装。+並行ラン規模(1万or2万)と開始時期 | 承認待ち |
 | **存在内生化POP** | [population-endogenization-plan.md](docs/plans/population-endogenization-plan.md) 提示済み(2026-08-12): 転入=案A(L4定着昇格)推奨/案B・実装=**本選後推奨**(10日ランでは0.03%)・出生=POP-3で含める推奨 | 承認待ち(3点) |
-| **★GTロガーG1-G7** | [metaverse-projection-plan.md](docs/plans/metaverse-projection-plan.md)§4: G1入力3ファイルsha256→manifest(極小・推奨必須)/G2 checkpoint/dormant全世代保持の運用固定(実装ゼロ・推奨必須)/G3日次名簿(**A13としてroster.parquet実装済み=承認はfinals ONの追認のみ**)/G4 memory.parquet(記憶本文・+1.8GB)/G5 relations.parquet(closeness軌跡・+0.4GB)/G6 channelsにsat4列(+0.6GB)/G7小物束(計画のmood/carry/with・self/ties・感情句・needsプロファイル・期待上位k・C3集計)。**8/15までに承認分のみ実装**(本選ランで記録されないものは二度と取れない) | **新規(第112)・8/15期限** |
-| **b2bの構造的供給不足** | 乙D2調査: 卸に勤務者は居る(中央値7名)が「最寄り1社指名の集中+all-or-nothing仕入れ」で100%在場でも生産42,408 vs 需要44,604/日・cap25%で生産1/4。初期在庫3日分(実装済み)は立ち上がりを渡すだけ。恒常解=(a)production_units引き上げ (b)複数卸への分散調達 (c)部分納品 の設計3択 | 新規(第112)・設計判断 |
+| **★cognition.fire を開けるか** | 第113発見: OBS承認で g_update ON にしたが **fire OFF では g_update は1行も出ない no-op**(plasticity は fire 前提)。fire は LLM呼の発生点が変わる **affects_k=True** の別項目のため未開放。開ける場合=呼数増の実測(8/15診断)とセットが筋。Δt5案の「思考層の利得ゼロ」も同根(fire ON なら Δt の科学的価値が復活する関係) | **新規(第113)・8/15判断推奨** |
+| **★ラン計画: seed 2本目+GPU尾部(8/26-30)** | ユニークデータJ5/J6: 事前登録が「条件間差>seed間差」を要求するのに seed分散の入力ランが無い=**量的主張がほぼ全部落ちる**。`analyze_seed_variance.py` は実装済みで入力待ち。選択肢=(a)本線と並行で小規模seed違い (b)本線後の尾部でseed2本目 (c)尾部は反実仮想U15(分岐再走)に使う——**尾部の使途配分の判断** | **新規(第113)・本選前** |
+| **J1 共在ペア記録上限** | `transit_interior.copresence.max_pairs_per_day: 8→24`(conf 1行・L1 +2〜3GB)。U13完全接触ネットワークの分母。動力学不変(乱数消費・状態遷移とも)を検収で機械確認してから入れる | 新規(第113)・小 |
 | 賃金の残り2点 | ①最低賃金の床に27,740人(12.4%)が完全同一額で張り付く(現実にも最賃集積はあるが単一値スパイク)②家賃は実引落日(27日/末日)が10日窓に入らないため引落ゼロ=**savings_rate 0.555の帯超過は窓アーティファクトと記録済み**(機構は触らない判断=Fable)。異論あれば再検討 | 新規(第112)・小 |
 | visit_purpose構成比のPT較正・曜日/雨弾性の水準較正 | PRES-A1の設計値を実測(PT調査・jinryu曲線)へ較正し直す別レバー(1レバーずつの規律) | 小・任意 |
 | **policy_cache 保存判断** | checkpoint 未保存=resume で呼数と行動が変わりうる。推奨=8/15-16 診断で resume 前後の呼数差を実測してから | 本選前 |
@@ -45,6 +47,7 @@
 | DT-U2 | UE5 デモ動画 | 保留(本選中判断) |
 
 ### 決定済み(履歴の要点のみ・詳細は git log と IMPLEMENTED 年表)
+2026-08-14(2回目): **GTロガー=全部実装**(→第113)/**OBS-U1/U3=承認**(g_update ON)/**b2b=Fable案**(部分納品+分散→第113)/**Δt=5案を計画・本番1本のみ**(並行ラン廃)/**POP=案Aで本線前試行**(イベント発生が主眼・厳しければ見送り可)/**所有権O2-O5・アクター残・判断不要小粒=できれば本線前**/新問い5題=計画まで/判断事項の選択肢+材料一覧化を要求。
 2026-08-13/14: **痩せ=「くまなく検査して漏れがないよう修正」承認**(→第112甲/乙/丙で約40件根治)/**賃金多様性=実装承認**(月給/日給・振込タイミング・ボーナス・職種適合額→WAGE実装)/**メタバース観測データ検証=リサーチ+計画まで**(実装しない)。
 2026-08-12: **org_id+bind_workplace=両方実装してON**(第109で実装完了)/**所有権3決定**(域内不動産org追加・相続承認・本線前実装)/**犯罪×LLM=Fable案採用**(検閲なし不使用・V0実装/V1V2は8/15)/**フリーズ=仮決定**(直前まで修正可能の認識)/**退避先=ローカルPC・外付けHDD**(クラウド/GPU機詳細は8/15)。
 2026-08-11: 身体と事件4決定(死=現実量で実装・chance廃止・全部実装・保険RoW)。

@@ -15,16 +15,39 @@
 | 資産 | 再生成 | 扱い |
 |---|---|---|
 | **L1 parts(runs/<id>/l1_events.part-*)** | 不可(実LLM10日=再走不能) | 最優先。**checkpoint境界後に確定したpartのみ**をバックアップ対象に(flush中partはfooter不完全でありうる=parquet footer検証を通ったものだけ転送) |
-| checkpoint/ | 不可 | 直近3世代+日次1世代を退避(全20世代は容量次第・世代サイズは8/15実測) |
+| **checkpoint/ + dormant サイドカー(全世代)** | 不可 | ★**剪定禁止**(下記 §1.1)。`backup_run.py --ckpt-generations 999` で**全世代**を退避する |
 | summary.json・run_manifest・サイドカー群 | 部分的に可 | L1と同梱で転送 |
 | conf(finals_observe.yaml)・コード | git | 転送不要(コミット済みが正) |
-| 台帳・プール(data/) | 可(リビルド11.9s) | 初日に1回だけ退避 |
+| 台帳・プール(data/) | 可(リビルド11.9s) | 初日に1回だけ退避。**sha256 は run_manifest.json の `inputs` 節に残る**(第114 G1) |
+
+### 1.1 ★checkpoint / dormant 世代の剪定禁止(第114 G2・2026-08-14 確定)
+
+**規則: 本選ランの `checkpoint/` は 1 世代も消さない。** `ckpt-NNNNNN.pkl.gz` と同 step の
+`dormant-NNNNNN.pkl.gz` は**必ず対で**残す(片方だけでは在場者しか復元できない)。
+
+理由(復元実験の正解ラベルの唯一の複製だから):
+
+| 中身 | 他に残る場所 | 剪定したら |
+|---|---|---|
+| ペルソナ文(persona の本文) | **無い**(traits.json は数値・roster.parquet は素性欄のみ) | 二度と取れない |
+| 記憶ストリームの本文 | memory.parquet(G4・日境界の粒度) | **半日粒度**が失われる |
+| 関係台帳の全対 | relations.parquet(G5・変化した対のみ) | 台帳の全体像が失われる |
+| 信念・自己モデル・可塑性 g の全欄 | 一部が L1/サイドカー | 半日粒度の完全状態が失われる |
+
+- ディスクが逼迫したときに**最初に消してよいのは checkpoint ではない**。順序は
+  ① `indoor_tracks_*`(ON なら)② `llm_journal`(応答全文。ただし思考の代理なので慎重に)
+  ③ それでも足りなければユーザー判断を仰ぐ。**checkpoint と dormant は最後**。
+- `scripts/backup_run.py` は `ckpt-` と `dormant-` を同 step で対に扱う実装になっている
+  (`CKPT_PREFIXES`)が、**既定 `--ckpt-generations 2` は直近 2 世代しか転送しない**。
+  本選では明示的に `--ckpt-generations 999`(= 全世代)で回すこと。**この既定値のままだと
+  「バックアップは取れているのに 20 世代のうち 18 世代が手元に無い」という事故になる。**
+- watchdog の「3世代バックアップ」はノード内のローリング複製であって、**世代保全ではない**。
 
 ## 2. 障害モード×対策(要点・詳細はリサーチ§2)
 
 - **プロセス死/ハング/OOM**: watchdog常駐(自動resume・ストール検知)。実測根拠=大規模LLM実運用で中断は日常(GPU起因58%)。resume整合はD1レーンで修正済みの straight==resume を8/15のdrillで再確認。
 - **vLLMの長時間劣化**: 日次計画再起動を運用に組み込む(深夜の呼数谷で・シム側はbackend再接続)。
-- **ディスクフル**: 残量閾値の監視(watchdogのログに残量1行を足すのは小改修=承認あれば)。checkpoint世代の手動剪定手順を手順書に。
+- **ディスクフル**: 残量閾値の監視(watchdogのログに残量1行を足すのは小改修=承認あれば)。★**checkpoint 世代の剪定は禁止**(§1.1)。逼迫時に落とすのは indoor_tracks → llm_journal の順で、checkpoint/dormant は最後。
 - **誤削除・人為ミス**: 転送はcopy系(rclone copy / robocopy 非MIR)のみ。削除を伝播させない。
 - **L1破損**: footer検証+sha256マニフェスト(BagIt式)を転送単位ごとに生成・3箇所照合。
 - **電源/ネットワーク断**: tmux/systemd配下で実行(切断耐性)・ローカルpullは再開可能なrclone/robocopyの再実行で冪等。
