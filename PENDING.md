@@ -18,12 +18,13 @@
 | 項目 | 残り |
 |---|---|
 | **犯罪×LLM検証** | [crime-llm-verification-plan.md](docs/plans/crime-llm-verification-plan.md)。**V0=mockハーネス実装完了(第109・82テスト)**。残=**V1選択率/V2被害者反応の実LLM実測(8/15-16 GPU同居・コマンドはスクリプトdocstring)**。判定分類器は日英語彙のみ=皮肉/婉曲は拾えない(md明記) |
-| **所有権レイヤー** | [ownership-layer-plan.md](docs/plans/ownership-layer-plan.md)。**O1登記簿+O3相続=実装完了(第109・47テスト・ユーザー3決定=域内不動産org/相続承認/本線前)**。残=**O2家財L-agg・O4権利行(lease/permit)・O5流通内生=本選後**。既知の限界: 家賃/敷金の受け手は今もRoW(O4で家主へ)・売買代金は動かない(O5)・inheritance は analyze_accounting 未分類(監視装置に正直に列挙される)・プール退場中の世帯員は相続人になれない(heirs_absent で可視化) |
+| **所有権レイヤー** | [ownership-layer-plan.md](docs/plans/ownership-layer-plan.md)。O1登記簿+O3相続=第109・**O4家賃=第114**(lease権利行・受け手=own行の家主・org/個人着金)。残=**O2家財L-agg・O5流通内生(売買代金)・敷金/住宅ローン(O4完全版)=本選後**。「持ち家なのにrent_shareを引かれる」件はO4完全版の持ち物 |
+| **存在内生化POP** | **転出/転入(案A)/出生=実装完了(第114・35テスト)**。finals=出生ON。残=**転出/転入の8/15リハーサル**(1〜2日ラン+`summary.population.per_day`を現実レート7.8/8.4件日と照合→conf 2行ON)・案B(転入を新規個体で・初期関係値の設計が前提)=本選後 |
 | **本選信頼性** | [finals-reliability-plan.md](docs/plans/finals-reliability-plan.md)。**小物2本=実装済み(第110)**: watchdogディスク残量ガード+`backup_run.py`(restore drill前段=実測成立)。残=**8/15の環境確認5点**→**リハーサル7本**+閾値/世代数の本選値化(既定20/5GBは小規模想定)。未実装(意図的)=ローカルpull側スクリプト・checkpoint剪定(人間判断)・クラウド系統。★運用注意: `--resume` は落ちたラン専用/走行中run-dirへのrobocopy直がけ禁止(backup_run.py経由=共有フラグ読み) |
 | **在場内生化PRES** | **A1+A2+B+C=実装完了(第111)**。残=**A2 emergent のON判断のみ**(8/15 RSS/R_eff実測後・finals confの1行) |
 | **メタバース射影** | [metaverse-projection-plan.md](docs/plans/metaverse-projection-plan.md)。**GTロガーG1-G7=全部実装済み(第113・承認済み)**。残=射影フィルタF0-F4・復元実験3案=**本選後**。運用の掟=**checkpoint/dormant剪定禁止(G2)**・backup_run は `--ckpt-generations 999` で回す(既定2のままだと18世代が手元に残らない) |
 | **新計画4本(第113提示・承認待ち)** | [Δt5案](docs/plans/dt-reduction-plan.md)§5(推奨=Δt10維持)・[年齢AGE-A〜F](docs/plans/age-diversity-plan.md)(最小対=A人口実在化+C思考量)・[日課DPH-O/C/B/A](docs/plans/dayplan-horizon-plan.md)(推奨=O観測+Cを本選前)・[ユニークデータ15候補](docs/research/unique-data-candidates.md)(13件は実装ゼロ) |
-| **アクターモデル移行** | 工学系の残(本選後): SoA配線(乱数キー判断が前提)・店主行為化・GTFS実発車時刻・PoA観測。OPEN: PoA/§4.5 |
+| **アクターモデル移行** | **GTFS実発車=第114で完了**(1,810本・朝+18%)。残(本選後): SoA配線(乱数キー判断が前提)・店主行為化(1-2週規模)・PoA観測(片肺実装は誤読を生むため一括)。OPEN: PoA/§4.5 |
 | **身体と事件レイヤー** | chance.py の**コード削除**=本選後(運用退役は finals conf で済み)。設計上の残は §4「身体と事件の残」 |
 | DP-U2/DP-U3/S-quick/DTスナップショット | 8/15-16 診断ランでの実測待ち(vLLM同居・R_eff/RSS・σ再実測)・S-quick は承認待ちのまま |
 
