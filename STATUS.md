@@ -1,6 +1,7 @@
 # STATUS — 索引
 
-> 最終更新: **2026-08-16(11回目)** — **第126=Linuxフルゲート初回完走**(d2553f8で**5,901緑+15skip**・赤4=SFM wall goldenのWindows定数照合のみ→恒久処置=skipif分離・不変量は全OS維持・Windows21緑)。サーバー=高速ゲート機として確立(15分53秒/64CPU※初回・キャッシュ後は短縮見込み)。
+> 最終更新: **2026-08-16(12回目)** — **第127=PLATEAU 2025着地(A5消化)**。★前提訂正=リポは既に2025年度V5・viewerは自己完結設計(ストリーミング無し)→実装は出典表示(#plateauAttr・CC BY 4.0相当クレジット)+**道路LOD3新トグル**(--plateau-tranゲート・フラグ無しバイト同一・79,673三角形)+80MBゲート計上修正。検収=新25+既存136緑。残レーン=B5(deliberate batch)・C1(A8ハーネス)実行中。
+> 2026-08-16(11回目) — **第126=Linuxフルゲート初回完走**(d2553f8で**5,901緑+15skip**・赤4=SFM wall goldenのWindows定数照合のみ→恒久処置=skipif分離・不変量は全OS維持・Windows21緑)。サーバー=高速ゲート機として確立(15分53秒/64CPU※初回・キャッシュ後は短縮見込み)。
 > 2026-08-16(10回目) — **第125=本番前ゲート一覧**([pre-production-gate.md](docs/plans/pre-production-gate.md)=64ゲート・判断待ちJ1-J13・U-10ドラフト・R6前倒し)。★矛盾10件検出→実害3件即是正(runbook/checklist CLI不一致=当夜コピペ即エラーを argparse裏取りの上修正・RAM未定義帯215-220→COND拡張・J6=PLATEAU決定反映)。並列レーン実行中: B5 deliberate batch・C1 A8ハーネス・C4 PLATEAU 2025。Codex接続完了(0.147・device-auth・煙試験緑・書式はreview.config.toml分離形式)。サーバー: Linuxフルゲート実行中・★プール=v1(v2生成が残)。
 > 2026-08-16(9回目) — **第124=サーバー実測受領+tomllib修正+B5発注**。★実測の核心=Fleet直叩き54.6 calls/s(w8)は健全・実走2k×20は1.68 calls/s=**deliberateがbatch対象外**(planning/reflectのみ・scheduler.py:2496逐次)が真因→B5レーン(deliberate batch化・逐次と完全一致)発注。Linux前回ゲート=5713緑+4 SFM wall golden不一致(Windows正典維持)・Py3.10 tomllib落ち→tomliフォールバック修正。プール100万体生成済み・present_cap罠実地確認。新ハンドオフはdocs/plans/source/へ格納。
 > 2026-08-16(8回目) — **第123=A7消化+公開ミラー穴封鎖+Codex接続準備**(docs/opsのみ)。監査5本+引き継ぎメモ→docs/plans/source/。★ops/はミラー対象=サーバー識別子入り2ファイル(setup-gpu-sv-002/codex-review-pack)を除外リストへ+全履歴トリップワイヤ新設(最終同期8/12<識別子コミット8/16=**未公開のまま封鎖**)。SSH鍵生成+config済み=公開鍵登録1ペースト後はFableがサーバー直接操作可。残=数字待ち判定(cap/fire/RAM/POP/A2)・v2縦煙→13b解凍・Codex 6パス・R6ゲート一覧(8/18)。
