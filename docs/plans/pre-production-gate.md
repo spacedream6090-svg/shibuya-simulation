@@ -31,7 +31,7 @@
 
 | # | 項目 | 判定値・線 | 確認方法(1行) | 担当 | 状態 |
 |---|---|---|---|---|---|
-| A1 | **Linux フルゲート緑** | 全緑。**ただし golden 4件(SFM wall)の Linux 不一致は宣言済みの例外**=Windows 値が正典で、**Linux 値で上書きしない**。前回実測 = 5,713 passed / 16 skipped / **4 golden fails** / 2 matplotlib errors(matplotlib 導入後は関連34緑)。Windows 静止木は 5,904緑+1skip(第121・12分42秒) | `cd ~/projects/shibuya-simulation && git pull --ff-only && source ~/venvs/sim/bin/activate && ulimit -n 65535 && python -m pytest tests -q -n auto 2>&1 \| tail -3` | S | ⬜(β凍結版で再実行) |
+| A1 | **Linux フルゲート緑** | 全緑。SFM wall golden 4件の Linux 不一致は**第126で恒久処置済み**=定数照合のみ `skipif(非Windows)`(Windows 値が正典・Linux 値で上書きしない)・プラットフォーム非依存の不変量(引数無視バイト一致等)は全 OS で検収維持。d2553f8 実測 = **5,901 passed / 15 skipped / 4 failed(全部 test_sfm_walls.py の定数照合=第126で解消)**・15分53秒。Windows 静止木は 5,919緑+1skip(第122) | `cd ~/projects/shibuya-simulation && git pull --ff-only && source ~/venvs/sim/bin/activate && ulimit -n 65535 && python -m pytest tests -q -n auto 2>&1 \| tail -3` | S | ⬜(β凍結版で再実行) |
 | A2 | **ulimit -n 65535** | 実測既定 **1024 = 本番不足**(vLLM7本+parquet+sockets)。ランを張る tmux シェルで 65535 へ。vLLM プロセス側は soft/hard とも 65535 実測済み | `ulimit -n` (不足なら同シェルで `ulimit -n 65535`) | U/S | ⬜ |
 | A3 | **RAM 判定線** | 実機 **251 GiB**(available 242)+ swap 8 GiB。250k 外挿 peak RSS が **GO < 180 GiB / CONDITIONAL 180〜220 / NO-GO > 220**(§3-⑦の未定義帯 215〜220 は 2026-08-16 に CONDITIONAL 側で確定=triage R2 も同時修正)。A2(PRES-A2)ON なら +72 GiB(楽観外挿 110+72=182=CONDITIONAL 境界) | `free -h; swapon --show` → 判定入力は C3 の 10k×144 peak RSS | S/F | ⬜(入力未実測) |
 | A4 | ディスク | /home **3.7 TB 空き**。本番 run 本体 67〜70 GB+checkpoint 累積 50〜150 GB 級+退避先。今夜線=50 GB 以上 | `df -h / /home /tmp` | S | ✅(3.7TB) |

@@ -819,3 +819,14 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
   非TTYはstdinを閉じる)。ユーザーとの経緯: Codex接続完了(device-auth・煙試験=read-onlyでgpt-5.6-sol応答)・
   並列指示→C1(A8ハーネス)/C2(本ゲート)/C4(PLATEAU・承認済み)発注・V3=B5後と決定・
   サーバーLinuxフルゲート実行中・★サーバープール=v1と判明(v2生成が残作業)。
+
+### Entry 127 — 2026-08-16 — 第126=Linuxフルゲート初回完走+SFM wall goldenの恒久処置
+
+- Linuxフルゲート(d2553f8・gpu-sv-002・64CPU): **5,901緑+15skip+赤4件(15分53秒)**。
+  赤4件は全部 tests/test_sfm_walls.py の**Windows採取SHA定数との照合**(GOLDEN_OPEN/INDOOR/WALLFORCE)
+  =libmのfloat丸め差。tomllib修正(第124)は有効=前回の収集エラー解消で+188件実行。
+- **恒久処置**: ①純golden 3本=`requires_windows_golden`(skipif非Windows・理由明記・Linux値で
+  上書きしない方針をコメントで機械化)②`test_walls_none_ignores_wall_parameters`=**不変量
+  (weird==base・empty==base)を全OSで維持**し、GOLDEN定数照合だけ`if _WINDOWS`に分離
+  (比較連鎖の末尾に定数がいたため、プラットフォーム非依存の検収まで一緒に落ちていた)。
+  Windows実測21緑(golden照合込み・skipなし)。ゲート表A1を実測値で更新。
