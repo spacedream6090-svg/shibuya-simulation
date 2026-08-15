@@ -12,7 +12,17 @@
 > (`observer/memory.py` / `relations.py` / `gt_extras.py` / `manifest.py`・`channels.sat_columns`)。
 > 本文書は**その後の状態**を反映して書き直してある。結果として当初 3件あった「追加準備が要る候補」は
 > **1件(U13 の conf 1行)だけ**になり、**残り14件は追加実装ゼロ**になった。
-> 8/15 までに残っている判断は §6 の **J1(共在上限)/ J5(GPU 尾部)/ J6(seed 2本目)の3つだけ**である。
+>
+> ★★**2026-08-15 更新(第115 調査)**:
+> - **U15(多世界・反実仮想)は見送り**(ユーザー決定)。**J5(GPU 尾部予約)も同時に閉じた**。
+> - **J1(共在上限 8→24)は既に実施済み**だった(第114 レーン 1c。作業木で機械確認)。
+>   → **8/15 までに残っている判断は §6 の J6(seed 2本目)だけ**である。
+> - ★★**新規のブロッカーを 1 件発見**: DPH-O の starvation 3 kind が causality 未分類で
+>   **finals プロファイルのランが即死する**(§6④ BK1)。担当レーンへ申し送り。
+> - **U1〜U14 の 14件すべてに「(g) 観察方法」節を追記**した(使うログ / 既存解析資産 or 新規の規模 /
+>   実施時期 / 成立条件)。1枚に畳んだ要約表は **§4b**。
+> - 関係形成の経路(U13 の「共在 → 関係」の転換や U12 の前史パネルが乗る土台)は
+>   [relations-formation-map.md](relations-formation-map.md) に全数マップとして別建てした。
 
 ---
 
@@ -67,8 +77,8 @@
 | **価値4軸 sat の軌跡** | ✅ **G6 `channels.sat_columns` 実装+finals ON**(+0.6GB・CHANNELS 本体は不動=σ_c 凍結は無効化されない) | U3・U7 |
 | **自己モデル(self/ties)本文・日課計画の自由文(mood/carry/**同行者 with**)・感情句・needs 5軸・期待表上位k** | ✅ **G7 `gt_extras` 実装+finals ON**(+0.5GB) | **U4**・U3 |
 | **入力3ファイルの sha256**(プール/地図/台帳) | ✅ **G1 `input_provenance` 実装+finals ON** | U4 の `visit_purpose` 逆引き |
-| **checkpoint 20世代+dormant の保持** | ⚠️ **運用マター(G2)。実装で担保できない** | **U1 段2・U15 全部** |
-| **車内共在の 1人1日8対の打ち切り** | ⚠️ **未変更**(`max_pairs_per_day: 8`)→ §6 J1 | **U13** |
+| **checkpoint 20世代+dormant の保持** | ⚠️ **運用マター(G2)。実装で担保できない**(★U15 見送り後も残る=§6②) | **U1 段2・U14 終端記憶・U12 終端台帳** |
+| **車内共在の 1人1日8対の打ち切り** | ✅ **解決(第114 レーン 1c で `max_pairs_per_day: 24`)**。2026-08-15 作業木で機械確認 | **U13**・U8 |
 | **LLM の think 本文** | ❌ **構造的に取得不能**(全バックエンドが CachedLLM に渡す前に剥がす) | — |
 
 ### 1.3 既に在る解析装置(= 追加実装ゼロの根拠)
@@ -361,19 +371,23 @@
 | **U10** ★ | **語の誕生の瞬間の完全文脈**。誰が・どこで・誰と居て・何に反応して語を作ったか | **§2.2b Grieve「導入された正確な時期や場所を辿ることは、おそらく不可能である」**。手法自体が「使用が**上昇した**語を検索して抽出」= 誕生時点は構造的に標本外 | `vocab_coin/label_coin{item_id,text}`(step・xy 付き)× 同 step の `llm_journal` プロンプト全文 × `place_label_bind` × `analyze_specialization` | ゼロ | 0 | なし | 9 |
 | **U11** ★ | **規範・制度の自然発生の全段階**。初出→他者引用→指示詞化→合意参照→制度化→失効 | **§2.2c Centola & Baronchelli「大規模で分権的な集団における新しい集合行動のリアルタイムの創出を評価することの困難さによって妨げられてきた」**。彼らの解は N≤30 の人工課題 | `labeling.norm_stage` 4段(coiner/definitizer/institutionalizer 分離)× `proposal→institution→rule_*→rule_repealed` × `analyze_norms`(下方因果) | ゼロ | 0 | なし | 11 |
 | **U12** ★ | **組織形成の前史**。ファウンダーになる人はなる前に何をしていたか | §2.7 Katz & Gartner「創発期組織は登記簿ベースの標本枠から原理的に抽出不能」。行政データは**最初の給与支払から** | `analyze_founders` 既存(行動ベース検出+前 N 日パネル+同職業同年齢の決定論マッチ対照+反復共在クラスタ)× `group_found/venture_*/candidacy` | ゼロ | 0 | なし | 12 |
-| **U13** ○ | **都市規模の完全接触ネットワーク**(familiar strangers 含む) | §2.4b Salathé「近接相互作用の動的パターンについて分かっていることは非常に少ない」・SocioPatterns は閉じた集会のみ・POLYMOD は紙日誌7,290人・接触日誌は**高次数ほど過少報告**・「近接ネットワークは現実には決して完全には復元できない」 | 屋内(建物,階,step)と `train_copresence` から復元。**★`transit_interior.copresence.max_pairs_per_day: 8` が効いている** | conf 1行 | +2〜3GB(8→24) | 低(L1 行数のみ増・乱数/状態遷移は不変) | **13** |
+| **U13** ★(J1 解決済) | **都市規模の完全接触ネットワーク**(familiar strangers 含む) | §2.4b Salathé「近接相互作用の動的パターンについて分かっていることは非常に少ない」・SocioPatterns は閉じた集会のみ・POLYMOD は紙日誌7,290人・接触日誌は**高次数ほど過少報告**・「近接ネットワークは現実には決して完全には復元できない」 | 屋内(建物,階,step)と `train_copresence` から復元。★`max_pairs_per_day` は **24 へ引き上げ済み**(第114 レーン 1c) | ゼロ(解決済) | +2〜3GB(計上済) | なし | **13** |
 | **U14** ★ | **集合的記憶の形成と忘却**。街が何を覚え、何を忘れるか | 記憶内容の全数は実世界で取得不能。経験サンプリング(EMA)は参加者負担・欠測・**測定反応性**で頭打ちであり、必要な頻度はまさに人が拒否する頻度。「何を忘れたか」は定義上、本人にも報告できない | **G4 `memory_daily`(第114 で実装+finals ON)**= 日境界の episodes/buffer 本文+importance。ACT-R 忘却と睡眠剪定で**日々消える**ので日境界スナップショットでしか捕まらない | ゼロ(実装済) | +1.5〜1.8GB(計上済) | なし(observer 側) | 14 |
-| **U15** ▲ | **多世界と反実仮想**。同じ初期条件から別の歴史は生まれるか / 街を1本封鎖したら何が変わるか | §2.1 Holland「潜在結果は1つ」・DARPA「反実仮想データは実世界システムからは完全に得られない」。**§2.7b Salganik-Dodds-Watts は「歴史を再走する」ために実験室で並行世界を作った**(現実では作れないから) | checkpoint から**分岐**して残り日を別 seed / `world.mod` 有効で再走。★`config_hash` 照合が現状**分岐を弾く**ので分岐ツールが要る(本選後で可)。準備は**checkpoint 全世代保持+GPU 尾部予約**のみ | 分岐ツール(本選後) | 0(保持のみ) | **中**(GPU 予算・保持容量) | **★期限** |
+| ~~**U15**~~ ✖ **見送り(2026-08-15 ユーザー決定)** | **多世界と反実仮想**。同じ初期条件から別の歴史は生まれるか / 街を1本封鎖したら何が変わるか | §2.1 Holland「潜在結果は1つ」・DARPA「反実仮想データは実世界システムからは完全に得られない」。**§2.7b Salganik-Dodds-Watts は「歴史を再走する」ために実験室で並行世界を作った**(現実では作れないから) | checkpoint から**分岐**して残り日を別 seed / `world.mod` 有効で再走。★`config_hash` 照合が現状**分岐を弾く**ので分岐ツールが要る(本選後で可)。準備は**checkpoint 全世代保持+GPU 尾部予約**のみ | 分岐ツール(本選後) | 0(保持のみ) | **中**(GPU 予算・保持容量) | **★期限** |
 
-凡例: ★=追加実装ゼロ / ○=conf 1行(未決)/ ▲=ラン設計判断(未決)。
+凡例: ★=追加実装ゼロ / ○=conf 1行 / ▲=ラン設計判断 / ✖=見送り。
 ★第114 で G1/G4/G5/G6/G7 が実装+finals ON になったため、**U14 は追加実装ゼロへ移った**。
-残る未決は **U13 の conf 1行**と **U15 のラン設計**の2つだけである。
+★★**2026-08-15 ユーザー決定で U15 は見送り**。したがって
+**J1(U13 の conf 1行)も第114 レーン 1c で実施済み**なので、**候補側の未決はゼロ**である
+(J5 は U15 と同時に閉じた。J6 = seed 2本目だけが別項目として存続)。
+**U1〜U14 の 14件は全て現行 finals 構成で成立する**(各候補の (g) 欄で成立条件を確認済み)。
 
 ---
 
 ## 4. 各候補の詳細(a)問い (b)なぜ取れないか (c)どう取るか (d)規模 (e)価値 (f)リスク
 
-以下、**追加実装ゼロの14件**を先に、準備が要る1件(U15)を後に置く。
+以下、**追加実装ゼロの14件**を先に、**見送りになった1件(U15)**を後に置く。
+各候補に **(g) 観察方法**(2026-08-15 確定)を付した。1枚に畳んだ要約表は **§4b**。
 
 ### U1. 噂の完全伝播木 × 内容の変異 【追加実装ゼロ】
 
@@ -402,6 +416,19 @@
   直接比較材料にもなる。
 - **(f)** ゼロ。読み出し専用の事後解析(R1-⑥)。**限界**: 噂機構は `information.rumors` ON(finals)だが、
   10日窓で十分な木の深さが出るかは未知。深さが浅ければ「浅かった」を報告する(それ自体が OASIS との比較値)。
+- **(g) 観察方法**(2026-08-15 確定)
+  - **使うログ**: `l1_events.parquet` の `rumor_born` / `transmission` / `rumor_stifle` /
+    `speak{text,item_ids,hearers}` / `dm{to,text}` / `sns_post{text,items}` / `hear` /
+    `belief_transmit`。**正準本文 `Item.text` は checkpoint のみ**(L1 非出力の設計)。
+  - **解析**: 既存 `scripts/analyze_rumors.py`(scale/depth/max_breadth・DK/MT 比較)+
+    `scripts/analyze_beliefs.py`(伝播木 JSON)+ `scripts/analyze_rumor_contamination.py`
+    (語彙との混線を引き算)。**新規は「木の辺にテキストを貼る join」1本だけ**(小・~200行。
+    `scripts/l1_stream.py` の kind 絞り込みを入力に使う。変異距離3本=文字 n-gram Jaccard /
+    埋め込みコサイン / 語彙集合の対称差)。
+  - **時期**: 木の**本数と深さ**だけ**ラン中に流し見**(浅すぎるなら §7-1 の「浅かった」報告に
+    切り替える判断が早く打てる)。変異の本解析は**本選後**。
+  - **成立条件**: `information.rumors.enabled: true` ✅ / `sns_geo` ON(伝播辺に `dist_m`)✅ /
+    ★**G2 = checkpoint 全世代の保持**(段2 の正準本文がここにしか無い)。**これだけが運用依存**。
 
 ### U2. 真偽が事前に既知の情報生態 【追加実装ゼロ】
 
@@ -417,6 +444,17 @@
 - **(e)** ミスインフォメーション研究の中心問題(訂正は届くのか・バックファイア効果)に、
   **真値・信念・検証行動の三つ組が全個体で揃った初のデータ**を与える。
 - **(f)** ゼロ。**限界**: 真値は [0,1] のスカラー(ミニマル版)。検証数が0のランはありうる(誰が確かめるかが観測対象)。
+- **(g) 観察方法**(2026-08-15 確定)
+  - **使うログ**: `beliefs_ledger.json`(**真値**・run dir 直下)/ L1 の `belief_update` /
+    `belief_transmit` / `belief_verify` / `transmission` / `speak` / `sns_post` /
+    `l3_snapshots.parquet`(日次の私的信念値)。
+  - **解析**: 既存 `scripts/analyze_beliefs.py` **だけで足りる**(信念距離の時系列・fact別/agent別
+    検証率・訂正の伝播効率・伝播木 JSON を既に出す)。新規ゼロ。
+  - **時期**: **ラン中に流し見**(`belief_verify` が 0 件のまま推移していないかだけ見る。
+    0 なら「誰も確かめない社会だった」が所見になるので、慌てて conf を触らない)。本解析は本選後。
+  - **成立条件**: `beliefs.enabled` + `verify_actions` ✅ ON。漏洩3点ガード(静的検査 +
+    CachedLLM 関門 canary + 全プロンプト検査)が「エージェントは真値を知らない」を機械固定 ✅。
+    追加準備なし。
 
 ### U3. 私的状態と公的発話の乖離 【追加実装ゼロ・★上位1】
 
@@ -437,6 +475,21 @@
   直接の実証。**乖離がゼロだったら、それも一級の発見**(「LLM 社会は本音しか言わない社会である」= 適用境界の測定)。
 - **(f)** ゼロ。**限界**: `opinion` は1次元 FJ スカラーで、日次粒度(`snapshot_every: 144`)。
   乖離の判定は LLM-judge を補助に使うため R4 の作法(κ・別ファミリ・逆流禁止)を必ず守る。
+- **(g) 観察方法**(2026-08-15 確定)
+  - **使うログ**: 私 = `l3_snapshots.parquet`(`opinion` / `states`)+ `channels.parquet`
+    (grievance/efficacy/ownership + **G6 の sat 4列**)+ `roster.parquet`(素性)+
+    `traits.json`。公 = L1 の `speak{text,hearers}` / `sns_post{text}` / `dm{to,text}` /
+    `vote_cast` / `proposal_support` / `labor_action`。文脈 = `llm_journal.jsonl.gz` +
+    **G7 の自己像本文**(`reflect` payload)。
+  - **解析**: **新規が要る**(中規模。段0-6 の手順は §5【1位】に素描済み)。
+    - 立場推定の辞書法 = 新規(~300行)。
+    - LLM-judge 側は既存 `scripts/judge.py`(κ ハーネス)を**層別サンプルにだけ**当てる。
+    - L1 走査は `scripts/l1_stream.py`(kind 絞り込み + step 枝刈り)を入力に使う。
+    - 聴衆構成は `hearers` 列 + 共在復元(U13 の出力を再利用)。
+  - **時期**: **本選後に本解析**。ラン中は「公的発話の件数が十分に出ているか」だけ流し見。
+  - **成立条件**: `cognition.channels.enabled` ✅ / `sat_columns`(G6)✅ /
+    `observer.gt_extras`(G7)✅ / `model.journal` ✅ / `observer.roster_daily` ✅。
+    **追加準備なし**。★段0(事前登録)を**データを見る前に**書くことだけが実務上の必須条件。
 
 ### U4. 意図と行動の全乖離 【追加実装ゼロ】
 
@@ -459,6 +512,22 @@
 - **(f)** ゼロ。**限界**: Δt=10分の量子化。★計画の自由文(mood/carry/**同行者 with**)は
   **第114 の G7 `gt_extras` で残るようになった**ので、「なぜその計画にしたか」「誰と行くつもりだったか」まで
   乖離の説明変数に使える(当初の限界は解消)。
+- **(g) 観察方法**(2026-08-15 確定)
+  - **使うログ**: L1 の `day_plan{n,plan}` / `plan_created`(**G7 で mood/carry/with 付き**)/
+    `plan_block_start` / `plan_block_drop` / `plan_slide` / `replan` / `cont_fire` /
+    `plan_repair` / `plan_fallback` / `detour` / `interrupt` / `boredom_explore` /
+    `route_start` / `arrive` / `enter_building`。素性 = `roster.parquet` +
+    プール記録の `visit_purpose`(`pool_pid` から決定論逆引き)+ `run_manifest.json` の
+    **G1 input_provenance**(プール sha256)。
+  - **解析**: 既存 `scripts/analyze_plan_execution.py` が**計画と実行動の突合を既に実装**。
+    追加で要るのは「**目的推定ベンチマーク**」= 滞在時間 × POI カテゴリ × 時間帯の標準
+    ヒューリスティクスを組んで `visit_purpose` と照合する新規スクリプト(小・~250行)。
+  - **時期**: 突合(既存スクリプト)は**ラン中に日次で流し見できる**(1日ぶんで回る)。
+    目的推定ベンチマークは**本選後**。
+  - **成立条件**: `planning.day_plan.enabled` ✅ / `use_contingency` ✅ / `boundary` ✅ /
+    `observer.gt_extras`(G7)✅ / `observer.input_provenance`(G1)✅ / `roster_daily` ✅。
+    **追加準備なし**。★`roster.parquet` に `visit_purpose` 列は無いので、逆引きに
+    **プール実体(`data/persona_pool`)の保全**が要る(ラン後に再生成すると sha256 が変わる)。
 
 ### U5. 完全な取引グラフと不平等の生成会計 【追加実装ゼロ】
 
@@ -480,6 +549,20 @@
 - **(f)** ゼロ。**限界**(既に台帳に正直記載): 家賃/敷金の受け手は今も RoW・売買代金は動かない(O4/O5 未実装)・
   b2b の買い手一意特定率 4.5%・10日窓に家賃引落日(27日/末日)が入らない・給料日は 20日組と25日組(職場の約52%)のみ発火。
   **これらは「窓アーティファクト」として明示して報告する**(隠すと嘘になる)。
+- **(g) 観察方法**(2026-08-15 確定)
+  - **使うログ**: L1 の `spend{amount,cat,payee,paid}` / `wage` / `rent` / `tax` /
+    `withdraw` / `deposit` / `loan_grant` / `loan_repay` / `interest_paid` / `b2b_trade` /
+    `inheritance` / `asset_transfer` / `row_flow`。台帳 = `assets_ledger.json` /
+    `finance.parquet` / `org_ledger.parquet` / `l3_snapshots.parquet`(所持金の日次)。
+  - **解析**: 既存 4本で足りる。`scripts/analyze_accounting.py`(**SFC 保存則の機械検査**)+
+    `scripts/analyze_assets.py`(登記簿・Gini)+ `scripts/analyze_luck.py`(実力 R²_skill /
+    運 ΔR²_luck の階層回帰)+ `scripts/observe_flows.py`(金の移動 + 注意ネットワーク)。
+    新規は「**Gini 増分の from-whom-to-whom 分解**」だけ(小・~200行。既存の保存則検査の
+    残差ゼロを前提に、日次 Gini 差分を辺集合へ帰属させる)。
+  - **時期**: `analyze_accounting.py` の**保存則検査だけは日次でラン中に回す**
+    (残差が出たら会計の穴なので、早く気づくほど良い)。分配の本解析は本選後。
+  - **成立条件**: `economy.org_accounting` ✅ / `wage_profile` ✅ / `assets`(O1+O3)✅。
+    **追加準備なし**。★§7-6 の窓アーティファクト一覧を**報告文に必ず併記**すること。
 
 ### U6. 交絡の実測 — 標準的推定量のバイアス台帳 【追加実装ゼロ・★上位3】
 
@@ -507,6 +590,21 @@
   **交絡の大きさを初めて数値で出す**。
 - **(f)** ゼロ。**限界**: 「LLM エージェント社会でのバイアス」であって「人間社会でのバイアス」ではない
   (Wu et al. の境界)。主張は「この生成過程の下で」と明記する。
+- **(g) 観察方法**(2026-08-15 確定)
+  - **使うログ**: 真値 = `traits.json` + `roster.parquet`(全潜在属性)+ `channels.parquet`
+    (内部状態の全時系列 + G6 sat)+ L1 の `causality` 3列(`cause_type` / `actor_id` /
+    `device_id`)。★~~U15 の反実仮想分岐(干渉の真値)~~ は**見送りで失われた**。観測データ = 射影 F2。
+  - **解析**: **本選後に 2本**。① 射影フィルタ `scripts/project_observables.py`(F1-F4。
+    メタバース射影計画で既に設計済み・中規模)② 推定量バッテリ(ピア効果 / 同類性 vs 伝染 /
+    DiD / 傾向スコア / IV。中規模)。既存の `scripts/analyze_causality.py`
+    (cause_type × kind の帰属率)が**真値側の入口**としてそのまま使える。
+  - **時期**: **完全に本選後**。ラン中の作業はゼロ(真値が全部残る構成になっていることの
+    ①目視確認だけ)。
+  - **成立条件**: `observer.causality.enabled` ✅ / `channels.enabled` + `sat_columns` ✅ /
+    `roster_daily` ✅ / `lens.deviation` ✅。**本選前の追加準備はゼロ**。
+    ★★**U15 見送り(2026-08-15)の唯一の実害がここ**: 段4 の干渉(SUTVA 違反)成分は真値が無いので
+    **部分同定にとどめる**(Eckles et al. 2017 / Hudgens & Halloran 2008 の「仮定を置かないと識別できない」を引く)。
+    残る3成分(潜在同類性 / 選択 / 測定誤差)は真値つきで採点できるので、候補そのものは成立する。
 
 ### U7. 起きなかったことの全数 【追加実装ゼロ】
 
@@ -523,6 +621,22 @@
 - **(e)** 意思決定研究・選択集合の推定(交通・マーケティングの離散選択モデルは選択集合を**仮定**するしかない)。
   「行動空間の外へ出ようとする個体」は **world-changer(k\*)の操作的定義の最有力候補**として既に台帳にある。
 - **(f)** ゼロ。**限界**: `action_reject` の payload は**有限語彙2つだけ**(自由文なし)= 理由の粒度は粗い。
+- **(g) 観察方法**(2026-08-15 確定)
+  - **使うログ**: L1 の `drive_request{drive,threshold,mode,lottery,granted,reason}` /
+    `action_reject{kind,reason}` / `undefined_action{action,keys,text,trigger}` /
+    `explicit_nothing` / `plan_block_drop` / `taxi_unmatched` / `stock_out` /
+    `partnership_declined` / `fallback` / `memory_fail` / `llm_null` /
+    `copresence_dropped`(打ち切りの正直な分母)。内部状態の分母 = `channels.parquet`
+    (**G6 sat = 「何が満たされていないか」**)。
+  - **解析**: **既存は部分的**。`scripts/analyze.py` が `drive_request` の集計と図を出し、
+    `scripts/observe.py` が興味観測の入力に使っている。**「起きなかったことの全数表」を
+    1枚にする新規スクリプトが要る**(小・~250行。kind ごとの件数 × 理由内訳 × 個体分布を
+    `l1_stream` で1パス走査するだけ)。
+  - **時期**: **本選後**。ただし `undefined_action`(行動空間の外へ出ようとした痕跡)は
+    **ラン中に日次で流し見**する価値がある(k\* の操作的定義の最有力候補=珍しければ本文で拾う)。
+  - **成立条件**: `cognition.rejection_notify: engaged` ✅(基底既定 `silent` からの上書き)/
+    `freedom.undefined_register` + `explicit_nothing` ✅ / `channels.sat_columns` ✅。
+    **追加準備なし**。
 
 ### U8. 犯罪の分母と暗数 【追加実装ゼロ】
 
@@ -538,6 +652,20 @@
   V1/V2(LLM が犯行を選ぶ率・被害者反応)と組めば「認知の層」と「機会の層」を分離した犯罪生成の二層モデルになる。
 - **(f)** ゼロ。**限界**: 判定分類器は日英語彙のみ(皮肉/婉曲は拾えない・md 明記済み)。警察官を現場へ動かさない・
   `detain_steps` 既定0。共在の全数復元は O(ペア) なので集計方針を先に決める(§5 参照)。
+- **(g) 観察方法**(2026-08-15 確定)
+  - **使うログ**: L1 の `crime` / `nuisance` / `enforcement` / `detention` / 窃盗系 /
+    `ems_call` / 110番系 × **共在復元**(`enter_building` / `floor_move` / `exit_building` /
+    `arrive` / `stay` から (建物, 階, step) セル、`train_copresence` から車内対)×
+    `guardian.w_trace`(監視者)× `roster.parquet`(素性)。
+  - **解析**: **新規が要る**(中規模・U13 と**同じ共在復元器を共用**するのが必須。
+    別々に組むと分母の定義が食い違う)。V0 ハーネスの
+    `scripts/probe_deviance_choice.py` / `scripts/probe_victim_react.py` は**認知層の実測用**で
+    分母は出さないので、機会構造の分母(共在セル数 × guardian 有無)を数える器が別に要る。
+  - **時期**: **本選後**(共在復元は 40億行スキャン。集計方針=閾値・時間窓・上限を
+    **走らせる前に決める**=§7-7)。ラン中は `crime` / `nuisance` の**件数だけ**流し見。
+  - **成立条件**: `incidents_interpersonal` ✅ ON(「共在なければ事件なし」が4重に機械固定)/
+    `transit_interior.copresence.enabled` ✅ / `max_pairs_per_day: 24` ✅(第114 レーン 1c 実施済み)。
+    車内側の分母の打ち切りは 8 → 24 に緩んでいる。**未決なし**。
 
 ### U9. 悪評の生成と歪み 【追加実装ゼロ】
 
@@ -552,6 +680,19 @@
 - **(e)** 評判・信頼の経済学、間接互恵性。**「評判は事実からどれだけ乖離して安定するか」**という
   理論的にだけ議論されてきた量を実測する。
 - **(f)** ゼロ。**限界**: 悪評タグは匿名(何をしたかは L1 参照)なので、突合は解析側の join に依存する。
+- **(g) 観察方法**(2026-08-15 確定)
+  - **使うログ**: L1 の `gossip_seed{n,cause}` / `gossip_spread{target,sources}` /
+    `gossip_fade{target}` / `reputation_update{old,new,cause}` × 原イベント本体
+    (`crime` / `relation_break` / `enforcement` / `eviction` / `bankruptcy`)×
+    **G5 `relations.parquet`**(悪評が関係の連続値をどう動かしたか)× `l3_snapshots`(status)。
+  - **解析**: **既存は部分的**。`scripts/analyze_structure.py` が `reputation_update` から
+    順位 τ を、`scripts/analyze_luck.py` が評判を素性として使う。**「原イベント → 悪評 → 評判」の
+    3点 join と歪みの測定は新規**(小・~250行。`gossip_seed.cause` が原イベントを名指しして
+    いるので join キーは既にある)。
+  - **時期**: **本選後**。ラン中は `gossip_seed` / `gossip_spread` が 0 件でないかだけ流し見
+    (`adopt_threshold: 2` の complex contagion なので、種が薄いと伝播が立たない)。
+  - **成立条件**: `gossip.enabled` ✅ / `relations.enabled` ✅ / `observer.relations_daily`(G5)✅ /
+    `incidents_interpersonal` ✅(原イベントの供給源)。**追加準備なし**。
 
 ### U10. 語の誕生の瞬間の完全文脈 【追加実装ゼロ】
 
@@ -578,6 +719,22 @@
   自然造語観測(既決目標)の**射程をひとつ上げる**位置づけ。
 - **(f)** ゼロ。**限界**: LLM 発火は約3呼/人日(lod 上限)なので、造語の母集団は全員ではない。
   `think` 本文は構造的に無い。
+- **(g) 観察方法**(2026-08-15 確定)
+  - **使うログ**: L1 の `vocab_coin{item_id,text}` / `label_coin`(step・x・y 付き)/
+    `vocab_use` / `label_adopt` / `transmission` / `place_label_bind` / `norm_stage` ×
+    **同 step・同 agent の `llm_journal.jsonl.gz` のプロンプト全文**(`observer.llm_link` で
+    行為↔思考の PROV リンク)× `channels.parquet`(その瞬間の内部状態 + G6 sat)×
+    **G4 `memory.parquet`**(その日の記憶本文)× **G7 の感情句**。
+  - **解析**: 既存 `scripts/analyze_specialization.py`(専門化スコア=凍結指標)+
+    `scripts/detect_emergence.py`(後付けテキスト検出)。**新規は「造語 1 件の完全文脈カード」を
+    組む join だけ**(小・~200行。`llm_journal` の index.json で該当呼をピンポイントに引ける)。
+  - **時期**: **ラン中に日次で流し見**する(造語が 0 件なら「起きなかった」を早く確定できる。
+    ★`natural-coinage-observation` 方針どおり **促進はしない**=見て conf を触らない)。
+    完全文脈カードの作成は本選後。
+  - **成立条件**: `model.journal: true` ✅ / `observer.llm_link: true` ✅ /
+    `labeling.norm_stage` + `place_binding` ✅ / `channels` + `sat_columns` ✅ /
+    `memory_daily`(G4)✅ / `gt_extras`(G7)✅。**追加準備なし**。
+    ★`llm_journal.jsonl.gz`(4.0GB)の保全が前提(消すと文脈が全部消える)。
 
 ### U11. 規範・制度の自然発生の全段階 【追加実装ゼロ】
 
@@ -601,6 +758,19 @@
   制度的事実の生成が哲学的に接地した形で観測できる。
 - **(f)** ゼロ。**限界**: 10日で S4(合意参照)まで到達するかは未知。**到達しなかったことも報告**する
   (第109 の実測で「10日ランで議会が空く」痩せは既に根治済み)。
+- **(g) 観察方法**(2026-08-15 確定)
+  - **使うログ**: L1 の `norm_stage`(4段。coiner / definitizer / institutionalizer が分離される)/
+    `label_coin` / `label_adopt` / `proposal` / `proposal_support` / `proposal_review` /
+    `proposal_passed` / `institution` / `institution_rule` / `rule_bonus` /
+    `rule_weekly_fire` / `rule_expired` / `rule_repealed` / `candidacy` / `vote_cast` ×
+    `l3_snapshots`(`adopted` 列)× `roster.parquet`。
+  - **解析**: 既存 `scripts/analyze_norms.py`(**規範化4段 + 下方因果**。閾値は引数必須=
+    事後いじり防止の設計)。新規ゼロ。段の到達率を出すだけなら追加実装なし。
+  - **時期**: **ラン中に日次で流し見**(S3/S4 に到達しているかは早く知りたい。到達しなくても
+    conf を触らない=それ自体が所見)。下方因果の本解析は本選後。
+  - **成立条件**: `labeling.norm_stage` + `place_binding` ✅ / `institutions` 系 ✅ /
+    議会は名簿制(実定数34・在場議員のみ投票)+ 第111 の日次再バインドで「10日で議会が空く」
+    痩せは根治済み ✅。**追加準備なし**。
 
 ### U12. 組織形成の前史 【追加実装ゼロ】
 
@@ -620,6 +790,20 @@
 - **(e)** 起業研究・組織論。既決の研究目標(組織の自然形成+ファウンダー成立条件)の**そのもの**だが、
   ここでの新しさは「**前史パネル+マッチ対照**という因果推論の形で出せること」。
 - **(f)** ゼロ。**限界**: 10日は起業には短い。「候補」と呼び「組織」と断定しない設計になっている。
+- **(g) 観察方法**(2026-08-15 確定)
+  - **使うログ**: L1 の `group_found` / `group_join` / `venture_permit` / `venture_open` /
+    `venture_fulltime` / `venture_sale` / `candidacy` / `proposal` × `org_ledger.parquet` ×
+    前史パネルの素材(`spend` / `speak` / `hear` / `dm` / `opinion_shift` / `drive_request`)×
+    `channels.parquet`(grievance/efficacy/ownership の全時系列)×
+    **G5 `relations.parquet`**(関係数の連続値軌跡)× `roster.parquet` / `traits.json`(マッチ対照の素性)。
+  - **解析**: 既存 `scripts/analyze_founders.py` が**4つを既に出す**
+    (行動ベース検出 / 前 N 日パネル / 同職業×同年齢帯の決定論マッチ対照 / 反復共在クラスタ)。
+    新規ゼロ。★前史パネルの説明変数に **G5 の closeness 軌跡**を足すのは 1 列 join(極小)。
+  - **時期**: **本選後**(前史 N 日が要るので、ランが終わってからでないと母集団が確定しない)。
+    ラン中は `group_found` / `venture_open` の件数だけ流し見。
+  - **成立条件**: `organizations` ✅ / `commerce`(venture)✅ / `relations` + `relations_daily` ✅ /
+    `channels` ✅ / `roster_daily` ✅(**マッチ対照の素性が途中入場 20.9万人ぶん要る**=
+    roster が無いと対照群が 4 割落ちる)。**追加準備なし**。
 
 ### U13. 都市規模の完全接触ネットワーク 【conf 1行・★期限あり】
 
@@ -646,6 +830,31 @@
   変更する場合は「golden の L1 が変わる(行数)」ことと「動力学不変」を検収で機械確認する必要がある。
   屋内側の全数ペア復元は O(セル内人数²) なので、**先に集計方針(閾値・時間窓)を決めてから走らせる**
   (無方針だと 40億行スキャン+爆発)。
+- **(g) 観察方法**(2026-08-15 確定)
+  - **使うログ**: 屋内 = L1 の `enter_building` / `floor_move` / `exit_building` /
+    `arrive` / `stay`(→(建物, 階, step) セル)。車内 = `train_copresence{other_id,line,car,zone_adjacent}`
+    (**対を直接 L1 に書いている**)+ `copresence_dropped`(打ち切りの大きさ)。
+    関係側 = **G5 `relations.parquet`**(`other_id>=0` の関係行 = closeness 軌跡 /
+    `other_id=-1` の**すれ違い行** = `c3_pass` / `c3_greet`)。会話側 = `speak{hearers}` / `hear` /
+    `conversation{with}`(C2)/ `dm`。
+  - **解析**: **新規が要る**(中規模。共在復元器は U8 と**必ず共用**する)。下流は既存が揃っている:
+    `scripts/analyze_communities.py`(Louvain 正準 + LPA 併走)/ `scripts/analyze_weak_ties.py`
+    (bridge 辺と新規語彙採用の突合)/ `scripts/analyze_structure.py`(edge churn・順位 τ)/
+    `scripts/analyze_bridging.py`(SNS/DM の架橋距離)。
+    ★「familiar strangers が関係に転じるか」は **`c3_pass` に居るが `relations` 行が無い対**を
+    分母に、**後日 closeness 行が生えた対**を分子にする(G5 の 2 種の行がそのまま分母と分子になる)。
+    ★★**設計上の重要事実**(`docs/research/relations-formation-map.md` §2.2): すれ違い**だけ**では
+    関係は生まれない(`dunbar.touch` は台帳に無い相手に何もしない)。転換の口は
+    **① 誰かが発話して自分が `hearers` に入る(C1)** と **② `c2_meet` 抽選に当たる(C2)** の 2 つだけ。
+    したがって本候補の測定対象は正確には「**共在 → (誰かが喋る or C2 成立) → 関係**」の連鎖で、
+    分母と分子の間に**第3の条件**が挟まっている。これを織り込まずに「共在 → 関係」の転換率を
+    報告すると、実際には「発話の起きやすさ」を測ってしまう。
+  - **時期**: **本選後**(§7-7 の計算量。集計方針を先に決める)。ラン中は `copresence_dropped` の
+    件数だけ流し見(打ち切りがどれだけ効いたかの記録)。
+  - **成立条件**: `transit_interior.copresence.enabled` ✅ / `observer.relations_daily`(G5)✅ /
+    `conversation.enabled` ✅(**転換の口**)/ `relations.enabled` + `dunbar` ✅。
+    ★**J1(`max_pairs_per_day: 8 → 24`)は第114 レーン 1c で実施済み**(2026-08-15 作業木で
+    `conf/finals_observe.yaml:236` を機械確認)。**U13 の未決はゼロ**になった。
 
 ### U14. 集合的記憶の形成と忘却 【追加実装ゼロ(第114 で G4 が入った)】
 
@@ -670,8 +879,37 @@
   **2つを同じ出来事について同時に測れるのは本シムだけ**である。
 - **(f)** なし(observer 側・世界も乱数も LLM 呼数も不変)。
   **限界**: 日境界のスナップショットなので、日中に生まれて日中に消えた記憶は捕まらない。
+- **(g) 観察方法**(2026-08-15 確定)
+  - **使うログ**: **G4 `memory.parquet`**(日境界の episodes/buffer **本文 + importance**)が主入力。
+    補助 = L1 の `memory_recall` / `memory_fail`(件数)/ `emotion_label`(**G7 で感情句付き**)/
+    `reflect`(**G7 で自己像本文付き**)/ `speak` / `hear`(目撃の同定)× 共在復元(U13 の出力)×
+    `channels.parquet`(忘却時の内部状態)。終端の完全台帳は**最後の checkpoint**。
+  - **解析**: **新規が要る**(小〜中・~300行)。`memory.parquet` を読む既存スクリプトは**まだ 1 本も無い**
+    (第114 で writer だけが入った)。組むのは 3 つ:
+    ① 同一イベントの目撃者集合を共在復元から作り、記憶本文の**分岐距離**を日次で測る
+    ② importance の分布を出来事の kind 別に出す(何に高い点が付くか)
+    ③ 「消えた記憶」= 前日に在って翌日に無い行を数え、その個体の行動に痕跡が残るかを見る
+  - **時期**: **本選後**。ラン中は `memory.parquet` の**行数が伸びているか**だけ確認
+    (+1.5〜1.8GB = 本ラン最大の 1 枚。伸びていなければ writer が死んでいる)。
+  - **成立条件**: `observer.memory_daily`(G4)✅ ON / `observer.gt_extras`(G7)✅ /
+    `memory.agentic_pull` ✅ / ACT-R 忘却 ON(d=0.5, τ=−2)。**追加準備なし**。
+    ★★**G2(checkpoint 剪定禁止)がここにも掛かる**: 最終日の**終わり**の記憶は G4 に入らない
+    (日境界しか撮らない設計)ので、最後の checkpoint が唯一の終端記録である。
 
-### U15. 多世界と反実仮想 【ラン設計・★最重要の期限】
+### U15. 多世界と反実仮想 【★★見送り(2026-08-15 ユーザー決定)】
+
+> ★★**2026-08-15 ユーザー決定: 本候補は見送り**。以下の (a)-(f) は**起票時の記録として残す**
+> (判断の前提が後から読めるように削除しない)が、**本選ランに向けた作業項目としては閉じる**。
+> 含意を正直に書いておく:
+> - §6 の **J5(GPU 尾部の予約)は不要**になった。
+> - **G2(checkpoint 剪定禁止)は依然として必要**である。理由が U15 の「分岐点」から
+>   **U1 の噂の正準本文 `Item.text`** と **U14 の終端記憶**へ移っただけで、消してよくはならない。
+> - **U6 の段4(バイアスの「干渉」成分の分解)は真値を失う**。反実仮想が無いと干渉の大きさは
+>   直接測れないので、U6 は「潜在同類性 / 選択 / 測定誤差」の3成分までを報告し、
+>   **干渉については部分同定にとどまる**と明記すること(Eckles et al. 2017・Hudgens & Halloran 2008 の
+>   「仮定を置かないと識別できない」をそのまま引用する)。
+> - **J6(seed 2本目)は U15 とは別の項目**であり、見送りの対象外である
+>   (事前登録の反証条件が seed 分散の実測を要求している。§6 J6 を参照)。
 
 - **(a)** ①**同じ初期条件から別の歴史は生まれるか**(seed だけ変えた並行世界)。
   ②**街を1本封鎖したら / 電車を止めたら、何がどこまで変わるか**(反実仮想)。
@@ -711,10 +949,43 @@
 
 ---
 
+## 4b. 観察方法の要約表(2026-08-15 確定・U1〜U14)
+
+各候補の **(g) 欄**を 1 枚に畳んだもの。**「新規」は本選ランには一切不要**(全部が読み出し専用の
+事後解析)。ラン中にやることは**流し見の 1 列だけ**である。
+
+| # | 主入力(L1 kind / サイドカー) | 既存解析資産 | 新規の要否と規模 | 実施時期 | 成立条件(finals) |
+|---|---|---|---|---|---|
+| **U1** | `rumor_born`/`transmission`/`rumor_stifle` × `speak`/`dm`/`sns_post` + **checkpoint の `Item.text`** | `analyze_rumors` / `analyze_beliefs` / `analyze_rumor_contamination` | **小1本**(木の辺にテキストを貼る join・~200行) | 木の深さは**ラン中**流し見 / 変異は本選後 | rumors ✅ ・sns_geo ✅ ・★**G2 保持** |
+| **U2** | `beliefs_ledger.json`(真値)× `belief_update`/`transmit`/`verify` | `analyze_beliefs` **のみで足りる** | **ゼロ** | `verify` 0件でないかを**ラン中**流し見 | beliefs + verify_actions ✅ |
+| **U3** | `l3_snapshots`(opinion/states)+ `channels`(+**G6 sat**)× `speak{hearers}`/`sns_post`/`dm`/`vote_cast` + **G7 自己像** | `judge.py`(κ ハーネス)/ `l1_stream` | **中**(私的×公的パネル + 辞書法立場推定・~300行) | 本選後 | channels+sat ✅ ・gt_extras ✅ ・journal ✅ ・**段0 事前登録が必須** |
+| **U4** | `day_plan`/`plan_created`(**G7 mood/carry/with**)× `plan_block_*`/`detour`/`interrupt` + プールの `visit_purpose` | `analyze_plan_execution`(突合は実装済み) | **小**(目的推定ベンチマーク・~250行) | 突合は**ラン中**日次可 / ベンチは本選後 | day_plan ✅ ・G7 ✅ ・**G1 provenance** ✅ ・★プール実体の保全 |
+| **U5** | `spend{payee}`/`wage`/`rent`/`tax`/`b2b_trade`/`inheritance`/`row_flow` + `assets_ledger`/`finance.parquet` | `analyze_accounting`(保存則)/ `analyze_assets` / `analyze_luck` / `observe_flows` | **小**(Gini 増分の from-whom-to-whom 分解・~200行) | **保存則検査はラン中日次** / 分配は本選後 | org_accounting ✅ ・wage_profile ✅ ・assets ✅ |
+| **U6** | 真値 = `traits`+`roster`+`channels`+causality 3列 / 観測 = 射影 F2 | `analyze_causality`(真値側の入口) | **中2本**(`project_observables.py` + 推定量バッテリ) | **完全に本選後** | causality ✅ ・channels+sat ✅ ・roster ✅ ・★**干渉成分は U15 見送りで部分同定どまり** |
+| **U7** | `drive_request`/`action_reject`/`undefined_action`/`explicit_nothing`/`plan_block_drop`/`stock_out`/`taxi_unmatched`/`partnership_declined`/`copresence_dropped` | `analyze.py`(drive_request 集計・図)/ `observe.py` | **小**(「起きなかったこと」全数表・~250行) | `undefined_action` は**ラン中**流し見 / 本表は本選後 | rejection_notify=engaged ✅ ・undefined_register ✅ ・sat ✅ |
+| **U8** | `crime`/`nuisance`/`enforcement`/`detention`/`ems_call` × **共在復元** × `guardian.w_trace` | `probe_deviance_choice` / `probe_victim_react`(V0=認知層) | **中**(機会構造の分母。★**U13 と共在復元器を共用**) | 本選後(集計方針を先に決める) | incidents_interpersonal ✅ ・copresence ✅ ・`max_pairs_per_day: 24` ✅(J1 実施済) |
+| **U9** | `gossip_seed{cause}`/`gossip_spread`/`gossip_fade`/`reputation_update` × 原イベント × **G5 relations** | `analyze_structure`(順位 τ)/ `analyze_luck` | **小**(原イベント→悪評→評判の3点 join・~250行) | 本選後(種が 0 件でないかだけラン中) | gossip ✅ ・relations ✅ ・**G5** ✅ |
+| **U10** | `vocab_coin`/`label_coin`/`label_adopt`/`place_label_bind`/`norm_stage` × **`llm_journal` 全文** × `channels` × **G4/G7** | `analyze_specialization` / `detect_emergence` | **小**(造語1件の完全文脈カード join・~200行) | **ラン中**日次流し見(★促進しない) / カードは本選後 | journal ✅ ・llm_link ✅ ・norm_stage ✅ ・G4/G6/G7 ✅ ・★journal 4GB の保全 |
+| **U11** | `norm_stage` 4段 × `proposal`→`institution`→`rule_*`→`rule_repealed` × `candidacy`/`vote_cast` | `analyze_norms`(4段+下方因果。閾値引数必須) | **ゼロ** | S3/S4 到達は**ラン中**流し見 / 下方因果は本選後 | norm_stage ✅ ・institutions ✅ ・議席の日次再バインド ✅ |
+| **U12** | `group_found`/`venture_*`/`candidacy` × `org_ledger` × 前史パネル × `channels` × **G5** | `analyze_founders`(検出+前史+マッチ対照+共在クラスタ) | **ゼロ**(G5 closeness を 1 列 join するだけ) | 本選後 | organizations ✅ ・commerce ✅ ・**roster_daily** ✅(対照群の分母) |
+| **U13** | 屋内セル復元 + `train_copresence`/`copresence_dropped` × **G5 の 2 種の行**(関係行 / すれ違い行) | `analyze_communities` / `analyze_weak_ties` / `analyze_structure` / `analyze_bridging` | **中**(共在復元器。★U8 と共用) | 本選後(§7-7 の計算量) | copresence ✅ ・**G5** ✅ ・**conversation** ✅(転換の口の1つ)・`max_pairs_per_day: 24` ✅(J1 実施済)= **未決なし** |
+| **U14** | **G4 `memory.parquet`**(本文+importance)× `memory_recall`/`memory_fail`/`emotion_label`(G7) × 共在復元 | **既存の読み手はゼロ**(第114 で writer だけ入った) | **小〜中**(記憶分岐 / importance 分布 / 消えた記憶・~300行) | 本選後(ラン中は行数が伸びているかだけ) | **G4** ✅ ・G7 ✅ ・agentic_pull ✅ ・★**G2**(終端記憶は最後の checkpoint のみ) |
+
+**この表から読める 3 点**:
+
+1. **ラン中にやることは 8 件の「流し見」だけ**(U1 の木の深さ / U2 の検証件数 / U4 の突合 /
+   U5 の保存則 / U7 の `undefined_action` / U10 の造語 / U11 の段到達 / U14 の行数)。
+   いずれも**見て conf を触らない**(観測がシムを変えない = R1-⑥)。
+2. **新規実装は 11 本(ゼロ3件・小6・中4)で、全部が本選後**。ラン前に書くべきコードは 1 行も無い。
+3. **共在復元器(U8 と U13)だけは 1 本を共用すること**。別々に組むと「事件の分母」と
+   「接触ネットワークの分母」が食い違い、両方の主張が同時に壊れる。
+
+---
+
 ## 5. 上位3件の解析手順の素描
 
 優先順位の根拠: **(追加実装ゼロ)×(実世界で原理的に不可能)×(射程の広さ)**。
-U15 は期限が最も厳しいので §6 で別建てにした。
+U15 は見送り(2026-08-15)になったので、以下は U3 / U1 / U6 の3件である。
 
 ### 【1位】U3 — 私的状態と公的発話の乖離
 
@@ -826,7 +1097,7 @@ U15 は期限が最も厳しいので §6 で別建てにした。
 
 段4 何が効いたかの分解
   バイアスを「潜在同類性」「干渉(SUTVA 違反)」「選択」「測定誤差」へ分解する
-  ★干渉の大きさは U15(反実仮想分岐)があれば直接測れる = U15 との結合点
+  ★干渉の大きさは反実仮想分岐があれば直接測れたが、U15 は見送り(2026-08-15)= **部分同定にとどめる**
 
 段5 正直な報告
   ・これは「LLM エージェント社会でのバイアス」であって「人間社会でのバイアス」ではない(Wu et al. の境界)
@@ -842,7 +1113,10 @@ U15 は期限が最も厳しいので §6 で別建てにした。
 
 ### ① 確認だけで済む(実装ゼロ・作業は目視)
 
-| 項目 | 対象 | 状態(2026-08-14 時点の `conf/finals_observe.yaml` 読み) |
+★★**2026-08-15 に作業木で全項目を機械確認し直した**(並行レーンが DPH 実装で conf を触っているため。
+`load_config(profile="conf/finals_observe.yaml")` で解決後の値を読んだ結果):
+
+| 項目 | 対象 | 状態(**2026-08-15 作業木の解決後の値**) |
 |---|---|---|
 | `model.journal: true` | U10 の造語文脈・U3 の思考代理 | ✅ ON |
 | `observer.llm_link: true` | 行為↔思考の PROV リンク | ✅ ON |
@@ -856,33 +1130,44 @@ U15 は期限が最も厳しいので §6 で別建てにした。
 | `economy.org_accounting` + `wage_profile` | U5 の payee と月給 | ✅ ON |
 | `observer.roster_daily` | 全候補の分母(途中入場 20.9万人) | ✅ ON |
 | `cognition.channels.enabled` | U3 の私的側・U6 の真値 | ✅ ON(L1 バイト不変のサイドカー) |
-| `transit_interior.copresence.enabled` | U13 | ✅ ON(ただし上限は下記③ J1 を参照) |
+| `transit_interior.copresence.enabled` | U13 | ✅ ON |
+| ★`transit_interior.copresence.max_pairs_per_day` | **U13 / U8 の分母** | ✅ **24**(第114 レーン 1c で 8→24 済み・`conf/finals_observe.yaml:236`)= **J1 は解決済み** |
+| ★`lod.budget.tiers.enabled` | 全候補(返答レーン予約で「誰も返さない街」を防ぐ) | ✅ **ON**(DPH-B。`reply_share: 0.20` / `life_share: 0.30`) |
+| ★`observer.starvation.enabled` | U7(「起きなかったこと」の飢餓側) | ✅ **ON**(DPH-O)。★ただし **§6④ のブロッカー**を参照 |
+| `lens.structure.enabled` | U13 の edge churn | ✅ ON |
+| `assets.enabled` / `lens.assets.enabled` | U5 の登記簿 | ✅ ON |
+| `incidents_interpersonal.enabled` | U8 | ✅ ON |
+| `planning.day_plan.enabled` | U4 | ✅ ON(+ `wrap_blocks: true` = DPH-C 日跨ぎブロック) |
+| `cognition.fire.enabled` | (候補の前提ではない) | ❌ **OFF**(D1=b案 = 8/15 診断で呼数実測 → 許容なら解凍) |
 | ★`observer.input_provenance`(G1) | U4 の逆引き来歴 | ✅ **第114 で実装+ON** |
 | ★`observer.memory_daily`(G4) | **U14 の全部** | ✅ **第114 で実装+ON**(+1.5〜1.8GB) |
 | ★`observer.relations_daily`(G5) | U13 の被説明変数・C3 すれ違い | ✅ **第114 で実装+ON**(+0.4GB) |
 | ★`cognition.channels.sat_columns`(G6) | U3・U7 の価値充足 | ✅ **第114 で実装+ON**(+0.6GB・σ_c 凍結は無効化されない) |
 | ★`observer.gt_extras`(G7) | U4 の mood/carry/with・U3 の自己像本文 | ✅ **第114 で実装+ON**(+0.5GB) |
 
-→ **確認の結果、追加実装ゼロの14候補はすべて現行 finals 構成で成立する**。
+→ **確認の結果、U1〜U14 の 14候補はすべて現行 finals 構成で成立する**(2026-08-15 の作業木で再確認)。
 
 ### ② 保全(実装ゼロ・**運用でしか担保できない**唯一の項目)
 
 | # | 項目 | 失うもの |
 |---|---|---|
-| **G2** | **checkpoint 20世代 + dormant サイドカーを剪定しない**(runbook + `backup_run.py` の対象に明文化) | 記憶・関係・信念・ペルソナ文・**噂の正準本文 `Item.text`**(U1 段2 の前提)・**U15 の分岐点すべて** |
+| **G2** | **checkpoint 20世代 + dormant サイドカーを剪定しない**(runbook + `backup_run.py` の対象に明文化) | 記憶・関係・信念・ペルソナ文・**噂の正準本文 `Item.text`**(U1 段2 の前提)・**U14 の終端記憶**(G4 は日境界しか撮らないので最終日の終わりは checkpoint にしか無い)・~~U15 の分岐点~~ |
 
 > ★G2 は**コードで守れない唯一の項目**である。ディスクが逼迫したときに人間が古い世代を消したくなる
-> ——そこで消えるのが U1 の「噂の本文」と U15 の「分岐点」であり、どちらもラン後には再生成できない。
+> ——そこで消えるのが U1 の「噂の本文」と U14 の「終端記憶」であり、どちらもラン後には再生成できない。
 > 25万×10日で checkpoint は 8.4GB+、`checkpoint_every: 72`(半日ごと)。**先にディスクを確保しておく**。
 > (G1 は第114 で実装されたので①へ移動した。)
+> ★★**U15 見送り(2026-08-15)でも G2 は残る**。分岐点が要らなくなっただけで、
+> **U1 の噂本文・U14 の終端記憶・U12 の終端関係台帳**という別の3つがここに乗っている。
+> 「U15 をやらないなら checkpoint を消してよい」は**誤り**である。
 
 ### ③ 判断(8/15 が期限・ラン後には取り返せない)
 
 | # | 事項 | 推奨 | 理由 |
 |---|---|---|---|
-| **J1** | **`transit_interior.copresence.max_pairs_per_day: 8 → 24`**(conf 1行) | **上げる**(U13) | 現状は1人1日8対で打ち切り。上げても乱数消費・状態遷移は不変で L1 行数だけ増える(+2〜3GB)。**検収で「動力学不変」を機械確認すること**が条件 |
+| ~~**J1**~~ | ~~**`transit_interior.copresence.max_pairs_per_day: 8 → 24`**(conf 1行)~~ | ✅ **解決済み(2026-08-15 確認)** | **第114 レーン 1c が実施済み**(`conf/finals_observe.yaml:236` に `max_pairs_per_day: 24`)。同 seed 2 ラン(8 と 24)で「動力学不変」は `tests/test_transit_interior.py` が機械固定済み |
 | ~~J2〜J4~~ | ~~GTロガー G1/G4/G5/G6/G7~~ | ✅ **決着済み** | **第114 で実装+finals ON**(合計 +3.4GB)。本文書が起票した時点では未決だったが、並行して片付いた。**残作業は①の目視確認のみ** |
-| **J5** | **U15 の GPU 尾部予約**(8/26-8/30 に分岐実験の枠を取るか) | **取る**(規模は縮小可) | 本選会期を過ぎたら GPU が無い。分岐ツール自体は本選後実装でよいが、**走らせる時間の確保だけは今決める** |
+| ~~**J5**~~ | ~~**U15 の GPU 尾部予約**(8/26-8/30 に分岐実験の枠を取るか)~~ | ✖ **閉じた(2026-08-15)** | **U15 見送りのユーザー決定**により不要。★ただし尾部の GPU が空くので、**J6(seed 2本目)へ回せる**可能性がある(要判断) |
 | **J6** | **多世界(seed 違い)の扱い** | 縮小規模で1本 | 事前登録が「**条件間差が seed 間差を上回った指標に限る**」と定めている以上、seed 分散の実測が無いと主張がほぼ全部落ちる。`analyze_seed_variance.py` は既にある(V_condition / V_seed 分解)が、**入力になるランが無い** |
 
 > ★J6 は静かだが重い。単一 seed の観察ランだけだと、
@@ -890,6 +1175,23 @@ U15 は期限が最も厳しいので §6 で別建てにした。
 > 量的な条件比較は事前登録の反証条件 (a) に掛かって落ちる。
 > 縮小規模(1〜2万体)の seed 違いを2本走らせるだけでも判定の分母が立つ。
 > Δt 梯子計画の「並行1〜2万体」枠と**同じ計算資源で兼ねられる可能性**がある(要検討)。
+
+### ④ ★★本選ブロッカー(2026-08-15 に本調査が発見・担当レーンへ申し送り)
+
+| # | 事象 | 影響 |
+|---|---|---|
+| **BK1** | 並行レーンが追加した `src/society/observer/starvation.py`(DPH-O)の新 L1 kind 3 種 **`plan_skipped` / `reply_starved` / `budget_starved`** が、`src/society/observer/causality.py` の **`CAUSE_OF_KIND` に未登録** | `observer/logger.py` の `log()` が全イベントで `causality.cause_of(kind)` を引き、未分類なら `KeyError` を送出する設計。**`observer.starvation.enabled: true`(現行 finals で ON)のランは最初の 1 件で即死する** |
+
+実測(2026-08-15 の作業木):
+
+```
+plan_skipped    -> KeyError (未分類のイベント種類)
+reply_starved   -> KeyError (未分類のイベント種類)
+budget_starved  -> KeyError (未分類のイベント種類)
+```
+
+**`CAUSE_OF_KIND` へ 3 行足すのは担当レーンの仕事**(本調査は src 不触の指示なので触っていない)。
+本調査のプローブランは実際にこれで落ちており、プロセス内の局所しのぎで回避して実測を取った。
 
 ---
 
@@ -919,22 +1221,43 @@ U15 は期限が最も厳しいので §6 で別建てにした。
    これを省くと「誰も言っていない=空白だ」という弱い主張に落ちる。
 10. **U6 は自己言及に注意**。「標準的推定量は間違う」と言う我々自身が推定量を使っている。
    control task / selectivity 併走と、真値との突合を分けて報告することで循環を断つ(R4 憲法と同じ作法)。
+11. ★**U15 見送り(2026-08-15)の帰結を書き落とさない**。
+   (a) **反実仮想の真値は本ランでは取れない**ので、U6 の干渉成分は部分同定にとどまる。
+   (b) 「同じ初期条件から別の歴史が生まれるか」は**主張しない**(Salganik-Dodds-Watts の
+   並行世界に相当するものを持たないことを正直に書く)。
+   (c) それでも **G2(checkpoint 剪定禁止)は要る**(§6②)。「U15 をやらないから消してよい」は誤り。
+12. ★**関係形成の経路は LLM 発火に一意に結び付いていない**(第115 調査・
+   [relations-formation-map.md](relations-formation-map.md))。U13(共在→関係)・U12(前史パネル)・
+   U9(悪評→関係)は、いずれも **C2 構造化会話・日次減衰・休眠/再会という非 LLM 経路**の上に乗っている。
+   「LLM が喋った回数」を関係形成の代理指標に使わないこと(代理にならない)。
 
 ---
 
 ## 8. まとめ(1枚)
 
-- **15件中 14件が追加実装ゼロ**で取れる。すべて現行 `conf/finals_observe.yaml`(第114 の GT ロガー込み)で
-  成立が確認できた。つまり **8/15 までにやるべき実装はゼロ**である。
-- **残っている宿題は3つだけ**:
-  **① G2 = checkpoint を剪定しない**(コードで守れない唯一の項目。U1 の噂本文と U15 の分岐点がここに乗る)
-  **② J1 = 共在上限 8→24**(conf 1行・+2〜3GB・動力学不変の機械確認が条件)
-  **③ J5/J6 = GPU 尾部の予約と seed 2本目**(会期を過ぎたら二度と走らせられない)。
+- **U15 は見送り(2026-08-15 ユーザー決定)**。残る **U1〜U14 の 14件はすべて追加実装ゼロ**で取れ、
+  すべて現行 `conf/finals_observe.yaml`(第114 の GT ロガー込み)で成立が確認できた。
+  つまり **8/15 までにやるべき実装はゼロ**である。
+- **観察方法は §4b の要約表で確定した**(2026-08-15)。読み方は 3 点:
+  **① ラン中にやることは「流し見」6〜8件だけ**(見て conf を触らない=R1-⑥)
+  **② 新規実装は 10 本・全部が本選後**(ラン前に書くコードは 1 行も無い)
+  **③ 共在復元器(U8/U13)は 1 本を共用する**(別々に組むと分母が食い違い両方壊れる)。
+- **残っている宿題は2つだけ**:
+  **① G2 = checkpoint を剪定しない**(コードで守れない唯一の項目。★U15 を見送っても
+  **U1 の噂本文・U14 の終端記憶・U12 の終端関係台帳**がここに乗るので**残る**)
+  **② J6 = seed 2本目**(事前登録の反証条件がこれを要求している。
+  J5 を閉じて空いた GPU 尾部を回せる可能性がある)。
+  (**J1 = 共在上限は第114 レーン 1c で実施済み**。**J5 は U15 と同時に閉じた**。)
+- ★★**ただし本選前に repo 側で 1 件直す必要がある**: §6④ BK1(starvation 3 kind の
+  causality 未分類 = finals ランが即死)。**観察方法の話ではなく、ランが走るかどうかの話**なので
+  最優先で潰すこと。
 - **最も大きな非対称性は「規模」ではなく「内部状態の真値を持つこと」**である。
   Windrum et al. 2007 が「実際上**観測不能**」と名指しした心的モデルが、本シムには全部ある。
   DARPA が既知の因果的真値を作るために人工社会を建てたのと同じ動機を、**実地図の実都市で**満たしている。
 - **上位3件**: U3(私的状態と公的発話の乖離)・U1(伝播木×内容の変異)・U6(推定量バイアス台帳)。
   いずれも追加実装ゼロで、いずれも上の一点を突いている。
+  ★**U6 だけは U15 見送りの影響を受ける**: 干渉(SUTVA 違反)成分の真値が無くなるので、
+  「潜在同類性 / 選択 / 測定誤差」までを報告し、干渉は部分同定にとどめる(§U15 の見送り注記)。
 - **失敗しない設計**: U3(乖離ゼロでも「LLM 社会は本音しか言わない」という境界の測定)・
   U1(木が浅くても OASIS の自認との比較値)・U11(制度化に至らなくても「至らなかった」が報告)・
   U14(忘却が起きなくてもそれ自体が所見)。**結果が出ないことが結果になるように問いを立ててある**。
