@@ -783,3 +783,21 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
   残りは(a)数字待ち判定=cap/fire/RAM/POP/A2/batch_llm(b)サーバー作業=v2生成+縦煙→13b解凍・
   Codex 6パス・A8ミニトーナメント・A9 structured outputs A/B(c)docs=R6ゲート一覧統合(8/18)
   (d)任意=V3決定モード印字・PLATEAU 2025 viewer側(A5)。
+
+### Entry 125 — 2026-08-16 — 第124=サーバー実測の受領(2k×20実走+マイクロベンチ)+Py3.10 tomllib修正+B5レーン発注
+
+- ユーザー: 新ハンドオフ(CLAUDE_CODE_HANDOFF_SHIBUYA_SIM_2026-08-16.md)の把握依頼+追加.mdの扱い決定依頼。
+- **★サーバー実測の核心(5.6 sol・実走で確定)**: vLLM Fleet直叩き=workers=8で54.6 calls/s(default6GPU)/
+  46.4(reflect GPU0)・errors=0=**GPU/Fleet側は健全**。実走2,000×20step(batch_llm ON w8)=970呼/577.7s
+  =**end-to-end 1.68 calls/s**・purpose=deliberate450(最大88/step)/recall260/reflect260。
+  **真因=deliberateがbatch対象外**(コード突合で確認: batch経路は_phase_planning_batched:1036と
+  _phase_reflect_batched:1090のみ・deliberateはagentループ内逐次generate=scheduler.py:2496-2511)。
+  →**B5レーン(Opus)発注**: 依存性調査(同一step内の他agent応答依存・DPH-B予算順・RNG順)→安全範囲の
+  batch化・逐次版と完全一致(OFF/ON w1/w8バイト一致)・generate_many流用・新Executor禁止。
+- その他のサーバー状態: プール100万体生成済み(sha 533a45d8…)・wiring smoke 6×20 PASS・
+  Linux前回ゲート=5713緑+16skip+**4 SFM wall golden不一致(Windows正典を上書きしない)**+
+  matplotlib2件(導入済み)・present_cap罠を実地確認(n_agentsだけでは250k初期化に入る)。
+- **tomllib修正**: tests/test_xdist_grouping.pyがPy3.10(サーバー)でstdlib tomllib不在で落ちる
+  →try/except tomliフォールバック+pyproject [dependency-groups]にpytest-xdist/tomli明示。3緑。
+- .mdの扱い決定: 監査5本+GPUサーバー引き継ぎメモ=第123でdocs/plans/source/へ格納済み。
+  新ハンドオフも同便でdocs/plans/source/へ(root=ミラー除外対象外のため)。
