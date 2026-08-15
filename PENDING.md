@@ -23,7 +23,8 @@
 | **本選信頼性** | [finals-reliability-plan.md](docs/plans/finals-reliability-plan.md)。**小物2本=実装済み(第110)**: watchdogディスク残量ガード+`backup_run.py`(restore drill前段=実測成立)。残=**8/15の環境確認5点**→**リハーサル7本**+閾値/世代数の本選値化(既定20/5GBは小規模想定)。未実装(意図的)=ローカルpull側スクリプト・checkpoint剪定(人間判断)・クラウド系統。★運用注意: `--resume` は落ちたラン専用/走行中run-dirへのrobocopy直がけ禁止(backup_run.py経由=共有フラグ読み) |
 | **在場内生化PRES** | **A1+A2+B+C=実装完了(第111)**。残=**A2 emergent のON判断のみ**(8/15 RSS/R_eff実測後・finals confの1行) |
 | **メタバース射影** | [metaverse-projection-plan.md](docs/plans/metaverse-projection-plan.md)。**GTロガーG1-G7=全部実装済み(第113・承認済み)**。残=射影フィルタF0-F4・復元実験3案=**本選後**。運用の掟=**checkpoint/dormant剪定禁止(G2)**・backup_run は `--ckpt-generations 999` で回す(既定2のままだと18世代が手元に残らない) |
-| **新計画4本(第113提示・承認待ち)** | [Δt5案](docs/plans/dt-reduction-plan.md)§5(推奨=Δt10維持)・[年齢AGE-A〜F](docs/plans/age-diversity-plan.md)(最小対=A人口実在化+C思考量)・[日課DPH-O/C/B/A](docs/plans/dayplan-horizon-plan.md)(推奨=O観測+Cを本選前)・[ユニークデータ15候補](docs/research/unique-data-candidates.md)(13件は実装ゼロ) |
+| **AGE/DPH/RFX/v2の残り** | AGE-A〜F=**実装完了(第116)**・DPH-O/C/B=**完了(第115)**・RFX-A=**完了(第116)**。残=**①v2プール切替判断**(conf 1行・tier_quota再計算と縦煙が前提・待機ブロックに手順)②DPH-A(起床→就寝地平)=本選後 ③sleep_task_rewrite(就寝前テンプレ言い換え)=実LLM検収待ちOFF ④PPv2-G(workplace_scope/at_homeのengine接続)=判断待ち ⑤build_friend_graph O(N²)=30,000人で起動25分(Chung-Lu案が処方箋・本選後) |
+| **Discord進捗報告** | **最小構成=実装完了(第116・--dry-run検収済み)**。残=**webhook URLの環境変数設定(ユーザー作業・ops/finals-compute-checklist.md §E2手順)**→初回--dry-run→本番投稿・GPU機のdiscord.com:443疎通確認(8/15環境確認項目) |
 | **アクターモデル移行** | **GTFS実発車=第114で完了**(1,810本・朝+18%)。残(本選後): SoA配線(乱数キー判断が前提)・店主行為化(1-2週規模)・PoA観測(片肺実装は誤読を生むため一括)。OPEN: PoA/§4.5 |
 | **身体と事件レイヤー** | chance.py の**コード削除**=本選後(運用退役は finals conf で済み)。設計上の残は §4「身体と事件の残」 |
 | DP-U2/DP-U3/S-quick/DTスナップショット | 8/15-16 診断ランでの実測待ち(vLLM同居・R_eff/RSS・σ再実測)・S-quick は承認待ちのまま |

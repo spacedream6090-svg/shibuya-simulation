@@ -1,0 +1,653 @@
+{
+ "meta": {
+  "generator": "scripts/build_orgs.py --childcare",
+  "seed": 42,
+  "note": "保育所・幼稚園のサイドカー台帳(R17: 実在園名なし)。正準台帳(organizations_shibuya_census.json)は 1 バイトも変更しない。build_persona_pool.py --v2 --childcare で schools ブロックへ足す。",
+  "sources_doc": "docs/plans/persona-pool-v2-plan.md §1-3(e) / §3-6",
+  "law": "児童福祉施設の設備及び運営に関する基準(昭和二十三年厚生省令第六十三号)第三十三条第二項(令和6年改正後)。第1項は保育士・嘱託医・調理員の配置を求める(嘱託医は非常勤のため職員に数えない)。",
+  "shibuya_actual": {
+   "認可保育所": 68,
+   "定員": 6181,
+   "待機児童": 0,
+   "bbox_area_share": 0.25
+  },
+  "honesty": "施設数・定員は区の実数(68施設/6,181人)を bbox 面積比 25% で按分した概数であり、施設ごとの定員の実表は未取得 = ESTIMATE。幼稚園の区内実数(園数・定員)は本レーンでは取得していない。",
+  "counts": {
+   "childcare": 21,
+   "capacity_total": 2001
+  },
+  "map": "data/shibuya_osm.json"
+ },
+ "schools": [
+  {
+   "id": "nu_01",
+   "name": "渋谷区立第1保育園(仮称)",
+   "school_type": "認可保育所",
+   "timetable": {
+    "period_min": 0,
+    "periods_per_day": 0,
+    "start": "07:30"
+   },
+   "capacity": 82,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n12914982265",
+    "node": "n517547805",
+    "x": 354.7,
+    "y": 257.7
+   },
+   "roles": [
+    "保育士",
+    "調理員"
+   ],
+   "shift_pattern": {
+    "open": "07:30",
+    "close": "18:30",
+    "days": "mon-fri",
+    "shift_hours": 8,
+    "rotates": false
+   },
+   "staffing_note": "配置基準(0歳3:1 / 1-2歳6:1 / 3歳15:1 / 4-5歳25:1・下限2人)から保育士 10 人・調理員 2 人"
+  },
+  {
+   "id": "nu_02",
+   "name": "渋谷第2保育園(仮称)",
+   "school_type": "認可保育所",
+   "timetable": {
+    "period_min": 0,
+    "periods_per_day": 0,
+    "start": "07:30"
+   },
+   "capacity": 86,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n13433345048",
+    "node": "n1014529576",
+    "x": -473.7,
+    "y": -27.8
+   },
+   "roles": [
+    "保育士",
+    "調理員"
+   ],
+   "shift_pattern": {
+    "open": "07:30",
+    "close": "18:30",
+    "days": "mon-fri",
+    "shift_hours": 8,
+    "rotates": false
+   },
+   "staffing_note": "配置基準(0歳3:1 / 1-2歳6:1 / 3歳15:1 / 4-5歳25:1・下限2人)から保育士 11 人・調理員 2 人"
+  },
+  {
+   "id": "nu_03",
+   "name": "渋谷区立第3保育園(仮称)",
+   "school_type": "認可保育所",
+   "timetable": {
+    "period_min": 0,
+    "periods_per_day": 0,
+    "start": "07:30"
+   },
+   "capacity": 91,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n1420772948",
+    "node": "n13440128700",
+    "x": -409.4,
+    "y": 274.9
+   },
+   "roles": [
+    "保育士",
+    "調理員"
+   ],
+   "shift_pattern": {
+    "open": "07:30",
+    "close": "18:30",
+    "days": "mon-fri",
+    "shift_hours": 8,
+    "rotates": false
+   },
+   "staffing_note": "配置基準(0歳3:1 / 1-2歳6:1 / 3歳15:1 / 4-5歳25:1・下限2人)から保育士 11 人・調理員 2 人"
+  },
+  {
+   "id": "nu_04",
+   "name": "渋谷第4保育園(仮称)",
+   "school_type": "認可保育所",
+   "timetable": {
+    "period_min": 0,
+    "periods_per_day": 0,
+    "start": "07:30"
+   },
+   "capacity": 96,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n1657336557",
+    "node": "n3608623431",
+    "x": -234.7,
+    "y": -66.5
+   },
+   "roles": [
+    "保育士",
+    "調理員"
+   ],
+   "shift_pattern": {
+    "open": "07:30",
+    "close": "18:30",
+    "days": "mon-fri",
+    "shift_hours": 8,
+    "rotates": false
+   },
+   "staffing_note": "配置基準(0歳3:1 / 1-2歳6:1 / 3歳15:1 / 4-5歳25:1・下限2人)から保育士 12 人・調理員 2 人"
+  },
+  {
+   "id": "nu_05",
+   "name": "渋谷区立第5保育園(仮称)",
+   "school_type": "認可保育所",
+   "timetable": {
+    "period_min": 0,
+    "periods_per_day": 0,
+    "start": "07:30"
+   },
+   "capacity": 100,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n1681422095",
+    "node": "n9929149711",
+    "x": 134.2,
+    "y": 128.3
+   },
+   "roles": [
+    "保育士",
+    "調理員"
+   ],
+   "shift_pattern": {
+    "open": "07:30",
+    "close": "18:30",
+    "days": "mon-fri",
+    "shift_hours": 8,
+    "rotates": false
+   },
+   "staffing_note": "配置基準(0歳3:1 / 1-2歳6:1 / 3歳15:1 / 4-5歳25:1・下限2人)から保育士 12 人・調理員 2 人"
+  },
+  {
+   "id": "nu_06",
+   "name": "渋谷第6保育園(仮称)",
+   "school_type": "認可保育所",
+   "timetable": {
+    "period_min": 0,
+    "periods_per_day": 0,
+    "start": "07:30"
+   },
+   "capacity": 82,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n1681496679",
+    "node": "n2393500092",
+    "x": 172.8,
+    "y": 157.2
+   },
+   "roles": [
+    "保育士",
+    "調理員"
+   ],
+   "shift_pattern": {
+    "open": "07:30",
+    "close": "18:30",
+    "days": "mon-fri",
+    "shift_hours": 8,
+    "rotates": false
+   },
+   "staffing_note": "配置基準(0歳3:1 / 1-2歳6:1 / 3歳15:1 / 4-5歳25:1・下限2人)から保育士 10 人・調理員 2 人"
+  },
+  {
+   "id": "nu_07",
+   "name": "渋谷区立第7保育園(仮称)",
+   "school_type": "認可保育所",
+   "timetable": {
+    "period_min": 0,
+    "periods_per_day": 0,
+    "start": "07:30"
+   },
+   "capacity": 86,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n1681496789",
+    "node": "n1116808689",
+    "x": 216.1,
+    "y": 155.2
+   },
+   "roles": [
+    "保育士",
+    "調理員"
+   ],
+   "shift_pattern": {
+    "open": "07:30",
+    "close": "18:30",
+    "days": "mon-fri",
+    "shift_hours": 8,
+    "rotates": false
+   },
+   "staffing_note": "配置基準(0歳3:1 / 1-2歳6:1 / 3歳15:1 / 4-5歳25:1・下限2人)から保育士 11 人・調理員 2 人"
+  },
+  {
+   "id": "nu_08",
+   "name": "渋谷第8保育園(仮称)",
+   "school_type": "認可保育所",
+   "timetable": {
+    "period_min": 0,
+    "periods_per_day": 0,
+    "start": "07:30"
+   },
+   "capacity": 91,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n5020289823",
+    "node": "n8661077873",
+    "x": 427.3,
+    "y": 151.6
+   },
+   "roles": [
+    "保育士",
+    "調理員"
+   ],
+   "shift_pattern": {
+    "open": "07:30",
+    "close": "18:30",
+    "days": "mon-fri",
+    "shift_hours": 8,
+    "rotates": false
+   },
+   "staffing_note": "配置基準(0歳3:1 / 1-2歳6:1 / 3歳15:1 / 4-5歳25:1・下限2人)から保育士 11 人・調理員 2 人"
+  },
+  {
+   "id": "nu_09",
+   "name": "渋谷区立第9保育園(仮称)",
+   "school_type": "認可保育所",
+   "timetable": {
+    "period_min": 0,
+    "periods_per_day": 0,
+    "start": "07:30"
+   },
+   "capacity": 96,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_w140507715",
+    "node": "n650086689",
+    "x": 47.7,
+    "y": -373.3
+   },
+   "roles": [
+    "保育士",
+    "調理員"
+   ],
+   "shift_pattern": {
+    "open": "07:30",
+    "close": "18:30",
+    "days": "mon-fri",
+    "shift_hours": 8,
+    "rotates": false
+   },
+   "staffing_note": "配置基準(0歳3:1 / 1-2歳6:1 / 3歳15:1 / 4-5歳25:1・下限2人)から保育士 12 人・調理員 2 人"
+  },
+  {
+   "id": "nu_10",
+   "name": "渋谷第10保育園(仮称)",
+   "school_type": "認可保育所",
+   "timetable": {
+    "period_min": 0,
+    "periods_per_day": 0,
+    "start": "07:30"
+   },
+   "capacity": 100,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n12914982265",
+    "node": "n517547805",
+    "x": 354.7,
+    "y": 257.7
+   },
+   "roles": [
+    "保育士",
+    "調理員"
+   ],
+   "shift_pattern": {
+    "open": "07:30",
+    "close": "18:30",
+    "days": "mon-fri",
+    "shift_hours": 8,
+    "rotates": false
+   },
+   "staffing_note": "配置基準(0歳3:1 / 1-2歳6:1 / 3歳15:1 / 4-5歳25:1・下限2人)から保育士 12 人・調理員 2 人"
+  },
+  {
+   "id": "nu_11",
+   "name": "渋谷区立第11保育園(仮称)",
+   "school_type": "認可保育所",
+   "timetable": {
+    "period_min": 0,
+    "periods_per_day": 0,
+    "start": "07:30"
+   },
+   "capacity": 82,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n13433345048",
+    "node": "n1014529576",
+    "x": -473.7,
+    "y": -27.8
+   },
+   "roles": [
+    "保育士",
+    "調理員"
+   ],
+   "shift_pattern": {
+    "open": "07:30",
+    "close": "18:30",
+    "days": "mon-fri",
+    "shift_hours": 8,
+    "rotates": false
+   },
+   "staffing_note": "配置基準(0歳3:1 / 1-2歳6:1 / 3歳15:1 / 4-5歳25:1・下限2人)から保育士 10 人・調理員 2 人"
+  },
+  {
+   "id": "nu_12",
+   "name": "渋谷第12保育園(仮称)",
+   "school_type": "認可保育所",
+   "timetable": {
+    "period_min": 0,
+    "periods_per_day": 0,
+    "start": "07:30"
+   },
+   "capacity": 86,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n1420772948",
+    "node": "n13440128700",
+    "x": -409.4,
+    "y": 274.9
+   },
+   "roles": [
+    "保育士",
+    "調理員"
+   ],
+   "shift_pattern": {
+    "open": "07:30",
+    "close": "18:30",
+    "days": "mon-fri",
+    "shift_hours": 8,
+    "rotates": false
+   },
+   "staffing_note": "配置基準(0歳3:1 / 1-2歳6:1 / 3歳15:1 / 4-5歳25:1・下限2人)から保育士 11 人・調理員 2 人"
+  },
+  {
+   "id": "nu_13",
+   "name": "渋谷区立第13保育園(仮称)",
+   "school_type": "認可保育所",
+   "timetable": {
+    "period_min": 0,
+    "periods_per_day": 0,
+    "start": "07:30"
+   },
+   "capacity": 91,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n1657336557",
+    "node": "n3608623431",
+    "x": -234.7,
+    "y": -66.5
+   },
+   "roles": [
+    "保育士",
+    "調理員"
+   ],
+   "shift_pattern": {
+    "open": "07:30",
+    "close": "18:30",
+    "days": "mon-fri",
+    "shift_hours": 8,
+    "rotates": false
+   },
+   "staffing_note": "配置基準(0歳3:1 / 1-2歳6:1 / 3歳15:1 / 4-5歳25:1・下限2人)から保育士 11 人・調理員 2 人"
+  },
+  {
+   "id": "nu_14",
+   "name": "渋谷第14保育園(仮称)",
+   "school_type": "認可保育所",
+   "timetable": {
+    "period_min": 0,
+    "periods_per_day": 0,
+    "start": "07:30"
+   },
+   "capacity": 96,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n1681422095",
+    "node": "n9929149711",
+    "x": 134.2,
+    "y": 128.3
+   },
+   "roles": [
+    "保育士",
+    "調理員"
+   ],
+   "shift_pattern": {
+    "open": "07:30",
+    "close": "18:30",
+    "days": "mon-fri",
+    "shift_hours": 8,
+    "rotates": false
+   },
+   "staffing_note": "配置基準(0歳3:1 / 1-2歳6:1 / 3歳15:1 / 4-5歳25:1・下限2人)から保育士 12 人・調理員 2 人"
+  },
+  {
+   "id": "nu_15",
+   "name": "渋谷区立第15保育園(仮称)",
+   "school_type": "認可保育所",
+   "timetable": {
+    "period_min": 0,
+    "periods_per_day": 0,
+    "start": "07:30"
+   },
+   "capacity": 100,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n1681496679",
+    "node": "n2393500092",
+    "x": 172.8,
+    "y": 157.2
+   },
+   "roles": [
+    "保育士",
+    "調理員"
+   ],
+   "shift_pattern": {
+    "open": "07:30",
+    "close": "18:30",
+    "days": "mon-fri",
+    "shift_hours": 8,
+    "rotates": false
+   },
+   "staffing_note": "配置基準(0歳3:1 / 1-2歳6:1 / 3歳15:1 / 4-5歳25:1・下限2人)から保育士 12 人・調理員 2 人"
+  },
+  {
+   "id": "nu_16",
+   "name": "渋谷第16保育園(仮称)",
+   "school_type": "認可保育所",
+   "timetable": {
+    "period_min": 0,
+    "periods_per_day": 0,
+    "start": "07:30"
+   },
+   "capacity": 82,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n1681496789",
+    "node": "n1116808689",
+    "x": 216.1,
+    "y": 155.2
+   },
+   "roles": [
+    "保育士",
+    "調理員"
+   ],
+   "shift_pattern": {
+    "open": "07:30",
+    "close": "18:30",
+    "days": "mon-fri",
+    "shift_hours": 8,
+    "rotates": false
+   },
+   "staffing_note": "配置基準(0歳3:1 / 1-2歳6:1 / 3歳15:1 / 4-5歳25:1・下限2人)から保育士 10 人・調理員 2 人"
+  },
+  {
+   "id": "nu_17",
+   "name": "渋谷区立第17保育園(仮称)",
+   "school_type": "認可保育所",
+   "timetable": {
+    "period_min": 0,
+    "periods_per_day": 0,
+    "start": "07:30"
+   },
+   "capacity": 86,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n5020289823",
+    "node": "n8661077873",
+    "x": 427.3,
+    "y": 151.6
+   },
+   "roles": [
+    "保育士",
+    "調理員"
+   ],
+   "shift_pattern": {
+    "open": "07:30",
+    "close": "18:30",
+    "days": "mon-fri",
+    "shift_hours": 8,
+    "rotates": false
+   },
+   "staffing_note": "配置基準(0歳3:1 / 1-2歳6:1 / 3歳15:1 / 4-5歳25:1・下限2人)から保育士 11 人・調理員 2 人"
+  },
+  {
+   "id": "kg_01",
+   "name": "渋谷区立第1幼稚園(仮称)",
+   "school_type": "幼稚園",
+   "timetable": {
+    "period_min": 0,
+    "periods_per_day": 0,
+    "start": "09:00"
+   },
+   "capacity": 108,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_w140507715",
+    "node": "n650086689",
+    "x": 47.7,
+    "y": -373.3
+   },
+   "roles": [
+    "教員",
+    "職員"
+   ],
+   "shift_pattern": {
+    "open": "09:00",
+    "close": "14:00",
+    "days": "mon-fri",
+    "shift_hours": 8,
+    "rotates": false
+   },
+   "staffing_note": "全国 教員比 8.60:1 から教員 13 人・職員 1 人(職員比は代理値)"
+  },
+  {
+   "id": "kg_02",
+   "name": "渋谷第2幼稚園(仮称)",
+   "school_type": "幼稚園",
+   "timetable": {
+    "period_min": 0,
+    "periods_per_day": 0,
+    "start": "09:00"
+   },
+   "capacity": 114,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n12914982265",
+    "node": "n517547805",
+    "x": 354.7,
+    "y": 257.7
+   },
+   "roles": [
+    "教員",
+    "職員"
+   ],
+   "shift_pattern": {
+    "open": "09:00",
+    "close": "14:00",
+    "days": "mon-fri",
+    "shift_hours": 8,
+    "rotates": false
+   },
+   "staffing_note": "全国 教員比 8.60:1 から教員 13 人・職員 1 人(職員比は代理値)"
+  },
+  {
+   "id": "kg_03",
+   "name": "渋谷区立第3幼稚園(仮称)",
+   "school_type": "幼稚園",
+   "timetable": {
+    "period_min": 0,
+    "periods_per_day": 0,
+    "start": "09:00"
+   },
+   "capacity": 120,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n13433345048",
+    "node": "n1014529576",
+    "x": -473.7,
+    "y": -27.8
+   },
+   "roles": [
+    "教員",
+    "職員"
+   ],
+   "shift_pattern": {
+    "open": "09:00",
+    "close": "14:00",
+    "days": "mon-fri",
+    "shift_hours": 8,
+    "rotates": false
+   },
+   "staffing_note": "全国 教員比 8.60:1 から教員 14 人・職員 1 人(職員比は代理値)"
+  },
+  {
+   "id": "kg_04",
+   "name": "渋谷第4幼稚園(仮称)",
+   "school_type": "幼稚園",
+   "timetable": {
+    "period_min": 0,
+    "periods_per_day": 0,
+    "start": "09:00"
+   },
+   "capacity": 126,
+   "workplace_poi": {
+    "cat": "education",
+    "poi_id": "p_n1420772948",
+    "node": "n13440128700",
+    "x": -409.4,
+    "y": 274.9
+   },
+   "roles": [
+    "教員",
+    "職員"
+   ],
+   "shift_pattern": {
+    "open": "09:00",
+    "close": "14:00",
+    "days": "mon-fri",
+    "shift_hours": 8,
+    "rotates": false
+   },
+   "staffing_note": "全国 教員比 8.60:1 から教員 15 人・職員 1 人(職員比は代理値)"
+  }
+ ]
+}
