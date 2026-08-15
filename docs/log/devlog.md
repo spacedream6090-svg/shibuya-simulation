@@ -681,3 +681,26 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
 - 追加判断A1〜A7(cap再導出/HOME_AWAKE/E0小粒/reality_score/PLATEAU viewer/尾部再配分/
   **監査2本の置き場=root直下は公開ミラー除外対象外→docs/plans/source/へ移動推奨**)。
   日程骨格は不変(動力学凍結8/18・観測側8/20・**本番開始8/22**)。**コード不触・docsのみ**。
+
+### Entry 120 — 2026-08-16 — 第119=外部監査 第2ラウンド3本のトリアージ追記(読了+突合のみ・実装なし)
+
+- 追加3本(SERVER_CAPACITY 958行/FINAL_DESIGN_GAPS 1,806行/RESOURCE_AWARE 2,923行)を読了し
+  [external-audit-triage.md](../plans/external-audit-triage.md) へ第2ラウンド(R1〜R7)を追記。
+- ★状況認識=**監査ループは収束**: RESOURCE_AWAREは当方トリアージ(1297072)を基準HEADに執筆・§80で
+  当方の訂正を採択(0.173正・cap1,500〜2,500・4.5回/日は前提にしない・reasoning増=忠実度増と仮定しない・
+  大型behavior変更はβ後にしない)。SERVER_CAPACITYの4.5-5.5回/日と18-24h/シミュ日は3本目が自己上書き=不採用。
+  日程は3本とも当方と一致(β凍結8/18・本番8/22)。
+- ★サーバー実機スペック確定(§3.1インベントリの回答): 64CPU/2NUMA・**RAM 251GiB**(avail 242)・swap 8GiB・
+  /home 3.7TB・**ulimit -n 1024=本番不足→65535**(runbook 0-4へ運用4点追記=ulimit/NUMAトポロジ/
+  /metrics収集/持続熱試験)。RAM判定線採用=GO<180/COND 180-215/NO-GO>220GiB。楽観+A2=182GiB≈COND境界
+  =10k×144 RSS実測が引き続き最重要。
+- 追加突合: RouterLLM実装済み+multi-model-lod.md実在=**S1構成(6×8B+1×14B)は主に艦隊conf**(F13)・
+  VllmBackendはrequest seed未送出=SamplingParams.seedで送れる(F14)・generation-config auto問題(F15)・
+  ★DPH-B: generalはreply/lifeの予約を借りられない→**cap引き上げでもused/cap<1がありうる=used/cap実測を
+  判定に追加**(F16)・検証アンカー年次更新可(メディア令和7年度版公表済み・社会生活基本調査2026は提出前に
+  存在しない=2021が正当な最新・F17)。
+- 採否更新: β10=モデル・サンプリング完全凍結(Qwen3-AWQ系revision/chat_template SHA/--generation-config vllm)・
+  β11=request stable seed(数行)・判定指標追補=zero-call率/Gini/属性別coverage。
+  新判断A8〜A11(モデル構成S0vsS1=ミニ行動トーナメント後/JSON SchemaはA/B後/統合スペックは書かない=
+  チェックリストのみ採用/検証アンカー年次更新=V1同梱)。TierC(habit/hunger/microthought等)=本選後で3本目とも一致。
+- A7更新: root直下の監査ファイルは**5本**に(未コミット維持・docs/plans/source/移動推奨は不変)。**コード不触・docsのみ**。

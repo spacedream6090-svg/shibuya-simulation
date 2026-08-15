@@ -52,6 +52,8 @@ DPH-A(起床→就寝地平)・LSR-B/H(「家に入る=寝る」分離)・build_
 ## 3. 本番環境の詳細把握(メモリ等)
 
 ### 3.1 インベントリ(サーバーで1ペースト・出力を貼り戻してください)
+
+> **回答済み(8/16・監査経由)**: 64 logical CPU / 2 NUMA・**RAM 251GiB**(available 242・swap 8GiB)・/home 3.7TB空き・**ulimit -n 1024=要引き上げ**。RAM判定線=GO<180GiB / COND 180-215 / NO-GO>220([external-audit-triage.md](external-audit-triage.md) R2)。残り=NUMAトポロジ・ディスクthroughput・持続熱試験。
 ```bash
 { echo "=== os ==="; lsb_release -d; uname -r; date; \
   echo "=== cpu ==="; nproc; lscpu | grep -E "Model name|Socket|NUMA"; \

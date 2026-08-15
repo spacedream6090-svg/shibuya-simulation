@@ -1,6 +1,6 @@
-# 外部監査2本のトリアージ — REALITY_MAXIMIZATION_PLAN / HUMAN_BEHAVIOR_DEEP_AUDIT
+# 外部監査のトリアージ — 全5本(第1ラウンド2本+第2ラウンド3本)
 
-> 2026-08-16作成。リポ直下の監査2本(基準コミット5a7df65・計約6,600行)を読了し、**全claimをリポ実物と突合**した上で、採否と日程への織り込みを決める文書。実装はまだ始めない(ユーザー指示)。
+> 2026-08-16作成・同日第2ラウンド追記(§R1〜R6)。リポ直下の監査群を読了し、**全claimをリポ実物と突合**した上で、採否と日程への織り込みを決める文書。実装はまだ始めない(ユーザー指示)。
 > 位置づけ: 監査2本は「上位計画」を自称するが、**正典は引き続き台帳3md+decision-dashboard+finals-endgame-plan**。本書はその正典への差分提案として監査を消化する。
 > 結論(3行): **方向は概ね正しく、特に「呼数密度」と「帰宅=就寝」は本物の急所**。ただしE0系5件のうち2件は実装済み/大半済みで、正しいのは3件。採用は「壊れない系(小)+呼数cap再導出(conf・実測後)+HOME_AWAKE最小(要判断)+検証ハーネス(観測側)」に絞り、**本番開始8/22は動かさない**。
 
@@ -95,3 +95,66 @@ checkpoint原子性の主要部・ODPT申請・交通未接地・「24万9950人
 ## 6. 日程への影響(結論: 骨格は不変)
 
 8/16(今夜〜): サーバー検証+Phase1実測(変わらず最優先)/ 8/17: A2-A4判断→β6-β9着手+v2縦煙 / 8/18: **動力学凍結**+レビュー1回転目 / 8/19-20: 穴埋め+250kリハ+V1/V2仕上げ / 8/21: conf確定(cap込み)+U-10 / **8/22: 本番開始**。監査採用分はこの骨格の中に収まる——収まらないものは全て§3.5へ送った。
+
+---
+
+# 第2ラウンド(2026-08-16・追加3本: SERVER_CAPACITY / FINAL_DESIGN_GAPS / RESOURCE_AWARE)
+
+## R1. 状況 — 監査ループは収束した
+
+- **RESOURCE_AWARE(3本目)は本トリアージのコミット`1297072`を基準HEADに執筆され、§80で当方の訂正をそのまま採択**: 0.173回/人/日が正・cap候補1,500〜2,500/step・「4.5〜5.5回/日」は本線前提にしない・reasoning増=忠実度増と仮定しない・大型behavior変更はβ凍結後にしない。
+- SERVER_CAPACITY(1本目)の「4.5〜5.5回/日」「1シミュ日=18〜24h」は**3本目の§80で自己上書き済み=採用しない**。RAM判定線とR_effバンドは採用(→R2)。
+- FINAL_DESIGN_GAPS(2本目)の統合仕様書要求は→A10。日程は3本とも当方と一致(**β凍結8/18・本番開始8/22**)=骨格変更なし。
+
+## R2. 確定した新事実 — サーバー実機スペック(§3.1インベントリの回答)
+
+| 項目 | 実測値 |
+|---|---|
+| CPU | 64 logical / 2 NUMA |
+| RAM | **251 GiB**(available 242)+ swap 8 GiB |
+| ディスク | /home 約3.7 TB空き |
+| GPU | RTX A5000 24GB ×7(既知) |
+| OS/Python | Ubuntu 22.04.5 / 3.10.12 |
+| **ulimit -n** | **1024 ★本番不足**(vLLM7本+parquet+sockets)→ **65535へ**(runbookに追記) |
+
+- **RAM判定線を採用**: 250k外挿peak RSSが **GO <180GiB / CONDITIONAL 180〜215 / NO-GO >220**。楽観外挿+A2(110+72=182GiB)はCONDITIONAL境界=**10k×144のRSS実測が引き続き最重要**(§3.2どおり)。
+- 未取得の残り: `nvidia-smi topo -m`(NUMA偏り)・ディスク実throughput(checkpoint書きの停止時間)・**持続熱試験**(30〜60分連続推論でreq/sドリフト)・vLLM `/metrics`収集。→runbook 0-4へ追記済み。
+
+## R3. 追加ファクトチェック
+
+| # | claim | 判定 |
+|---|---|---|
+| F13 | RouterLLM実装済み+multi-model-lod計画あり=S1構成は主に艦隊conf変更 | **⭕確認**([router.py:38](../../src/society/llm/router.py#L38)・[multi-model-lod.md](multi-model-lod.md)) |
+| F14 | VllmBackendはrequest seedを送っていない | **⭕確認**(vllm.pyに`seed`なし・vLLM SamplingParamsは受け付ける) |
+| F15 | `--generation-config auto`既定=未指定サンプリングパラメータがモデル側defaultへ依存 | ⭕(vLLM現行仕様)→`--generation-config vllm`+全パラメータ明示(β10) |
+| F16 | DPH-B: generalはreply/lifeの予約の余りを**借りられない**→capを上げてもused/cap<1がありうる | ⭕(設計どおり)→**used/cap実測を判定に追加**: ≥0.90維持/0.75〜0.90はlane share再配分/<0.75でreclaim検討 |
+| F17 | 検証アンカーの年次更新が可能: メディア=令和7年度版公表済み(2026-06・平日183.9分)・家計調査2025年平均公表済み・社会生活基本調査2026は10月調査=**提出前に存在しない**(2021が正当な最新) | ⭕→V1レーンで年次更新+Data Vintage Ledgerに「2026未公表」を明記 |
+
+## R4. 採否の更新(第2ラウンド分)
+
+**β/ops追補(小・推奨採用)**:
+- **β10 モデル・サンプリング完全凍結**: model repo/revision/quantization(第一候補=Qwen3-8B-AWQ 6.11GB・14B-AWQ 9.99GB)・tokenizer/chat_template SHA・vLLM版・sampling全明示+`--generation-config vllm`をmanifestへ(ops+起動スクリプト・G1マニフェストのモデル側拡張)
+- **β11 request-level stable seed**: `rng_key`→`SamplingParams.seed`(数行・観察ランの再現性改善。bit決定論の保証ではなく乱数条件の明示・保存)
+- **ops追補**(runbookへ反映済み): ulimit 65535・NUMAトポロジ取得・/metrics定期保存・持続熱試験・ディスクthroughput
+- **判定指標追補**(解析側・V1へ同梱): used/cap・**zero-call率・calls/personのP50/P90/Gini・属性別coverage**(「平均だけでは25万人に届いたか分からない」は正しい)
+
+**要判断(A8〜A11・endgame §7の続番)**:
+
+| # | 事項 | 推奨 | 期限 |
+|---|---|---|---|
+| A8 | **モデル構成**: S0=7×8B維持 vs **S1=6×8B+1×14B**(reflect/deep→14B・RouterLLM既存) | まず**ミニ行動トーナメント**(8B vs 14B・数百シナリオ・半日・8/17-18のGPU隙間)→差が明確ならS1。32B/TP2は余力のみ | 8/18 |
+| A9 | JSON Schema structured outputs(purpose別schema) | constrained decodingは出力分布を変えるため**A/B後**。差が小なら採用 | 8/18 |
+| A10 | FINAL_DESIGN_SPEC(統合正典)を今書くか | **推奨=書かない**(8/18前の工数はゲート実測へ。完了チェックリスト§61/§76だけ採用し、統合スペックは本選後) | — |
+| A11 | 検証アンカー年次更新+Data Vintage Ledger+Spatial Support Crosswalk | **推奨=YES**(V1レーンに同梱・observer側) | 8/19-20 |
+
+## R5. Tier C見解の一致(確認のみ)
+
+habit学習・hunger/sleep_pressure・microthought・social capacity・group hyperedge・CVA型・ABC較正・distillation・dt=1分=**本選後**——3本目も同結論(§51-64)。人間行動系の本選前投入は**HOME_AWAKE最小(β9)のみ**で変わらない。
+
+## R6. 完了ゲートの統合
+
+FINAL_DESIGN_GAPS §61とRESOURCE_AWARE §76のチェックリストは、既存のD1-c 8項・信頼性リハ7本・U-10と重複が多い。**β凍結時(8/18)に「本番前ゲート一覧」1枚へ統合**する(新規要素=model freeze・used/cap・coverage/fairness・zero-call率・Data Vintage)。
+
+## R7. A7の更新
+
+リポ直下の監査ファイルは**5本**になった(いずれも未コミット)。root直下=公開ミラー除外対象外の事情は不変→**docs/plans/source/へ移動してコミット**を引き続き推奨。
