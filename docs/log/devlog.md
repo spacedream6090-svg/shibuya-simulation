@@ -631,3 +631,28 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
   +conf待機ブロック(切替1行・v1バイト不変を機械固定)。未解決=workplace_scope/at_homeのengine接続(PPv2-G判断待ち)・
   household_idランタイム未読(世帯連続配置で代替)・暫定7件はmeta.honestyに記録。
 - 検収: スキャンCLEAN・静止木フルゲート(回し中・3レーン並行時はCPU競合で2s/testに劣化したため静止木で確定)。
+
+### Entry 118 — 2026-08-16 — 第117=エンドゲーム計画+Codexレビュー体制(リサーチ+判断項目選定のみ・実装なし)
+
+- ユーザーシナリオ(現状をリモート検証∥残実装→β→Codexレビュー×2→通れば本番→Discord報告→提出)を
+  [finals-endgame-plan.md](../plans/finals-endgame-plan.md) に日程で固定: 提出8/30逆算で**本番開始8/22推奨(遅くとも8/23)・
+  β凍結8/18・レビュー1回転目8/18/2回転目8/20**。遅延時は日数でなく開始日を優先(10日長がU-10の前提)。
+- β凍結線の棚卸し: 残実装は4種=①小粒コードβ1〜β5(D1-c#4b・watchdog本選値化・J1 24・初期関係較正・
+  sleep_task_rewrite実LLM検収)②実測ゲート待ちconfスイッチ(fire/POP/A2/v2/policy_cache/batch_llm)③実測タスク群
+  ④本選後送り確認——**機能実装はほぼ完了**が結論。
+- リソース集約(Explore・出典file:line付きで§3.2へ): ★**RAM外挿が2本併存**(88〜110GB vs 316〜363GB@250k・A2 ONで+72GB)
+  =最大の未知数→**10,000体×144stepのpeak RSSが決定量**(24stepでは不足と文書明記)・run本体67〜70GB+checkpoint累積
+  20〜100GB級(E0剪定禁止)・★**engine.batch_llmが本選confに無い=計画呼が完全直列**(dayplan-horizon-plan.md:424・
+  決定論はworkers 1vs4のstate_hash一致で証明済み→判断#13でON推奨)・reflect_max_tokens 2048→768推奨(KV予約)。
+  サーバーインベントリ1ペースト(RAM/swap/disk/GPU/ulimit/egress)を§3.1に同梱。
+- Codexレビュー体制(Webリサーチ→[codex-review-pack.md](../../ops/codex-review-pack.md)): 実行場所=**サーバーclone推奨**
+  (追跡ファイルのみ=h.txt/runs/data物理不在・ローカルPCはnode/codex無しを確認)。レビュー専用の3重強制=
+  read-onlyプロファイル(sandbox_mode=read-only/approval_policy=never)+AGENTS.mdテンプレ(編集禁止・指摘形式・
+  R1不変量・凍結14本は自動[本選後]ラベル)+プロンプト明示。**6パス構成**(P1決定論/P2保存則/P3resume/P4conf配線/
+  P5性能O(N)/P6観測非侵襲)+2回転目=差分(codex review --base)+再確認。非対話=`codex exec --profile review -o`。
+  ヘッドレス認証=`codex login --device-auth`が公式。★**個人プランは既定でコンテンツが学習に使われうる=
+  Data Controlsオプトアウト確認をレビュー前に必須**(Business系は既定除外・APIキー課金も学習不使用)。
+- ペルソナ再生成=**v2プール切替として実装済みで足りる**ことを明記(Kimi K3等LLM生成は第115で多様性崩壊を実証済み=不採用確定)。
+  推奨: 8/17にサーバーで生成+tier_quota+縦煙→8/18の100k階段からv2(β4較正修正と縦煙1回で同時確認)。
+- 判断13件(β凍結線・Codex認証/範囲・v2切替・初期関係較正・J1・fire・D2尾部・開始日・U-10・提出要件・賃金・batch_llm)
+  +手動4件(M1ペースト実行/M2 codex login/M3 webhook env/M4数字貼り戻し)を表化。**コード不触・docsのみ**。
