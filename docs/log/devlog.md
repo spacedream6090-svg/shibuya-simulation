@@ -763,3 +763,23 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
   家に帰る)。在場・遭遇・伝播の統計が動くため、縦煙でpresence較正(非通勤来街6-13万)の不変確認が必須
   ——13bブロックに明記。finals conf(13b)=決定反映の解凍ブロック(per_agent+talk true)へ更新・
   PENDING=夜会話消化/home_awake行は縦煙機械ゲートのみに更新。
+
+### Entry 124 — 2026-08-16 — 第123=受領文書の格納(A7消化)+公開ミラーの穴1件封鎖+Codex接続準備
+
+- ユーザー: 残タスクの書き出し+Codex接続の依頼。サーバーは最新Gitで2,000×20検証を実行中。
+- **A7消化**: 監査5本(SHIBUYA_SIMULATION_*)+GPUサーバー引き継ぎメモをリポ直下→docs/plans/source/へ
+  移動してコミット(root直下=ミラー除外対象外のため未コミットのまま留置していた件)。
+- **★公開ミラーの穴を1件発見・封鎖**: ops/ はミラー**対象**(残すもの側)だが、第117の
+  ops/codex-review-pack.md と 6eddab5 の ops/setup-gpu-sv-002.md にサーバー識別子
+  (hostname/内部IP/SSHユーザー)が入っていた。**ミラー最終同期=8/12・両ファイルのコミット=8/16
+  →未公開のまま**。publish_public_mirror.ps1 の除外リストへ2ファイル追加+全履歴の識別子内容検査
+  (トリップワイヤ)を追加。既公開履歴のハッシュ不変=fast-forward維持。VPN公開IPは未コミット文書のみ
+  =コミット済みファイルに存在しないことをgrepで機械確認。
+- **Codex接続準備**: ローカル~/.sshに鍵なし(password認証のみ)と判明→ed25519鍵ペア生成+
+  ~/.ssh/config(Host gpu-sv-002)作成・VPN疎通確認OK。残る手動=公開鍵のサーバー登録1ペースト
+  (ユーザーのパスワード入力が必要)→以後はFableがSSH直接操作可=codexインストール/config.toml/
+  AGENTS.md配置はFableが実施→codex login --device-auth(M2)のみユーザー。
+- 残タスク棚卸しの結論: **5.6 sol採用分のコード実装はゼロ残**(β8 capはconf行のみ=R_eff実測待ち)。
+  残りは(a)数字待ち判定=cap/fire/RAM/POP/A2/batch_llm(b)サーバー作業=v2生成+縦煙→13b解凍・
+  Codex 6パス・A8ミニトーナメント・A9 structured outputs A/B(c)docs=R6ゲート一覧統合(8/18)
+  (d)任意=V3決定モード印字・PLATEAU 2025 viewer側(A5)。
