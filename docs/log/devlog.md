@@ -848,3 +848,21 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
   plateau_index.jsonに年度スタンプ無し(来歴は抽出既定パスから確認=上流の小穴)。
 - ストリーミングtileset: 渋谷FY2025の公開tileset.jsonは**存在未確認**(公式チュートリアルはFY2020/2023例のみ・
   見つかったのはFY2022 LOD1=現行より低品質)=配線しないのが正。
+
+### Entry 129 — 2026-08-16 — 第128=A8ミニ行動トーナメント・ハーネス(C1レーン)着地
+
+- scripts/behavior_tournament.py 891行+テスト422行(27緑・Fable再実行で確認)。
+- **★設計の要点=合成プロンプトを書かない**: mockシムを1本回し、llm_journal.jsonl.gz から
+  **シムが実際に組んだプロンプト文字列**(+temperature/max_tokens/think実値)を層別採取
+  (purpose×時刻帯6×個体・ラウンドロビン・乱数ゼロ)。engine/cognitionはimportせず読むだけ。
+  ★レーンの実装中発見=時刻帯ごとに名簿開始位置を回さないと20件が8個体に集中→offset回転で是正。
+- 発行=既存VllmBackend+CachedLLM.generate_many流用(新並列機構なし)・request seed=既存blake2b
+  (A/B両側で同シナリオ同seedをテスト固定)・採点=parse_action/classify_reject本物流用・LLM審判不使用。
+- レポート=A/B比較表+purpose別内訳+失敗内訳+行動分布JSD+**統計的検出力の目安幅を毎回明記**
+  (束300件でparse差±3pt前後・判定はしない=数字と幅だけ出す)。samples.md=人手確認用のprompt全文+両応答。
+- 正直な限界の記録: 既定束はbase conf(finalsプロファイルは400体でも初期化25分超=既定にせず)=
+  プロンプトが本選より薄く差が出にくい方向・「気が利いているか」は機械指標外(samples.md担当)・
+  レイテンシは片側ずつ(同載干渉は含まず)。
+- レーンが見た赤1件(test_llm_journal のbatch ON/OFF一致)=B5レーン編集中のscheduler.py領域=C1起因でない
+  (C1差分は未追跡新規2ファイルのみ・同時に回したtest_e2e_mock/fleet/request_seed/contracts 58緑)。
+- サーバー実走(A8判断の材料採り)はB5検収→2k再実測の後に14B AWQを1GPUへ載せて実施予定。
