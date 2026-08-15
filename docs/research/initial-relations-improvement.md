@@ -2,6 +2,18 @@
 
 作成 2026-08-15 / **調査のみ**(`src` / `tests` / `conf` / `data` は 1 行も変更していない)/ 対象コミット `b2a146f`(第111)
 
+> **実装状況(2026-08-15 追記・第121 レーンB3 β4)**: 本書の **R2(初期 closeness の減衰整合)だけ**が
+> 着地している。`friends.py` に層別 margin(`margin_close` / `margin_friend` / `margin_acq`・
+> **既定 None = 従来の単一 `margin` と 1 バイトも同一**)を足し、**`conf/finals_observe.yaml` にのみ**
+> §4 (4-d) の推奨値を適用した(margin 15.0 / 6.5 / 2.5・close 1-3・friend 4-8・acq 24・age_scale 9.0)。
+> 基底 `conf/config.yaml` は 1 行も動かしていない(R1)。実測(60 体 × 3 日 mock・同 seed):
+> day0 の注入辺 702 本のうち **「day0 の層以上」に留まった割合が day1 で 19.4% → 100%、day3 で
+> 18.5% → 67.8%**、親友(tier3)の day3 生存は **25.0% → 100%**、day0 辺の平均 closeness は
+> day3 で **3.873 → 7.258**、不在による tier 降格(`relation_break{cause:absence}`)は **928 → 716 件**。
+> **R1(候補ブロッキング+三者閉包)・R3(SNS 異質次数)・R4(世帯合成)・R5(区外 alter)は未実装**。
+
+
+
 ユーザーの問い:
 > ペルソナを再生成するなら初期の関係性構築についても再度回す必要がある。方法だったりをより良いものにできないか? web などを使用して調べて
 

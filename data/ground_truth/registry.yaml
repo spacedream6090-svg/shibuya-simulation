@@ -1,0 +1,683 @@
+# =============================================================================
+# 検証アンカー台帳(Ground Truth Registry)— V1 / A11
+# =============================================================================
+# 2026-08-16 新設。docs/plans/external-audit-triage.md §3.2 V1 / §R4 A11
+# (「検証アンカー年次更新 + Data Vintage Ledger + Spatial Support Crosswalk」)の実体。
+#
+# 何のためのファイルか
+# --------------------
+# `scripts/reality_score.py` が読む**唯一の現実側の源**。スクリプトの中に数値を
+# 直書きしない(= 数字が来歴なしで増殖するのを構造的に止める)。
+#
+# 掟(このファイルに載せてよい数値の条件)
+# ----------------------------------------
+#  1. **一次統計 or repo 内リサーチ文書の引用値**であること。推定・合成値は
+#     `estimate: true` を立て、どう作ったかを `note` に書く(黙って混ぜない)。
+#  2. `source` / `year` / `spatial_support` / `denominator` の 4 つが必ず埋まること。
+#     埋まらない数値は**載せない**(バンド無し=N/A の方が捏造よりよい)。
+#  3. `split` を必ず宣言する。`calibration` = シムの構築・較正にこの表自身を使った
+#     アンカー(一致して当然=モデルの性能の証拠にならない)。`holdout` = 構築に
+#     使っていないアンカー(こちらだけが予測力の証拠になる)。`diagnostic` =
+#     現実側のアンカーが存在しない内部指標(合否ではなく報告のみ)。
+#  4. 実在の個人名・商標は書かない(公的機関名・調査名は可)。
+#
+# 単位の規約: 時刻は 24 時間制の実数時(23:39 = 23.65)。時間量は分/日。
+#             割合は 0-1 の実数(パーセントで書かない)。
+# =============================================================================
+
+schema_version: 1
+updated: "2026-08-16"
+
+# --------------------------------------------------------------------------- #
+# Data Vintage Ledger — 「いま入手できる最新版はどれか」を年次で明示する
+# --------------------------------------------------------------------------- #
+# ★監査(RESOURCE_AWARE / FINAL_DESIGN_GAPS)への回答: 「2026 年の調査を使え」は
+#   一般には正しいが、調査によっては**提出時点でこの世に存在しない**。
+#   存在しない年次を待つのではなく、「最新版はこれで、次はいつ出るか」を書く。
+data_vintage:
+  - id: ssb
+    name: "社会生活基本調査(総務省統計局)"
+    latest_published: "2021 (令和3年)"
+    next_wave: "2026年10月 調査実施"
+    available_at_submission: false
+    note: >-
+      5 年周期(2016 → 2021 → 2026)。2026 年調査は 10 月実施で、結果公表は
+      2027 年以降。**本選提出時点(2026-08)では 2021 年版が正当な最新**であり、
+      2021 を使うことは古い値の使用ではない。COVID 期の上振れ(在宅・巣ごもり)を
+      含むことだけは各アンカーの note に明記する。
+  - id: nhk_seikatsu_jikan
+    name: "NHK 国民生活時間調査"
+    latest_published: "2020"
+    next_wave: "2025 年調査(結果公表時期は未確認)"
+    available_at_submission: false
+    note: "5 年周期。2020 年版が repo 内で全文取得済みの最新。"
+  - id: iicp_media
+    name: "情報通信メディアの利用時間と情報行動に関する調査(総務省情報通信政策研究所)"
+    latest_published: "令和7年度 (2026-06 公表・2025 年調査)"
+    next_wave: "令和8年度"
+    available_at_submission: true
+    note: "毎年。**年次更新済み**(旧アンカーの令和2年度=2020 から差し替えた)。"
+  - id: tokyo_pt
+    name: "東京都市圏パーソントリップ調査"
+    latest_published: "第6回 (2018 実施)"
+    next_wave: "第7回(実施時期未定)"
+    available_at_submission: true
+    note: "約 10 年周期。第6回が最新。"
+  - id: juminkihon_shibuya
+    name: "渋谷区 住民基本台帳 年齢(5歳階級)別男女別人口"
+    latest_published: "2026-08-01"
+    next_wave: "毎月更新"
+    available_at_submission: true
+    note: "月次。repo は 2026-08-01 版を scripts/persona_v2.py に取り込み済み。"
+  - id: kokusei_2020
+    name: "令和2年国勢調査"
+    latest_published: "2020"
+    next_wave: "令和7年(2025)国勢調査 — 詳細集計は順次公表"
+    available_at_submission: true
+    note: >-
+      2025 国調は速報段階。就業・従業地の**市区町村×属性クロス**は 2020 が最新の
+      完全版。本台帳は 2020 を採る。
+
+# --------------------------------------------------------------------------- #
+# Spatial Support Crosswalk — 「その数字の分母はどの空間か」
+# --------------------------------------------------------------------------- #
+# ★同じ「1 人あたり」でも分母の空間が違えば比較にならない。全アンカーは下の
+#   いずれかの support を宣言し、レポートに列として出す(黙って混ぜない)。
+spatial_support:
+  bbox:
+    label: "シム範囲(bbox)"
+    definition: "lat 35.6505-35.6685 / lon 139.6905-139.7115(約 2.0 x 1.9 km)"
+    note: >-
+      人流メッシュのコア4メッシュ(53393585/86/95/96)が bbox 南北の約 91% を覆う。
+      北端 35.6667-35.6685 の約 200m 帯だけ北スリバー 2 メッシュが担当。
+  ward:
+    label: "渋谷区"
+    definition: "行政区全域(15.11 km2)。夜間人口 243,883(2020 国調)"
+    note: "bbox は渋谷区の一部にすぎない(面積比で約 1/4)。人口密度が違うので直接割らない。"
+  metro:
+    label: "東京都市圏"
+    definition: "東京都市圏交通計画協議会の調査対象圏域(1 都 3 県の中心部)"
+  tokyo:
+    label: "東京都"
+    definition: "都全域"
+  nation:
+    label: "全国"
+    definition: "日本全国"
+
+# --------------------------------------------------------------------------- #
+# 判定帯(事前登録)— 閾値をコードに埋めずここで宣言する
+# --------------------------------------------------------------------------- #
+# ★これは文献由来の値ではなく**運用上の取り決め**である(その旨をレポートにも出す)。
+#   ok / warn の間は「調律候補」、warn 超は「要説明」。合否ではなく優先度付け。
+thresholds:
+  jsd:  {ok: 0.05, warn: 0.15, direction: lower_is_better}
+  mape: {ok: 0.15, warn: 0.35, direction: lower_is_better}
+  ks:   {ok: 0.10, warn: 0.20, direction: lower_is_better}
+#: 各アンカーが成立するのに最低限必要な sim 側の標本数。下回ったら **N/A**
+#: (小さい標本で出した一致・不一致はどちらも意味を持たない)。
+min_samples:
+  distribution: 30
+  scalar: 20
+  curve: 30
+
+# --------------------------------------------------------------------------- #
+# アンカー本体
+# --------------------------------------------------------------------------- #
+anchors:
+
+  # ======================= Population =======================================
+  - id: pop_age_5y_resident
+    category: population
+    label: "年齢5歳階級構成(住民)"
+    type: distribution
+    metric: jsd
+    bins: ["0-4", "5-9", "10-14", "15-19", "20-24", "25-29", "30-34", "35-39",
+           "40-44", "45-49", "50-54", "55-59", "60-64", "65-69", "70-74",
+           "75-79", "80-84", "85-89", "90-94", "95-99", "100+"]
+    values: [7320, 7751, 7940, 7434, 11121, 18716, 19601, 18188, 19363, 19921,
+             19482, 17335, 13512, 10079, 8274, 9680, 6485, 4803, 2905, 963, 174]
+    unit: "人"
+    denominator: "住民基本台帳 総数 231,047(男 110,566 / 女 120,481)"
+    spatial_support: ward
+    year: "2026-08-01"
+    source: "渋谷区区民部住民戸籍課 年齢(5歳階級)別男女別人口"
+    url: "https://www.city.shibuya.tokyo.jp/kusei/tokei_shibuya/nemrei_danjyo_betsu_jimko/renrei_danjyo_betsu_jinko.html"
+    provenance: "repo:scripts/persona_v2.py AGE_BANDS(取得済み一次表を転記)"
+    split: calibration
+    split_basis: "persona_v2 がこの表を直接引いて L1 を生成する。一致は設計どおりで予測力の証拠ではない。"
+
+  - id: pop_child_share
+    category: population
+    label: "年少人口割合(0-14歳)"
+    type: scalar
+    metric: mape
+    value: 0.0996
+    unit: ""
+    denominator: "住基 総数 231,047 のうち 0-14 歳 23,011"
+    spatial_support: ward
+    year: "2026-08-01"
+    source: "渋谷区 住民基本台帳(pop_age_5y_resident からの集約)"
+    url: "https://www.city.shibuya.tokyo.jp/kusei/tokei_shibuya/nemrei_danjyo_betsu_jimko/renrei_danjyo_betsu_jinko.html"
+    provenance: "derived from pop_age_5y_resident"
+    derived: true
+    split: calibration
+    split_basis: "同上(pop_age_5y_resident の集約)。★v1 プールでは 0.00% だった既知の欠損の見張り。"
+
+  - id: pop_elderly_share
+    category: population
+    label: "高齢人口割合(65歳以上)"
+    type: scalar
+    metric: mape
+    value: 0.1877
+    unit: ""
+    denominator: "住基 総数 231,047 のうち 65 歳以上 43,363"
+    spatial_support: ward
+    year: "2026-08-01"
+    source: "渋谷区 住民基本台帳(pop_age_5y_resident からの集約)"
+    url: "https://www.city.shibuya.tokyo.jp/kusei/tokei_shibuya/nemrei_danjyo_betsu_jimko/renrei_danjyo_betsu_jinko.html"
+    provenance: "derived from pop_age_5y_resident"
+    derived: true
+    split: calibration
+
+  - id: pop_female_share
+    category: population
+    label: "女性割合(住民)"
+    type: scalar
+    metric: mape
+    value: 0.5215
+    unit: ""
+    denominator: "住基 総数 231,047 のうち女 120,481"
+    spatial_support: ward
+    year: "2026-08-01"
+    source: "渋谷区 住民基本台帳"
+    url: "https://www.city.shibuya.tokyo.jp/kusei/tokei_shibuya/nemrei_danjyo_betsu_jimko/renrei_danjyo_betsu_jinko.html"
+    provenance: "repo:scripts/persona_v2.py AGE_BANDS の男女内訳を集約"
+    split: calibration
+
+  - id: pop_labour_force_rate_15_64
+    category: population
+    label: "労働力率(15-64歳)"
+    type: scalar
+    metric: mape
+    value: 0.8383
+    unit: ""
+    denominator: >-
+      15-64 歳人口 164,673(住基 2026-08-01)を重みにした年齢帯別労働力率の加重平均。
+      労働力率そのものは令和2年国勢調査(渋谷区・第1-2表)。
+    spatial_support: ward
+    year: "2020"
+    source: "令和2年国勢調査 渋谷区 第1-2表(年齢別労働力状態)"
+    url: "https://www.city.shibuya.tokyo.jp/kusei/kuni_kikamtokei/kokusei_cyosa/01kokusei_r2.html"
+    provenance: "repo:scripts/persona_v2.py LABOUR_FORCE_RATE x AGE_BANDS の加重平均"
+    derived: true
+    split: calibration
+    split_basis: "persona_v2 が就業割当にこの率を使う。★ただし年齢の重みは住基 2026 なので合成値。"
+    sim_mapping: >-
+      15-64 歳の agents のうち「働く職業」を持つ割合。判定は occupation が非就業語
+      (無職・学生・大学生・高校生・生徒・主婦・主夫・年金・退職)でないこと。
+      ★労働力人口は失業者を含むので、シムの「職を持つ割合」はやや低く出る側にずれる。
+
+  - id: pop_nonregular_rate
+    category: population
+    label: "非正規雇用率(雇用者に占める)"
+    type: scalar
+    metric: mape
+    value: 0.242
+    unit: ""
+    denominator: "渋谷区の雇用者(令和2年国勢調査 従業上の地位)"
+    spatial_support: ward
+    year: "2020"
+    source: "令和2年国勢調査 渋谷区(派遣 2.75% + パート等 14.23% を雇用者で再基準化)"
+    url: "https://www.city.shibuya.tokyo.jp/kusei/kuni_kikamtokei/kokusei_cyosa/01kokusei_r2.html"
+    provenance: "repo:scripts/persona_v2.py EMPLOYMENT_STATUS 節の注記(全国より 10pt 低い)"
+    split: holdout
+    split_basis: >-
+      v1 のペルソナ生成(persona_pool)は非正規率を使っていない(part_time は別の
+      設計値)。v2 プールに切り替えた場合は calibration へ移す必要がある。
+    sim_mapping: "職を持つ agents のうち part_time=true の割合。"
+
+  - id: pop_exec_share
+    category: population
+    label: "役員割合(従業上の地位)"
+    type: scalar
+    metric: mape
+    value: 0.1422
+    unit: ""
+    denominator: "渋谷区の就業者(不詳 2.48% を除いて再基準化)"
+    spatial_support: ward
+    year: "2020"
+    source: "令和2年国勢調査 渋谷区 従業上の地位"
+    url: "https://www.city.shibuya.tokyo.jp/kusei/kuni_kikamtokei/kokusei_cyosa/01kokusei_r2.html"
+    provenance: "repo:scripts/persona_v2.py EMPLOYMENT_STATUS"
+    split: holdout
+    sim_mapping: >-
+      agents.json の rank / employment_status 欄(v2 プール由来)。v1 プールには
+      この欄が無いので **N/A になるのが正しい**。
+
+  # ======================= Time Use =========================================
+  - id: tu_sleep_min_nhk2020
+    category: time_use
+    label: "睡眠時間(平日・全員平均)"
+    type: scalar
+    metric: mape
+    value: 432.0
+    unit: "分/日"
+    denominator: "10 歳以上・平日・全員平均(有効 4,247 票)"
+    spatial_support: nation
+    year: "2020"
+    source: "NHK 国民生活時間調査 2020(7 時間 12 分)"
+    url: "https://www.jstage.jst.go.jp/article/bunken/71/8/71_2/_pdf"
+    provenance: "repo:docs/plans/reflection-leisure-plan.md 4.3 / docs/plans/age-diversity-plan.md T2"
+    split: calibration
+    split_basis: "persona_v2 の睡眠は NHK 2020 表15/表16 を較正元にしている(同ファイル冒頭の出典欄)。"
+
+  - id: tu_sleep_min_ssb2021
+    category: time_use
+    label: "睡眠時間(週全体・総平均)"
+    type: scalar
+    metric: mape
+    value: 474.0
+    unit: "分/日"
+    denominator: "10 歳以上・週全体・総平均時間(行動しなかった人を 0 分として含む)"
+    spatial_support: nation
+    year: "2021"
+    source: "社会生活基本調査 令和3年(7 時間 54 分)"
+    url: "https://www.stat.go.jp/data/shakai/2021/pdf/gaiyoua.pdf"
+    provenance: "repo:docs/plans/reflection-leisure-plan.md 4.1/4.3"
+    split: holdout
+    split_basis: >-
+      構築には NHK 側だけを使っている。★同じ「睡眠」でも 2 調査で 42 分違う
+      (定義=就床時間 vs 睡眠)。**2 本並べて出すこと自体が誠実さの表明**であり、
+      片方だけを選んで一致させない。
+    note: "COVID 期(2021-10 調査)の上振れを含む。2016 比 +14 分。"
+
+  - id: tu_bedtime_h_tokyo
+    category: time_use
+    label: "就寝時刻(平日・平均)"
+    type: scalar
+    metric: mape
+    value: 23.65
+    unit: "時(24時間制の実数時)"
+    denominator: "東京都・10 歳以上・平日"
+    spatial_support: tokyo
+    year: "2021"
+    source: "社会生活基本調査 令和3年(東京 23:39 / 全国 23:04)"
+    url: "https://www.stat.go.jp/data/shakai/2021/kekka.html"
+    provenance: "repo:docs/plans/reflection-leisure-plan.md 4.4"
+    split: holdout
+    split_basis: >-
+      現行 persona の bedtime_min は 22:00 + 一様 0-230 分(= 全年齢同一の仮置き)で、
+      この値を使っていない。**最も素直な予測力の試験になるアンカー**。
+    note: "東京は全国平均より約 35 分遅い(都市性そのものが位相を後ろへずらす)。"
+
+  - id: tu_wake_h_tokyo
+    category: time_use
+    label: "起床時刻(平日・平均)"
+    type: scalar
+    metric: mape
+    value: 6.983
+    unit: "時(24時間制の実数時)"
+    denominator: "東京都・10 歳以上・平日"
+    spatial_support: tokyo
+    year: "2021"
+    source: "社会生活基本調査 令和3年(東京 6:59 / 全国 6:38)"
+    url: "https://www.stat.go.jp/data/shakai/2021/kekka.html"
+    provenance: "repo:docs/plans/reflection-leisure-plan.md 4.4"
+    split: holdout
+
+  - id: tu_asleep_rate_curve_nhk2020_m20s
+    category: time_use
+    label: "睡眠行為者率カーブ(平日・男20代)"
+    type: curve_points
+    metric: ks
+    points:
+      - {hour: 22.25, value: 0.10}
+      - {hour: 23.25, value: 0.28}
+      - {hour: 6.25,  value: 0.72}
+      - {hour: 6.75,  value: 0.64}
+    unit: ""
+    denominator: "NHK 2020 表16・30 分毎の睡眠行為者率・平日・男・20 代"
+    spatial_support: nation
+    year: "2020"
+    source: "NHK 国民生活時間調査 2020 表16"
+    url: "https://www.jstage.jst.go.jp/article/bunken/71/8/71_2/_pdf"
+    provenance: "repo:docs/plans/age-diversity-plan.md T2 表16"
+    split: holdout
+    split_basis: >-
+      persona は表16 の**形**を使っていない(一様分布のまま)。AGE-B で U 字を入れたのは
+      就寝年齢差であって 30 分毎の位相ではない。
+    note: >-
+      ★**男・20 代・全国**の部分表である。渋谷の年齢構成の主力帯には近いが、
+      全体平均ではない。KS は与えられた 4 点上の最大差(点数が少ないので下界寄り)。
+    sim_mapping: "sim 側は L2 の n_sleeping / 在場数 を時刻帯へ畳んだ実測カーブ。"
+
+  - id: tu_home_awake_min_weekday
+    category: time_use
+    label: "在宅かつ覚醒の時間(平日)"
+    type: scalar
+    metric: mape
+    value: 511.0
+    unit: "分/日"
+    denominator: "NHK 2020 平日・国民全体(8 時間 31 分)"
+    spatial_support: nation
+    year: "2020"
+    source: "NHK 国民生活時間調査 2020(起床在宅 平日 8:31 / 土 10:15 / 日 10:05)"
+    url: "https://www.jstage.jst.go.jp/article/bunken/71/8/71_2/_pdf"
+    provenance: "repo:docs/plans/reflection-leisure-plan.md 4.3"
+    split: holdout
+    split_basis: "beta-9(HOME_AWAKE)は本台帳の作成時点で未 ON。既知の実測は 2:34(0.30 倍)。"
+
+  - id: tu_home_to_sleep_gap_min
+    category: time_use
+    label: "帰宅から就寝までの時間(有業者・平日)"
+    type: scalar
+    metric: mape
+    value: 264.0
+    unit: "分"
+    denominator: "東京都・有業者・平日(帰宅 19:15 → 就寝 23:39 = 4 時間 24 分)"
+    spatial_support: tokyo
+    year: "2021"
+    source: "社会生活基本調査 令和3年(帰宅時刻・就寝時刻の差)"
+    url: "https://www.stat.go.jp/data/shakai/2021/kekka.html"
+    provenance: "repo:docs/plans/reflection-leisure-plan.md 4.3/4.5"
+    derived: true
+    split: holdout
+    split_basis: >-
+      ★監査 2 本が P0 に挙げた急所。第115 の実測は **0 分**(帰宅 = 即就寝)。
+      beta-9 の効果を測る唯一の直接アンカー。
+    note: "2 つの公表平均時刻の差なので、個体の分布ではなく平均どうしの引き算(derived)。"
+
+  - id: tu_work_min_ssb2021
+    category: time_use
+    label: "仕事の時間(週全体・総平均)"
+    type: scalar
+    metric: mape
+    value: 208.0
+    unit: "分/日"
+    denominator: "10 歳以上・週全体・総平均時間(仕事をしなかった人を 0 分として含む)"
+    spatial_support: nation
+    year: "2021"
+    source: "社会生活基本調査 令和3年 主要行動の総平均時間"
+    url: "https://www.stat.go.jp/data/shakai/2021/pdf/gaiyoua.pdf"
+    provenance: "repo:docs/plans/reflection-leisure-plan.md 4.1/4.2"
+    split: holdout
+    note: >-
+      ★分母注意: これは**総平均**(無業者・休日も含む全員平均)であって「出勤日
+      あたり」ではない。calibrate_report.py の work_h(出勤日あたり 7.0-9.8h)とは
+      別の量。渋谷の原型「独身期 35 歳未満」では 332 分。
+
+  - id: tu_food_min_ssb2021
+    category: time_use
+    label: "食事の時間(週全体・総平均)"
+    type: scalar
+    metric: mape
+    value: 99.0
+    unit: "分/日"
+    denominator: "10 歳以上・週全体・総平均時間"
+    spatial_support: nation
+    year: "2021"
+    source: "社会生活基本調査 令和3年 主要行動の総平均時間"
+    url: "https://www.stat.go.jp/data/shakai/2021/pdf/gaiyoua.pdf"
+    provenance: "repo:docs/plans/reflection-leisure-plan.md 4.1/4.2"
+    split: holdout
+    note: "渋谷の原型「独身期 35 歳未満」では 84 分(単身・中食で短い)。"
+
+  # ======================= Mobility =========================================
+  - id: mob_trips_per_person_day
+    category: mobility
+    label: "トリップ原単位(1人1日あたり)"
+    type: scalar
+    metric: mape
+    value: 2.61
+    unit: "トリップ/人日"
+    denominator: "東京都市圏の全数(調査対象者 1 人 1 日あたり・グロス原単位)"
+    spatial_support: metro
+    year: "2018"
+    source: "東京都市圏パーソントリップ調査 第6回(調査開始以来最低)"
+    url: "https://www.tokyo-pt.jp/person/01"
+    provenance: "repo:docs/plans/age-diversity-plan.md 4-5"
+    split: holdout
+    sim_mapping: >-
+      L1 の route_start 件数 / (在場 agent x 日)。★シムは寄り道(detour)・中断
+      (interrupt)のたびに経路探索をやり直すので、PT の「目的単位のトリップ」より
+      **多めに出る = 上界**。過大側の乖離は定義差を先に疑うこと。
+
+  - id: mob_gaishutsu_rate
+    category: mobility
+    label: "外出率(1日1回以上外出した人の割合)"
+    type: scalar
+    metric: mape
+    value: 0.766
+    unit: ""
+    denominator: "東京都市圏の調査対象者"
+    spatial_support: metro
+    year: "2018"
+    source: "東京都市圏パーソントリップ調査 第6回"
+    url: "https://www.tokyo-pt.jp/person/01"
+    provenance: "repo:docs/plans/age-diversity-plan.md 4-5"
+    split: holdout
+    sim_mapping: "その日 1 回でも route_start を出した agent の割合(agent x 日 単位)。"
+
+  - id: mob_presence_curve_weekday
+    category: mobility
+    label: "時刻別 同時滞在人口カーブ(平日)"
+    type: curve_file
+    metric: jsd
+    source_file: "data/jinryu/shibuya_concurrent_144step_curve.csv"
+    key_column: "step"
+    value_column: "weekday_abs"
+    unit: "人(同時滞在)"
+    denominator: >-
+      コア4メッシュ(53393585/86/95/96)2019 年平均を昼(11-14 時)/深夜(1-4 時)/
+      終日の 3 アンカーに拘束し、公表された日内形状で 10 分刻みに内挿した派生系列。
+    spatial_support: bbox
+    year: "2019"
+    source: "国土交通省 全国の人流オープンデータ(1kmメッシュ)を加工して作成"
+    url: "https://www.geospatial.jp/ckan/dataset/mlit-1km-fromto"
+    provenance: "repo:data/jinryu/SOURCE.md(政府標準利用規約 2.0 = 出典明記で再配布可)"
+    split: holdout
+    split_basis: >-
+      src/society/world/presence.py:16 が「在場実測曲線は v1 では使わない(将来拡張点)」
+      と明記している = 構築に使っていない。**在場内生化の予測力の直接の試験**。
+    note: >-
+      ★絶対人数は比較しない(60 体ランと 37 万人を比べても意味がない)。
+      比べるのは**時刻方向の形**(各時刻の構成比に正規化した分布どうしの JSD)。
+      値は「滞在時間で按分した換算人口値」= 同時滞在の期待値であって延べ通行量ではない。
+    sim_mapping: "enter_area / exit_area から復元した在場区間を時刻帯へ畳んだ人時分布。"
+
+  - id: mob_presence_peak_trough_ratio
+    category: mobility
+    label: "同時滞在の日内変動幅(ピーク/最小)"
+    type: scalar
+    metric: mape
+    value: 4.39
+    unit: "倍"
+    denominator: "平日ピーク 371,829(14:00)/ 深夜最小 84,671(03:00)"
+    spatial_support: bbox
+    year: "2019"
+    source: "国土交通省 全国の人流オープンデータ(1kmメッシュ)を加工して作成"
+    url: "https://www.geospatial.jp/ckan/dataset/mlit-1km-fromto"
+    provenance: "repo:docs/research/presence-endogenization.md 3.2"
+    derived: true
+    split: holdout
+
+  - id: mob_presence_peak_hour
+    category: mobility
+    label: "同時滞在のピーク時刻(平日)"
+    type: scalar
+    metric: mape
+    value: 14.0
+    unit: "時"
+    denominator: "上記カーブの最大値を取る時刻"
+    spatial_support: bbox
+    year: "2019"
+    source: "国土交通省 全国の人流オープンデータ(1kmメッシュ)を加工して作成"
+    url: "https://www.geospatial.jp/ckan/dataset/mlit-1km-fromto"
+    provenance: "repo:docs/research/presence-endogenization.md 3.2"
+    derived: true
+    split: holdout
+    note: "MAPE を 24 時間周期の量に当てるので、差は円周距離で取る(スクリプト側で処理)。"
+
+  # ======================= Media ============================================
+  - id: media_internet_min_weekday
+    category: media
+    label: "インターネット利用時間(平日)"
+    type: scalar
+    metric: mape
+    value: 183.9
+    unit: "分/日"
+    denominator: "全年代・平日・全員平均(利用しなかった人を 0 分として含む)"
+    spatial_support: nation
+    year: "2025 (令和7年度調査)"
+    source: "総務省情報通信政策研究所 情報通信メディアの利用時間と情報行動に関する調査 令和7年度"
+    url: "https://www.soumu.go.jp/menu_news/s-news/01iicp01_02000130.html"
+    provenance: "repo:docs/plans/reflection-leisure-plan.md 4.6(年次更新済み = A11)"
+    split: holdout
+    note: "20 代は 266.9 分。渋谷の年齢構成では全年代平均より上に出るのが自然。"
+
+  - id: media_internet_min_holiday
+    category: media
+    label: "インターネット利用時間(休日)"
+    type: scalar
+    metric: mape
+    value: 192.9
+    unit: "分/日"
+    denominator: "全年代・休日・全員平均"
+    spatial_support: nation
+    year: "2025 (令和7年度調査)"
+    source: "総務省情報通信政策研究所 情報通信メディアの利用時間と情報行動に関する調査 令和7年度"
+    url: "https://www.soumu.go.jp/menu_news/s-news/01iicp01_02000130.html"
+    provenance: "web:2026-08-16 取得(repo 内文書には平日 183.9 のみ収録されていたため補完)"
+    accessed: "2026-08-16"
+    split: holdout
+    note: "前年比 +9.2 分。"
+
+  - id: media_tv_realtime_min_weekday
+    category: media
+    label: "テレビ(リアルタイム)視聴時間(平日)"
+    type: scalar
+    metric: mape
+    value: 156.1
+    unit: "分/日"
+    denominator: "全年代・平日・全員平均"
+    spatial_support: nation
+    year: "2025 (令和7年度調査)"
+    source: "総務省情報通信政策研究所 情報通信メディアの利用時間と情報行動に関する調査 令和7年度"
+    url: "https://www.soumu.go.jp/menu_news/s-news/01iicp01_02000130.html"
+    provenance: "repo:docs/plans/reflection-leisure-plan.md 4.6"
+    split: holdout
+    note: >-
+      ★渋谷に当てるときの注意: 東京都のテレビ・ラジオ・新聞・雑誌は週全体 1:46 で
+      **全国最下位(47/47)**、20 代男の行為者率は 49%。全国平均をそのまま目標に
+      すると過大になる。
+
+  - id: media_tv_realtime_min_holiday
+    category: media
+    label: "テレビ(リアルタイム)視聴時間(休日)"
+    type: scalar
+    metric: mape
+    value: 189.2
+    unit: "分/日"
+    denominator: "全年代・休日・全員平均"
+    spatial_support: nation
+    year: "2025 (令和7年度調査)"
+    source: "総務省情報通信政策研究所 情報通信メディアの利用時間と情報行動に関する調査 令和7年度"
+    url: "https://www.soumu.go.jp/menu_news/s-news/01iicp01_02000130.html"
+    provenance: "web:2026-08-16 取得"
+    accessed: "2026-08-16"
+    split: holdout
+
+  - id: media_home_media_min_weekday
+    category: media
+    label: "在宅メディア接触の合計(平日)"
+    type: scalar
+    metric: mape
+    value: 217.0
+    unit: "分/日"
+    denominator: "テレビ等 128 分(社会生活基本調査 2021)+ 自宅モバイルネット 89 分(IICP)"
+    spatial_support: nation
+    year: "2021 + 2025"
+    source: "社会生活基本調査 令和3年 + 情報通信メディア調査(2 系列の合成)"
+    url: "https://www.stat.go.jp/data/shakai/2021/pdf/gaiyoua.pdf"
+    provenance: "repo:docs/plans/reflection-leisure-plan.md 4.3"
+    estimate: true
+    derived: true
+    split: holdout
+    note: >-
+      ★**合成値であって一次公表値ではない**(調査も年次も違う 2 本の単純和)。
+      「ながら」の重複を除いていないので上界寄り。シムの media_use に一番近い量なので
+      載せるが、この行だけで良し悪しを断じない。既知の実測は 23.2 分(0.11 倍)。
+    sim_mapping: "L1 media_use の steps 合計 x 1 step の分数 / (在場 agent x 日)。"
+
+  # ======================= Cognition ========================================
+  # ★この節に**現実側のアンカーは無い**(「人間は 1 日何回考えるか」の一次統計は
+  #   存在しない)。したがって split は全て diagnostic = 合否ではなく報告のみ。
+  #   target は監査トリアージ(docs/plans/external-audit-triage.md 2)の運用目標。
+  - id: cog_calls_per_person_day
+    category: cognition
+    label: "LLM 呼び出し(1人1日あたり)"
+    type: scalar
+    metric: mape
+    target_band: [1.0, 1.5]
+    unit: "回/人日"
+    denominator: "L1b の行数 / (在場 agent x 日)"
+    spatial_support: bbox
+    year: "2026-08-16"
+    source: "docs/plans/external-audit-triage.md 2(cap 再導出の推奨帯 1,500-2,500/step)"
+    provenance: "内部の運用目標(現実の一次統計ではない)"
+    split: diagnostic
+    note: "現行 finals conf(cap 300)では 0.173 回/人日。band は cap 1,500-2,500 に対応。"
+
+  - id: cog_zero_call_share
+    category: cognition
+    label: "1度も呼ばれなかった agent の割合"
+    type: scalar
+    metric: null
+    unit: ""
+    denominator: "L1 に現れた agent(= 在場したことのある個体)"
+    spatial_support: bbox
+    year: "2026-08-16"
+    source: "docs/plans/external-audit-triage.md R4(平均だけでは 25 万人に届いたか分からない)"
+    provenance: "内部診断指標"
+    split: diagnostic
+
+  - id: cog_calls_distribution
+    category: cognition
+    label: "呼び出し数の分布(P50 / P90 / Gini)"
+    type: scalar
+    metric: null
+    unit: "回/人日"
+    denominator: "在場した agent 全員(0 回の個体を必ず含める)"
+    spatial_support: bbox
+    year: "2026-08-16"
+    source: "docs/plans/external-audit-triage.md R4"
+    provenance: "内部診断指標"
+    split: diagnostic
+    note: "0 回を落とすと「呼ばれた人だけ」の分布になり集中度が過小評価される。"
+
+  - id: cog_lane_coverage
+    category: cognition
+    label: "レーン別 coverage(life / reply / general)"
+    type: scalar
+    metric: null
+    unit: ""
+    denominator: "在場した agent のうち、そのレーンの呼を 1 回以上受けた割合"
+    spatial_support: bbox
+    year: "2026-08-16"
+    source: "src/society/cognition/lod.py PURPOSE_LANE / BUDGET_LANES"
+    provenance: "内部診断指標(DPH-B の二層予算の実効を見る)"
+    split: diagnostic
+
+  - id: cog_attr_coverage
+    category: cognition
+    label: "属性別 coverage(年齢帯 / 居住者・来街者)"
+    type: scalar
+    metric: null
+    unit: ""
+    denominator: "属性ごとの在場 agent 数"
+    spatial_support: bbox
+    year: "2026-08-16"
+    source: "docs/plans/external-audit-triage.md R4(属性別 coverage)"
+    provenance: "内部診断指標(公平性)"
+    split: diagnostic
+    note: "特定の属性だけが構造的に呼ばれない状態を検出する(k* の主張の前提)。"

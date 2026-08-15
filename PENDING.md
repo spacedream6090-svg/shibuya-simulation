@@ -39,7 +39,9 @@
 | **存在内生化POP** | [population-endogenization-plan.md](docs/plans/population-endogenization-plan.md) 提示済み(2026-08-12): 転入=案A(L4定着昇格)推奨/案B・実装=**本選後推奨**(10日ランでは0.03%)・出生=POP-3で含める推奨 | 承認待ち(3点) |
 | **★cognition.fire を開けるか** | 第113発見: OBS承認で g_update ON にしたが **fire OFF では g_update は1行も出ない no-op**(plasticity は fire 前提)。fire は LLM呼の発生点が変わる **affects_k=True** の別項目のため未開放。開ける場合=呼数増の実測(8/15診断)とセットが筋。Δt5案の「思考層の利得ゼロ」も同根(fire ON なら Δt の科学的価値が復活する関係) | **新規(第113)・8/15判断推奨** |
 | **★ラン計画: seed 2本目+GPU尾部(8/26-30)** | ユニークデータJ5/J6: 事前登録が「条件間差>seed間差」を要求するのに seed分散の入力ランが無い=**量的主張がほぼ全部落ちる**。`analyze_seed_variance.py` は実装済みで入力待ち。選択肢=(a)本線と並行で小規模seed違い (b)本線後の尾部でseed2本目 (c)尾部は反実仮想U15(分岐再走)に使う——**尾部の使途配分の判断** | **新規(第113)・本選前** |
-| **J1 共在ペア記録上限** | `transit_interior.copresence.max_pairs_per_day: 8→24`(conf 1行・L1 +2〜3GB)。U13完全接触ネットワークの分母。動力学不変(乱数消費・状態遷移とも)を検収で機械確認してから入れる | 新規(第113)・小 |
+| ~~**J1 共在ペア記録上限**~~ | `transit_interior.copresence.max_pairs_per_day: 8→24`(conf 1行・L1 +2〜3GB)。U13完全接触ネットワークの分母。**着地済み**(第114 レーン1c で本選 conf のみ 24 へ・理由コメント同梱)。動力学不変の機械検収 = `tests/test_transit_interior.py::test_daily_cap_only_changes_the_copresence_rows` / `test_daily_cap_is_binding_and_conserves_the_pair_total` / `test_finals_conf_raises_the_daily_cap`(第121 レーンB3 β3 で再走・緑) | **消化**(第114 実装 / 第117 再確認) |
+| **home_awake の ON と `lead_min`** | β9=第121で実装済み・既定OFF。縦煙ゲート(v2縦煙と同便)で `daily.home_awake.enabled: true` を解凍。判断=`lead_min` 0(スコープ厳守=在宅覚醒2:23・21時台3.9%)か **120(Fable仮推奨=3:33・21時台31.3%=現実40%超に接近・L1 −15.3%・採用時は max_awake_min: 320 をセット)**。手順と実測は conf(13b)ブロックと[beta-implementation-plan.md](docs/plans/beta-implementation-plan.md) | **新規(第121)・縦煙後** |
+| 同居人どうしの夜の自宅会話 | B2検収がLLM中立性の穴として閉鎖(現行OFFでは両者就寝中=失うものゼロ)。開けると呼数が増える方向=fire/cap判定とセットが筋(scheduler 1行) | 新規(第121)・小 |
 | 賃金の残り2点 | ①最低賃金の床に27,740人(12.4%)が完全同一額で張り付く(現実にも最賃集積はあるが単一値スパイク)②家賃は実引落日(27日/末日)が10日窓に入らないため引落ゼロ=**savings_rate 0.555の帯超過は窓アーティファクトと記録済み**(機構は触らない判断=Fable)。異論あれば再検討 | 新規(第112)・小 |
 | visit_purpose構成比のPT較正・曜日/雨弾性の水準較正 | PRES-A1の設計値を実測(PT調査・jinryu曲線)へ較正し直す別レバー(1レバーずつの規律) | 小・任意 |
 | **policy_cache 保存判断** | checkpoint 未保存=resume で呼数と行動が変わりうる。推奨=8/15-16 診断で resume 前後の呼数差を実測してから | 本選前 |

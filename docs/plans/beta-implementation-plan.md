@@ -58,6 +58,18 @@
 | β4 | 初期関係較正(13日蒸発): decay/初期値のconf数値修正 | [initial-relations-improvement.md](../research/initial-relations-improvement.md)のR2推奨値・縦煙で確認(v2縦煙と同便) |
 | obs | DPH-O拡張: summaryに`llm_budget.used_per_step`(mean/p95)と`used/cap` | 観測のみ・OFF/ONで世界不変テスト |
 
+**着地(2026-08-15・レーンB3)**: 5 件とも完了。
+
+| # | 何をしたか | 検収 |
+|---|---|---|
+| β1 | `fire._at_first_reservation` 新設 → `note_plan_due` と `_social_via` が **初回予約 step だけ**を拾う(内省も同じ穴を持っていたので同時に是正)。tiers OFF では両属性が誰にも生えない = 既定不変 | `tests/test_fire.py` +4(修正前のコードだと 2 本が `['plan','plan','plan']` で落ちる)・fire 全 53 緑・golden 緑。D1-c #4b の ⬜ → ✅ |
+| β2 | `watchdog.stall_seconds`(純関数)+ `--stall-step-sec` / `--stall-factor`。**既定値は 1 つも変えず**、本選値はヘルプと [ops/finals-compute-checklist.md](../../ops/finals-compute-checklist.md) **E3** に明記(停滞=1step実測×6・ディスク 50/20・`--ckpt-generations 999`) | `tests/test_watchdog.py` +4(既定 20 分のまま)・全 21 緑 |
+| β3 | J1 = **第114 で着地済み**と判明(本選 conf は既に 24・理由コメントつき)。再走のみ | `test_daily_cap_only_changes_the_copresence_rows` / `..._is_binding_and_conserves_the_pair_total` / `test_finals_conf_raises_the_daily_cap` 3 緑。PENDING §3 の J1 行を消化へ |
+| β4 | `friends.py` に層別 margin(既定 None = 従来と同一)+ 本選 conf のみ R2 推奨値。実測は [initial-relations-improvement.md](../research/initial-relations-improvement.md) 冒頭の追記 | `tests/test_friends.py` +4・全 9 緑・golden 緑 |
+| β1' | **追加発注**(β1 の未解決 #2 を採用): DPH-B の繰り越し予約 staleness。`health._exit_world`(死亡)/ `population._leave_world`(転出)が `plan_step` を落としながら `plan_due_step` を残していたため、同じ実体が次に予約を受けた日に `_defer_first` が何日も前の step を返し **初回から `max_defer_steps` 超過扱い = LLM 計画を撃たずに骨格へ落ちる**。両者に「印が立っているときだけ畳む」1 行を追加(**tiers OFF では属性が生えないので分岐が閉じる = 1 ビットも書かない**)。★内省側 `reflect_due_step` は対象外(これらは `reflect_step` を落とさないので予約は生きたままドレインされる = 宙に浮かない) | `tests/test_dph.py` +3(死亡版 / 転出版 / **tiers OFF で属性を生やさない**)。反証: 修正前は 2 本が `plan_due_step` に古い step が残って落ちる。golden 緑 |
+| β2' | **追加発注**(B1 の COMPLETE マーカー `<checkpoint>.complete` の申し送り): マーカーを**本体と運命を共にさせる**。① `backup_run.select_payload` が `_ckpt_gen_step` でマーカーを本体と同じ世代に束ねる(退避先で `checkpoint.latest` の「書きかけを掴まない」判定が効くようになる。世代を絞っても本体と一緒に行く/一緒に落ちる)。★`checkpoint_boundary` は従来の `_ckpt_step`(本体のみ)のままにした = **マーカーの mtime が part の締切を緩めない** ② `watchdog._rollback_one_generation` が本体と同時にマーカーも `corrupt/` へ隔離 ③ 同じ不変量として `_clear_run_state` もマーカーを消す(孤児マーカーを積まない) | `tests/test_backup_run.py` +5 / `tests/test_watchdog.py` +4。反証: 修正前は 5 本が落ちる。**マーカーの無い旧 checkpoint でも従来どおり**をテストで固定 |
+| obs | `starvation.note_step_budget`(run_step 末で `used`/`cap` を 1 件積む)+ summary の `starvation.llm_budget`(`used_per_step.mean/p95` / `used_over_cap_mean` / `cap_per_step_mean` / `used_total`)。p95 は**ヒストグラム**で持つ = step 列を持たない | `tests/test_dph.py` +5(観測 ON/OFF で行動列・呼数・乱数・最終状態一致 / `used_total == llm_budget_granted_total`)・DPH 全 38 緑(resume==straight 込み) |
+
 ## 4. B4 観測側(昼縛りなし・動力学リスクゼロ)
 
 - **V1 reality_score.py v1**: calibrate_report拡張。カテゴリ=人口/生活時間(2021社会生活基本調査)/移動(PT・jinryu)/メディア(**令和7年度版**)。指標=JSD/MAPE/KS・**成分表示必須**・calibration/holdout列・**Data Vintage Ledger**(`data/ground_truth/registry.yaml`・「社会生活基本調査2026は提出前に未公表=2021が正当」を明記)+**Spatial Support Crosswalk**(bbox/区/都の分母明記)。

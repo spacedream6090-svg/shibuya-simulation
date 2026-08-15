@@ -721,3 +721,28 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
   検収正典とコミット権はローカルFable不変(deploy key=push構造的不能)。
 - クリティカルパス: 朝3レーン発注∥サーバーPhase0→昼着地+ゲート→午後Phase1実測(R_eff/c/RSS)→
   cap/fire/POP/A2判定(conf行のみ=実装と独立)→夕方v2縦煙(β4/β9同便)→50k階段。**実装は未着手**(ユーザーのGO待ち)。
+
+### Entry 122 — 2026-08-16 — 第121=β実装波・監査採用分の全量(4レーンOpus並列→Fable検収)
+
+- ユーザーGO「実装を始めよう。5.6 solの指摘で正しいと判断したものはすべて実装する認識でいい」→B1〜B4を並列発注。
+  **フルゲート5904緑+1skip(静止木12分42秒・+135)**・golden緑・凍結14本不触・h.txt不触。
+- B1安全系(45テスト): mock fail-fast+起動バナー+freeze_config.py・**checkpoint stream化+fsync+COMPLETE**
+  (保存ピーク−35%=非圧縮pickle 1本ぶんが構造どおり消滅・時間同等)・★poolサイドカー双子writerへの同型修正は
+  越境1hunk=Fable承認・--generation-config vllm+manifest launch欄・request seed(OFFでボディバイト不変)。
+- B2 HOME_AWAKE(25テスト): go_to_bed内の入館→即就寝の融合点を分割。**gap 0分(100%)→中央値100分・
+  在宅覚醒1:07→2:23**(lead120で3:33/21時台31.3%)。★b0→p0の確率化でtimeconv PROB変換が真に効く形へ
+  (B3申し送りの根治)。★検収テストがLLM中立性の穴を実発見(在宅覚醒中の同居人経由reply)→muted閉鎖。
+  RFX-Aは意図的開通=在宅が内省文脈へ(呼数ゼロ増)。home_activity=schema+causality 2箇所登録。
+- B3小粒束(29テスト): fire#4b=初回予約限定(内省の同穴も是正・反証取得)・watchdog/backup本選値化
+  (E3新設・既定不変)・J1=第114着地済み判明・初期関係較正=**day3層維持18.5%→67.8%/親友生存25%→100%/
+  呼数−0.9%**・used/cap観測(60体でused/cap 2.4%)・★DPH-B staleness修理(死亡/転出でplan_due_stepを畳む・
+  getattrガード=既定1ビット不変・自然発火経路は構成不能=防御的修理と正直記録)・★マーカー退避/隔離
+  (checkpoint境界を動かさない不変量つき)。
+- B4観測側(36テスト): reality_score.py=5カテゴリ・**総合1点を作らないことをテスト固定**・★gap0分を
+  「観測」として計上(>=1行=既知欠陥が表から消えない)・registry.yaml=アンカー31件+Data Vintage
+  (社基調2026は提出前未公表=2021が正当)+Crosswalk・invariants 22検査=60体でVIOLATION 0・
+  既知欠陥の独立再現(在宅覚醒0分/年少0%/変動1.15倍)。roster_daily既ONの確認でB4の懸念1件は解消。
+- Fable仕上げ: finals confへ request_seed ON+home_awake待機ブロック(13b)・.gitignoreにfrozen conf・
+  レーンの自称「第117」を第121へ正規化(4ファイル)・PENDING判断待ち2行(lead_min・夜会話)。
+- 新判断待ち: **home_awake lead_min(0 vs 120=Fable仮推奨120)**・同居人夜会話(呼数増方向=fire/capとセット)。
+  次=サーバーpull→Linux初回フルゲート→Phase 1実測(R_eff/c/RSS)→cap/fire/POP/A2判定→v2縦煙(β4/β9同便)。
