@@ -866,3 +866,28 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
 - レーンが見た赤1件(test_llm_journal のbatch ON/OFF一致)=B5レーン編集中のscheduler.py領域=C1起因でない
   (C1差分は未追跡新規2ファイルのみ・同時に回したtest_e2e_mock/fleet/request_seed/contracts 58緑)。
 - サーバー実走(A8判断の材料採り)はB5検収→2k再実測の後に14B AWQを1GPUへ載せて実施予定。
+
+### Entry 130 — 2026-08-16 — 第129=deliberate batch化(B5レーン)着地=呼数スループット問題の本丸
+
+- ★依存性調査の結論(planning/reflectとの決定的差): deliberateは**同一step内の実依存がある**。
+  _decideのsuffix(後退経路=_phone→_hear_words/SNS反応/invite)が世界へ書き、後続個体のprefix
+  (_gather_material)が読む=素朴な「全員build→一括→全員apply」は不成立。呼び出しサイトは
+  scheduler._llm_speakの1箇所・1個体最大2呼(返事パース不成立→発火の2本目)。
+- 採用境界: ①LLMを撃たない大多数=その場で完走(他個体への書き込みは逐次と同位置)
+  ②撃つ個体だけ中断→generate_many→id順再開③個体級安全弁_deliberate_defer_ok=パース不成立時に
+  他個体を読み書きしうる個体(fire_reason残・search_queue非空・phone streamの覗き見=新Generator
+  ゆえ乱数消費ゼロでbrowse/news枝を予知)は逐次退避④policy_cache ONはphase級で丸ごと無効
+  (全体LRUは遅延不能・finalsは未解凍=実害なし)⑤_reorder_decide_logがL1/L1bを逐次と同順へ
+  (壊れた分割は即raise=反証テスト固定)⑥_JournalRelay=ジャーナルseq順の維持
+  (★フルゲートが実バグとして検出→修正)⑦deferred_fallbackカウンタ=0のあいだ逐次と機械的同値。
+- 検収: 静止木フルゲート**5,978緑+1skip(11分35秒・Fable実行=レーン申告と一致)**・golden 6緑・
+  journal 26緑。60体mock48step=呼数335でOFF==ON(w1)==ON(w8)・L1 4,798件/L1b/llm._mem一致・
+  batch率68.4%(max_batch=11)・deferred_fallback=0。144stepでは59%。
+  反証4本(reorder外し→落ちる・安全弁常時True→sns_readが個体間で入れ替わり落ちる・
+  Relay無し→journal一致が落ちていた・壊れた分割でraise)。パース不成立25%強制+本選相当下位系ON
+  =deferred_fallback 209でもL1/L1b/最終状態完全一致。
+- 正直な限界の記録: 「安全弁通過後のパース不成立→routine.decideの他個体書き込み」は既定OFF下位系のみ
+  =差分ゼロ実測だが不発生の証明ではない(deferred_fallback=0が同値の証人・ラン後に整数1個で判定)。
+  RouterLLMにgenerate_manyなし(既存planning batchも同穴・finals=vllmでブロッカーでない)。
+  batch率上限59〜68%(安全弁を緩めれば上がるが厳密一致が落ちる=緩めない)。
+- 次=サーバーpull→2k×20再実測(baseline 970呼/577.7秒/1.68calls/s)→R_eff確定→cap再導出(β8)。

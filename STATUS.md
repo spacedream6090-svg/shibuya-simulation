@@ -1,6 +1,7 @@
 # STATUS — 索引
 
-> 最終更新: **2026-08-16(13回目)** — **第128=A8トーナメントハーネス着地**(behavior_tournament.py 891行+27テスト)。★ジャーナル駆動=mockシム1本のllm_journalから実プロンプトを層別採取(合成プロンプト乖離ゼロ)・既存generate_many/blake2b seed流用・検出力の目安幅を毎回明記(判定はしない)。残レーン=B5(deliberate batch)のみ。A8実走は2k再実測後に14B載せて実施。
+> 最終更新: **2026-08-16(14回目)** — **第129=deliberate batch化着地(B5・呼数スループットの本丸)**。★同一step内の実依存を発見(後退経路が世界へ書く)→境界設計=撃たない個体は即完走・撃つ個体のみ中断/一括/id順再開・安全弁で逐次退避・deferred_fallback=0が厳密一致の機械的証人。静止木フルゲート**5,978緑+1skip**(Fable実行)・OFF==ON(w1)==ON(w8)・batch率68%・反証4本。次=サーバー2k×20再実測→R_eff→cap再導出。本日発注4レーン全着地(C2ゲート/C4 PLATEAU/C1 A8/B5)。
+> 2026-08-16(13回目) — **第128=A8トーナメントハーネス着地**(behavior_tournament.py 891行+27テスト)。★ジャーナル駆動=mockシム1本のllm_journalから実プロンプトを層別採取(合成プロンプト乖離ゼロ)・既存generate_many/blake2b seed流用・検出力の目安幅を毎回明記(判定はしない)。残レーン=B5(deliberate batch)のみ。A8実走は2k再実測後に14B載せて実施。
 > 2026-08-16(12回目) — **第127=PLATEAU 2025着地(A5消化)**。★前提訂正=リポは既に2025年度V5・viewerは自己完結設計(ストリーミング無し)→実装は出典表示(#plateauAttr・CC BY 4.0相当クレジット)+**道路LOD3新トグル**(--plateau-tranゲート・フラグ無しバイト同一・79,673三角形)+80MBゲート計上修正。検収=新25+既存136緑。残レーン=B5(deliberate batch)・C1(A8ハーネス)実行中。
 > 2026-08-16(11回目) — **第126=Linuxフルゲート初回完走**(d2553f8で**5,901緑+15skip**・赤4=SFM wall goldenのWindows定数照合のみ→恒久処置=skipif分離・不変量は全OS維持・Windows21緑)。サーバー=高速ゲート機として確立(15分53秒/64CPU※初回・キャッシュ後は短縮見込み)。
 > 2026-08-16(10回目) — **第125=本番前ゲート一覧**([pre-production-gate.md](docs/plans/pre-production-gate.md)=64ゲート・判断待ちJ1-J13・U-10ドラフト・R6前倒し)。★矛盾10件検出→実害3件即是正(runbook/checklist CLI不一致=当夜コピペ即エラーを argparse裏取りの上修正・RAM未定義帯215-220→COND拡張・J6=PLATEAU決定反映)。並列レーン実行中: B5 deliberate batch・C1 A8ハーネス・C4 PLATEAU 2025。Codex接続完了(0.147・device-auth・煙試験緑・書式はreview.config.toml分離形式)。サーバー: Linuxフルゲート実行中・★プール=v1(v2生成が残)。
