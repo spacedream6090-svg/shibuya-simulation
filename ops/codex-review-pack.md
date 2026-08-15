@@ -28,9 +28,10 @@ codex login status             # 確認
 
 ## 3. レビュー専用の強制(3重)
 
-1. **サンドボックス=読み取り専用**: `~/.codex/config.toml` にレビュー専用プロファイル:
+1. **サンドボックス=読み取り専用**: `~/.codex/review.config.toml` にレビュー専用プロファイル
+   (★Codex 0.147実測: 旧`config.toml`の`[profiles.review]`テーブルは**廃止**=あるとエラーで起動拒否。
+   プロファイルは`<名前>.config.toml`の別ファイルに**トップレベルキー**で書く。2026-08-16セットアップ済み):
 ```toml
-[profiles.review]
 model = "gpt-5.6-sol"            # 旗艦。利用枠が厳しければ "gpt-5.6-terra"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
@@ -85,7 +86,9 @@ approval_policy = "never"        # 非対話。read-onlyなので昇格要求も
 ```bash
 mkdir -p ~/review && cd ~/projects/shibuya-simulation && git pull --ff-only
 # 1回転目: 1パス=1セッション(コンテキスト独立)。tmux内で直列実行が安全
-codex exec --profile review -o ~/review/p1.md "<共通ヘッダ+P1プロンプト>"
+# ★0.147実測2点: バイナリは ~/.local/bin/codex。ssh/tmux等の非TTYから流すときは
+#   stdinを閉じる(< /dev/null)こと=閉じないと「Reading additional input from stdin...」で停止する
+codex exec --profile review -o ~/review/p1.md "<共通ヘッダ+P1プロンプト>" < /dev/null
 #   … p2〜p6 も同様(-o で最終レポートをファイル保存)
 # 2回転目(穴埋め差分): β凍結時に付けたタグ/ブランチをベースに
 codex review --base <β凍結タグ> > ~/review/round2-diff.md

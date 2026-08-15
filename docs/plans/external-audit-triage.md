@@ -117,7 +117,7 @@ checkpoint原子性の主要部・ODPT申請・交通未接地・「24万9950人
 | OS/Python | Ubuntu 22.04.5 / 3.10.12 |
 | **ulimit -n** | **1024 ★本番不足**(vLLM7本+parquet+sockets)→ **65535へ**(runbookに追記) |
 
-- **RAM判定線を採用**: 250k外挿peak RSSが **GO <180GiB / CONDITIONAL 180〜215 / NO-GO >220**。楽観外挿+A2(110+72=182GiB)はCONDITIONAL境界=**10k×144のRSS実測が引き続き最重要**(§3.2どおり)。
+- **RAM判定線を採用**: 250k外挿peak RSSが **GO <180GiB / CONDITIONAL 180〜220 / NO-GO >220**(当初「180〜215」の記載で215〜220が未定義帯だった=pre-production-gate §3-⑦の指摘で2026-08-16に閉じた。220超は宣言どおりNO-GO)。楽観外挿+A2(110+72=182GiB)はCONDITIONAL境界=**10k×144のRSS実測が引き続き最重要**(§3.2どおり)。
 - 未取得の残り: `nvidia-smi topo -m`(NUMA偏り)・ディスク実throughput(checkpoint書きの停止時間)・**持続熱試験**(30〜60分連続推論でreq/sドリフト)・vLLM `/metrics`収集。→runbook 0-4へ追記済み。
 
 ## R3. 追加ファクトチェック

@@ -801,3 +801,21 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
   →try/except tomliフォールバック+pyproject [dependency-groups]にpytest-xdist/tomli明示。3緑。
 - .mdの扱い決定: 監査5本+GPUサーバー引き継ぎメモ=第123でdocs/plans/source/へ格納済み。
   新ハンドオフも同便でdocs/plans/source/へ(root=ミラー除外対象外のため)。
+
+### Entry 126 — 2026-08-16 — 第125=本番前ゲート一覧(R6前倒し)+U-10ドラフト+矛盾10件の検出と実害3件の即時是正
+
+- C2レーン着地: pre-production-gate.md新規(64ゲート=A環境11/B conf15/C性能9/D正しさ8/E観測9/F運用7/G提出5・
+  ✅12/一部済11/⬜36/判断待ち5)+判断待ちJ1-J13+U-10事前登録ドラフト(仮説H1-H6・指標→判定枠・
+  解析計画・停止介入規則・尾部配分案・「出さない結論」宣言)。
+- **★source間矛盾10件を検出**(§3)。実害級3件をFableが裏取りの上で即時是正:
+  ⑤runbook/checklistのCLI不一致=watchdog.py:796(--run-dir必須)/backup_run.py:870-872(フラグ式)を
+  argparse実物で確認→runbook 2行+checklist E0を実CLIへ修正(**本番当夜のコピペ即エラーを未然に防いだ**)。
+  ⑦RAM判定線の未定義帯215-220GiB→CONDITIONAL 180-220へ拡張(triage R2と両修正)。
+  J6=A5 PLATEAU決定済み(今やる)を反映。
+- 残る矛盾は記録のみ(勝手に閉じない): ①fire T10表2本併存(cap再導出後にFableが1本へ)・
+  ②fire判定基準の二重(tiers下で増分基準が空振り)・③cap表のR_eff前提が実機未成立(C4後に確定)・
+  ④U-10確定判定ラン不在(承認時に(a)(b)(c)選択)・⑥日付ずれ(正典=8/22)・⑧⑨⑩小。
+- 同乗: codex-review-pack.md=Codex 0.147実測反映(プロファイルは review.config.toml 分離形式・
+  非TTYはstdinを閉じる)。ユーザーとの経緯: Codex接続完了(device-auth・煙試験=read-onlyでgpt-5.6-sol応答)・
+  並列指示→C1(A8ハーネス)/C2(本ゲート)/C4(PLATEAU・承認済み)発注・V3=B5後と決定・
+  サーバーLinuxフルゲート実行中・★サーバープール=v1と判明(v2生成が残作業)。
