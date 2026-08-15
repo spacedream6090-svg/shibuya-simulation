@@ -704,3 +704,20 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
   新判断A8〜A11(モデル構成S0vsS1=ミニ行動トーナメント後/JSON SchemaはA/B後/統合スペックは書かない=
   チェックリストのみ採用/検証アンカー年次更新=V1同梱)。TierC(habit/hunger/microthought等)=本選後で3本目とも一致。
 - A7更新: root直下の監査ファイルは**5本**に(未コミット維持・docs/plans/source/移動推奨は不変)。**コード不触・docsのみ**。
+
+### Entry 121 — 2026-08-16 — 第120=タスク全景+β実装計画(計画のみ・実装なし)
+
+- ユーザー方針: サーバー接続・検証が最優先/追加実装は今日昼まで/監査(GPT-5.6 Sol)洗い出し分は
+  「おそらくどの実装も組み込める」/スモークはサーバー側で。
+- [beta-implementation-plan.md](../plans/beta-implementation-plan.md) 新規: 3並列レーン発注仕様=
+  **B1安全系**(β6 mock fail-fast+freeze_config/β7 ckpt stream+fsync+COMPLETE/β10モデル凍結manifest+
+  --generation-config vllm/β11 request seed)・**B2 HOME_AWAKE最小**(就寝ハザード=既存stateのみ・在宅活動8種
+  ルールベース抽選・新stream "home_awake"・LLM呼ゼロ・やらないこと明記=hunger/microthought/reply変更)・
+  **B3小粒束**(fire#4b・watchdog本選値化・J1 24・初期関係較正・used/cap観測列)・**B4観測側**(reality_score v1+
+  Vintage/Crosswalk・invariants・coverage/fairness=昼縛りなし)。
+- スモークのサーバー実行=可: 64CPUでフルゲート推定3〜6分・pull→pytest -n autoワンライナーを§5に。
+  ★注意=goldenバイト一致は同一プラットフォーム前提(開発=Windows)→**Linux初回フルゲートの緑を先に確認**
+  (全緑=サーバーを高速ゲート機に/赤あり=golden系ローカル正・サーバーはスケールスモーク専用)。
+  検収正典とコミット権はローカルFable不変(deploy key=push構造的不能)。
+- クリティカルパス: 朝3レーン発注∥サーバーPhase0→昼着地+ゲート→午後Phase1実測(R_eff/c/RSS)→
+  cap/fire/POP/A2判定(conf行のみ=実装と独立)→夕方v2縦煙(β4/β9同便)→50k階段。**実装は未着手**(ユーザーのGO待ち)。
