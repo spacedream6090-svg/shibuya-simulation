@@ -656,3 +656,28 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
   推奨: 8/17にサーバーで生成+tier_quota+縦煙→8/18の100k階段からv2(β4較正修正と縦煙1回で同時確認)。
 - 判断13件(β凍結線・Codex認証/範囲・v2切替・初期関係較正・J1・fire・D2尾部・開始日・U-10・提出要件・賃金・batch_llm)
   +手動4件(M1ペースト実行/M2 codex login/M3 webhook env/M4数字貼り戻し)を表化。**コード不触・docsのみ**。
+
+### Entry 119 — 2026-08-16 — 第118=外部監査2本のトリアージ(読了+事実突合+計画のみ・実装なし)
+
+- ユーザーがリポ直下に置いた監査2本(REALITY_MAXIMIZATION_PLAN 2,745行/HUMAN_BEHAVIOR_DEEP_AUDIT 3,888行・
+  基準=5a7df65)を読了し、主要claimを**コードで事実確認**してから採否を
+  [external-audit-triage.md](../plans/external-audit-triage.md) に確定。
+- ★ファクトチェックの最大の発見=**呼数レジーム**: 監査の「0.17回/人/日」は現行finals confで**正しい**。
+  第115 DPH-B(tiers ON)で計画・内省も総枠300/stepに入ったため、250kでは43,200呼/日=0.173回/人/日・
+  lifeレーン12,960呼/日 vs 需要47万/日=**LLM計画被覆は数%**(60体検収ではcap非拘束で不可視だった規模創発)。
+  **dashboardのT10表(738万呼)はDPH-B以前の前提=古い**。処方箋は監査の新スケジューラではなく
+  **DP-U4のcap再導出**(conf自身が「R_eff実測後に決める」と明記済み・cap1,500〜2,500帯=0.86〜1.44回/人/日で
+  T10 60〜107h=GO線内)。副産物: tiers下では**fireは総呼数を増やせない**(cap有界)→D1判定の主眼は
+  呼数増分からレーン飢餓+行動品質へ移る。
+- その他の突合: E0-1 agent_by_id全個体保持=**設計事実**(simulation.py:1407・幽霊は甲でガード済み=残る問題はRAMのみ)・
+  E0-2 pickle.dumps全量バイト化=**実在**(checkpoint.py:535・3行stream化候補)・E0-3非原子checkpoint=**大半誤認**
+  (原子rename実装済み:536-539・残=fsync)・E0-4 mock黙走=**実在**(基底backend=mock・CLI差し替え運用)・
+  帰宅=就寝100%=既知の本物(LSR-B/H送りをP0再判断へ)・ODPT申請/交通未接地/内省夜固定=誤認or済み
+  (キー取得済み・GTFS1,810本・RFX-A)。
+- トリアージ: β採用候補=β6(mock fail-fast+凍結conf)/β7(checkpoint stream)/β8(cap再導出)/
+  **β9(HOME_AWAKE最小=要判断・監査2本のP0筆頭)**。観測側=reality_score v1(提出物の柱)+世界不変量監査。
+  尾部=seed2短縮+**介入fork1本**+shadow高認知ラン。本選後送り=adaptive controller・habit学習・hunger・
+  microthought・social capacity・reply4型ほか(**監査2本を本選後レーンの正典に昇格**)。
+- 追加判断A1〜A7(cap再導出/HOME_AWAKE/E0小粒/reality_score/PLATEAU viewer/尾部再配分/
+  **監査2本の置き場=root直下は公開ミラー除外対象外→docs/plans/source/へ移動推奨**)。
+  日程骨格は不変(動力学凍結8/18・観測側8/20・**本番開始8/22**)。**コード不触・docsのみ**。
