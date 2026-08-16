@@ -56,7 +56,7 @@ F1の帰結を正面から書く:
 |---|---|---|
 | V1 | **reality_score.py v1**(6カテゴリのうちデータが手当て可能な4: 人口/生活時間(社会生活基本調査)/移動(PT・jinryu)/メディア(総務省)。JSD/MAPE等・**総合1点に潰さず成分表示**・calibration/holdout分離) | **推奨=採用**(提出物の柱・calibrate_report.pyの拡張) |
 | V2 | audit_world_invariants.py(250kリハ後の全数整合検査: 位置/役職年齢/容量/幽霊金流…※大半は既存テストの流用) | 推奨=採用(小) |
-| V3 | 決定モード印字(habit/rule/LLMをprovenanceへ)=既存causality/L1で大半可視・差分のみ | 小・任意 |
+| V3 | 決定モード印字(habit/rule/LLMをprovenanceへ)=既存causality/L1で大半可視・差分のみ | ✅ 2026-08-16 実装(`observer.decision_mode`・既定OFF/本選ON)。**現状調査の結論=3レーンのうち朝の計画(`plan_created.src`)と夜の内省(`purpose=reflect`+`reflect_dropped`)は既存L1だけで完全に可視 → 何も足さない**。欠けていたのは★**日中熟慮レーンの分母**(`_decide`は毎step在場覚醒の全個体へ必ず1行動を返すのに、ルール層が決めた分はL1にもl1bにも痕跡ゼロ=「LLM被覆率=LLMが決めた決定/全決定」が原理的に計算不能だった。0.173回/人日は呼数÷人日であって割合ではない)。副産物3件=`fallback{parse_error}`に載らない**用途別**のパース不成立・予算切れでLLMに到達しなかった決定・朝の計画ブロック駆動の行動 vs 純粋な習慣の分離。出口は`summary.json`の1ブロックのみ(**L1のkindもpayloadも1件も増えない**)。解析=`scripts/decision_modes.py`(3レーン1表) |
 
 ### 3.3 実測後判定(既存判断枠のまま)
 fire(D1・§2-4の再解釈込み)・POP・A2・v2切替・policy_cache・batch_llm(§7-13)・**agent_by_id痩身化**(→10k×144のRSSと「実体化累計数」を突合し、88-110GB帯に収まるなら**触らない**。悲観側なら緊急最小=dehydrate時に重欄を落とす案を別途提示)。

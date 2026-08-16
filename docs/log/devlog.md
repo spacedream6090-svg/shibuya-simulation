@@ -928,3 +928,23 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
 - **J14新設(pre-production-gate §2)**: 長プロンプトの予防は行動を変える設計判断
   ((a)観測のみ(b)max_tokens縮め(c)truncate=persona喪失で非推奨)→**推奨(a)で
   10k×144の発生率を見て(b)再判断**。ask-before-extendingに従い勝手に閉じない。
+
+### Entry 133 — 2026-08-16 — 第132=V3決定モード印字着地(監査採用分の最終1件=全量消化)
+
+- ★現状調査の核心: 決定3レーンのうち朝計画(plan_created.src)と夜内省(purpose=reflect)は既存L1で
+  完全可視=**何も足さない**。欠けていたのは**日中熟慮レーンの分母**——ルール層(routine.decide)が
+  決めた行動はL1にもl1bにも1バイトも残らず「LLM被覆率=LLMが決めた決定/全決定」が原理的に計算不能
+  だった(0.173回/人日は呼数÷人日であって割合ではない)。副産物3=用途別パース不成立・予算切れで
+  LLM未到達の決定・計画ブロック駆動vs純習慣の分離。
+- 実装: observer/decision_mode.py 270行+decision_modes.py(解析)345行+テスト412行(25本)。
+  **L1のkindもpayloadも1件も増えない**(出口=summary.jsonの1ブロック・ディスク増分ゼロ)。
+  不変式points==llm+reuse+ruleのresidualを露出(破れを黙って合わせない)。conf既定OFF・
+  **finals ON**(根拠・戻し1行をconfコメントに明記=cap再導出の効果測定と提出物の土台)。
+- 60体mock実測(288step): deliberate=LLM 7.15%/rule 86.6%(habit 9,358+plan:llm 127)/reuse 6.29%・
+  plan/reflect=LLM 100%。**★本選寄り構成(tiers+cap3)でLLMシェア7.15%→2.58%に落ち
+  reply_starvedが立つ=道具が呼数レジームの効果を実際に検出**。
+- 正直な限界の記録: reuseはtrigger別に割れない(finals=policy_cache OFFで実害なし)・移動中continueは
+  rule計上・rule理由は最後に効いたもの・*_unparsedはablate.llm_off含む(llm_calls=0で事後区別可)。
+- 検収: 静止木フルゲート**6,005緑+1skip(13分04秒・Fable実行=レーン申告一致)**・batch ON/OFFで
+  provenance完全一致・resume==straight。**これで監査(5.6 sol)採用分は全量消化**(β6-β11・V1-V3・
+  HOME_AWAKE・deliberate batch・cap再導出のみconf行=数字待ち)。
