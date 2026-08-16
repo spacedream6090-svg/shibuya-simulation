@@ -891,3 +891,25 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
   RouterLLMにgenerate_manyなし(既存planning batchも同穴・finals=vllmでブロッカーでない)。
   batch率上限59〜68%(安全弁を緩めれば上がるが厳密一致が落ちる=緩めない)。
 - 次=サーバーpull→2k×20再実測(baseline 970呼/577.7秒/1.68calls/s)→R_eff確定→cap再導出(β8)。
+
+### Entry 131 — 2026-08-16 — 第130=再実測2本(w8/w16)+GPU並列の実証+deferred_fallbackのsummary輸出
+
+- **再実測(2k×20・seed42・baselineと同条件)**:
+  | 構成 | llm_calls | elapsed | peak RSS |
+  | baseline(第121・batch=planning/reflectのみ) | 970 | 577.7s | 994.7MB |
+  | 第129 batch ON w8 | 966 | **442.9s(−23.3%)** | 985.4MB |
+  | 第129 batch ON w16 | 971 | **411.5s(−28.8%)** | 1025.3MB |
+  呼数±5は実LLMの揺らぎ(vLLM連続バッチ構成→応答微差→パース結果差→2本目の有無。mockでは厳密一致証明済み)。
+- **★解釈=LLM直列は実質解消**: baselineの970呼×逐次8calls/s≈120秒がLLM待ちで、residual≈455秒は
+  エンジン+初期化。短縮135秒はLLM待ちの消失と整合=2k規模ではエンジン支配が正体。
+  **250k本選(cap再導出後1,500-2,500呼/step)ではLLM直列が支配項になるはずだった**=事前に潰せた。
+- **★GPU並列の実証**(2秒サンプリング204点・w16ラン中): 修正前=常に1台×1リクエスト→
+  修正後=**最大6サーバー同時・同時実行16リクエスト・バースト時平均6.9並列**
+  (histogram: 0台=108/1台=79/2-6台=17。アイドル=エンジンフェーズ・1台=安全弁逐次分・
+  多台=deliberate/planning/reflectのバースト=設計どおり)。handoff §27 Step4の期待=達成。
+- **観測パッチ(第130)**: sim._batch_decide_statsをsummary.jsonの`batch_decide`キーへ輸出
+  (batch OFF=属性なし=キー自体出さない=既存summaryバイト同形)。deferred_fallback=0なら
+  そのランはbatch==逐次が機械的に成立=本番ランの厳密一致判定が整数1個で可能に。+1テスト
+  (キー集合・batched==requests整合・OFFでキー不在)。
+- 残: 2k×144(c実測)→10k×144(RSS=RAM線)→cap再導出。w16採用は僅差(−7%)のため
+  2k×144でもう1点見てから。
