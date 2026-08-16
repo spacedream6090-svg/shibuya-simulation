@@ -948,3 +948,43 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
 - 検収: 静止木フルゲート**6,005緑+1skip(13分04秒・Fable実行=レーン申告一致)**・batch ON/OFFで
   provenance完全一致・resume==straight。**これで監査(5.6 sol)採用分は全量消化**(β6-β11・V1-V3・
   HOME_AWAKE・deliberate batch・cap再導出のみconf行=数字待ち)。
+
+### Entry 134 — 2026-08-16 — 第133=サーバー実測4本+Codex全6パス+裏取り+ウェーブ1修正4レーン
+
+- **実測4本(GPUサーバー)**: ①perf2k144時間分解=10,858s中LLM待ち70%/エンジン30%・エンジンの88%が
+  物理(SFM/ORCA 3ゾーン)。②R_eff実測(実形状プロンプト300件)=1サーバーw16 1.82 calls/s・
+  w64 2.5(+35%のみ=計算律速)→**艦隊上限≈12-18 calls/s**。purpose別=deliberate parse100%/1.79s・
+  plan parse33%(broken JSON・p95 8,793字)・reflect 19s/呼。③mock10k144=~171-300s/step
+  =2kの13倍で**N超線形をその場確認**。④prof10k6(cProfile 10k×6)=**物理が実行時間の74%**
+  (_accumulate 166s・ORCA 98s・argsort 26s)=超線形の犯人はゾーン内ペア計算で確定。
+- **Codexレビュー6パス完了**(review.config.toml分離形式・tmux直列・P1-P6)。指摘44件を検証エージェント
+  3本+手動で全量裏取り→**REFUTED 0件**(約1/4は規模割引のNUANCE)。トリアージは
+  docs/plans/codex-review-triage.md(即死級A1-A10/必修B1-B13/本選後C1-C15+レーン計画)。
+  ユーザー決定=**「即死級+必修を全部」**。
+- **ウェーブ1実装(Opus4レーン並列・ファイル集合互いに素)**:
+  - **P(性能)**: 資産τ=マージソート反転数でO(N log N)(25万1.36秒・旧外挿0.6h/日境界・参照実装
+    保持でfloat完全一致)。occupancy=★指示のstepキャッシュ案は「移動ループ内で到着→即購入」の反証
+    で不採用(機械固定)→厳密同値の2手(VC一括表+cap=6打ち切り走査)。SNS途中入場者の
+    read_marks=入場時点末尾(offset込み)。**init_follows O(Nk)化**=乱数消費列とbit_generator.state
+    完全一致を証明して採用(25万起動22分→4.25秒)。
+  - **C(checkpoint)**: **COMPLETEマーカーを世代トランザクション(本体+pool sidecar+全flush)の最後へ**
+    +pool有効resumeは完全世代のみ(欠落は前世代へ後退・黙って素通り廃止)+先行part検出で
+    L1二重化拒否+非空run dir拒否ガード(逃し弁run.allow_dirty_outdir)+_goods_stock/_goods_pending
+    ・_co_state のruntime搬送+_bore_node初回分岐でゲージ保持。障害注入テスト含む16本。
+  - **E(経済)**: 消費税=実支払(actual)基準(クリップ無しで旧と厳密同値・「実支払50円から100円徴収」
+    の反証固定)。死者除外5フェーズ(★loc=="outside"は条件にしない=不在キャッチアップ支給は維持)。
+    出生=別世帯ペア門前スキップ+片親None合流でhousehold_id統一。provenance=transmissions_count併設
+    (プロンプト文字列バイト不変・旧pickleは__setstate__で埋め直し・**list無界は残置=別バッチ**)。
+    starvation=agent属性書き込み廃止(観測ON/OFFで全agent __dict__一致)。22本。
+  - **D(conf/手順)**: LLM障害応答のキャッシュ除外(★同一prompt2件同バッチのKeyError潜在も発見修正)・
+    start_date="2026-08-22"固定(土曜開始)・confコメント正誤4件・present_cap対指定+機械検査テスト・
+    freeze_config手順E4(2経路がsha256同一を実証)。
+- **新発見(判断待ち行き)**: ①**v2プールが2系統に分岐**(ローカル8/15=L2 138,759=出勤率0.62設計どおり
+  /サーバー8/16=L2 157,715=0.703相当・差はちょうど18,956人のL4→L2シフト)=正典未決。
+  ②**v2に配達員/バンドマン/写真家が不在**(両ビルド共通)=v2切替でdelivery実配車とgig収入が全停止・
+  対処3案をconfに記録。③watchdogの--resumeなし再起動が新ガードと衝突(ウェーブ2で修正)。
+  ④analyze_structure.py rank_stabilityが凍結measure.pyのO(n²)τを呼ぶ=25万で数日級(analyze_structure
+  自体は凍結外=ローカル高速τで解ける)。⑤invariants実データ3違反(年齢系2=v1プール起因・
+  pos_exit_without_enter 97件=要トリアージ)。
+- ウェーブ2予定: レーンR(A1 agent_by_id軽量化+A2 金銭台帳分離=RAM/保存則の本丸)+watchdog+
+  analyze_structure τ+物理痩身判断+β8 cap数字(mock10k144完走待ち)。

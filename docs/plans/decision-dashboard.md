@@ -19,10 +19,14 @@
 
 ```bash
 # ① 呼数の増分(mock・同 seed・同 step 数。fire 以外は本選 conf のまま)
+# ★pool.present_cap は run.n_agents と**必ず対で**下げる(pool ON では在場は present_cap 側が
+#   効くので、これが 250000 のままだと 2000 体のつもりで 25 万体ぶんを組み立てる = 実地事故済み)
 python scripts/run.py --profile conf/finals_observe.yaml \
-  run.seed=42 run.n_agents=2000 run.n_steps=288 run.name=_fire_off model.backend=mock
+  run.seed=42 run.n_agents=2000 pool.present_cap=2000 run.n_steps=288 \
+  run.name=_fire_off model.backend=mock
 python scripts/run.py --profile conf/finals_observe.yaml \
-  run.seed=42 run.n_agents=2000 run.n_steps=288 run.name=_fire_on  model.backend=mock \
+  run.seed=42 run.n_agents=2000 pool.present_cap=2000 run.n_steps=288 \
+  run.name=_fire_on  model.backend=mock \
   cognition.fire.enabled=true cognition.watch.enabled=true cognition.engaged.enabled=true
 
 # ② 集計(l1b_llm の purpose 内訳 + step あたりピーク + DPH-O の飢餓カウンタ)
