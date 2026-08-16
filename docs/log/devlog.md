@@ -913,3 +913,18 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
   (キー集合・batched==requests整合・OFFでキー不在)。
 - 残: 2k×144(c実測)→10k×144(RSS=RAM線)→cap再導出。w16採用は僅差(−7%)のため
   2k×144でもう1点見てから。
+
+### Entry 132 — 2026-08-16 — 第131=fleet failoverの4xx誤爆修正(2k×144の実地監視が発見)
+
+- **★発見(perf2k144走行中の監視)**: agent 53511/step54のdeliberateが全6サーバーで
+  HTTP 400→"ALL DOWN"。真因はほぼ確実にプロンプト+max_tokens>max_model_len 8192
+  (リクエスト自体の不良)。fleetは4xxを**サーバー障害と誤解**して①6hop無駄撃ち
+  ②健全サーバー全台をcooldown入り(後続の別リクエストが避ける=二次被害)。発生は数千呼中1件。
+- **修正(fleet.py)**: `_is_client_reject`=HTTP 400/413/422は「どのサーバーでも同じ結果」
+  =hopしない・cooldownに入れない・即エラー返し(→呼び出し側は従来どおりparse失敗→骨格fallback)。
+  404はVllmBackend内でchat切替済み・408/429/5xx/接続断は従来どおりhop(サーバー事象)。
+- テスト: test_fleet.py+1(400でhopゼロ・B無被弾・Aがcooldown非入りを時計を進めず証明)・
+  既存failover(5xx)テスト不変=反証の対。8緑。
+- **J14新設(pre-production-gate §2)**: 長プロンプトの予防は行動を変える設計判断
+  ((a)観測のみ(b)max_tokens縮め(c)truncate=persona喪失で非推奨)→**推奨(a)で
+  10k×144の発生率を見て(b)再判断**。ask-before-extendingに従い勝手に閉じない。
