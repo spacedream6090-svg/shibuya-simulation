@@ -64,7 +64,7 @@
 
 ## 4. 持ち越し小粒(未解決のみ)
 
-- **第133ウェーブ2予定(Codex triage 残)**: ①レーンR=A1 agent_by_id軽量化(累計45.9万体のフルAgent強参照→AgentRef)+A2 金銭台帳分離(dormant LRU破棄が所持金を消失させ再入場時に再鋳造+economy_sfcが回転境界の金銭を完全未カバー=城の本丸)②watchdog×A7ガード相互作用(checkpoint無しクラッシュ時の`--resume`なし再起動が新・非空dir拒否に弾かれる+`_latest_ckpt()`がマーカー非参照)③`run.allow_dirty_outdir`のregistry宣言(現状allowlist外)④analyze_structure.py rank_stabilityのτ移植(凍結measure.pyのO(n²)τを日2回呼ぶ=25万で数日級。analyze_structure自体は凍結外なのでローカル高速τ+同値テストで解ける)
+- ~~第133ウェーブ2予定~~ → **第134で全消化**(A1 AgentRef/A2 vital台帳/watchdog/allow_dirty_outdir宣言/τ移植=analyze_structure+viewer両方)。**新規の残件**: ①**mem.relationsの削減**=AgentRef残サイズの75%(22.9KB/体)。読者2箇所のみ(gossip._seed_knowers/mobility._mutual_closeness)。案(a)=seed_contact_days以内+partner 1件だけ残す(読者の使用範囲と厳密一致・conf配管要) 案(b)=gossip/cohabit両OFF時のみ落とす(finalsは両ON=効かない)→**判断待ち** ②_vitalは設計どおり無制限増(1Mプールで~42MB・checkpoint毎にsidecar搬送=許容と記録)
 - **A9残置: provenance transmissions list の無界性**(第133は counter併設+プロンプト参照差し替えのみ)。読者2(simulation.py:2356のsummary集計・test_rumorsのカスケード再構成)の付け替えとセットで別バッチ。25万×10日で~1億件=12GB級+checkpoint時間単調増
 - **β7後方互換の残り窓**: 「COMPLETEマーカーが1つも無いdirは全候補許可」規則により、**最初の世代**の書き込み中クラッシュのみ未コミット本体が選ばれ得る(2世代目以降は第133で閉鎖)。塞ぐにはlegacy判定の作り直し
 - **invariants実データ違反の残トリアージ**: pos_exit_without_enter 97件/287万(回転境界の既知クラスか要確認)。年齢系2種11件はv1プール起因=v2切替で解消見込み(v2の追加根拠)

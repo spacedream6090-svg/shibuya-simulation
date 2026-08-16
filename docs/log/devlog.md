@@ -988,3 +988,28 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
   pos_exit_without_enter 97件=要トリアージ)。
 - ウェーブ2予定: レーンR(A1 agent_by_id軽量化+A2 金銭台帳分離=RAM/保存則の本丸)+watchdog+
   analyze_structure τ+物理痩身判断+β8 cap数字(mock10k144完走待ち)。
+
+### Entry 135 — 2026-08-16 — 第134=ウェーブ2: RAM根治(A1 AgentRef+A2 vital台帳)+watchdog整合+τ移植2箇所
+
+- **R1-A1 agent_by_id軽量化**: 読者60箇所をgrep+実測(退場者を追跡プロキシ化)で全数列挙→
+  AgentRef(新規 agents/ref.py 303行)=CARRIED 134欄/DROPPED 22欄(テキストの器=episodes/buffer/
+  beliefs/day_plan等)。未知欄の読みは理由つきAttributeError(静かな既定値の禁止)・書きは_extra退避
+  (現行でもhydrateで捨てられる=観測同値)。**A/Bバイト一致を本選相当ON・440step・cap=150で証明**
+  (L1 184,900行/l1b/l2/l3全一致)。departed pickle 10,284→4,296 B/体(2.4x)・常駐2.1x。
+  ★refサイズはLLM出力量に非依存になった(実LLM相当合成: relations除き7,008B/体=19.5x)。
+  残件=mem.relationsが新サイズの75%(読者2箇所・削る2案はconf配管要=判断待ち)。
+- **R1-A2 金銭・債権のvital台帳**: DormantStore二層化=vital 18欄(money/account/econ11=家賃債権・
+  滞納・未清算勤務・未払賃金/pop5)42B/体は**絶対に捨てない**・richのみLRU。LRU破棄→再入場で
+  「初期所持金の再鋳造」を廃止しvitalオーバレイ(意図的挙動変更・dormant_cap=0では不活性を機械固定)。
+  finance.parquetにhh_dormant列(末尾追加・既存15列不変)+analyze_accountingのHOUSEHOLD検査へ計上
+  (Fable適用)。**回転保存則テスト=Σ(在場+dormant vital)が日境界で1円も動かない**(このテストが
+  レーン自身のkept.append落とし=入場者消失バグを検出→修正=テストに歯がある実証)。
+- **R2 watchdog整合**: fresh再起動前に使用済みdirを.crash-NNNへ隔離rename(backup世代も同番で先に退避・
+  失敗=STOP・allow_dirty_outdirへ逃げない)・_latest_ckptは完全世代のみ(engine import失敗時は
+  同値のstdlib後退=一致を機械固定)・★cp932コンソールでem dashがUnicodeEncodeError→監督者ごと死ぬ
+  地雷も同時修正。+14テスト。
+- **R2+Fable τ移植2箇所**: analyze_structure rank_stability=25万0.74秒(旧外挿1.5h/回×日2回×30日
+  =92時間ぶん解消・凍結measure.py不触・同値機械固定)。viewer側_assets_tau(make_viewer.py:1314)も
+  同型O(n²)と判明→observer/assets.rank_tau呼び出しへ差し替え(Fable適用・旧実装を逐語保持した
+  同値テスト新設)。registry ALLOWLISTにrun.allow_dirty_outdir宣言(Fable適用)。
+- 残る判断待ち: mem.relationsの削減2案・_vital無制限増(1M=42MB・設計どおり)・β7初世代の残り窓。
