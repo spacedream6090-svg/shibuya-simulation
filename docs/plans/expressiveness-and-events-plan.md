@@ -24,6 +24,66 @@ behavior_tournament(実装済み・実プロンプト束)で {現行束/P1束}×
 reflect/plan(呼数7%・品質感度最大)のみ14Bサーバーへ。deliberate 92.7%は8B据え置き
 (スループット税ほぼゼロ)。※27B/32B級はA5000でKV枯渇=不採用(実測済み)。
 
+### V-A8 判定線(事前固定・2026-08-17・実走前に記載)
+
+セル定義: 現行束=`--set model.plan_max_tokens=448`(P1前の本選構成を再現)/
+P1束=`--set prompts.p1.enabled=true model.plan_max_tokens=896 model.plan_temperature=0.3
+model.recall_temperature=0.2`(finals_observe 現値)。モデル軸=8B-AWQ(艦隊) vs
+14B-AWQ(rev 31c69efc・1GPU)。purpose=deliberate/plan/reflect×各100件。
+
+**V-M1(14B昇格)の線 — P1束のセルで判定:**
+- **GO**(reflect/plan tier を 14B へ): 次の4条件すべて
+  1. 14B parse成功率(plan・reflect とも)≥ 97% かつ 8B−1pt 以上
+  2. 8B parse成功率(plan または reflect)< 93%(=8Bに残る構造欠陥が実在)
+  3. 14B 単GPU 実効 ≥ 2.0 calls/s(workers=8 実測。本選 reflect+plan 所要 ~1 call/s の2倍マージン)
+  4. 14B の max_tokens 切断率が 8B 比 +5pt 未満(長尺化で予算を食い潰さない)
+- **NO-GO**(8B維持): 8B×P1 が plan/reflect とも parse ≥ 95% かつ 14B の上積み < 2pt
+  → 運用単純さ(艦隊同一モデル・sticky prefix cache 温存)優先
+- **GRAY**: どちらにも当たらない → 数字+samples.md 目視をユーザーへ提示して判断を仰ぐ
+
+**V-P1 確認線 — 8B固定でバンドル軸を比較:**
+P1束×8B の plan 構造成立率 ≥ 90%(現行束×8B の壊れ67%容疑の解消確認)。
+未達なら P1 の finals ON を再考としてユーザーへ提示。
+Swallow-8B は四セル決着後の追加セル(未DL・任意)。
+
+### V-A8 実走記録(2026-08-17)
+
+**第1ラウンド(本選同一経路=raw /v1/completions)**: 8B base 44.3%→P1 58.7%
+(P1で+14.4pt改善・ただし確認線90%未達)。14B は 7-9% に崩壊。
+**切り分け実験(a8_diag)で原因確定**: Qwen3-14B-AWQ は raw completions では指示追従せず
+(プロンプト復唱)、guided JSON 下で最短の `{}`(4字)に潰れる。
+**chat/completions + enable_thinking=false なら 8B/14B とも整った行動JSONを返す**。
+第1ラウンドは「completions経路への適合性」を測っていた=モデル品質の判定に使えない。
+
+**判定線の修正**: 判定は **第2ラウンド(chat経路・同一束再射撃=a8basechat/a8p1chat)**
+の数字で行う。(第1ラウンド直後に「reflect軸は採点器の構造上測定不能」と一度記録したが
+誤り=chat経路ではreflectも97-99%でparse成立。第1ラウンドのreflect両側0%は
+completions経路の出力自体が壊れていたため。訂正して記録。)
+
+**第2ラウンド結果(chat経路・2026-08-17)**:
+
+| セル | parse(del/plan/refl) | ALL | wall | 単GPU calls/s |
+|---|---|---:|---:|---:|
+| 現行束×8B | 100/100/99 | 99.7% | 137.9s | 2.18 |
+| 現行束×14B | 100/100/99 | 99.7% | 201.9s | 1.49 |
+| P1束×8B | 100/100/97 | 99.0% | 141.1s | 2.13 |
+| P1束×14B | 100/100/99 | 99.7% | 212.5s | 1.41 |
+
+JSD(8B vs 14B・P1束)=0.0046=行動分布ほぼ同一。14Bレイテンシ p50 1.75倍。
+
+**判定(事前固定線への当てはめ)**:
+- **V-M1 = NO-GO(8B維持)**: NO-GO条件に該当(8B×P1 plan/reflect とも ≥95%・
+  14B上積み+0.7ptは束の分解能±1.3pt未満)。GO条件も2/4不成立
+  (条件2=8Bに欠陥が残る→残らない・条件3=14B単GPU 1.41 calls/s < 2.0)。
+- **V-P1 確認線**: completions経路では 44.3→58.7%(+14.4pt・90%未達)、
+  chat経路では両束とも飽和(99%台)=P1の残存価値は内容規律(メニュー混入除去・
+  反復禁止)であり parse では測れない。finals ON 維持(害ゼロ・OFF=バイト不変)。
+- **最大の発見=経路が主犯**: 同一束・同一8Bで completions 58.7% → chat 99.0%。
+  壊れ67%の主因はプロンプトでも予算でもモデルでもなく **raw completions 経路**
+  (チャットテンプレート不適用=qwen3が指示追従モードに入らない)。
+  → 本選経路の chat 化(conf トグル・既定completions=R1・finals ON)を
+  ユーザー判断事項として提示(2026-08-17 提示済み・回答待ち)。
+
 **V-P2(本選後): 逐語記憶の要約化**=hear経由の発話逐語保存(87%のプロンプトに混入)を
 要約保存へ=増幅ループの根治。LLM呼ゼロで実装可だが挙動変更が大きく本選前は見送り。
 Swallow-8B(日本語特化・同速度)のA8ゲートも同窓。
