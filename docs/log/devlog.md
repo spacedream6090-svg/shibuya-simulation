@@ -1086,3 +1086,22 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
   実LLM夜ランの内省がテンプレ文字列をそのまま返す実例を吊り上げ。
 - 申し送り採用: V-P1のscheduler 5 hunks(配線上必須・OFF no-op検証済み)は採用。
   live_viewerティッカーのランキング化・drawFloor密度表示・microXYは別判断。
+
+## 2026-08-17 第138 A8四セル→経路が主犯→chat経路化(b009682)
+
+- **A8第1ラウンド(raw completions=本選同一経路)**: 8B現行束44.3%/P1束58.7%・14B 7-9%に崩壊。
+  切り分け実験で原因確定=raw completionsはチャットテンプレート不適用→指示追従に入らない
+  (14Bはプロンプト復唱・guided JSON下で`{}`4字に退化。★8Bもformat無しでは同文反復ループ=
+  「支離滅裂」の一部は経路起因だった)。
+- **第2ラウンド(chat経路・同一束)**: 全セル99%台。同一束・同一8Bで58.7→99.0=経路が主犯。
+- **Swallow追加セル(ユーザー指示)+本選条件完全一致束a8fin**: 三モデルparse 100%同点・
+  JSD 14B 0.0034/Swallow 0.0187・実効8B≈4.0/14B≈2.3/Swallow≈2.1呼/秒。
+  ★初回束はreflect think=True(基底conf既定)で本選条件と不一致=Swallow reflect20%は
+  ```jsonフェンスの測定アーティファクトだった(教訓: 束は本選パラメータに一致させる)。
+- **chat化実装**: model.api_mode(既定completions=送出ボディ/キャッシュキーともバイト一致・
+  chatのみcache_extra {"api":"chat"})。finals_observe+vllm7=chat ON。16テスト。
+- **ゲート赤1を修正**: 第137潜在バグ=live_viewerのkindレジストリ__file__相対読み×HEADコピー
+  テストのtmp平置き→テスト側でscripts/+viz/相対配置を再現(48緑)。
+- **モデル判断**: 事前固定線どおり14B全面昇格NO-GO。ユーザー決定=案A(14B=reflect/plan tier)
+  ベース+「余剰があれば会話にも14Bをランダムor良い方法で」→リサーチ2本走行中(学術+運用)・
+  結果と計画を提示してから実装。
