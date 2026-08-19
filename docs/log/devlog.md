@@ -770,13 +770,13 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
 - **A7消化**: 監査5本(SHIBUYA_SIMULATION_*)+GPUサーバー引き継ぎメモをリポ直下→docs/plans/source/へ
   移動してコミット(root直下=ミラー除外対象外のため未コミットのまま留置していた件)。
 - **★公開ミラーの穴を1件発見・封鎖**: ops/ はミラー**対象**(残すもの側)だが、第117の
-  ops/codex-review-pack.md と 6eddab5 の ops/setup-gpu-sv-002.md にサーバー識別子
+  ops/codex-review-pack.md と 6eddab5 のサーバー設営メモ(ops/setup-*.md)にサーバー識別子
   (hostname/内部IP/SSHユーザー)が入っていた。**ミラー最終同期=8/12・両ファイルのコミット=8/16
   →未公開のまま**。publish_public_mirror.ps1 の除外リストへ2ファイル追加+全履歴の識別子内容検査
   (トリップワイヤ)を追加。既公開履歴のハッシュ不変=fast-forward維持。VPN公開IPは未コミット文書のみ
   =コミット済みファイルに存在しないことをgrepで機械確認。
 - **Codex接続準備**: ローカル~/.sshに鍵なし(password認証のみ)と判明→ed25519鍵ペア生成+
-  ~/.ssh/config(Host gpu-sv-002)作成・VPN疎通確認OK。残る手動=公開鍵のサーバー登録1ペースト
+  ~/.ssh/config(GPUサーバー用Host別名)作成・VPN疎通確認OK。残る手動=公開鍵のサーバー登録1ペースト
   (ユーザーのパスワード入力が必要)→以後はFableがSSH直接操作可=codexインストール/config.toml/
   AGENTS.md配置はFableが実施→codex login --device-auth(M2)のみユーザー。
 - 残タスク棚卸しの結論: **5.6 sol採用分のコード実装はゼロ残**(β8 capはconf行のみ=R_eff実測待ち)。
@@ -822,7 +822,7 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
 
 ### Entry 127 — 2026-08-16 — 第126=Linuxフルゲート初回完走+SFM wall goldenの恒久処置
 
-- Linuxフルゲート(d2553f8・gpu-sv-002・64CPU): **5,901緑+15skip+赤4件(15分53秒)**。
+- Linuxフルゲート(d2553f8・GPUサーバー・64CPU): **5,901緑+15skip+赤4件(15分53秒)**。
   赤4件は全部 tests/test_sfm_walls.py の**Windows採取SHA定数との照合**(GOLDEN_OPEN/INDOOR/WALLFORCE)
   =libmのfloat丸め差。tomllib修正(第124)は有効=前回の収集エラー解消で+188件実行。
 - **恒久処置**: ①純golden 3本=`requires_windows_golden`(skipif非Windows・理由明記・Linux値で
@@ -1134,3 +1134,33 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
 - **二台帳の分離**(ユーザー提起): 再現(現実比較)と創発(内的対照)を独立台帳化・
   RESULTS/プレゼン三部構成に固定。
 - 検収=フルゲート6,656緑+1skip・スキャンCLEAN。
+
+## 2026-08-19 RAM根本原因の分解(第141準備)
+- ユーザー「メモリ増の原因の分解は可能?」→checkpoint解剖+L1集計+/proc実測で**分解完了・主犯特定**。
+- 主犯=**グループ加入の「メンバー全員と相互add_contact」**(tools.py:1338-1341)。第140の傍聴者ゲートの外側。
+  10k2日: net 240MB→2,579MB(contacts+follows各1.28GB)・最太個体18,783人・**group_join=1,101,718件**。
+  SNC自身は健全(acquaint=2/sns_follow=387)。step32分/step劣化も同根(加入=O(members))。LLM無関係の
+  機械抽選=**250k本番でも確実に爆発**→修正必須と判断。
+- 準主犯=_c3_pass/_c3_greet(日次すれ違いdistinctセット・消費者はG5のlen()のみ)。小物=runtime/labels/tools
+  線形蓄積・posts_max:0はmock投稿0で無罪。25k step72状態はulimit45GBでロード不能=状態だけで45GB超。
+- 設計3件(GRP=創設者+決定論k人のみ接続/C3P=distinct cap飽和/NETガード=hard_max拒否)+効率化RAM線
+  測定計画(StepA=既存ckptローダ実測・StepB=修正ON 25k半日・StepC=250k init probe)を
+  docs/plans/ram-rootcause-and-fix-plan.md に起草。**実装はユーザー承認待ち**。25k停止も計画に含め承認待ち。
+- ユーザー回答: 修正=「設計を見てから判断」/25k=「効率の良いRAM線測定の案を考えて再走・結果流用・
+  時間をかけすぎている・計画を立てて」→本計画で応答。
+
+## 2026-08-19 第141実装: RAM根治3+ガード5(GRP/C3P/NETガード/S9/S12/S15/S7調査/S8調査)
+- 実装(Opus実行・Fable検収): GRP=グループ加入を創設者+決定論k人へ(on_group_join新設・_evict共有・
+  follows不触・L1不増)/C3P=c3_distinct_cap飽和/NETガード=hard_max拒否+カウンタ(evictなし)/
+  S9=G5 _lastをint鍵+25B bytes値へ(-0.0正規化・NaN不保存で旧比較と同一行を機械証明)/S12=gc.freeze
+  (init末尾+resume復元後)/S15=注意上限(speak-hear配布のみ・距離²→id決定論・affects_k=Trueを正直宣言・
+  **conf既定OFF=層3待機**)。新confキー7・全て既定=現行同値・finals=bounded/2000/2000-4000/gc_freeze true。
+- **S7調査で計画書の誤りを発見・訂正**: relations_maxは**conf化済みだが全confで0=無制限**。「999で飽和」は
+  誤読(自然成長の途中)。在場個体の関係台帳は青天井=**扇出×無制限relationsが本選最大リスクに昇格**
+  →8/20判定の必須議題(値候補500-2,000)。S8=_fact_beliefsは既に32件capで有界(実装不要)。
+- Step A/A′(新ラン不要の流用測定): 成分別in-RAM格子=10k2日目昼37.6GB(net35.1=pickled2.58GBの
+  **13.6倍**)・25k昼45.0GB(net19.7+agents12.6=_c3_pass)・hear扇出=10k平均80.8人/発話(p99=1,063)・
+  25k平均132(朝9時台平均1,143・max15,646)=密度2.5×で平均1.63×。
+- 検収: 静止木フルゲート**6,694緑+1skip(17分20秒)**・新38テスト込み・スキャン=devlog歴史行の
+  サーバー識別子3件+新文書1件をHIT→無害化して再スキャンCLEAN・凍結14本不触(機械照合テスト追加)・
+  h.txt不触。25k病理ラン停止(checkpoint/L1保全)。今夜=C′(250k切片・壁4.5h)→B(修正ON 25k×72step)。
