@@ -17,7 +17,7 @@
 
 | 項目 | 残り |
 |---|---|
-| **WIT witness再設計** | [witness-channel-attention-plan.md](docs/plans/witness-channel-attention-plan.md)。**WIT-1=実装完了(第143)**: 走査73.6倍+beliefs.channels(kind別半径+p_noticeゲート・既定OFF/finals ON)。残=**WIT-2(店舗訪問結合in_place・k_ambient・exposure_count/distinct_sources・較正テスト=Philpot 16.3人/件アンカー)**+サーバースモーク25k×24 ONでの効果実測(belief体積1/8見込み) |
+| **WIT witness再設計** | [witness-channel-attention-plan.md](docs/plans/witness-channel-attention-plan.md)。**WIT-1+2=実装完了(第143/144)**。残=①対照smoke_wit1_off照合(channelsのみOFF・「belief_updateのみ差」でWIT世界不変性の規模証明)②昼帯縦煙でwitness CPU 44%→2-3%の実測③較正アンカー照合(Philpot 16.3人/件・認知率が100%から離れること) |
 | **犯罪×LLM検証** | [crime-llm-verification-plan.md](docs/plans/crime-llm-verification-plan.md)。**V0=mockハーネス実装完了(第109・82テスト)**。残=**V1選択率/V2被害者反応の実LLM実測(8/15-16 GPU同居・コマンドはスクリプトdocstring)**。判定分類器は日英語彙のみ=皮肉/婉曲は拾えない(md明記) |
 | **所有権レイヤー** | [ownership-layer-plan.md](docs/plans/ownership-layer-plan.md)。O1登記簿+O3相続=第109・**O4家賃=第114**(lease権利行・受け手=own行の家主・org/個人着金)。残=**O2家財L-agg・O5流通内生(売買代金)・敷金/住宅ローン(O4完全版)=本選後**。「持ち家なのにrent_shareを引かれる」件はO4完全版の持ち物 |
 | **存在内生化POP** | **転出/転入(案A)/出生=実装完了(第114・35テスト)**。finals=出生ON。残=**転出/転入の8/15リハーサル**(1〜2日ラン+`summary.population.per_day`を現実レート7.8/8.4件日と照合→conf 2行ON)・案B(転入を新規個体で・初期関係値の設計が前提)=本選後 |

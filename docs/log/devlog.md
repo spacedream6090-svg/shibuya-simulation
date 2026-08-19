@@ -1235,3 +1235,8 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
 - 凍結: metrics_spec_hash移動(truth_ledger 1本のみ・リテラル固定なしでライブ計算=期待値更新ゼロ・W3-1先例準拠)。
 - スモーク新方針(ユーザー決定): ローカル=フルゲート+golden(Windows正典)/サーバー=規模スモーク(ON挙動・壁時計・RSS)。runs/smoke_*・本選ラン走行中は回さない。
 - 次: コミット→push→サーバーpull→smoke_wit1(25k×24 ON・基線=B同帯: belief_update以外の全kind件数一致+belief_updateだけ減が合格線)→WIT-2発注。
+
+## 2026-08-20 朝 第144 WIT-2着地(検収・コミット)+スモーク1本目の発見
+- smoke_wit1(25k×24朝帯・ATT層A ON+WIT ON)32.8分完走。★基線Bは第142以前conf(attention無)と判明=複合測定。hear×0.029=層Aゲート初の25k実データ(k_i≈4±2で聴衆102→数人・設計どおり)。belief_update×0.39(朝帯=人が薄い)。move/route/tax×1.000=世界同一性保持。対照smoke_wit1_off(channelsのみOFF)走行中=WIT不変性の規模証明用。
+- WIT-2実装(Opusサブ): in_place=fact["node"]既存欄で場所結合(88%解決・不明はradius 10mへ狭い側フォールバック・source不触)・k_ambient=cap前置き+単発draw持ち越し(cap有無で最終知識集合一致を機械証明)・n_exp/n_srcはbelief rec内(タプル=pickle順序安全・上書き引き継ぎ・L1行ゼロ)・搬送は既存経路で自然同梱(resume==straight緑)。registry ALLOWLIST 2件(place)。テスト28→51本。
+- 検収(Fable): 差分目視→フルゲート6,835緑+1skip(15分26秒)→スキャンCLEAN。
