@@ -1164,3 +1164,34 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
 - 検収: 静止木フルゲート**6,694緑+1skip(17分20秒)**・新38テスト込み・スキャン=devlog歴史行の
   サーバー識別子3件+新文書1件をHIT→無害化して再スキャンCLEAN・凍結14本不触(機械照合テスト追加)・
   h.txt不触。25k病理ラン停止(checkpoint/L1保全)。今夜=C′(250k切片・壁4.5h)→B(修正ON 25k×72step)。
+
+## 2026-08-19 ATT(自律的注意機構)リサーチ4レーン+統合設計書(ユーザー発案・実装は判断待ち)
+- 発案「transformerのattentionのように注目対象の情報ブロック+LLM自身が自律選択」→Web文献総ざらい
+  4レーン並列(認知科学/LLMエージェント/注意経済・社会科学/AI横断42件)→docs/research/4本に保全・
+  docs/plans/attention-mechanism-plan.md に層A(顕著性top-k選抜=呼ゼロ算術)+層B(構造化出力での
+  注意スロット自己宣言=追加呼ゼロ)の統合設計。
+- 主発見: ①「非注意発話は記憶に残らない」は実験的事実(Cherry 1953)=現行の全員処理の方が人間から乖離
+  ②容量制限は実SNS統計則再現の必要条件(独立6実証・Gleeson α<2等) ③有限スロット社会的注意の
+  自己宣言は直接先行なし=新規性 ④CogSNet=REL忘却の正準形候補 ⑤k=4±1・貫通p≈0.33等の設計定数
+  ⑥Milgram都市過負荷の計算化は未確立=内生創発すれば新規性。
+- 推奨=層A本選(半日・開始線不動)+層B設計凍結(較正プローブなしONは第140教訓に反する)。判断待ち。
+- 横断42件の本選前少数精鋭: プレフィックス整列キャッシュ・伝播チェーン/命名ゲームの観測列確認・
+  プロトコル感度の台帳化・seed2本目の学術正当化(いずれも8/20判定に同梱)。
+
+## 2026-08-19 第142実装: ATT自律的注意機構(層A+層B・ユーザー3案=k個体化/LLM選択/閾値+topK併用を統合)
+- 層A=attention.py新規680行: priority=w_bu·顕著性+w_td·関連+w_h·履歴+w_v·関係(Wolfe GS6)・
+  top-k_i∧θ点火閾値・k_i∈2-6個体化(blake2b・ペルソナに集中力特性は無しと調査確定)・自己名貫通
+  p_i∈0.20-0.65(Conway帯)・会話相手優先・通過分のみhear/remember/関係/encounter(Cherry準拠・
+  非通過=完全no-op・群衆チャンクは将来のappraisal EMA送りと明記)。mode=distanceは第141 S15と同一。
+- 層B=注意ブロック: K=7スロット{kind,target,why,salience,since}・発火時attend全量再宣言(MEM1式・
+  speak/reply枝・追加呼ゼロ)・非発火時decay 0.15/日+宛先boost・プロンプト固定位置節・
+  dehydrate/rehydrate搬送・**conf既定OFF=プローブ後にON判断**。
+- ★実装レーンがresumeバグを発見・修正: _attn_block_day日ガードのcheckpoint未保存→mid-day resumeで
+  減衰二重適用(第98日ガード教訓と同型)。保存/復元+機械固定テスト2本。
+- 新confキー19(world.attention 14+cognition.attention_block 5・全て既定=現行同値)・registry宣言3
+  (attention.enabled=affects_k True)。finals=層A ON(salience・値は8/20判定で最終化)・層B OFF。
+- 検収: フルゲート6,782緑+赤2=プロンプト契約の列挙ピン(snc_section第117と同型の作法で
+  attention_section を7欄目に追加)→当該2ファイル81緑で解消(差分は検査2本のみ=フルゲート回し直し省略を
+  記録)。新90テスト。凍結14本+truth_ledger+chance.py+h.txt不触(照合テスト追加)。乱数stream 0本。
+- サーバー夜間: C′=250k init RSS≈8.7GB(切片小)だが**init 4.5hで未完**=タイムアウト(exit 124)→
+  250k初期化時間が新検討点。B(第141検証・25k×72)自動開始・10k対照ラン完走。
