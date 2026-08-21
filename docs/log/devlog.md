@@ -1300,3 +1300,40 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
 - conf一式をfinalsへ適用(承認済み): E1=stock_threshold:0・PRICE-C=price_sensitivity:0.0・PRICE-A=wholesale_price{food315/cafe140/shop1375/nightlife504}。
 - リサーチ追補: crowding md §9(密度閾値は文献に不在=アンカー設計・消防法3-4m2/人・Fruin LOS一次確認・将来queue用の定量)。
 - 段取り: フルゲート緑→スキャン→P3+conf+文書コミット→FACT-D/INVサブ起動(承認済みGO)→CRWD+PRICE-B。
+
+## 2026-08-21 朝 第145コミット(81bcd7a)+実装サブ3本並行起動
+- 検収: フルゲート6,850緑+1skip(13分59秒)→スキャン=devlog歴史行のキリル引用3件を無害化→CLEAN→STATUS.md最終更新行を第145へ→明示パスstaging(h.txt/reference不触)→コミット81bcd7a→push。
+- ※台帳バックログ発見: IMPLEMENTED.mdのバッチ年表が第137で止まっている(第138-145未転記)。提出前整理タスクに積む(正典はSTATUS最終更新行+devlogで維持)。
+- 実装サブ3本起動(Opus・ファイル互いに素・全て承認済み): P4=格子有界化(clip_margin_m・マスク方式=縁積み禁止・P2型検証+変化量実測)/FACT-D=fact重複抑制(エピソード単位・索引はfacts台帳から導出=resume安全)/INV-A/B/C=2層在庫+店員shelf_restock行動+店主発注行動+unstaffedフォールバック+来店時棚知覚。
+- 残: サブ完了→検収→フルゲート→コミット→サーバーpull→劣化ckpt-72 resumeプローブ→CRWD+PRICE-B実装→1日リハ→250k縦煙(8/22)。
+
+## 2026-08-21 朝 P4完了(物理さらに-69%=P3比・累計-81%)
+- P4サブ完走: clip_margin_m(既定0.0=バイト同一・マスク方式=縁積み却下を数値固定)。実測(finals3ゾーンベンチ): セル数96.7万→91/枚(1/10,600)・physics.phase 30.5→9.4s/step(**-69%**・P3前48.5からの累計**-81%**)・最悪step 87.6→21.1s。
+- 品質: margin30/1e6=C構成と全欄完全一致(配線の無害証明)・margin4は破綻(farカーネル到達5.3m切り=下限の実証)・**margin10採用**(基本図±20%帯/破綻統計C同値・RMSEむしろ改善)。軌跡変化の正直な実測: 957/1000個体ビット不変・退場step|Δ|max=1step・自己堆積抵抗(場版だけの2.83%)の消滅も記録。新18テスト・対象360本緑。
+- finalsにclip_margin_m: 10.0適用。FACT-D/INVサブ完了待ち→3レーン一括フルゲート→コミット→サーバーckpt-72プローブへ。
+
+## 2026-08-21 午前 PENDING.md全面更新(8/14以来の棚卸し・ユーザー要求)
+- §2=INV/FACT-D/CRWD/PRICE(実装中)+物理P1/P3/P4(消化)+WIT完結+犯罪V1V2本選後送りへ更新。§3=判断待ちを「8/22統合判定ラウンドJ1-J10」に集約(J1=cap平均step時間の期限算術が筆頭)・stock_threshold較正=E1で消化打刻。§3.5新設=本番開始までの残工程5段。§4=新規小粒(IMPLEMENTED年表バックログ・特売・queue・displacement創発観測)。§5.3日程を現行(開始目標8/22深夜-8/23・最終線8/23夜)へ。スキャンCLEAN。コミットは次バッチ(P4+FACT-D+INV)に同梱。
+
+## 2026-08-21 午前 FACT-D完了(エピソード単位fact・29テスト)
+- FACT-Dサブ完走: beliefs.fact_dedupe(既定false=バイト一致を逐語温存_legacy_record_factとの合成列一致+実ラン照合で機械固定)。エピソード鍵=kind×場所×topics(場所不明は畳まない=WIT in_place同型の判断)・窓判定=_witness_passと同一半開区間・索引_tl_epiは台帳から導出(checkpoint非搭載・再構築同値の機械証明3本)・facts_deduped観測欄。変更4ファイル・新29テスト・対象~730本緑(フルゲートはINV並行編集と競合のため親が後で一括)。
+- finalsにfact_dedupe: true適用(承認済み・細部委任)。効果はceil(継続step/window)=12h品切れ1店が来客数ぶん→12件。実規模削減はckptプローブで実測。
+- ★サブの副発見(FACT-D無関係・既存ギャップ): commerce shop_stateの開閉状態がcheckpoint未保存→境界が開店遷移stepに一致するとresumeで1行落ち(第80天気/第62 jointと同型)。PENDING §4に記録。
+- 残: INVサブ完了待ち→CRWD+PRICE-Bサブ→3レーン一括フルゲート→第146コミット。
+
+## 2026-08-21 午後 INV完了(41テスト)+finals ON+CRWD/PRICE-Bサブ起動
+- INVサブ完走: INV-A=_goods_stock(棚)+_goods_back(BY)並列・購入は棚のみ・納品はBYへ(restock payload tier:back)・order-up-to 2段拡張。INV-B=棚薄フラグO(1)→goods.staff_phase(city_ops直後)で在勤者(work_serviceのstaff_by_nodeと同一述語・id最小=責任者)のshelf_restock/stock_order行動化・欠勤なら発注されず・担い手ゼロPOIのみunstaffed_fallback(payload.unstaffed)・review_and_orderは担い手店を走査しない。INV-C=review_every_steps(既定0=日次同値)。棚知覚=shelf_note→shelf_line→build_prompt(非潤沢時のみ1行・trace_line同型seam)。観測=summary.goods(欠品棚率/BY比/in_back_not_on_shelf=Gruen対応物/staff_coverage/staffed・unstaffed内訳)。
+- ★凍結規律の好判断: observer/stream.py(metrics_spec凍結)への集計追記をgit checkoutで完全復元し観測をsummary側へ=凍結不触照合テスト追加。
+- 検収: OFFバイト一致・棚⇄BY保存則(Σ不変)・補充境界3種・resume==straight(BY/フラグ/窓/タリー/日次索引の搬送)・1店1補充・新41テスト+関連820本緑(フルゲートは親で一括)。
+- finals適用(委任範囲): two_tier.enabled true・review_every_steps 72(1日2便=CVS帯)・back_ratio既定0.3のまま(SM系1.5の業態割当は本選後較正と正直に注記)。
+- 最終レーンCRWD+PRICE-Bサブ起動(混雑不満=毎step1回のO(N)集計・購入毎全走査の復活禁止を明記/B1時間帯価格=price_changeイベントを出さない設計/B2見切り=staff_phase相乗り・段階0.8→0.5・checkpoint搬送)。完了後=3+1レーン一括フルゲート→第146コミット→サーバーckpt-72プローブ。
+
+## 2026-08-21 午後 INV追加報告(自主フルゲート)+CRWDレーンへ申し送り
+- INVサブが自主フルゲート実施(-n 12・19分29秒): 34赤の切り分け=32件は並行レーン(FACT-DのconfキーがregistryV宣言前の数分窓)の一過性→直列再走216件全緑・1件=自分のreview_every_steps timeconv未分類→STEPS(逆比例=実時間周期保存・0センチネルがΔt変換で保たれる実測つき)で修正済み・1件=CRWD/PRICE-Bレーンのcommerce.markdown.stages同種漏れ→走行中サブへSendMessageで申し送り(STEPS/時刻分類の基準・test_timeconv緑確認を完了条件に)。
+- 運用知見: フルゲートはxdist -n 12で~19分(直列2.3h)・並行レーンのconf/registry同時編集中はregistry系が一過性赤=全レーン合流後に1回が確実。
+
+## 2026-08-21 午後 CRWD+PRICE-B完了=4レーン合流・フルゲート開始
+- CRWD/PRICE-Bサブ完走(新51テスト+関連~700本緑): CRWD=毎step1回のO(N)在館表(OFFで0回構築を機械固定)・純関数群(ramp/U字/閑散罰/w_e)・on_store_crowding(R9)・飽和時のみremember・AST機械固定で乱数/drive不在。B1=時間帯料金表(price_changeゼロをテスト固定)。B2=markdown行動(staff_phase相乗り・1店1step1件・段階0.8→0.5・翌朝/閉店リセット・_md_stage checkpoint搬送)。timeconv申し送りは対応済み(stages入れ子はapply_dt素通しの静かな壊れ方を発見→stage_steps(STEPS)/stage_coefs(INVARIANT)の平行2リストへ設計変更)。
+- ★規模較正の発見(サブ): 基底capは5-8千体規模の設計値=25k外挿(購入点平均在館≈73)でfood全件飽和(不満+記憶の洪水=イベント洪水の記憶版)。委任範囲(cap)につき対処A採用: finals capを規模側へ暫定置換(food100/cafe60/shop120/nightlife80/service30)+1日リハで帯分布実測→freeze前確定と明記。B案(25kはCRWD OFF)はユーザーが覆せるよう報告に併記。
+- finals適用: crowding ON(暫定cap)・price_schedule(ディナー1.67/HH0.8)・markdown ON。
+- 4レーン(P4/FACT-D/INV/CRWD+PRICE-B)合流フルゲート開始(-n 12・~20分)。緑→スキャン→STATUS→第146コミット→サーバーckpt-72プローブ。

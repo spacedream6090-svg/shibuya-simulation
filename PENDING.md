@@ -2,7 +2,7 @@
 
 > 本ファイルは **まだ終わっていないもの**だけを持つ。完了済みは → **[IMPLEMENTED.md](IMPLEMENTED.md)**(決定の履歴も同所の年表と git log が正典)。
 > 索引と最終更新は → **[STATUS.md](STATUS.md)**。
-> 最終更新: **2026-08-14**(第112後の掃除パス: L2日給0の穴=WAGE実装で消化・同型痩せ5件+全数検査約40件=甲/乙/丙で消化・wv_expect搬送=乙B8で消化。新規判断待ち=GTロガーG1-G7・b2b構造的供給)。
+> 最終更新: **2026-08-21**(第145後の全面更新: 8/14以来の棚卸し。①実装中=FACT-D/INV-A/B/C(サブ走行中)+CRWD/PRICE-B(次)②物理P1/P3/P4=消化(夕方step対策・累計-81%ベンチ)③判断待ちを「8/22統合判定ラウンド」に集約④日程を現行(開始目標8/22深夜〜8/23・最終線8/23夜)へ)。
 
 ---
 
@@ -11,17 +11,19 @@
 | レーン | 内容 | 状態 |
 |---|---|---|
 | **RW-U1 運用** | タスクスケジューラ稼働中(`shibuya-rw-fetch-daily` 毎日12:00)。残=①規約再確認(R3)②本選中は `--report` の欠け監視を時々目視③本選後の解除 `Unregister-ScheduledTask` | 稼働中 |
-| P4 残り | D(J/w 水準)の原因切り分け・高密度の壁貫通脱出(接触項 or v_max クリップ再設計) | 未着手(任意) |
+| 物理ベンチ較正レーン(旧称P4・※第145の格子有界化P4とは別物) | D(J/w 水準)の原因切り分け・高密度の壁貫通脱出(接触項 or v_max クリップ再設計) | 未着手(任意) |
 
 ## 2. 計画済み(実装の残りがあるもの)
 
 | 項目 | 残り |
 |---|---|
-| **WIT witness再設計** | [witness-channel-attention-plan.md](docs/plans/witness-channel-attention-plan.md)。**WIT-1+2=実装完了(第143/144)**。残=①対照smoke_wit1_off照合(channelsのみOFF・「belief_updateのみ差」でWIT世界不変性の規模証明)②昼帯縦煙でwitness CPU 44%→2-3%の実測③較正アンカー照合(Philpot 16.3人/件・認知率が100%から離れること) |
-| **犯罪×LLM検証** | [crime-llm-verification-plan.md](docs/plans/crime-llm-verification-plan.md)。**V0=mockハーネス実装完了(第109・82テスト)**。残=**V1選択率/V2被害者反応の実LLM実測(8/15-16 GPU同居・コマンドはスクリプトdocstring)**。判定分類器は日英語彙のみ=皮肉/婉曲は拾えない(md明記) |
+| **★INV/FACT-D/CRWD/PRICE(第145計画・全承認済み)** | [inventory-two-tier-plan.md](docs/plans/inventory-two-tier-plan.md)。conf一式(E1混雑プロキシ廃止/PRICE-C価格固定/PRICE-A卸値較正/P1)=**適用済み(81bcd7a)**。**実装中(サブ走行)**=FACT-D(fact重複抑制・truth_ledger)+INV-A/B/C(2層在庫+店員shelf_restock行動+店主発注行動+棚知覚)。**次**=CRWD(混雑不満・閾値つき飽和・nightlife U字)+PRICE-B(時間帯価格+閉店前見切り=店員行動)。検証=劣化ckpt-72 resumeプローブ→フル1日リハ |
+| **★物理 夕方step対策(triage計画§0)** | [afternoon-slowdown-triage-plan.md](docs/plans/afternoon-slowdown-triage-plan.md)。P1(update_every30)/P3(_box3同値高速化)=**コミット済み**・P4(格子有界化clip_margin_m:10)=**実装・検収済み(コミット待ち=次バッチ同梱)**。ベンチ累計=physics.phase 48.5→9.4s/step(-81%)。残=25k夕方帯の実測(ckptプローブ)と250k縦煙での確認 |
+| **WIT witness再設計** | **WIT-1+2=実装完了(第143/144)・世界不変性の25k証明済み(98/100種一致)・witness CPU除去は火炎図で確認(truth_ledger圏外)**。残=較正アンカー照合(Philpot 16.3人/件・認知率が100%から離れること)を1日リハで |
+| **犯罪×LLM検証** | V0=mock実装完了(第109)。**V1/V2実LLM実測=本選後送り(ユーザー宣言2026-08-19・第140補2)** |
 | **所有権レイヤー** | [ownership-layer-plan.md](docs/plans/ownership-layer-plan.md)。O1登記簿+O3相続=第109・**O4家賃=第114**(lease権利行・受け手=own行の家主・org/個人着金)。残=**O2家財L-agg・O5流通内生(売買代金)・敷金/住宅ローン(O4完全版)=本選後**。「持ち家なのにrent_shareを引かれる」件はO4完全版の持ち物 |
 | **存在内生化POP** | **転出/転入(案A)/出生=実装完了(第114・35テスト)**。finals=出生ON。残=**転出/転入の8/15リハーサル**(1〜2日ラン+`summary.population.per_day`を現実レート7.8/8.4件日と照合→conf 2行ON)・案B(転入を新規個体で・初期関係値の設計が前提)=本選後 |
-| **本選信頼性** | [finals-reliability-plan.md](docs/plans/finals-reliability-plan.md)。**小物2本=実装済み(第110)**: watchdogディスク残量ガード+`backup_run.py`(restore drill前段=実測成立)。残=**8/15の環境確認5点**→**リハーサル7本**+閾値/世代数の本選値化(既定20/5GBは小規模想定)。未実装(意図的)=ローカルpull側スクリプト・checkpoint剪定(人間判断)・クラウド系統。★運用注意: `--resume` は落ちたラン専用/走行中run-dirへのrobocopy直がけ禁止(backup_run.py経由=共有フラグ読み) |
+| **本選信頼性(STAB)** | [finals-reliability-plan.md](docs/plans/finals-reliability-plan.md)+第140補2(無停止化=デバッグ期間は置かずテスト+リハの型で代替・開始後不介入原則)。装備済み8項。**残=STAB残4項**: 信頼性リハ7本実走・vLLM自動復旧・RSS/ディスク閾値アラート・E4ドライラン+閾値/世代数の本選値化。★運用注意: `--resume`は落ちたラン専用/走行中run-dirへのrobocopy直がけ禁止/走行中run dirのrm厳禁/pgrepはブラケット記法 |
 | **在場内生化PRES** | **A1+A2+B+C=実装完了(第111)**。残=**A2 emergent のON判断のみ**(8/15 RSS/R_eff実測後・finals confの1行) |
 | **メタバース射影** | [metaverse-projection-plan.md](docs/plans/metaverse-projection-plan.md)。**GTロガーG1-G7=全部実装済み(第113・承認済み)**。残=射影フィルタF0-F4・復元実験3案=**本選後**。運用の掟=**checkpoint/dormant剪定禁止(G2)**・backup_run は `--ckpt-generations 999` で回す(既定2のままだと18世代が手元に残らない) |
 | **AGE/DPH/RFX/v2の残り** | AGE-A〜F=**実装完了(第116)**・DPH-O/C/B=**完了(第115)**・RFX-A=**完了(第116)**。残=**①v2プール切替判断**(conf 1行・tier_quota再計算と縦煙が前提・待機ブロックに手順)②DPH-A(起床→就寝地平)=本選後 ③sleep_task_rewrite(就寝前テンプレ言い換え)=実LLM検収待ちOFF ④PPv2-G(workplace_scope/at_homeのengine接続)=判断待ち ⑤build_friend_graph O(N²)=30,000人で起動25分(Chung-Lu案が処方箋・本選後) |
@@ -32,9 +34,26 @@
 
 ## 3. ユーザー判断待ち
 
+### ★8/22 統合判定ラウンド(数字が揃い次第・一括提示予定)
+
+| # | 事項 | 判断材料の状態 |
+|---|---|---|
+| J1 | **cap最終値=平均step時間の設計**: 1,440step×平均6分=6日で完走(8/23開始でも間に合う)/平均10分=実時間10日=完走が提出8/30を超過→「完走必達なら6-7分」か「提出時点7-9日分で提出」か | 期限算術は提示済み。1日リハの実測平均で最終判定 |
+| J2 | ATT層AのON値(hear×0.029の25k実データあり・k_i≈4±2)・層Bの採否 | 実データあり |
+| J3 | S7 `memory.relations_max`(500-2,000帯)・S15 聴衆上限 | conf 1行ずつ・即決可 |
+| J4 | REL採否・OVL-1(朝計画×物理重ね)実装の要否・OVL-2採否(設計§4.6準備済み) | OVL-1は物理-81%で利得縮小=要再試算 |
+| J5 | TRIM表(実測に基づくOFF候補の取捨) | 1日リハ実測後 |
+| J6 | 250k init問題の白黒+finals ON範囲の最終値表(INV/CRWD/PRICE/carry_grid含む) | 250k縦煙(8/22)で |
+| J7 | cognition.fire を開けるか(affects_k=True・呼数実測とセット) | 第113からの持ち越し |
+| J8 | seed 2本目+GPU尾部(8/26-30)の使途配分(seed分散が無いと量的主張が落ちる) | 第113からの持ち越し・本選前 |
+| J9 | Δt梯子(並行1-2万体×Δt=1)の採否 | 計画提示済み(8/12)・fire判断と連動 |
+| J10 | policy_cache 保存判断(resume呼数差の実測とセット) | リハで実測可 |
+
+### 単発の判断待ち
+
 | # | 事項 | 状態 |
 |---|---|---|
-| **U-10** | 事前登録の閾値承認+10日ラン解釈方針([stationarity-preregistration.md](docs/plans/stationarity-preregistration.md)) | **本番直前に決定**(2026-08-12 ユーザー指定=10日ラン開始 8/16 の直前に承認依頼) |
+| **U-10** | 事前登録の閾値承認+10日ラン解釈方針([stationarity-preregistration.md](docs/plans/stationarity-preregistration.md)) | **本番直前に決定**(freeze時に承認依頼) |
 | ~~OBS-U1/U3~~ | **決着(2026-08-14承認)**: finals ONセット承認・g_update ON・認知棚卸し再実行済み(第113=搬送漏れ4族追加)。残る fire 判断は上の独立行 | 済 |
 | **Δt梯子の承認** | [dt-reduction-plan.md](docs/plans/dt-reduction-plan.md) 提示済み(2026-08-12): 本線25万×Δt=10+**並行1〜2万体×Δt=1**(驚き発火の解放=科学的動機・30秒は見送り推奨)。承認でDT-1〜3(呼数不変の機械固定・Δt=1プロファイル・運用)を実装。+並行ラン規模(1万or2万)と開始時期 | 承認待ち |
 | **存在内生化POP** | [population-endogenization-plan.md](docs/plans/population-endogenization-plan.md) 提示済み(2026-08-12): 転入=案A(L4定着昇格)推奨/案B・実装=**本選後推奨**(10日ランでは0.03%)・出生=POP-3で含める推奨 | 承認待ち(3点) |
@@ -54,7 +73,7 @@
 | ~~v2に配達員が不在~~ | **ユーザー決定(2026-08-16)=再生成に3職業(配達員/バンドマン/写真家)を追加**。生成器修正+再発防止テスト(confが名指しする職業の語彙検査)を実装レーンで進行中 | **決定済み・実装中** |
 | ~~物理ゾーン痩身の方式~~ | **全消化(第135=A・第136=B+C・finals ON)**。A=セル法8kで95倍(ビット一致)・B=認知的近傍(密度上界・★硬い視野円錐は壁貫通=fov360が正)・C=密度場far(93-324倍・RMSE改善)。残メモ=ORCA LP純Python化(ビット同値不能で別判断)・密度場の壁無視(地下通路型で過大評価の可能性)・front_spacing(v_of_s=finals OFF) | **消化(第135/136)** |
 | **本番開始の条件(凍結の扱い)** | **ユーザー方針(2026-08-16)**: 日付固定の凍結に執着しない。「現存の実装+今後本番に必要と判断される実装」を終えたら**できる限り早く**本番ランを開始する。→開始ゲート=①物理痩身(再提案→承認→実装+検証)②v2再生成③cap/fire確定④RAM線GO⑤U-10承認⑥launch手順E4 | **方針決定・ゲート消化中** |
-| **stock_threshold=6 の較正** | occupancy修正(第133)の副発見: 「在館6人で品切れ」は25万体ではほぼ常時True=購入抑制+stock_outイベント+grievanceが全面発火する較正問題。真値台帳(凍結)のstock_out洪水も間接誘発 | 新規(第133)・本選前推奨 |
+| ~~**stock_threshold=6 の較正**~~ | **決着(2026-08-20ユーザー決定=E1廃止・第145でfinals適用)**: 混雑プロキシ廃止・品切れは実在庫へ一本化・混雑の不満はCRWD(文献準拠・行動は止めない)が後継 | **消化(第145)** |
 
 ### 決定済み(履歴の要点のみ・詳細は git log と IMPLEMENTED 年表)
 2026-08-14(2回目): **GTロガー=全部実装**(→第113)/**OBS-U1/U3=承認**(g_update ON)/**b2b=Fable案**(部分納品+分散→第113)/**Δt=5案を計画・本番1本のみ**(並行ラン廃)/**POP=案Aで本線前試行**(イベント発生が主眼・厳しければ見送り可)/**所有権O2-O5・アクター残・判断不要小粒=できれば本線前**/新問い5題=計画まで/判断事項の選択肢+材料一覧化を要求。
@@ -64,7 +83,19 @@
 2026-08-07: DP-U2=暫定案C/DP-U3=本線25万/SV-05=③/DP-U4=呼数/B3=換算しない/RW-U1=承認/凍結3本修正=承認(**8/15凍結の正ハッシュ `79a2e549486fe6ab5eea350334cbe37b4c712c12dbf75e41afea617939010d0f`**)/RW運用=スケジューラ。
 2026-08-06 以前: IF-E2=案B/DP-U1=無償/SV残13=採用/PUB-U1/P2=ゾーン別ハイブリッド/NEW-1〜4・ID-U1〜U3 等(git 履歴参照)。
 
+## 3.5 本番開始までの残工程(2026-08-21時点の実行順)
+
+1. **実装の締め(今日8/21)**: FACT-D+INVサブ完了→検収→CRWD+PRICE-B実装→3レーン一括フルゲート→コミット(P4同梱)
+2. **規模検証(今日夕方〜8/22)**: サーバーpull→劣化ckpt-72 resumeプローブ(夕方帯step前後比較・数十分)→フル1日リハ(25k×144step=平均step実測・欠品率8.3%帯/混雑不満分布の較正照合)→**250k縦煙**(init+夕方帯)
+3. **STAB残4項**: 信頼性リハ7本実走・vLLM自動復旧・RSS/ディスク閾値アラート・E4ドライラン
+4. **8/22判定ラウンド**(§3の表J1-J10)→**v2プール再生成**(3職業込み・正典化)→POPリハ→U-10承認→freeze_config
+5. **本番開始**(目標8/22深夜〜8/23昼・最終線8/23夜): nohup起動→別ssh生存確認→Discord/監視配線→day-1チェック(新規フォロー/日/人・belief体積・RSS・step時間)
+- 開始後(ブロッカーではない): 提出物=README+RESULTS骨格+プレゼン構成(8/25ごろ起草)・毎時モニタリング
+
 ## 4. 持ち越し小粒(未解決のみ)
+
+- **新規(第146・FACT-Dサブの副発見)**: commerce の shop_state 開閉状態が checkpoint 未保存=境界が開店遷移 step にちょうど当たると resume が shop_state を 1 行落とす(第80 天気・第62 joint と同型・他の全行一致は実測済み)。修正=開閉状態の checkpoint 搬送 1 欄・本選前の小粒候補
+- **新規(第145)**: ①IMPLEMENTED.mdバッチ年表が第137で停止(第138-145未転記=提出前に整理)②週次特売(小売価格変動の最大経路だが工程不釣合で見送り・PENDING)③待ち行列モデル+CRWD待ち成分(較正数値はリサーチ§9に記録済み・v2)④displacement創発の観測(混雑回避行動→「常連は寛容」統計の自然発生=論文観測ポイント候補)⑤PRICE-B配達員エージェント完全結合=本選後
 
 - ~~第133ウェーブ2予定~~ → **第134で全消化**(A1 AgentRef/A2 vital台帳/watchdog/allow_dirty_outdir宣言/τ移植=analyze_structure+viewer両方)。**新規の残件**: ①**mem.relationsの削減**=AgentRef残サイズの75%(22.9KB/体)。読者2箇所のみ(gossip._seed_knowers/mobility._mutual_closeness)。案(a)=seed_contact_days以内+partner 1件だけ残す(読者の使用範囲と厳密一致・conf配管要) 案(b)=gossip/cohabit両OFF時のみ落とす(finalsは両ON=効かない)→**判断待ち** ②_vitalは設計どおり無制限増(1Mプールで~42MB・checkpoint毎にsidecar搬送=許容と記録)
 - **A9残置: provenance transmissions list の無界性**(第133は counter併設+プロンプト参照差し替えのみ)。読者2(simulation.py:2356のsummary集計・test_rumorsのカスケード再構成)の付け替えとセットで別バッチ。25万×10日で~1億件=12GB級+checkpoint時間単調増
@@ -100,8 +131,8 @@
 二重化指示書3本・認知/物理/DT定義3本・設計議論まとめ(2026-08-02)・サーベイ PDF(原本リポ外・読解=[llm-social-sim-survey.md](docs/research/llm-social-sim-survey.md))。
 統合計画の正典: [dual-mode-observe-verify-plan.md](docs/plans/dual-mode-observe-verify-plan.md)・[cognition-physics-plan.md](docs/plans/cognition-physics-plan.md)・[dayplan-engaged-plan.md](docs/plans/dayplan-engaged-plan.md)・[highfidelity-3d-physics-plan.md](docs/plans/highfidelity-3d-physics-plan.md)・[if-sv-p4-plan.md](docs/plans/if-sv-p4-plan.md)。
 
-### 5.3 日程
-**本選 8/15–8/30**(提出 8/30)・**10日ラン 8/16–8/26**・**8/12-14 フリーズ=仮決定**(2026-08-12 ユーザー明言: 直前まで実装・修正可能。R1 規律は従来どおり厳守)・**8/15-16 診断ラン**(σ 再実測 → θ 再較正 → U-10 確定判定 → 人数最終確定・vLLM 同居実測=DP-U2 案C判定+**犯罪V1/V2 実測**・R_eff/144step RSS 実測=DP-U3・SV-05 seed 効果量・policy_cache resume 呼数差・**信頼性リハーサル7本**)。GPU=A5000 級 ×7枚(単一ノード)。
+### 5.3 日程(2026-08-21更新)
+**提出 8/30 23:59**・**本番10日ラン開始=目標8/22深夜〜8/23昼・最終責任線8/23夜**(ユーザー方針2026-08-16: 日付固定の凍結に執着せず、必要な実装を終えたらできる限り早く開始)。**平均step時間の期限算術**: 平均6分=6日で完走(8/23開始可)/平均10分=10日=完走不能→§3 J1。ユーザー基準(2026-08-20)=「最悪、平均10分ならOK」+完走との整合はJ1で最終決定。GPU=A5000級×7(単一ノード・topology A)。旧記述(8/15開始・8/15-16診断ラン)は履歴。
 
 ### 5.4 本選後(レーン3)
 所有権 O2/O4/O5・chance.py コード削除・場所二層知覚(IDEA⑥)・誤情報構造化フル版(ID-U2)・SUMO 反実仮想(P5)・USD/3D Tiles(DT-U4)・UE5(DT-U2)・org 会計主体化の拡張(倒産・信用線)・SoA 配線・詳細順位は [dt-integration-plan.md](docs/plans/dt-integration-plan.md) §3。
