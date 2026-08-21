@@ -1337,3 +1337,23 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
 - ★規模較正の発見(サブ): 基底capは5-8千体規模の設計値=25k外挿(購入点平均在館≈73)でfood全件飽和(不満+記憶の洪水=イベント洪水の記憶版)。委任範囲(cap)につき対処A採用: finals capを規模側へ暫定置換(food100/cafe60/shop120/nightlife80/service30)+1日リハで帯分布実測→freeze前確定と明記。B案(25kはCRWD OFF)はユーザーが覆せるよう報告に併記。
 - finals適用: crowding ON(暫定cap)・price_schedule(ディナー1.67/HH0.8)・markdown ON。
 - 4レーン(P4/FACT-D/INV/CRWD+PRICE-B)合流フルゲート開始(-n 12・~20分)。緑→スキャン→STATUS→第146コミット→サーバーckpt-72プローブ。
+
+## 2026-08-21 午後 第146コミット(445ca00)+フル1日リハ起動
+- 4レーン合流フルゲート6,989緑+1skip(21分43秒・-n 12)→スキャンCLEAN→STATUS第146→明示パスstaging→コミット445ca00→push(27ファイル+4,457行・新テスト163本)。
+- サーバーpull→smoke_day_fix146起動(25k×144step・finals=修正一式ON: P1/P3/P4物理・E1/PRICE-C/A/B・INV2層+行動化・FACT-D・CRWD暫定cap・seed42=wit2_dayと同条件)。PID 297370・完走監視張り済み。
+- このランが答えるもの: ①夕方帯step時間の前後比較(wit2_day=25-40分/step→物理-81%後の実測) ②日平均step時間=J1(cap設計)の判定材料 ③較正照合(欠品率8.3%帯・BY比・in_back_not_on_shelf=Gruen25%・混雑不満の帯分布→cap確定・staff_coverage・belief体積) ④新機構の健全性(shelf_restock/markdown/stock_order行動の観測)。
+- 完走見込み: 朝昼1-2分×~90step+夕方(改善後)で4-7h=今夜中。→ 明日8/22=250k縦煙+判定ラウンド。
+
+## 2026-08-21 夕 リハ完走(8h15m=日平均3.4分/step)+★INV発注バグ発見→デバッグサブ投入
+- smoke_day_fix146完走(10:02-18:17・144step)。step時間の勝利: 朝昼53step=23分(26秒/step)・午後帯10.8分/step(wit2_day同帯25-40分の~1/3)・夜4.2分/step・**日平均3.44分/step**(mock)=J1のエンジン側は余裕圏。
+- ★供給パイプライン停止を発見: order_staffed/restock_staffed=0(トグルON・staffed 520店)・発注はunstaffed13件のみ(全てstep72)・back_units=0・**empty_shelf_rate 0.755**(現実8.3%帯の9倍)・stock_out 58,596/日。serve=26,834=店員は職場に実在→goods.staff_phaseの発注経路が実機で不発。
+- 解析: 窓設計の欠陥候補=朝7時台(棚満杯)のレビューが窓0を消費・窓1(step72=19時)の再レビューも不発(on_duty空/_order_one全False/窓id比較のいずれか=切り分け中)。restock_staffed=0はBY空の帰結(発注が真因)。
+- デバッグサブ投入(Opus): 実機再現→根本原因の数字特定→修正(発注トリガを「棚薄フラグ×今窓未発注」でも発火=店主の行動として正しい形へ)→統合テストで発火を固定。
+- 他の数字: belief_update 238k/24h(wit2_day 261k/12hから毎時半減=FACT-D+E1効果はあるがstock_out洪水が相殺)・markdown 4件(棚が枯れて売る物がない世界の帰結)・CRWD検証は供給修正後に持ち越し。
+
+## 2026-08-21 夜 発注バグ根治(order_on_low)=第147・フルゲート走行中
+- デバッグサブ完走: 根本原因=staff_phase③のseen[node]=winが_order_store**前**に書かれ「見るだけレビュー」が窓を焼く。各店の初回レビューは出勤直後/窓頭=棚が最も満杯の瞬間→_order_one全False→以後その窓は再発注不能(実機トレース: 窓0を121店が朝で消費・窓1をstep72の1stepで42店消費・以降order_staffed凍結・_goods_low 8→113店)。仮説(a)on_duty空/(c)窓id/(d)早期returnは反証(on_duty 122店実在)。※リハのstart_tod=00:00につきstep72=正午(19時ではない)と訂正。
+- 修正: conf order_on_low(既定false=バイト同一)。ON=窓の意味を「窓ごとに1回**発注**」へ・棚薄フラグ駆動の_order_low_stores(イベント駆動=②補充と同じ有界性・全店走査なし)・成功時のみ_goods_order_done[node]=win(checkpoint搬送=resume枯渇窓の復活防止)・unstaffedは同宣言でフォールバック。
+- 検証(600体×144step同seed): stock_order 5→20・delivery 18→94・back_units 7→142・empty_shelf_rate 0.256→**0.130**・stock_out 302→148。端到端統合ピン(発注→配送→BY→補充→棚回復をイベント列で固定)+新10テスト=51本・スイープ275緑。
+- 残較正(サブ申告): 供給上限=2発注/日×order-up-to(food104個/日/店)→25kリハで需要超過ならreview_every_steps 72→24(6便/日)かcapacityが調整弁。夜間BYの棚出し不能=Gruen的に正しい(朝の欠品率を構造的に上げる)。
+- finalsにorder_on_low: true適用。フルゲート走行中→緑でスキャン→STATUS第147→コミット→サーバーpull→終夜リハ(fix147)→明朝分析→250k縦煙。
