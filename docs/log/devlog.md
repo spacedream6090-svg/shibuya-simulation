@@ -1394,6 +1394,20 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
 - **さらに2欠陥**: (A)本選10日窓(8/22-31)は土日4日が完全死亡経済=初日から48時間誰も働かない。census(organizations_shibuya_census.json)は**土曜勤務50.4%(112,412人)・日曜25%**をshift_pattern.daysで宣言済みだがwork._window()がdaysを黙って捨てている(第109がpresence層で直した同型バグの1層下)。(B)presence曜日(day%7・day0=月)と暦曜日(8/22=土)が**5日位相ずれ**=初日は平日群衆×土曜routine。in_part_time_windowも第3の時計。
 - **サブの最小修正案(差分提示のみ・未適用)**: ①censusのdays→agent.work_dow(bind_workplace・checkpoint/pool搬送要) ②routine暦ゲートでwork_dow宣言優先(無宣言=従来) ③_wage_worked_todayの複製ゲートも同修正 ④presence時計をcalendar_weekday新キー(既定False=golden不変)で整合。①-③は週末挙動が設計として変わる=goldenは既定キーで守る。ユーザー判断待ち。
 - **ユーザー決定: フル修正①-④+検証は短プローブのみ**(土曜+月曜24step煙→今夜本番開始の線を維持)。実装サブ投入→52分で完走: 変更13ファイル+新テスト75本(既存無修正)・関連787緑・新キー2(respect_work_days/calendar_weekday・既定false=golden不変・finals=true)・パーサはpresence→calendarへ移設1本化・work_dowは_MISC_FIELDS搬送・home_awake/plan_schema/part_timeの「別の時計」3つも同キー内で同期。判断メモ5(L5 duty層=duty_pattern.days)は追加指示(駅員・警察が土日に消える穴=決定の範囲内)→サブ再開中。
+## 2026-08-22 午後 実装サブ完走(声の段階+cap+ベクトル化/退避梯子+自然削除)→検収へ
+- 63分で両レーン完了: 14ファイル+新テスト2本(55テスト・897行)。新キー: speech_levels(normal 5/10m・raised 12/20・shout 30/40・既定OFF)/c2_neighbors_max(0→finals15★)/S15=20★・S7=2000をfinals新規投入/relations_evict(lru→finals tiered)/relations_forget(OFF据え置き)。写像表: shout=severity≥S_SEVERE・raised=イベント主催者が会場+街頭生業(演説/ミュージシャン/募金/キッチンカー)・他全てnormal(ティッシュ配り等は一対一=normal側へ・客引きは無主体イベントで対象外)。
+- マイクロベンチ: n=10,000高密度セルで887→28.5µs/人(**31.2倍**)。ベクトル化の鍵=中心セル単位の9セル連結キャッシュ+外接正方形前フィルタ(厳密等価)。ON時追加RAM~80MB@250k。
+- n=200参考実測: 声の段階でhear−77%・conversation−56%・capはこの規模でbinding無し=計画どおり「物理層が主役・capは高密度保険」。
+- 設計判断4件: ①test_ram_guardsピン2本反転(「finalsに無いこと」→「宣言値20/2000ちょうど」・事前登録は計画書2本が担う)=承認 ②**S15がATT層Aの前段(列挙)で効く順序に**=層Aは最寄り20人からtop-k選抜・RESULTS開示対象に追加=承認 ③affects_k宣言(speech/c2=True・relations系=False+fingerprint possible)=承認 ④台帳類は親担当=本記録。
+- 検収: フルゲート実行中。緑→スキャン→第149→push→pull→**旧プローブ(土曜/月曜・40m旧コードで4h級)をkillし、新コード(声の段階ON)で暦検証+スイープを統合実施**→250k再煙→freeze判断。
+- ユーザー発案: 発話capに段階を=声の大きさで聞こえる範囲が変わる→**採用**(音響リサーチがそのまま根拠: 通常声5m屋外/10m屋内・張り上げ12/20・叫び30/40・全て決定論写像=LLM申告はV2)。物理層(声の届く範囲=×1/64削減の主役)×認知層(nearest-K=保険)の2層分離に設計が改善。hearer-cap-plan §2作用点0+§6改訂(スイープ3構成: capのみ/段階+K15/段階+K30)。V2=CRWD在館数→局所騒音→radius縮小(Lombard逆写像)。
+- ユーザー決定: 発話レーンGO+関係台帳レーンa+b+c全部GO(退避梯子tiered・自然削除OFF実装・relations_max=2000)。実装サブ投入(3-4h・両レーン順次・コミット禁止)。完了後: フルゲート→コミット→サーバーpull→25kスイープ→値決定→250k再煙→≤12分/stepでfreeze→今夜本番開始。
+
+## 2026-08-22 昼 ユーザー発案「cap+tier階層化」評価→relations-tier-plan.md起案
+- ユーザー案「capはすれ違いも含め容量爆発では/tier階層化で管理を」に厳しめ評価(依頼): 前提誤り2つ=①すれ違いは台帳外(C3=_c3_pass有界2000・実源はhear経路1,143人/発話)②tierは三重に実装済み(G2 tier0-3/dunbar入れ子層5-15-50-150×0.34+休眠+rekindle 0.5=Levin2011/decay_day)でfinals ON。ただし核心の直感は正: S7 LRUが価値盲目+**洪水エントリ(closeness無)は減衰も休眠も素通り**(decay_dayがcloseness保持者のみ走査・削除機構はS7 LRUのみ)と実証。
+- リサーチ: Dunbar層=感情近さ×接触頻度・層比~3(Sutcliffe2012)・Roberts&Dunbar縦断=不接触で単調減衰・Milgram1972 familiar strangers・Granovetter=退避過多はk*研究の対象(弱紐帯伝播)を殺す→capは保険水準。
+- 計画: relations_evict新キー(既定lru=バイト同一・finals=tiered)退避梯子=洪水→tier0弱→dormant→tier1・tier2+不可侵/自然削除relation_forget(既定OFF実装のみ=REL完成形)/relations_max=2000提案。V2=familiar strangerブリッジ・hear入場門・dunbar scale再較正。ユーザー判断待ち(a-d)。
+
 ## 2026-08-22 昼 第148コミット(暦バグ根治)+S7詳細説明+cap設計協議
 - フルゲート**7,080緑+1skip(20分52秒)**(前回6,999+新81本=勘定一致)→スキャンCLEAN→STATUS第148→コミット→push→サーバーpull→プローブ(土曜staffed発火+賃金>0確認)へ。
 - ユーザー回答: cap計画=「設計変更してから」・cap値=未決定・S7=詳細説明要求→S7の中身(relations台帳=名前/回数/last_step/一言40字/closeness・LRU退避実装済み・副作用=疎遠な知人を忘れる/LRUはcloseness不参照・聴衆cap導入後は扇出激減でS7は必須→保険に格下げ)を説明。cap設計の可動軸4つ(値の決め方/適用範囲/radius/選抜規則)を提示し「機構だけ実装→25k K感度スイープ→データで値決定」を推奨提案。返答待ち。
