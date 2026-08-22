@@ -95,6 +95,8 @@
 
 ## 4. 持ち越し小粒(未解決のみ)
 
+- **新規(第150・count_hearersサブの副発見)**: 第149 _hearers_boundedのベクトル化経路がnp.hypot==math.hypotを前提(docstring明記)だが実際は1 ULP差16%(第143で既知の罠)。ON経路のみ・実座標でmeasure-zero・同一ラン内は決定論なのでR1違反ではないが、count_hearersの±4 ULP帯裁定方式を本選後に移植してdocstring訂正。
+
 - **新規(第146・FACT-Dサブの副発見)**: commerce の shop_state 開閉状態が checkpoint 未保存=境界が開店遷移 step にちょうど当たると resume が shop_state を 1 行落とす(第80 天気・第62 joint と同型・他の全行一致は実測済み)。修正=開閉状態の checkpoint 搬送 1 欄・本選前の小粒候補
 - **新規(第145)**: ①IMPLEMENTED.mdバッチ年表が第137で停止(第138-145未転記=提出前に整理)②週次特売(小売価格変動の最大経路だが工程不釣合で見送り・PENDING)③待ち行列モデル+CRWD待ち成分(較正数値はリサーチ§9に記録済み・v2)④displacement創発の観測(混雑回避行動→「常連は寛容」統計の自然発生=論文観測ポイント候補)⑤PRICE-B配達員エージェント完全結合=本選後
 

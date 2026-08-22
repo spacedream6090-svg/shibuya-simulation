@@ -1394,6 +1394,17 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
 - **さらに2欠陥**: (A)本選10日窓(8/22-31)は土日4日が完全死亡経済=初日から48時間誰も働かない。census(organizations_shibuya_census.json)は**土曜勤務50.4%(112,412人)・日曜25%**をshift_pattern.daysで宣言済みだがwork._window()がdaysを黙って捨てている(第109がpresence層で直した同型バグの1層下)。(B)presence曜日(day%7・day0=月)と暦曜日(8/22=土)が**5日位相ずれ**=初日は平日群衆×土曜routine。in_part_time_windowも第3の時計。
 - **サブの最小修正案(差分提示のみ・未適用)**: ①censusのdays→agent.work_dow(bind_workplace・checkpoint/pool搬送要) ②routine暦ゲートでwork_dow宣言優先(無宣言=従来) ③_wage_worked_todayの複製ゲートも同修正 ④presence時計をcalendar_weekday新キー(既定False=golden不変)で整合。①-③は週末挙動が設計として変わる=goldenは既定キーで守る。ユーザー判断待ち。
 - **ユーザー決定: フル修正①-④+検証は短プローブのみ**(土曜+月曜24step煙→今夜本番開始の線を維持)。実装サブ投入→52分で完走: 変更13ファイル+新テスト75本(既存無修正)・関連787緑・新キー2(respect_work_days/calendar_weekday・既定false=golden不変・finals=true)・パーサはpresence→calendarへ移設1本化・work_dowは_MISC_FIELDS搬送・home_awake/plan_schema/part_timeの「別の時計」3つも同キー内で同期。判断メモ5(L5 duty層=duty_pattern.days)は追加指示(駅員・警察が土日に消える穴=決定の範囲内)→サブ再開中。
+## 2026-08-22 夕方 「働く街」の新支配コスト判明=物理59.6%(火炎図2枚目)→2レバー投入
+- スイープ3構成が全て同速(~15分/step・声の段階/capの効果なし)→py-spy 25k夕方(prof_25k_work・第149込み): **物理59.6%**(_run_zone 42%+ORCA 19.2%=夕方ラッシュの路上人口×12,000サブステップ)・**channels.observe→hearers_of 15.8%**(G観測が「声の届く人数」のためだけに40m圏リスト構築)・decide 17.2%(正常)。**C2会話は火炎図から消えた=第149は成功**。従来速度実測が全て死んだ土曜のものだった帰結が物理に出た。
+- レバー1(実施): finals dt_sub 0.05→0.1(3ゾーン)=サブステップ半減。ベンチ品質実測はdt=0.1 regimeで取得済み=検証済み領域への引き上げ(リスク表の事前宣言レバー・要ユーザー追認)。
+- レバー2(サブ投入): channels.py:322をcount_hearers(リスト構築なし・値はバイト一致)へ。
+- 運用: vert3打ち切り(init 1.5h=CPU競合・測る対象が変わるため)。スイープ2本(capk15/spk15)は力学感度+土曜staffed検証用に継続。修正合流後にフルゲート→第150→vert4(250k再々煙)→freeze判定。
+- レバー2完了(サブ22分): count_hearers(±4 ULP帯裁定=np.hypotとmath.hypotの1ULP差16%を正しく処理・第143の既知罠)・観測sha256一致のA/B検証・27テスト・×12.6-16.9(密集セル)。★サブ指摘: 第149 _hearers_boundedのベクトル化も同前提の理論穴(ON経路のみ・実座標でmeasure-zero・docstring誤記)→PENDING小粒へ(band方式の移植は本選後)。フルゲート走行中。
+
+## 2026-08-22 午後 第148暦修正の白判定(月曜プローブ遺言データ)+第149コミット(f1f05b7)
+- 打ち切った月曜プローブのflush済みstep0-5: **serve staffed 857件**(unstaffed 568を上回る)+**stock_order 5件**。fix147(修正前)は144step全体でstaffed 0だったので**暦修正=白**。土曜側はスイープ(土曜18時帯)で確認。
+- 第149: フルゲート7,135緑+1skip(33分57秒)→スキャンCLEAN→コミットf1f05b7(20ファイル+1,864行)→push→サーバーpull。旧プローブ2本kill→25kスイープ3構成(capk15/spk15/spk30・夕方24step)並列起動。
+
 ## 2026-08-22 午後 実装サブ完走(声の段階+cap+ベクトル化/退避梯子+自然削除)→検収へ
 - 63分で両レーン完了: 14ファイル+新テスト2本(55テスト・897行)。新キー: speech_levels(normal 5/10m・raised 12/20・shout 30/40・既定OFF)/c2_neighbors_max(0→finals15★)/S15=20★・S7=2000をfinals新規投入/relations_evict(lru→finals tiered)/relations_forget(OFF据え置き)。写像表: shout=severity≥S_SEVERE・raised=イベント主催者が会場+街頭生業(演説/ミュージシャン/募金/キッチンカー)・他全てnormal(ティッシュ配り等は一対一=normal側へ・客引きは無主体イベントで対象外)。
 - マイクロベンチ: n=10,000高密度セルで887→28.5µs/人(**31.2倍**)。ベクトル化の鍵=中心セル単位の9セル連結キャッシュ+外接正方形前フィルタ(厳密等価)。ON時追加RAM~80MB@250k。
