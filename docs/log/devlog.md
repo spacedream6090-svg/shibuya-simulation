@@ -1418,6 +1418,12 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
 - サブ検収: フルゲート7,209緑+1skip(=7,162+新47・既存無修正)・スキャンCLEAN(計画書の既存キリル1字HITも無害化)・新キー2は層1(純最適化・affects_k=False)宣言。※親側で検収フルゲート再走中。
 - 運用合意事項: friends_cacheは**初回起動では効かない**→本番前の空焚き=250k再煙がそのままキャッシュ焚きを兼ねる(finals confのcache_dir設定済み)。cell_m=5.0の×20はスクランブル級密度でのみ・250k実測後に最終判断。
 
+## 2026-08-23 未明 vert5もstep0未了(77分)→py-spy第3ラウンド=真犯人はdecideのcompany列挙
+- 第151コミット(adb9ea2・検収フルゲート7,208緑+1赤=init_follows時間比テストの-n12負荷揺れ・単独0.45s緑=非回帰判定)→vert5起動。**friend cacheが機能**: init 59分(構築+保存)→py-spy再走では**4分**(ロード再生)=91x系列の実証。
+- vert5もstep0が77分未了→即py-spy(初のキャッシュ高速サイクル)→**真犯人=_phase_decide_batched→_decide_g:3067の`company=hearers_of(40m全列挙)`が62.6%**。S15正典が「company用途は不触」と明示的に除外していた口が250kで主犯化。ただし_decide_g内のcompanyは`if company:`(drive加算)と`has_company=bool()`の**ブール2箇所のみ**=count_hearers>0への置換がバイト同一で成立(第150と同型)。C2残存24.2%(二層索引の門が中密度で粗経路に落ちる帯・argpartition 14.7%)。**物理はtop30に不在**=step0では軽い(step1+の移動で要再測)。
+- 修正サブ投入(30分想定)→フルゲート→第152→vert6(initは~4分)→judgment。
+- **第152実装完了(サブ74分)**: 実コード3行(count_hearers>0置換)。同値証明が丁寧: AST機械確認(companyのリスト消費者ゼロ・hearers_of呼び出し消滅)・15体×144step A/BでL1完全一致・gt_logger構成200stepで8 parquetバイト一致・分岐両側実行をassert・ソースレベル回帰ガード。ベンチ200k=19.8s→2.0s(9.7x)。補足: count経路のnumpyキャッシュで+52MB/step(step毎再構築で成長なし・channels ONなら追加ゼロ)=許容。サブ側フルゲート7,212緑+1skip(=7,209+3)。gt_logger[memory]の1赤はベンチ並走時のみの負荷flake(単独4/4緑・クリーン再走全緑)。親側検収ゲート走行中→緑で第152コミット→vert6。
+
 ## 2026-08-22 午後 第148暦修正の白判定(月曜プローブ遺言データ)+第149コミット(f1f05b7)
 - 打ち切った月曜プローブのflush済みstep0-5: **serve staffed 857件**(unstaffed 568を上回る)+**stock_order 5件**。fix147(修正前)は144step全体でstaffed 0だったので**暦修正=白**。土曜側はスイープ(土曜18時帯)で確認。
 - 第149: フルゲート7,135緑+1skip(33分57秒)→スキャンCLEAN→コミットf1f05b7(20ファイル+1,864行)→push→サーバーpull。旧プローブ2本kill→25kスイープ3構成(capk15/spk15/spk30・夕方24step)並列起動。
