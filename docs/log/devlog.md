@@ -1357,3 +1357,44 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
 - 検証(600体×144step同seed): stock_order 5→20・delivery 18→94・back_units 7→142・empty_shelf_rate 0.256→**0.130**・stock_out 302→148。端到端統合ピン(発注→配送→BY→補充→棚回復をイベント列で固定)+新10テスト=51本・スイープ275緑。
 - 残較正(サブ申告): 供給上限=2発注/日×order-up-to(food104個/日/店)→25kリハで需要超過ならreview_every_steps 72→24(6便/日)かcapacityが調整弁。夜間BYの棚出し不能=Gruen的に正しい(朝の欠品率を構造的に上げる)。
 - finalsにorder_on_low: true適用。フルゲート走行中→緑でスキャン→STATUS第147→コミット→サーバーpull→終夜リハ(fix147)→明朝分析→250k縦煙。
+
+## 2026-08-21 深夜 第147コミット(ded6dd8)+終夜リハ起動
+- ユーザー決定: 「今夜圧縮スタート/終夜リハ→明日夜開始/縦煙前倒し」の3択で**当初案(終夜リハ→8/22夜開始)**を選択。今夜圧縮スタートの実現性(深夜1-3時・v2再生成/250k init/vLLM立ち上げの未知数つき)とday-1ゲート代替案は提示済み。
+- 第147検収: フルゲート6,999緑+1skip(21分33秒)→スキャンCLEAN→STATUS第147→コミットded6dd8→push。
+- サーバーpull→smoke_day_fix147起動(25k×144step・order_on_low含む修正一式ON・seed42)。PID 317227確認・完走監視張り済み。完走見込み=明朝6時前後。
+- 明朝の分析観点: ①empty_shelf_rateが現実帯(8.3%±α)へ着地するか ②供給天井(food104個/日/店)の充足 ③CRWD帯分布(閑散罰/無罰/ramp/飽和シェア)→cap確定値 ④belief体積の低下幅 ⑤staffed/unstaffed比・markdown件数の健全性。→8/22: 250k縦煙→判定ラウンドJ1-J10→v2再生成→STAB→freeze→深夜本番開始。
+
+## 2026-08-21 23:55 fix147午後帯 中間判定=**発注バグ修正は機能**(step83時点・同帯66-83比較)
+- 進捗: step 83/144(23:51)・午後帯~4.7分/step・完走見込み明朝4-5時。プロセス生存(PID 317227・経過4h36m)。
+- 供給パイプライン(steps66-83・fix146→fix147): 発注成立b2b_trade 12→**86**・棚薄フラグstock_low 13→**130**・配送delivery_trip 13→**130**・BY入庫restock 12→**86**・棚出しshelf_restock 17→**107**(7-10倍)。fix146の「窓を焼いて発注凍結」が解消=order_on_low修正の白判定。※イベントkindはstock_orderでなくb2b_tradeとして記録される(前回「stock_order 0」報告の正体も同じ計上先の混同を含む→比較はb2b_tradeで統一)。
+- stock_outは同帯でほぼ横ばい(15,039→14,230・−5%)・トップ店不変(つけめんTETSU 776≒775)・分布広がり260→246店=超人気店の欠品は供給天井(2発注/日×order-up-to=food104個/日/店)由来で構造的。fix146の崩壊加速はstep84+(84以降39,889件)なので最終差は完走データで判定。
+- 残: 完走後にempty_shelf_rate(summary.goods)・step84+のstock_out差・CRWD帯分布→cap確定。中間チェックb2m287utq(~01:00)と完走監視は継続。
+
+## 2026-08-22 01:07 fix147判定帯66-100確定=**修正・白**(step101時点)
+- 判定帯66-100(fix146→fix147): 発注b2b_trade 12→**174**・配送176・BY入庫174・棚出し229。決定打=**凍結加速帯84-100でfix146は発注/配送/入庫すべて0件・棚出し3件のみ(完全凍結)に対しfix147は発注88・配送46・入庫88・棚出し122=パイプライン生存**。order_on_low根治を実データで確定。
+- stock_outは29,295→27,526(−6%)=残りは超人気店の供給天井(food104個/日/店)問題でバグと別軸。調整弁(review_every_steps 72→24等)は明朝の完走分析で提案。
+- 進捗: step101/144(01:06)・~4.2分/step・完走見込み~04:10。
+
+## 2026-08-22 01:15 ユーザー発案「エージェントに発注等の権限を」への評価
+- 回答: 思想は設計原則(agent-driven world)と一致で賛成・**本番投入は反対**(①今夜のリハが検証していない系になる ②現実の小売は自動発注が主で現行が現実整合 ③LLM数量委任は較正リスク=SNC宣言過剰の前例)。現行も発注は当番店員の行動に帰属・欠勤なら発注なし=帰属は既に実装済みで、足りないのは判断核のみと整理。
+- 中間案: 当番の日次内省に「増発注/係数0.5-1.5」宣言を相乗り(新規呼びゼロ・R9同型の境界つき・既定OFF・3-4h見積)。判定ラウンドに**J11**として追加し「見送り(V2本命・推奨)/中間案」を判断してもらう。V2では価格・シフト・仕入先まで含む経営エージェントへ拡張=組織創発目標と接続。
+- **ユーザー決定(01:2x): J11=見送り確定**(「入れない方向性でいく」)。コード・conf無変更のためJ11起因の追加検証ランは不要=今夜のfix147リハがそのまま本番前検証として有効。残る検証系ランはJ11と無関係の既定分のみ(fix147完走~4時・250k縦煙・v2プール切替煙・信頼性リハ)。
+- 「いまのfixリハは必要?」→**完走推奨で回答**: 止めても浮く時間は工程に効かず(サーバー朝まで遊休)、残り40step=夜帯がCRWD cap確定・欠品率着地(summary)・markdown初実走の唯一のデータ源。バグ発見で既に元は取れている。
+- **ユーザー指示: 完走後すぐ250k縦煙を回す**→サーバーにチェーン設置(chain_250k.sh・watcher PID 334072): fix147終了検知→60秒後に`run.n_agents=250000 pool.present_cap=250000 run.n_steps=12 run.start_tod=18:00 run.name=smoke_250k_vert`(mock・finals_observe)を自動起動。事前確認=プール100万体分・RAM空き210GB・ディスク3.6TB。夕方帯はstart_tod=18:00の12stepで直接測る(init時間+RSS+夕方step時間が測定対象)。ローカル監視b9y2wc03f=250kの初step生成orエラーで通知。
+
+## 2026-08-22 朝 fix147完走+250k縦煙スタック→py-spy再走+★新バグ発見(staffed経路死)
+- fix147完走: 平均**3.46分/step**(8.3h/144step・mock 25k)・peak RSS 7.3GB・belief_update 255k/24h(wit2_dayの毎時比半減=FACT-D+E1効果)・markdown 295件(fix146の4件から復活)・stock_out 54,097(fix146比−7.7%)。
+- **250k縦煙(1回目)スタック**: chain 3:37自動起動→init成果物4:18-19(41分)→以後5時間、parquet出力ゼロ・単一スレッド100%CPU・RSS 7.6GB。ptrace_scope=1でpy-spy attach不可(sudoパス要)→**9:20 kill→py-spy record同梱で再起動**(smoke_250k_vert2・n_steps=6・start_tod=18:00・py-spy親ラップ=prof_attと同方式)。収穫タイマー~11:05(byzesi9pm)。step1が5時間級か「flush周期10stepで見えないだけ」かは火炎図で判定。
+- **★新バグ(fix147完走データで発見)**: summary.goods=order_staffed **0**・restock_staffed **0**・全供給行動が無人フォールバック(markdown 295/295・shelf_restock 364/364・order 226/226がagent_id<0)。staff_coverage=0.66(520/785店に担当あり)なのにstaffed経路が144step一度も発火せず→**有人店520は棚出し・発注とも入らず飢餓**=empty_shelf_rate 0.584(深夜スナップ・現実帯8.3%の7倍)の主因。600体検証ではstock_order 20件=staffed動作実績→25k実環境のみで壊れる条件(エンコーディング不一致/プールwork_node/窓/呼び出し位置のいずれか)。Opusデバッグサブ投入(カスケード表で根本原因確定・修正差分は提示のみ・コミット禁止)。
+- CRWD: on_store_crowdingイベント**0件**=25kでは暫定cap(250k規模想定)に一度も飽和せず(想定内のスケール差)。cap確定用の帯分布はL1在館再構成が必要→staffedバグ決着後に実施。
+
+## 2026-08-22 午前 ★根本原因確定=「土曜日ゲート」(デバッグサブ・カスケード実測)
+- **根本原因**: finals_observe.yaml:293 `start_date: "2026-08-22"`=**土曜**×`weekday_work: true`→routine.py:344-346の暦ゲートで**全個体・全144stepでin_work_window=False**。ckpt-72カスケード実測: 25,000→(loc/生存)23,217→(work_nodeあり)8,359→(職場に在場)151→(店)82→**(暦ゲート)0**。出勤自体が起きないため在場151は偶然の同所。店staff潜在は正午4,667人/521店=staff_coverage 0.6624と正確に一致=機構配線は全て正しく、暦ゲート1つが全滅させていた。
+- **波及(サブ実測)**: serveも31,387件**全て**agent_id=-1(無人POSデバイス記録)=work_service在勤も全滅。**wage_out_total=0.0**=最近の全ラン(8/22土 or 8/16日開始)で賃金が一度も支払われていない。第147コミット文の「on_duty 122店実在・serve 26,834件」は誤り(serveは無人記録・on_duty空仮説が正しかった)→order_on_lowは実在するが二次バグの修正だった。600体検証が通ったのはstart_date:"auto"のconf=平日(金)起動だったため。
+- **さらに2欠陥**: (A)本選10日窓(8/22-31)は土日4日が完全死亡経済=初日から48時間誰も働かない。census(organizations_shibuya_census.json)は**土曜勤務50.4%(112,412人)・日曜25%**をshift_pattern.daysで宣言済みだがwork._window()がdaysを黙って捨てている(第109がpresence層で直した同型バグの1層下)。(B)presence曜日(day%7・day0=月)と暦曜日(8/22=土)が**5日位相ずれ**=初日は平日群衆×土曜routine。in_part_time_windowも第3の時計。
+- **サブの最小修正案(差分提示のみ・未適用)**: ①censusのdays→agent.work_dow(bind_workplace・checkpoint/pool搬送要) ②routine暦ゲートでwork_dow宣言優先(無宣言=従来) ③_wage_worked_todayの複製ゲートも同修正 ④presence時計をcalendar_weekday新キー(既定False=golden不変)で整合。①-③は週末挙動が設計として変わる=goldenは既定キーで守る。ユーザー判断待ち。
+- **ユーザー決定: フル修正①-④+検証は短プローブのみ**(土曜+月曜24step煙→今夜本番開始の線を維持)。実装サブ投入→52分で完走: 変更13ファイル+新テスト75本(既存無修正)・関連787緑・新キー2(respect_work_days/calendar_weekday・既定false=golden不変・finals=true)・パーサはpresence→calendarへ移設1本化・work_dowは_MISC_FIELDS搬送・home_awake/plan_schema/part_timeの「別の時計」3つも同キー内で同期。判断メモ5(L5 duty層=duty_pattern.days)は追加指示(駅員・警察が土日に消える穴=決定の範囲内)→サブ再開中。
+## 2026-08-22 昼 第148コミット(暦バグ根治)+S7詳細説明+cap設計協議
+- フルゲート**7,080緑+1skip(20分52秒)**(前回6,999+新81本=勘定一致)→スキャンCLEAN→STATUS第148→コミット→push→サーバーpull→プローブ(土曜staffed発火+賃金>0確認)へ。
+- ユーザー回答: cap計画=「設計変更してから」・cap値=未決定・S7=詳細説明要求→S7の中身(relations台帳=名前/回数/last_step/一言40字/closeness・LRU退避実装済み・副作用=疎遠な知人を忘れる/LRUはcloseness不参照・聴衆cap導入後は扇出激減でS7は必須→保険に格下げ)を説明。cap設計の可動軸4つ(値の決め方/適用範囲/radius/選抜規則)を提示し「機構だけ実装→25k K感度スイープ→データで値決定」を推奨提案。返答待ち。
+- **250k火炎図収穫(10:33・71分サンプル)**: 犯人2つ。**init 48.5%=friends.build_friend_graph**(:264 lambda37.9%+_score20.8%=35分・一回限り=許容)。**step 43.1%=_phase_c2→conversation.run_phase→perception.hearers_of**(:146→PerceptIndex.hearers :98-103)=**step時間のほぼ100%がC2聴衆列挙**(run_step 43.1%のうちC2 43.1%=他phaseはサンプル0)。34分でstep0のC2すら未了=夕方250kは**≥35分/step**。25kでC2=6.1%だったものが密度×人数で~×100(S7予告の物理版)。ATT層A(salience k4)は書込側の有界化で列挙コスト自体は素通し=列挙段のnearest-K cap+bucketベクトル化が本丸。留意: 従来の全step時間実測は「誰も働かない土曜」の観測=平日はさらに重い側に振れる。
