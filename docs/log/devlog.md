@@ -1545,3 +1545,14 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
 - **freeze貼り込み**: finals_observe.yaml model:へ finals-vllm7 の backend/name/servers+timeout_s/format を手順書どおり貼付。checklist(plan_max_tokens 896・api_mode chat・plan_temp 0.3/recall_temp 0.2・tiers 5+2)=既存温存を確認。mockへ戻す縦煙経路=CLI model.backend=mock model.name=mock-v0 をconfコメントに明記。
 - ピン反転1件: test_launch_guard「profile単独=mock(F5の危険)」→貼り込みで危険自体が消えたため「profile単独=vllm・dotlistでmockへ畳める」へ意図保存で反転(29緑)。他の finals読取テスト191緑。
 - 次: コミット→pull→**実LLM煙(250k夕方3step・本番プロファイル素のまま)**=mock比のLLM加算初計測+本番ドレスリハーサル。
+
+## 2026-08-24 04:20 実LLM煙 完走=合格・freeze工程完了→朝の最終確認2点へ
+- **smoke_250k_llm1完走**: elapsed 3,730s=**62分/init+3step**(~20分/step)。vert9 mockの同帯60分と**±0分=実LLM加算はstep時間に完全に埋没**(需要実数160呼/step×艦隊バッチが20分級stepに吸収)。llm_calls 480・cache_hits 0=全て新規実推論・エラー0・RSS 9.9GB。
+- **応答実在の証拠**: 最終entryは14B planの完全な日本語JSON(mood/carry/blocks 9欄構造・parse可能)=chat経路・tiers配線とも本番相当で機能。
+- **freeze工程完了**。本番開始前の残り=ユーザー最終確認2点のみ: ①v2プール(推奨=v1維持: v2は2系統分岐が未解決(第133)・v1は全リハ検証済み) ②開始GO。開始後の初動=day-1監視(devlog第140補=毎時モニタ・新規フォロー/日/人チェック等)。
+
+## 2026-08-24 05:00 ユーザー決定=v2プール切替→第133分岐を解決・正典v2配置(第155補2)
+- **ユーザー回答(AskUser)**: プール=**v2へ切替**(推奨のv1維持を覆す)・開始GO=「確認したいことがある」(内容未着=返信待ち)。
+- **第133「2系統分岐」解決**: 現HEADからサーバー上で決定論再生成(--out /tmp別置き=既存不触・82秒)→**L2 138,759/L4 793,259=ローカル8/15系統=設計出勤率0.62に一致=正**。サーバー8/16生成(L2 157,715=0.703)=stale確定→data/persona_pool_v2_stale_20260816へ退避し、正規パスへ現HEAD再生成を配置(meta照合済み)。
+- conf: pool.dir→data/persona_pool_v2(解決経緯・v1へ戻す1行をコメント記載・confの効果表は8/24 metaと一致を再照合)。ピン188緑・スキャンCLEAN。
+- 次: コミット→pull→**v2検証煙**(250k夕方3step・実LLM・v2 friend cache構築~40分込み=第133の「切替前にfraction 0.1縦煙」相当を250k実機で)→ユーザーの確認事項に回答→開始GO待ち。
