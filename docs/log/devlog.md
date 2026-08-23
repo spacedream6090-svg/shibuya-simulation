@@ -1524,3 +1524,24 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
 - **レーン2完納(締切前)**: route_arrival実装=残り経路距離≤移動予算(_phase_moveと同一式・_congestionは既存_graph_speedと同じ1step遅れを正直併記)・入場位置=ゲート・到着サブ時刻はpending列(到着前は_admit不可視=O(W)空振りなし・同時刻はid昇順=先着順)・arrive_sはused_sのみ加算(★初版はelapsed_sにも足してdwell 244sに化けた→実測で捕捉し分離)・新規状態ゼロ=checkpoint不変。**実測(n=2000): 捕捉率99.3%(euclid200=27.6%)・所有M 17.4x減・physics 4.95x(小規模下限=固定費支配・250kではM比~17xへ)・dwell 600→33.8s(実横断時間)・破綻ゼロ・退場step一致0.629・喪失60/1051対(euclid200=548)**。密度1.7人/m²帯は2000体mockでは判定不能=250k夕方煙で測ると正直申告。sub_steps_totalほぼ不変=G1(張り付き)はC1と別レバーと明記。新30テスト・既定""でL1一致・3方式resume==straight・関連491緑。
 - 親合流: ①summary provenanceパッチ=physics.provenance(scalars+continuity+by_zone_last_step+levers・ゾーン未使用はNone=キー不出)+simulation.py finalize 1ブロック+新test_physics_provenance.py 3本(既存test_summary_provenance④のAST走査が配線を自動検知=WIRED表は不触で済んだ)=20緑 ②conf適用=perception_fine_gate 500→**64**(A6・理由と撤退路をconfに記載)+physics_levers節(ownership_mode: **route_arrival**・min_gap_every: **10**・実測表と撤退路1行をconfに記載) ③ピン76緑(ram_guards/contracts/registry_modes) ④スキャンCLEAN ⑤フルゲート走行中(bd93oaf9k)。
 - 緑→STATUS第155→コミット→push→サーバーpull→**C1確認煙(250k夕方6step・vert9)**→明朝freeze→vLLM→本番開始。
+
+## 2026-08-24 01:15 第155コミット(94f1205)+vert9起動+vert8完走=基準線確定
+- フルゲート7,369緑+2赤の切り分け: ①test_field_far_cost_is_flat_in_density=単独3.95s緑=-n12負荷flake(既知類型・非回帰) ②test_finals_profile_declares_the_gate=fine_gate 500ピン→**意図的変更への追随**(64へ更新・理由コメント付き)→ファイル41緑。実質7,371+1skip。
+- スキャンCLEAN→STATUS第155(35回目)→コミット94f1205(19ファイル+3,058行)→push→サーバーpull→**vert9起動**(250k夕方6step・第155全載せ=A級6本+route_arrival+fine_gate64・PID 437627)。
+- **vert8完走**: elapsed 31,329s=**8h42m/6step**・step並び22→33→86→114→132→131分(夕方平均86分/step)=**第155前の基準線確定**。vert9との同条件A/B比較でC1+A級の総効果を実測する。40分後チェック(bp7coy1mv)。
+
+## 2026-08-24 01:45 vert9中間=★step1+2が37分(基準119分)=判定帯3.2x
+- vert9(00:23起動): init 3分・step 0=23分(基準22分と同等=18:00開始のstep 0は流入前でC1の出番が少ない=整合)・**step 1+2=00:49→01:26の37分**(基準33+86=119分)=**3.2x**。route_arrival+fine_gate64がランconfコピーで有効を確認済み。step 3走行中(基準114分)。RSS 9.4GB。
+- 完走予測02:45-03:30。倍率維持なら夕方平均~25分/step→日平均~12-13分圏=提出~5日分(目標10分まで残り~25%)。完走チェック(bqs88kr0o・~02:45)でsummary.physics(provenance初出)からsub_steps/occupancy/leversを読む。
+
+## 2026-08-24 02:54 ★vert9完走=2h21m(基準8h42m)=3.70x・密度実勢化を機構確認→freeze判定へ
+- **vert9完走(02:44)**: elapsed 8,474s=**2h21m/6step**(vert8=31,329s)。step並び~23/18/19/25/25/28分=夕方平均**~23分/step**(基準86.3分・深い帯ほど効く: step5=131→28分=4.7x)。peak RSS 13.8GB。
+- **summary.physics(provenance初出・機構裏取り)**: zone_density_mean **1.36人/m²**(旧5.2-6.2の不可能値→実勢化)・by_zone最終step=center_gai 2.11人/m²/1,069人・hachiko 1.43/1,571・scramble 0.55/459=**レーン2が「250kで測り直すべき」とした1.7人/m²帯の検証が合格**(0.55-2.11で実勢帯を挟む)。levers=route_arrival/min_gap_every10が実効を確認。sub_steps=6000/6000/4380(SFM2ゾーンは張り付き=G1はC1と別・scrambleのみadaptive dtで4380)・center_gai待ち行列7,538人=ゲート前滞留の新挙動(爆発なし)。
+- **日平均換算(更新)**: 夕方23分×30+昼~12-16分×42+朝5-6分×24+深夜4分×48≈**25-28h/シミュ1日**=0.85-0.95シミュ日/実日→提出まで~6.9日で**~6日分**(目標7日にほぼ到達)。※mock値・実LLM加算は煙で計測。
+- freeze判定=**合格**。残工程: vLLM艦隊起動→実LLM煙(加算の初計測)→ユーザー最終確認(v2プール=v1維持推奨・開始GO)→本番開始。
+
+## 2026-08-24 03:20 vLLM艦隊=既に稼働中を確認+finals実LLM配線の貼り込み(第155補)
+- **艦隊は8/19から常駐稼働**: 7ポート全応答・5×qwen3:8b(8000-8004)+2×qwen3:14b(8005-8006)・AWQ正しいrevision・max_model_len 8192=MIX-1 5+2そのもの→再起動不要。
+- **freeze貼り込み**: finals_observe.yaml model:へ finals-vllm7 の backend/name/servers+timeout_s/format を手順書どおり貼付。checklist(plan_max_tokens 896・api_mode chat・plan_temp 0.3/recall_temp 0.2・tiers 5+2)=既存温存を確認。mockへ戻す縦煙経路=CLI model.backend=mock model.name=mock-v0 をconfコメントに明記。
+- ピン反転1件: test_launch_guard「profile単独=mock(F5の危険)」→貼り込みで危険自体が消えたため「profile単独=vllm・dotlistでmockへ畳める」へ意図保存で反転(29緑)。他の finals読取テスト191緑。
+- 次: コミット→pull→**実LLM煙(250k夕方3step・本番プロファイル素のまま)**=mock比のLLM加算初計測+本番ドレスリハーサル。
