@@ -1458,3 +1458,69 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
 - フルゲート**7,080緑+1skip(20分52秒)**(前回6,999+新81本=勘定一致)→スキャンCLEAN→STATUS第148→コミット→push→サーバーpull→プローブ(土曜staffed発火+賃金>0確認)へ。
 - ユーザー回答: cap計画=「設計変更してから」・cap値=未決定・S7=詳細説明要求→S7の中身(relations台帳=名前/回数/last_step/一言40字/closeness・LRU退避実装済み・副作用=疎遠な知人を忘れる/LRUはcloseness不参照・聴衆cap導入後は扇出激減でS7は必須→保険に格下げ)を説明。cap設計の可動軸4つ(値の決め方/適用範囲/radius/選抜規則)を提示し「機構だけ実装→25k K感度スイープ→データで値決定」を推奨提案。返答待ち。
 - **250k火炎図収穫(10:33・71分サンプル)**: 犯人2つ。**init 48.5%=friends.build_friend_graph**(:264 lambda37.9%+_score20.8%=35分・一回限り=許容)。**step 43.1%=_phase_c2→conversation.run_phase→perception.hearers_of**(:146→PerceptIndex.hearers :98-103)=**step時間のほぼ100%がC2聴衆列挙**(run_step 43.1%のうちC2 43.1%=他phaseはサンプル0)。34分でstep0のC2すら未了=夕方250kは**≥35分/step**。25kでC2=6.1%だったものが密度×人数で~×100(S7予告の物理版)。ATT層A(salience k4)は書込側の有界化で列挙コスト自体は素通し=列挙段のnearest-K cap+bucketベクトル化が本丸。留意: 従来の全step時間実測は「誰も働かない土曜」の観測=平日はさらに重い側に振れる。
+
+## 2026-08-23 16:00 vert8中間チェック(第148-154総載せ・250k夕方6step)
+- 15:05-15:20ごろの経路断は完全復旧(サーバーuptime 8日超=無再起動・vert8無傷)。時刻認識の+2hドリフトも補正済み。
+- vert8(15:13起動): init ~3分(15:16成果物・friend cacheロード再生=91x系列の再実証)→llm_journal 128件・最終rng_key=plan/…/1=**step 0完了・step 1計算中**。step 0 ≈ 22-23分(15:16→~15:38・18:00夕方ラッシュ+細格子/入場セルのキャッシュ温めを含む最重量step)。プロセス健全(100%CPU・RSS 7.6GB)。巡航判定はstep 2-5待ち=25分後の自動チェック(bbah70ozs)。
+- vert6(05:29起動・第153/154なしの旧コード)がまだ最終step 5走行中(llm_journal 1,152=192件/step×6の帳尻・14:32から出力なし=旧_admit O(W²)停滞の実演)。RAM 39/251GB・64コアで vert8への干渉軽微→殺さず自然完走させ新旧対比の参考値として回収する方針。
+
+## 2026-08-23 16:26 vert8第2チェック=step 1≈33分(夕方帯巡航~30分/step見込み)
+- llm_journal 128→384件・最終key=plan/…/2=step 2計算中(16:12 flush)。境界復元: step 0≈22分(15:16→15:38)・**step 1≈33分**(15:38→16:12)・step 2は16:12開始で継続中。RSS 8.1GB・健全。
+- 読み: 夕方ラッシュ帯(18:00-18:30)で~30分/step=第153-154期待(15-22分)より重い側。ただし**日平均への換算が判定の本丸**: fix147(25k)の帯比=日平均3.44分 vs 午後帯10.8分(比~0.32)を適用すると250k日平均~10分/step圏=ユーザー目標「できれば10分以内」・7日分/提出に整合の可能性。完走(~18時過ぎ見込み)のstep別実測→帯比換算で判定へ。45分後チェック(bzgj96k44)。vert6は依然step 5停滞(2h・旧コード対比値)。
+
+## 2026-08-23 17:14 ★vert8 step 2が60分超無出力(純CPU grind)→py-spy並走診断ラン投入
+- 17:12チェック: llm_journal 384のまま・llm_cache 16:12から更新なし・新規ファイルなし・100%CPU・RSS 8.5GB安定=**step 2(sim 18:20-18:30)が60分超の純計算grind**。step時間の並び22→33→60+分=夕方流入で密度が上がるほど超線形悪化の形(vert6旧コードの19時台停滞と同じ帯・第153/154後も残存)。帯比換算の楽観(日平均~10分)はこの膨張が続くなら成立しない。
+- 対処: vert8は殺さず完走測定として温存(step 2実時間そのものが測定値)。**並走でpyspy_250k_v9起動**(17:14・py-spy record同梱・同conf/seed/18:00開始・n_steps=3=step 2まで・friend cacheヒットでinit~4分)。step 2到達~18:15-30見込み→grind中にpython本体へTERM収穫(90-110秒待ち・-9禁止)or 3step完走で自然書き出し。RAM 191GB free・64コアで3ラン並走は許容。45分後チェック(bu3geif7k)。
+
+## 2026-08-23 18:01 vert8 step 2=86分確定・vert6完走(旧コード基準線~118分/step)
+- vert8: llm_cache 17:38更新=**step 2≈86分**(16:12→17:38・sim 18:20-18:30)→step 3走行中(23分経過)。並び22→33→86分=夕方流入密度で超線形悪化を確定。RSS 8.9GB。
+- **vert6完走(17:25)**: 05:29→17:25=**11h56m/6step≈118分/step**(第152止まりの旧コード・同じ夕方帯)。vert8は同帯前半3stepで平均47分=**新コード~2.5x**だが目標(≤10-15分)には遠い。★vert6でwage_out_total=**3,239,535円>0**=土曜夕方に賃金支払い実在(第148暦修正+census土曜勤務50.4%が250k実機で作動の初確認)。n_agents=190,417(夕方在街人口/250kプール)。
+- v9(py-spy): step 1走行中(vert8比~1.1x遅=オーバーヘッド想定内)。step 2到達~18:40-50→19:15の自動収穫タイマー(bmgr0ilah・step 2到達ガード付きTERM→110秒待ち→svg確認)。
+
+## 2026-08-23 19:15 v9火炎図収穫成功(714,920サンプル)=夕方帯grindの正体判明
+- 収穫: 自動タイマーはPowerShellの$()ローカル展開バグで不発(TERM未送出=無害)→手動でTERM→110秒→svg 104KB・サンプル71.5万・エラー0。構成: init4分+step0-1+step2グラインド49分(標本の~41%)。
+- **内訳**: **物理51.3%**(_run_zone内: SFM forces+repulsion_cognitive~26%・ORCA step~22%・_admit6.3%=第153後も入場は残る・separate_positions3%)+**聴衆/カウント群~27%**(C2 _hearers_bounded 10.6%・decide company count_hearers 7.5%・G観測channels.observe→count_hearers 9.0%)+drive 5.7%。第154レバー(ORCA adaptive dt/近傍cap7/sep16)は効いた上で、**残りは~19万在街体×夕方密度の積分そのもの+カウント機構**=v7b(物理46.6%)と相似形のまま絶対時間が密度で伸びる構図。
+- vert8実測更新: step 3(sim18:30-40)が**99分超で継続中**(17:38開始)。並び22→33→86→99+分。この帯が21-22時まで続くと想定すると日平均~15-20分/step=提出時点~4-5日分(ユーザー目標10分=7日分には夕方帯~2x削減が必要)。
+- 残レバー候補: ①has_company早期脱出(count>0→存在判定・最初の1人でreturn・バイト同一bool・密ほど速い=decide 7.5%をほぼ消す・実装30-60分) ②G観測countのS15上限打ち切り(9%削減だが観測値の意味が変わる=ユーザー判断) ③物理大レバー(ゾーン並列1.5-2x/高密度帯SFM→ORCA再配分/LOD=いずれも力学or工数リスク・今夜には重い)。→ユーザーへ開始戦略の判断を仰ぐ(即freeze/小レバー→開始/物理もう1ラウンド)。
+
+## 2026-08-23 19:30 ユーザー指示=①全コード精査 ②他時間帯の実測→最適化継続はその結果で判断
+- ユーザー回答: 「あらゆるコードを精査して何がシミュレーションの時間を圧迫しているのかを見つけて欲しい。朝や夕方以外の他の時間帯がどれくらいなのかによって、これ以上コードを最適化させるかどうか考えたい」+G観測countは詳細説明を聞いてから判断。今夜開始は帯実測待ちに事実上変更。
+- **帯プローブ4本起動**(250k×3step・mock・friend cacheヒット): band_250k_03(深夜3時)/band_250k_08(土曜朝)/band_250k_12(昼)/band_250k_08w(**月曜朝=平日通勤ラッシュ**・world.calendar.start_date=2026-08-24上書き・cache_keyにstart_date不含を確認済み=friends.py:297-332)。PID 434196/434200/434204/434465。RAM 200GB free・vert8(step 3=99分超継続)と5本並走。
+- **全コード監査サブ投入**(Opus・読み取り専用・成果物=docs/plans/step-time-audit.md のみ): §1 run_step全フェーズ棚卸し(計算量クラス×火炎図対応・:6734/:6555/:6546の正体) §2 22→33→86→99分の「stepが進むほど重い」機構特定(人口流入vs状態蓄積の判別・_admit滞留/separate_positions16反復/journal走査/relations走査ほか) §3 最適化候補ランク表(期待%・リスクA/B/C級・工数) §4 今夜適用可能なA級(バイト同一)レバー短リスト。
+- 40分後チェック(bopnmro01)。深夜帯は~20:20に数字が出る見込み。
+
+## 2026-08-23 20:00 監査サブ完走(15分・50ツール)=docs/plans/step-time-audit.md+親検収3点裏取り
+- **§2成長機構の判定**: 22→33→86→99分は状態蓄積でなく**流入増**(G7/G8=cap・flush 6stepで蓄積項なしを行番号で証明)。効き方=G1(サブステップ6000張り付き=閾値的な跳び・SFM2ゾーンはadaptive_dt対象外で常時6000)×G2(所有人数Mの線形増)×G3(知覚9セル走査のρ²・40m粗格子固定で5系統)。
+- **親検収3点**: ①A1=scheduler.py:2929 `face=bool(hearers_of(...))`+同関数:2922にも同型(第152が:3074で潰した型の残存)=実コードで確認 ②A4=physics.py:542-546の_writebackが赤信号サブステップで捨てられる構造=確認(scramble赤~66%) ③C1=conf finals_observe.yaml:562-565自身が「所有は数百m手前から・zone_occupancyは同じ意味論ズレ」と自認=確認。
+- **★C1の実データ証拠(vert6完走L2)**: zone_occupancy 9,039〜11,123人・**zone_density_mean 5.2〜6.2人/m²=六方最密3.22超の物理的に不可能な値**=「polygon内」でなく「所有中(数百m手前含む)」を面積で割った帰結。所有M≈1万人×6000サブステップ×3ゾーンが物理51.3%の本体。距離有界化でMが1/3なら−15〜25%は保守側の見積り。
+- **ランク表**: A級(バイト同一)合計−16〜20%=A1(:2929置換−4%)/A2(count存在判定モード−5%)/A4(赤信号前倒し−2〜3%)/A7+A3(_accumulate診断間引き−3%)/A6(fine_gate 500→64・conf1行−1〜3%)/A5(node_inメモ化−1〜2%)。**最大単一レバー=C1距離有界化−15〜25%**(力学変化=physics_bench再測前提)。C4ゾーン並列=却下寄り(支配項が純PythonでGIL)。B2=_apply speakの25万全走査(scheduler.py:3946)=現状<1%だが発火増の潜在爆弾。
+- 帯プローブ数字(~20:12)と合わせて「A級のみ/A級+C1/現状凍結」の3択をユーザーへ。
+
+## 2026-08-23 20:10 帯プローブ第一報=深夜4分/土曜朝8分/昼~20分/夕方22→114分
+- **band_250k_03(深夜3時)完走**: elapsed 984s=16.4分(init~4分+3step)→**~4.2分/step**。**band_250k_08(土曜朝8時)完走**: 1683s=28分→**~8分/step**。band_250k_12(昼)はstep 0≈22分・step 1継続=**~20分/step級**。band_250k_08w(月曜朝)は**friend cacheミス**(平日は在場名簿が変わる→roster digest変化=キー設計の正しい動作・私の「cache-safe」読みの誤り)でinit 42分→20:09からstep開始。
+- vert8: step 3≈**114分**(17:38→19:32・sim18:30-40)・step 4走行中。※step 3以降は帯プローブ4本並走のメモリ帯域競合で1-3割膨らんでいる可能性を注記。
+- 日形状の概算(mock): 深夜36step×4分+朝24×8-15分+昼42×18分+夕方30×60-90分+夜12×15分≈**50-62時間/シミュ1日**=0.4シミュ日/実日→現状凍結なら提出時点**~2.5-3日分**。A級(−18%)~3-3.5日・A級+C1(夕方−40%)~4.5-5.5日の見積り。
+- ★A級はバイト同一=**開始後もcheckpoint resumeで無傷に差し替え可能**(軌跡不変)→「今夜開始」と「A級適用」は排他でない。**開始前に決めるべきはC1(力学変化)だけ**。
+
+## 2026-08-23 20:55 ユーザー決定=C1込み明朝開始+A級6本全部→実装レーン2本投入
+- **ユーザー決定(AskUser)**: 「C1込み→明朝開始」+「A級全部実装して載せる」。G観測countは温存(私の推奨どおり・変更なし)。
+- 帯プローブ最終値: **月曜朝8時=~7分/step**(elapsed 1283s/3step・平日朝は通勤者がまだゾーン外で渋谷の物理密度は低い)・土曜朝8分・深夜4.2分。**昼12時は22→33分と夕方型**=重い帯は11-21時に広がる(band_12はstep 2継続中)。vert8 step 4=79分継続。※08wのinit 42分=friend cacheミス(平日は在場名簿が変わる=roster digest変化・キー設計の正しい動作)。
+- **レーン1(知覚A級・Opus)**: A1(scheduler:2929+:2922の同型bool(hearers_of)置換+リポ全域grep掃引)・A2(perception存在判定モード=チャンク早期打ち切り・±1ULP帯は既存±4ULP裁定に揃える)・A5(node_in frozensetメモ化・pickle非搬送)。ファイル専有=scheduler/perception/zones。
+- **レーン2(物理・Opus)**: A4(赤信号で_writeback+_admit numpy前倒しゲート)・A3(radius配列使い回し)・A7(min_gap間引き・既定1=同値)・**C1=ownership_max_dist_m(既定0=無制限=バイト同一・距離=現在座標→最寄りgate_xy)**+X∈{50,100,200}のベンチ再測(基本図±20%/破綻統計/occupancy正常化/軌跡差)+sub_steps観測のsummary側追加(凍結不触の範囲で)。ファイル専有=physics/bench/registry。
+- conf適用(fine_gate 500→64・C1 finals値・min_gap_every)は両レーン合流後に親が実施→フルゲート→スキャン→第155コミット→サーバーpull→C1確認煙(250k夕方3step)→明朝freeze→vLLM→本番開始。vert8/band_12は完走まで放置(現行コード基準線)。
+
+## 2026-08-23 22:20 両レーン完走+★C1に構造発見→ユーザー決定=経路到達版・レーン2再開
+- **レーン1完了(80分)**: A1=bool文脈のhearers_of **3箇所**(指示の:2929/:2922+自力発見の:2902 face_ids)+:3074をhas_hearersへ。A2=_exists 3段構成(⓪9セル負荷≤64は素Python/①中心セル32件プローブ/②_count_arraysキャッシュ1パス)——★初版(単純numpy)は疎で逆に4-8倍遅い罠をマイクロベンチで捕捉し再設計(密K=1000で0.47µs vs count57µs=121x)。A5=node_inメモ化(KeyError意味論保存・Zone.__getstate__でグラフをcheckpointに飲み込まない対策+pickle同一テスト)。61新テスト・600体×24step A/BでゾーンOFF/ON両方L1バイト一致。test_decide_company_count.pyの改修1件は正当(monkeypatch対象の付け替え・意図保存)を親検収で確認。
+- **レーン2完了(76分)**: A4(前提=_writeback読者は_admit/_build_engineのみを機械確認・旧順序復元対照でL1一致)・A3(スタブengine後退つき)・A7(min_gap_every既定1)・C1ユークリッド版(physics_levers.ownership_max_dist_m・既定0=バイト同一)。X=200実測: 物理6.7x・破綻ゼロ・density 6.2→0.48人/m²正常化・軌跡変化30%(正直記録)。**★構造発見: 非所有個体はグラフ移動800m/stepで跳ぶため捕捉率≈X/800(X=200で28%)=横断者の72%が物理素通り**。真の修正=経路到達判定+ゲート位置入場+_used_s会計(未実装・要承認と正直申告)。
+- **ユーザー決定: (b)経路到達版**(交差点密度が実勢~1.7人/m²帯に載る・物理~2-3x)。レーン2へSendMessageで仕様発注(ownership_mode: ""/euclid/route_arrival・既定""=バイト同一・到着サブ時刻をwaiting recへ=checkpoint搬送テスト・**01:30締切**・不成立ならX=200へフォールバック)。
+- 親作業: pov.py:152(レーン1発見のlen(hearers_of)>=crowd_min)をcount_hearersへ=第150同型・test_pov 11緑。physics_levers→physics:への畳み込みは見送り(本選後の小粒)・summary provenance 3点パッチ(physics.provenance/simulation.py finalize/WIRED 1行)はレーン2合流後に親が適用予定。
+
+## 2026-08-23 23:48 帯実測の確定値: 昼41分/step・vert8 step4=132分
+- **band_250k_12完走(21:37)**: elapsed 7633s=127分→**~41分/step**(昼12時台)。帯の全体像確定: 深夜4.2/朝7-8/昼41/夕方86-132分。
+- vert8: step 4=**132分**(19:32→21:44・sim18:40-50)・step 5走行中(124分+)。※step3-5は並走プローブ(最大5本)との帯域競合で1-3割膨張の可能性。完走チェック(bfhj103zk・~00:40)。
+- レーン2(経路到達版)は作業中(01:30締切)。
+
+## 2026-08-24 00:50 レーン2完納(route_arrival)→親合流作業(provenance+conf+ゲート)
+- **レーン2完納(締切前)**: route_arrival実装=残り経路距離≤移動予算(_phase_moveと同一式・_congestionは既存_graph_speedと同じ1step遅れを正直併記)・入場位置=ゲート・到着サブ時刻はpending列(到着前は_admit不可視=O(W)空振りなし・同時刻はid昇順=先着順)・arrive_sはused_sのみ加算(★初版はelapsed_sにも足してdwell 244sに化けた→実測で捕捉し分離)・新規状態ゼロ=checkpoint不変。**実測(n=2000): 捕捉率99.3%(euclid200=27.6%)・所有M 17.4x減・physics 4.95x(小規模下限=固定費支配・250kではM比~17xへ)・dwell 600→33.8s(実横断時間)・破綻ゼロ・退場step一致0.629・喪失60/1051対(euclid200=548)**。密度1.7人/m²帯は2000体mockでは判定不能=250k夕方煙で測ると正直申告。sub_steps_totalほぼ不変=G1(張り付き)はC1と別レバーと明記。新30テスト・既定""でL1一致・3方式resume==straight・関連491緑。
+- 親合流: ①summary provenanceパッチ=physics.provenance(scalars+continuity+by_zone_last_step+levers・ゾーン未使用はNone=キー不出)+simulation.py finalize 1ブロック+新test_physics_provenance.py 3本(既存test_summary_provenance④のAST走査が配線を自動検知=WIRED表は不触で済んだ)=20緑 ②conf適用=perception_fine_gate 500→**64**(A6・理由と撤退路をconfに記載)+physics_levers節(ownership_mode: **route_arrival**・min_gap_every: **10**・実測表と撤退路1行をconfに記載) ③ピン76緑(ram_guards/contracts/registry_modes) ④スキャンCLEAN ⑤フルゲート走行中(bd93oaf9k)。
+- 緑→STATUS第155→コミット→push→サーバーpull→**C1確認煙(250k夕方6step・vert9)**→明朝freeze→vLLM→本番開始。
