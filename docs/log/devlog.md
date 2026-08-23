@@ -1427,6 +1427,11 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
 - **v6c火炎図(step0-1・80.6%がstepping)**: C2 31.7%(_bounded_pick 26.6%・argpartition 18.6%=中密度が粗経路に落ちる帯+固定費22本)・**物理18.8%**(初実測: _run_zone積分12.1%は dt0.1で制御済み・**_admit 11.3%**=ゾーン入場処理が半分)・decide 12.9%(company修正で62.6%→)・**count_hearers 11.0%(うち__eq__ 10.9%=ctx比較のdataclass eq)**・form_parties 10.4%。
 - 残レバー: ①C2固定費畳み(22→13本・第151サブ申告済み)+細格子門しきい値2,000→~500 ②count経路の__eq__(ctxキーintern化) ③_admit調査 ④form_parties調査。合算見込み30-45分→15-22分/step=**12分にはまだ不足の公算**→戦略判断をユーザーへ(最適化続行スプリント/開始時刻と提出データ量のトレード)。最適化サブは全分岐で有用なので先行投入。
 - **ユーザー方針(朝の回答)**: シミュ日数は可変=期間中に取れるだけ取る・できれば10分/step以内・(今夜開始の枠は維持)。→速度=データ量の等式で今日一杯レバーを引く。
+## 2026-08-23 昼 v7b火炎図=ついに「正直な」プロファイル(物理積分46.6%)→B+Dサブ投入
+- 第153コミット(2eb065f・親ゲート7,240全緑)→vert7(py-spy同梱)~35分/step→中断収穫失敗2回(教訓: TERMはpython本体のみ・py-spyに当てない/-9禁止)→v7bで成功(94KB)。
+- v7b(第153適用後): **物理46.6%**(_run_zone engine.step=積分本体34.7%・orca 22.4%)・C2 18.2%(31.7→改善)・decide 12.1%・count 10.7%。**_admitは火炎図から消滅=第153成功・残存O(W²)容疑は主犯でないと反証**→_admitサブ停止(過剰工事回避)。step時間~20-25分/step圏。
+- 次レバー=物理B+D(サブ投入): 密度適応dt(physics.adaptive_dt・既定OFF・finals ON・基本図根拠=密度2人/m²超は歩速<0.5m/s→dt0.4でも変位<20cm)+ORCA近傍cap 12→7(Ballerini位相的近傍・現実整合方向)。目標: 物理~1/3→step全体~0.7x→**12-15分/step圏**→夕方freeze→vLLM実LLM煙→今夜開始。
+
 - **第153実装完了(サブ102分)**: ★診断反転=__eq__ 10.9%はcount_hearersでなく**physics._adminのwaiting.remove**(Agent dataclass eq 50万回/2.19s・_admitと同根合計~22%)→_drop_recs一括化24-30x。form_parties=headカーソル O(V²)→O(V)=863x@60k。C2固定費1.06-1.26x+fine_gate conf化(既定2000同値・finals500★・疎側2-7%劣化を正直記載)。同値証明=総当たり50万件・実ランA/B L1バイト一致。フルゲート7,240緑(=7,212+28)。見積−36pp≈1.6x→~19-22分/step。残存=_admitのもう1つのO(W²)(blocked None総当たり・増分セル法1-2h超)=vert7プロファイルで残存確認後に判断。
 
 - **第152実装完了(サブ74分)**: 実コード3行(count_hearers>0置換)。同値証明が丁寧: AST機械確認(companyのリスト消費者ゼロ・hearers_of呼び出し消滅)・15体×144step A/BでL1完全一致・gt_logger構成200stepで8 parquetバイト一致・分岐両側実行をassert・ソースレベル回帰ガード。ベンチ200k=19.8s→2.0s(9.7x)。補足: count経路のnumpyキャッシュで+52MB/step(step毎再構築で成長なし・channels ONなら追加ゼロ)=許容。サブ側フルゲート7,212緑+1skip(=7,209+3)。gt_logger[memory]の1赤はベンチ並走時のみの負荷flake(単独4/4緑・クリーン再走全緑)。親側検収ゲート走行中→緑で第152コミット→vert6。
