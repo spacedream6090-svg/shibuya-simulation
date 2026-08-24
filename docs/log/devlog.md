@@ -1610,3 +1610,8 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
 - **リサーチ(第142文献基盤)**: Cowan 2001純容量4±1・MOT同時追跡4-5個・Krems メンタライジング自分+3・Dunbar内層15(Sutcliffe=社会時間60%投下先)・層比≈3(Zhou 2005)・「群衆は集団1チャンク」→**narrow=2(不変)/mid=5(MOT帯)/wide=15(Dunbar 15・c2=15整合)**。2→5→15=層比≈3とも一致。群衆規模情報はcrowd_visual(finals ON)の別行が保存=情報欠損なし。conf-onlyで成立(levelsは既定置換仕様のため3水準明記・lod.py:45-51)。
 - 17:34起動のランは18:4x停止→runs/finals_observe_20260824_aborted_nearby_bugへ退避(深夜帯~1.5h分・シミュ内0時-2時台=損失最小)。conf 3点(lod levels・n_agents 400000・present_cap 400000)・ピン262緑・LOD解決検証(2/5/15・shares継承)。
 - ★注意: present_cap変更=名簿変更=friend cacheミス→**リスタートのinitは~2-3h**(400k名簿の友人グラフ構築+保存・以後のresume/再起動は数分)。
+
+## 2026-08-24 深夜 第157補2: 残る400の正体=RT連鎖16,189字→feed_item_max_chars(140字)→リスタート2
+- 24bラン検収: init 71分(400k名簿構築+キャッシュ保存)・reject 38件/40分→**2件/80分(0.2%)**・通常プロンプト3.4-3.6k字に正常化。残2件をjournal行分解→**「タイムライン:」行が16,189字=RT連鎖「RT @A: RT @B: …」の深さ無上限**が第2の穴(feed_nは件数のみcap・1件の長さは未cap・カスケードは日数で深まる=放置で悪化する構造)。
+- 修正: prompts.feed_item_max_chars(registry off_value=0・config.yaml既定0=現行バイト一致・★registry _fの第3引数はaffects_kの罠=off_valueはkwargで)+scheduler._feed_texts:3001に截断(唯一の口・cap>0で先頭N字+…)。finals=**140字**(SNS原文の実勢・feed_n 3-5件×140字で行全体≤700字)。新テスト6本(既定バイト同一・境界・公式著者・registry/conf宣言)・ピン111緑・スキャンCLEAN。
+- 台帳メモ(本選後の小粒): RT連鎖の保存側(post本文が無上限成長)は参照モデル化を検討=PENDING §4へ。24bランは停止・aborted退避→**24cとして再起動**(400k友人キャッシュ済み=init数分)。
