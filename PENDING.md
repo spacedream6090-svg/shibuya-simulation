@@ -95,6 +95,9 @@
 
 ## 4. 持ち越し小粒(未解決のみ)
 
+- **新規(第157補2)**: RT連鎖の**保存側**が無上限(post本文が「RT @A: RT @B: …」で日数とともに成長・現行対処はプロンプト側のfeed_item_max_chars=140截断のみ)→保存側を参照モデル化(原post_id参照+深さ上限)する検討=本選後。
+- **新規(第155/155補の見送り小粒)**: ①physics_levers→physics:への畳み込み(conf整理のみ) ②G観測countの対数ビン化(観測値の意味が変わる=ユーザー判断) ③D(neighbor_cap7)導入に伴うP4基本図作業点+31%の再較正=本選後。
+
 - **新規(第150・count_hearersサブの副発見)**: 第149 _hearers_boundedのベクトル化経路がnp.hypot==math.hypotを前提(docstring明記)だが実際は1 ULP差16%(第143で既知の罠)。ON経路のみ・実座標でmeasure-zero・同一ラン内は決定論なのでR1違反ではないが、count_hearersの±4 ULP帯裁定方式を本選後に移植してdocstring訂正。
 
 - **新規(第146・FACT-Dサブの副発見)**: commerce の shop_state 開閉状態が checkpoint 未保存=境界が開店遷移 step にちょうど当たると resume が shop_state を 1 行落とす(第80 天気・第62 joint と同型・他の全行一致は実測済み)。修正=開閉状態の checkpoint 搬送 1 欄・本選前の小粒候補
