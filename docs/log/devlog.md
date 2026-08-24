@@ -1602,3 +1602,11 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
 - freeze_config凍結: conf/finals_20260824_frozen.yaml(58,471B)・**sha256=a143e5ac1182d58806aa4942d2555556166ee3fca6d8b74fa5fe5996eeaff440**(運用成果物=コミットしない)。
 - **起動17:34・PID 450046**: backend=vllm servers=5・n_agents=250000・n_steps=1440・seed=42・pool=data/persona_pool_v2・max_llm_per_step=300。コード=a7bf3b9(第156補)。ディスク3.6TB空き・RAM225GB可用・艦隊7基(8B×5+14B×2)。
 - 以降=不介入原則。監視: 40分後に初回チェック(init+深夜帯pace・エラー・backstory n_miss)→毎時モニタ→day-1チェック(staffed serve>0・賃金>0・新規フォロー/日/人・欠品率帯・CRWD帯・RSS推移)。提出時点見込み~5.5シミュ日分。
+
+## 2026-08-24 夜 ★day-1ゲート発動: 「近くにいる人」無上限列挙バグ→第157修正+400k化→リスタート
+- **初回チェック(18:17)で発見**: deliberate呼の~13%がHTTP 400(fleet client-reject 38件/40分・継続)。журнал解析で**プロンプト53,000-57,000字**の巨大呼を特定→行分解で**「近くにいる人:」1行が54,007字=数千人の名前列挙**が真犯人。
+- **機構**: deliberate.py:324の注意の幅`_people_n`(input_res LOD)は narrow層33%=2人だけcapされ、**mid/wide層67%はpeople_n=0=全列挙**(lod.py:33-35の既定)。25kでは数十人で無害・250k+v2の深夜は同一建物ノードに数千人が密集→8,192tok超過→vLLM 400→該当エージェントはルール代替(=社会的に濃い文脈ほど壊れる偏り)。S15/company列挙と同族の「25k設計が250kで破れる」系の最後の1つ。
+- **ユーザー指示**: ①**250,000のcap撤廃→400,000の軽い上限**(v2平日資格者270,255<400k=実質非拘束・人口は需要駆動で自然変動) ②値はリサーチして設定→**最初からリスタート**。
+- **リサーチ(第142文献基盤)**: Cowan 2001純容量4±1・MOT同時追跡4-5個・Krems メンタライジング自分+3・Dunbar内層15(Sutcliffe=社会時間60%投下先)・層比≈3(Zhou 2005)・「群衆は集団1チャンク」→**narrow=2(不変)/mid=5(MOT帯)/wide=15(Dunbar 15・c2=15整合)**。2→5→15=層比≈3とも一致。群衆規模情報はcrowd_visual(finals ON)の別行が保存=情報欠損なし。conf-onlyで成立(levelsは既定置換仕様のため3水準明記・lod.py:45-51)。
+- 17:34起動のランは18:4x停止→runs/finals_observe_20260824_aborted_nearby_bugへ退避(深夜帯~1.5h分・シミュ内0時-2時台=損失最小)。conf 3点(lod levels・n_agents 400000・present_cap 400000)・ピン262緑・LOD解決検証(2/5/15・shares継承)。
+- ★注意: present_cap変更=名簿変更=friend cacheミス→**リスタートのinitは~2-3h**(400k名簿の友人グラフ構築+保存・以後のresume/再起動は数分)。
