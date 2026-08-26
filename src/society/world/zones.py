@@ -488,7 +488,8 @@ def build_cfg(raw, repo_root: Path | None = None,
     repo_root = repo_root or Path(".")
     unknown = sorted(set(raw) - {"sfm", "zones_enabled", "zones", "perception",
                                  "cognitive", "density_far", "adaptive_dt",
-                                 "neighbor_cap", "separation_iters"})
+                                 "neighbor_cap", "separation_iters",
+                                 "zone_threads"})
     if unknown:
         raise KeyError(f"physics: 未知のキー {unknown}")
     enabled = bool(raw.get("zones_enabled", False))
@@ -502,6 +503,7 @@ def build_cfg(raw, repo_root: Path | None = None,
     adaptive_dt = _build_adaptive_dt(raw.get("adaptive_dt"))
     neighbor_cap = _build_neighbor_cap(raw.get("neighbor_cap"), cognitive)
     separation_iters = _build_separation_iters(raw.get("separation_iters"))
+    zone_threads = _build_zone_threads(raw.get("zone_threads"))
     zones: list[Zone] = []
     if enabled:
         for spec in (raw.get("zones", ()) or ()):
@@ -511,7 +513,19 @@ def build_cfg(raw, repo_root: Path | None = None,
     return {"zones_enabled": enabled, "zones": tuple(zones), "perception": perception,
             "sfm": sfm, "cognitive": cognitive, "density_far": density_far,
             "adaptive_dt": adaptive_dt, "neighbor_cap": neighbor_cap,
-            "separation_iters": separation_iters}
+            "separation_iters": separation_iters, "zone_threads": zone_threads}
+
+
+def _build_zone_threads(raw) -> int:
+    """`physics.zone_threads`(cpu-parallel Phase 1)。0 = 逐次 = 現行と 1 バイト同一。
+
+    >0 なら `physics.phase` がゾーンを ThreadPoolExecutor へ submit する(上限 = この値)。
+    **ここは値の正準化だけを行う**(実行の是非は physics.py 側の判断)。
+    """
+    n = int(raw or 0)
+    if n < 0:
+        raise ValueError("physics.zone_threads: 0(= 逐次)以上が必要")
+    return n
 
 
 def _build_separation_iters(raw) -> int:

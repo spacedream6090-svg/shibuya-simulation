@@ -647,6 +647,34 @@ FEATURES: tuple[Feature, ...] = (
        "★0 は『未指定』に予約: 分離パスを本当に切るならゾーン宣言に orca.separation_iters: 0。"
        "★既定 0 ではゾーン宣言をそのまま使う = 現行挙動と 1 バイト同一",
        off_value=0),
+    _f("physics.zone_threads", "strict", False, "none",
+       "**ゾーン間スレッド並列**(cpu-parallel Phase 1。docs/plans/cpu-parallel-plan.md §2)。"
+       "0 = 逐次 = 現行。>0 なら physics.phase が物理ゾーンを**宣言順(ゾーン id の固定順)**で "
+       "ThreadPoolExecutor へ submit し、**同じ順で join** する(完走順に依らない)。"
+       "動機: 250k 夕方の火炎図で物理積分が step 時間の 51.3% を占め、3 ゾーンは"
+       "空間的に非重複(zones._check_disjoint が構築時に強制)= 並列の候補だから。"
+       "★★ 実測の結論(2026-08-26): **速くならない。遅くなる** ★★ 実 3 ゾーン 400 体 "
+       "24 step で physics.phase は 5,989 → 8,496 ms/step = 0.70x(仕事量で正規化しても "
+       "186.7 → 265.6 µs/サブステップ)。共有状態を完全に排した対照(独立 Simulation 4 つ)"
+       "でも T3/T1=4.58 = 逐次(3.0)より悪い。原因は _run_zone がほぼ常時 GIL を握ること。"
+       "カーネル(engine.step)単体なら SFM の解放割合は 0.83-0.87(3 スレッドで 2.2-2.4x)"
+       "だが、その外側の純 Python(_advance_and_collect / _admit / _accumulate / ORCA の "
+       "separate_positions ペア解消ループ)が支配的で利得が届かない。"
+       "★★ 加えて >0 は**ビット同一でもない** ★★ `_run_zone` はゾーン内に閉じていない。"
+       "①排他所有のハンドシェイク agent._phys_zone(逐次ではゾーン B が『A が所有・積分・"
+       "退場まで終えたあとの世界』を見る。渋谷 3 ゾーンは隣接し 1 本の経路が複数ゾーンを"
+       "貫くので候補集合が実際に交わる)②L1 zone_gate の追記順 ③_phys_state の集計"
+       "(dwell_sum_s は浮動小数の累積和 = 加算順序で下位ビットが動く。整数カウンタの "
+       "d[k]+=1 も read-modify-write)④by_zone の挿入順 がゾーン間で共有・書き込みされる。"
+       "乱数だけは無風(RngHub.stream は SeedSequence から作り直す純関数でゾーン id が鍵)。"
+       "repro_tier=strict: だからこそ **strict モードでは自動 OFF**(= 0)にする。"
+       "affects_k=false: generate() の呼び出し点を 1 つも足さない/減らさない"
+       "(スレッド化は実行順の話で、世界の分岐点を増やさない)。"
+       "fingerprint_risk=none: プロンプトの語彙・欄が 1 つも増減しない(実行基盤層)。"
+       "★本番で使うには (1)〜(4) を『id 順の遅延書き戻し』へ畳む設計変更"
+       "(= ゾーン内部の改造 + 物理ベンチ全再測)が要る。現状は Phase 1 の計測用プロトタイプ。"
+       "★既定 0 では ThreadPoolExecutor を import すらしない = 現行挙動と 1 バイト同一",
+       off_value=0),
     # ---- 物理レバー(第155 レーン2。step 時間監査 A7 / C1。既定 = 現行と 1 バイト同一)----
     # ★conf 上は `physics:` ブロックの外(トップレベル `physics_levers:`)にある。理由は
     #   `physics:` のスキーマを持つ world/zones.py が本レーンの担当外だったため

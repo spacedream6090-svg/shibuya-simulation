@@ -708,8 +708,81 @@ def phase(sim, step: int, sim_min: int) -> None:
     #   `_run_zone` は sim.agents を増減させないので、全ゾーンで同じ列を使える
     #   = 走査順は 1 つも変わらない(純粋な同値変換)。
     ordered = _by_id(sim.agents)
+    # ★cpu-parallel Phase 1(docs/plans/cpu-parallel-plan.md §2)。既定 0 では
+    #   `zone_threads()` が 0 を返し、下の for が**従来と 1 バイト同じ**逐次ループになる
+    #   (ThreadPoolExecutor を import すらしない)。>0 の意味と限界は `_run_zones_threaded`。
+    n_thr = zone_threads(sim)
+    if n_thr > 0 and len(sim.physcfg["zones"]) > 1:
+        _run_zones_threaded(sim, step, sim_min, st, ordered, n_thr)
+        return
     for zone in sim.physcfg["zones"]:
         _run_zone(sim, zone, step, sim_min, st, ordered)
+
+
+def zone_threads(sim) -> int:
+    """`physics.zone_threads`(0 = 逐次 = 既定)。conf 不在の sim でも 0 へ後退する。"""
+    cfg = getattr(sim, "physcfg", None) or {}
+    try:
+        return max(0, int(cfg.get("zone_threads", 0) or 0))
+    except (TypeError, ValueError):
+        return 0
+
+
+def _run_zones_threaded(sim, step, sim_min, st, ordered, n_thr: int) -> None:
+    """ゾーンを ThreadPoolExecutor へ **宣言順(= ゾーン id の固定順)** で submit する。
+
+    順序の固定: submit も join も `sim.physcfg["zones"]` の並び(= conf の宣言順)で回す。
+    `Future.result()` を先頭から順に待つので、**join の順序はスレッドの完走順に依らない**。
+
+    ★★★ 結論(2026-08-26 実測): **速くならない。遅くなる。** ★★★
+    実 3 ゾーン(conf/zones_shibuya.yaml・400 体・24 step・mock)で
+    `physics.phase` は 5,989 ms/step → **8,496 ms/step(0.70x = 42% 悪化)**。
+    仕事量(sub_steps_total)で正規化しても 186.7 → 265.6 µs/サブステップで同じ。
+    共有状態の影響を完全に排した対照(**独立した Simulation 4 つ**を同じ状態に置き、
+    1 つ単独 / 3 つ同時に `phase` を回す)でも **T3/T1 = 4.58**(逐次の 3.0 より悪い)=
+    3 スレッドの実効 speedup 0.655x。つまり原因は共有状態でも実装でもなく、
+    **`_run_zone` がほぼ常時 GIL を握っている**ことと、GIL 受け渡しの上乗せである。
+    カーネル(`engine.step`)単体なら SFM は解放割合 0.83-0.87(3 スレッドで 2.2-2.4x)
+    出るが、`_run_zone` はその外側の純 Python(`_advance_and_collect` の在場者走査 /
+    `_admit` の占有判定 / `_accumulate` の個体別集計 / ORCA `separate_positions` の
+    ペア解消ループ)が支配的なので、その利得はまったく届かない。
+    → **Phase 1(スレッド)は打ち切り**。取るならプロセス並列(Phase 2)か、
+      先に純 Python 部をベクトル化して**カーネル比を上げてから**(Phase 3)。
+
+    ★★ 正直な限界(第0 検証で実測。docs/plans/cpu-parallel-plan.md §2 Phase 1)★★
+    `_run_zone` は**ゾーン内に閉じていない**。ゾーン間で共有され、かつ書き込まれる状態が
+    少なくとも次の 4 系統ある(いずれもゾーン内部を 1 行も変えずには外せない):
+
+      (1) 排他所有のハンドシェイク `agent._phys_zone`
+          ゾーン B の流入候補ループは「A が既に所有した個体」を `is not None` で弾く。
+          逐次では A の `_run_zone` が**丸ごと終わってから** B が走るので、B は
+          「A が所有し、積分し、退場させ、グラフ状態を組み直したあとの世界」を見る。
+          並列では B が A の途中(または手前)の世界を見る = **所有集合が変わりうる**。
+          渋谷の 3 ゾーンは隣接していて 1 本の経路が 2 ゾーンを貫くため、候補集合は
+          実際に交わる(交わり件数は tests/test_physics_zone_threads.py が実測で固定)。
+      (2) `sim.logger.log` の L1 追記
+          逐次ではゾーン id 順に並ぶ zone_gate イベントが、並列では完走順に混ざる。
+      (3) `st` の集計(`enter_total` / `exit_total` / `dwell_sum_s` / `handover_jump_max_m`
+          / `min_gap_m` / `sep_iters_max` / `min_gap_i` …)と `st["cont"]` の帯別集計
+          `dwell_sum_s` は**浮動小数の累積和**なので加算順序が変われば下位ビットが動く。
+          整数カウンタも `d[k] += 1` は read-modify-write = 更新落ちが起こりうる。
+      (4) `st["by_zone"]` の挿入順
+
+    したがって **`zone_threads > 0` はビット同一ではない**。既定 0 のままにしてあるのは
+    そのため。ここに残してあるのは Phase 1 の**計測用プロトタイプ**としてであり、
+    本番で使うには (1)〜(4) を「id 順の遅延書き戻し」へ畳む設計変更(= ゾーン内部の
+    改造)が要る。乱数だけは無風で、`RngHub.stream` は毎回 `SeedSequence` から
+    Generator を作り直す純関数・ゾーン id をキーに含むので**共有状態を持たない**。
+    """
+    from concurrent.futures import ThreadPoolExecutor
+
+    zones = sim.physcfg["zones"]
+    with ThreadPoolExecutor(max_workers=min(int(n_thr), len(zones)),
+                            thread_name_prefix="phys-zone") as ex:
+        futs = [ex.submit(_run_zone, sim, zone, step, sim_min, st, ordered)
+                for zone in zones]                 # submit = 宣言順(ゾーン id 固定順)
+        for f in futs:                             # join = 同じ順(完走順に依らない)
+            f.result()
 
 
 # --------------------------------------------------------------------------- #

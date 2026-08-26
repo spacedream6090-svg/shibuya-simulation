@@ -5055,6 +5055,22 @@ physics:
   # ★0 は「未指定」に予約してある。分離パスを**本当に切りたい**ときは
   #   ゾーン宣言側に `orca: {separation_iters: 0}` と書くこと(neighbor_cap と同じ規約)。
   separation_iters: 0
+  # ---- cpu-parallel Phase 1: ゾーン間スレッド並列(docs/plans/cpu-parallel-plan.md §2)----
+  # 0 = 逐次 = **現行と 1 バイト同一**(ThreadPoolExecutor を import すらしない)。
+  # >0 なら physics.phase がゾーンを宣言順に submit し、同じ順で join する。
+  # ★★ そもそも速くならない(実測 2026-08-26)★★ 実 3 ゾーン 400 体 24 step で
+  #   physics.phase は 5,989 → 8,496 ms/step = **0.70x(42% 悪化)**。共有状態を完全に
+  #   排した対照(独立 sim 4 つ)でも T3/T1=4.58 = 逐次(3.0)より悪い。原因は
+  #   `_run_zone` がほぼ常時 GIL を握っていること(カーネル `engine.step` は SFM で
+  #   解放割合 0.83-0.87 出るが、その外側の純 Python が支配的で利得が届かない)。
+  # ★★ >0 はビット同一でもない ★★ 物理ゾーンは空間的には独立だが `_run_zone` は
+  #   ゾーン内に閉じていない: ①排他所有 `agent._phys_zone` のハンドシェイク(隣接ゾーンを
+  #   1 本の経路が貫くと候補集合が交わる)②L1 zone_gate の追記順 ③`_phys_state` の
+  #   集計(dwell_sum_s は浮動小数の累積和)④by_zone の挿入順 が共有される。
+  #   詳細と実測は physics._run_zones_threaded の docstring / tests/test_physics_zone_threads.py。
+  #   本番で使うには「id 順の遅延書き戻し」への設計変更(= ゾーン内部の改造)が要る。
+  #   ここに残してあるのは Phase 1 の**計測用プロトタイプ**としてである。
+  zone_threads: 0
   # ゾーン宣言。**空 = 既定 = 物理 OFF**。
   zones: []
   # ★★ 実配置は conf/zones_shibuya.yaml にある(第100バッチ Wave4 I-2。2026-08-06)★★
