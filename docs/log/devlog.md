@@ -1689,3 +1689,10 @@ main投入可。4レーンをOpus実行役並行・全て既定OFF=goldenバイ�
 - **Webリサーチ完了**: story sifting(Winnowパターン+Select-the-Unexpectedのsurpriseスコア=−logP)が「40万体から物語を見つける」課題の確立解と判明。Kyrix宣言的セマンティックズーム4段・Segue(1点=1動的ego-net散布図で外れ値人生を炙り出す)・storylineリボン(Story Ribbons)・Gleicher比較3分類(並置/重畳/差分を全部載せ)・等時線マップ(アニメはA/B比較不能=静的1枚が学術解)・AgentLens(LLMログ→階層要約→因果遡行=最近接先行)。
 - **生データ全棚卸し完了**: L1は**260種**(docstringの194は過少・実測)・L2=140列(実ラン114)・サイドカー20種・結合キー総覧(llm_call_id=sha256[:16]でjournal prompt/response全文へjoin可)。★未使用の宝: llm_journal思考全文チェーン(思考→行為→結果の一本鎖)・gathering_intent(不発の集会=臨界まであとN人・現実で観測不能な量)・channels.parquet(全個体×全stepの内部状態=疲労/不満/覚醒)・belief伝播木(from/hopで完全再構成可)・relations.parquet closeness連続値。既存2Dビューワーの教訓=単一HTML全埋込125.7MB事故→3D側の量子化+チャンク遅延ロードを2Dへ移植が正。既存ビューワーのL1利用率8%。
 - **docs/plans/viewer-chronicle-plan.md起案**: P0基盤(build_chronicle.py=事前集計+チャンク)+4画面(①A/B対照=スワイプ地図+差分ヘックス+同一人物カード対比 ②関係の伝記=storylineリボン+実文会話ログ ③語の一生=等時線+S字+カスケード木 ④物語ピン=siftingパターン+surpriseスコア)。作る順=P0+①A側→②→①B側→③→④。エンジン不触・既存ビューワー温存。→ユーザー確認待ち。
+- ハードウェア概算をユーザーへ回答: ビューワー生成=CPU2-4コア/RAM4-8GB/GPU不要/1回10-30分=シミュ1step未満。サーバー遊休60コアでnice実行+ローカル組み立て=シミュ資源を不奪。逆算スケジュール(8/29スライド初稿・8/30仕上げ+予備半日)提示。
+
+## 2026-08-26 10:15-10:45 ★★Run A確定終了→Run B起動(対照実験の後半開始)★★
+- 10:13 ウォッチャー発火(part-0014 flush=step 0-89確定・シミュ内土曜00:00-15:00)→**Run A(finals_observe_20260824c)をTERMでクリーン停止**(90秒以内に終了・part 66本=全flush分がRun Aの確定データ・summary.jsonは中断につき無し=仕様どおりpart読みで解析)。
+- freeze_config: conf/finals_20260826_frozen.yaml・**sha256=2422b3be4ef15deb281114e64ad6ad410c18dc4f6d37b7b9b46022d8e416d9dd**。
+- **Run B起動 10:41(finals_observe_runB_20260826・PID 502129)**: seed 42・start 00:00・n_steps 1440・起動行でmax_llm_per_step=**4500**を確認=第159 conf有効。CLI batch_llm上書きなし(confへ明文化済み)。同seed同名簿=Run Aとの同一step対照が成立。
+- 初動検証タイマー設置(~25分後: init時間/プリフェッチ発火/plan→8Bルーティング/reject/RSS)。以降day-1ゲート監視: 昼n_fires>0・計画LLM比率・journal成長(呼数15倍)・step時間。
