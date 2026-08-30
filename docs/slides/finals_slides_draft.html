@@ -26,13 +26,18 @@
         border:2px dashed #bbb; border-radius:10px; display:flex; align-items:center; justify-content:center;
         color:#888; font-size:19px; text-align:center; padding:12px; }
   .foot { position:absolute; bottom:20px; left:72px; color:#999; font-size:14px; }
+  @page { size: 1280px 720px; margin: 0; }
+  @media print {
+    body { background:#fff; }
+    .slide { margin:0; box-shadow:none; }
+  }
 </style>
 
 <!-- 1 表紙 -->
 <div class="slide">
   <div style="margin-top:150px">
     <p class="sub" style="font-size:24px">AUTOMATA 第2回ハッカソン 本選</p>
-    <h1 style="margin-top:16px">考える街<br><span style="font-size:34px;color:var(--sub)">— 40万人がLLMで生きる渋谷と、「口コミが生まれる瞬間」の対照実験</span></h1>
+    <h1 style="margin-top:16px">考える街<br><span style="font-size:34px;color:var(--sub)">— 現実の渋谷を仮想空間に再現する。40万人がLLMで生きる街と、「口コミが生まれる瞬間」の対照実験</span></h1>
     <p class="sub" style="margin-top:40px">shibuya-simulation ｜ 2026-08-30</p>
   </div>
   <div class="no">1</div>
@@ -41,7 +46,8 @@
 <!-- 2 問い -->
 <div class="slide">
   <h2>問い: ルールで動く街と、考える街は何が違うのか</h2>
-  <p>群衆・交通・経済をどれだけ精密にしても、それは「社会」なのか？<br>
+  <p style="margin-bottom:16px"><b>「世界の理解は、自分の手で世界を作ることで可能になる。」</b>——目標は、現実の渋谷を仮想空間に再現すること。<b>世界そのものがプロダクト</b>であり、研究観測はその上で走るアプリケーションである。</p>
+  <p>では、群衆・交通・経済をどれだけ精密にしても、それは「社会」なのか？<br>
      私たちは同一条件の渋谷を2つ用意し、<b>「自分で考える力」だけを変えた対照実験</b>を行った。</p>
   <div class="row">
     <div class="card"><h3>Run A: ルールの街</h3><p class="sub">思考予算を最小化(cap 300)。人流・経済・出来事はすべて動くが、エージェントはほぼルールで行動する。</p></div>
@@ -65,7 +71,10 @@
     <div class="card"><div class="num">930<small> 日</small></div><p class="sub">気象庁実測から較正した天候生成</p></div>
     <div class="card"><div class="num">37<small> 本</small></div><p class="sub">現実整合の較正アンカー(出典・split宣言付き)</p></div>
   </div>
-  <p style="margin-top:22px" class="sub">実測信号(スクランブル交差点 周期140秒)・改札の待ち行列・駅員と車掌・交番8箇所・夜勤3,370社——「見えない労働」まで全員がエージェント。</p>
+  <div style="display:flex; gap:20px; margin-top:16px; align-items:center">
+    <img src="img/map.png" style="width:620px; height:185px; object-fit:cover; object-position:38% 45%; border-radius:10px; border:1px solid #ddd">
+    <p class="sub" style="flex:1">実測信号(スクランブル交差点 周期140秒)・改札の待ち行列・駅員と車掌・交番8箇所・夜勤3,370社——「見えない労働」まで全員がエージェント。<br>左: 俯瞰ビュー実画面(在場20万人のhexbin・実OSM地図・物語ピン)。</p>
+  </div>
   <div class="no">3</div>
 </div>
 
@@ -99,13 +108,17 @@
   <h2>街の解像度: 一人ひとりに物語がある</h2>
   <div class="row">
     <div class="card"><h3>こじれて戻る友情</h3><p class="sub">知人⇄他人を3往復して友人に至った2人。本人の思考テキスト8行付きで追跡できる。</p></div>
-    <div class="card"><h3>実らない約束</h3><p class="sub">「今度集まろう」と場所を決めずに約束した2,549人——集会は1件も実現しなかった。現実では観測不可能な「起きなかった出来事」。</p></div>
+    <div class="card"><h3>実らない約束</h3><p class="sub">「今度集まろう」と場所を決めない約束——ルールの街2,549人・考える街15,779人、実現した集会はゼロ。現実では観測不可能な「起きなかった出来事」。</p></div>
   </div>
   <div class="row">
     <div class="card"><h3>財布の5拍</h3><p class="sub">落とす→拾得→交番→遺失届→返還・報労金451円。返還率は現実統計と一致(財布70%・携帯88%)。</p></div>
     <div class="card"><h3>毎朝同じ電車の他人</h3><p class="sub">10,730組のfamiliar strangers、関係に発展したのは16組(0.15%)。接触の量ではなく、会話が関係を作る。</p></div>
   </div>
-  <div class="ph" style="height:150px; margin-top:22px">【Chronicleスクショ: 画面2「関係の伝記」storylineリボン+画面3伝播カスケード木】</div>
+  <div style="display:flex; gap:16px; margin-top:14px">
+    <img src="img/pair.png" style="flex:1; min-width:0; height:172px; object-fit:cover; object-position:72% 28%; border-radius:10px; border:1px solid #ddd">
+    <img src="img/story.png" style="flex:1; min-width:0; height:172px; object-fit:cover; object-position:22% 10%; border-radius:10px; border:1px solid #ddd">
+  </div>
+  <p class="sub" style="margin-top:6px; font-size:15px">Chronicle実画面: 左=関係の伝記(昇格の段・こじれ・会話実文) 右=物語ピン(集まらなかった15,779人・本人のLLM入出力つき)</p>
   <div class="no">5</div>
 </div>
 
@@ -117,7 +130,7 @@
     <li><b>「世界を変える人」は未出現。</b>世界改変ツール(起業・イベント・制度提案・チラシ)は全員に装備済みだが、行使は極少。思考予算がルール行動に吸われる構造(後述のv1限界)が主因と分析。</li>
     <li><b>会話イベントの大半は両ランともルール駆動(各~159万件)。</b>LLMの差は「実際に言葉が発された行動」(×25-125)に現れる——ここが次の設計の出発点。</li>
   </ul>
-  <p style="margin-top:24px">この「未発火の記録」こそ対照実験の誠実さであり、<b>創発には何が足りないか</b>を定量的に示す成果である。</p>
+  <p style="margin-top:24px">この「未発火の記録」こそ対照実験の誠実さであり、<b>創発には何が足りないか</b>を定量的に示す成果である。——この"足りないもの"の定量化が、そのまま<b>v2の設計仕様</b>になった(最終スライド)。</p>
   <div class="no">6</div>
 </div>
 
@@ -127,7 +140,7 @@
   <div class="row">
     <div class="card"><div class="num">44万<small> LLM呼</small></div><p class="sub">本番ラン(A5000×7・vLLM艦隊5+2)</p></div>
     <div class="card"><div class="num">4,400万<small> 行/日</small></div><p class="sub">L1イベントストリーム(197種・因果列付き)</p></div>
-    <div class="card"><div class="num">6,558<small> テスト</small></div><p class="sub">resume==straightをバイト一致で機械証明</p></div>
+    <div class="card"><div class="num">6,782<small> テスト</small></div><p class="sub">resume==straightをバイト一致で機械証明</p></div>
     <div class="card"><div class="num">96,563<small> 行</small></div><p class="sub">エンジン本体(トグル379件を全数宣言)</p></div>
   </div>
   <ul style="margin-left:28px; margin-top:20px">
@@ -147,7 +160,13 @@
     <li>経済が循環定義(売上=自社賃金×係数・倒産なし)</li>
     <li>LLMの心とルールの世界が相互に見えない(押されても感じない・会話の大半に実文がない)</li>
   </ul>
-  <p style="margin-top:18px"><b>v2(設計済み・文献較正済み)</b>: イベント駆動の時間(一斉tickの廃止)・<b>思考がシミュ内時間を消費する</b>認知モデル(δ=0.04秒/token・人間の熟考実測と定量一致)・習慣⇄速い思考⇄遅い思考の3層認知・GPU常駐物理(ORCA-GPU実測: 50万体33ms/frame)・実フロー経済。</p>
-  <p style="margin-top:16px" class="sub">「ルールが再現できるのは人流まで。社会は、内面からしか生まれない。」</p>
+  <p style="margin-top:14px"><b>v2(要件確定・文献較正済み)——世界の再現方式を「三層」に再設計:</b></p>
+  <div class="row" style="margin-top:8px">
+    <div class="card" style="padding:14px 18px"><h3 style="margin-top:0">層1 破れない法則</h3><p class="sub" style="font-size:17px">保存則(金・モノ・身体・時間)と物理・台帳だけをエンジンに残す</p></div>
+    <div class="card" style="padding:14px 18px"><h3 style="margin-top:0">層2 役割の知識</h3><p class="sub" style="font-size:17px">手順は書かない。役割を配り、手続きは本人のLLM世界知識から</p></div>
+    <div class="card" style="padding:14px 18px"><h3 style="margin-top:0">層3 裁定と判例</h3><p class="sub" style="font-size:17px">未定義の行動はGM的LLMが裁定→判例に結晶化=ルールブックが自己成長(先行ゼロの領域)</p></div>
+  </div>
+  <p style="margin-top:10px" class="sub">+ 思考がシミュ内時間を消費(0.04秒/token=人間の熟考実測と定量一致)・イベント駆動の時間・習慣⇄速い⇄遅いの3層認知・GPU常駐物理(50万体33ms/frame実証)・実フロー経済・忠実度計器盤(現実整合37アンカーのライブ照合)。</p>
+  <p style="margin-top:14px; font-size:25px"><b>「ルールが再現できるのは人流まで。社会は、内面からしか生まれない。」</b></p>
   <div class="no">8</div>
 </div>
